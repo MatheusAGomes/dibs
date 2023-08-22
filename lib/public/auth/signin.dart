@@ -25,6 +25,9 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   int value = 0;
+  TextEditingController usuarioController = TextEditingController();
+
+  TextEditingController senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,9 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Column(children: [
           Center(
             child: Image.asset('assets/images/logoDibs.png'),
+          ),
+          SizedBox(
+            height: 23,
           ),
           AnimatedToggleSwitch<int>.size(
             current: value,
@@ -67,14 +73,89 @@ class _SignInScreenState extends State<SignInScreen> {
             //colorBuilder: (i) => i.isEven ? Colors.grey : Colors.grey,
             onChanged: (i) => setState(() => value = i),
           ),
+          SizedBox(
+            height: 65,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Row(
+            child: Column(
               children: [
-                Text(
-                  'Usuário',
-                  style: TextStyle(fontWeight: FontWeight.w900),
+                Row(
+                  children: [
+                    Text(
+                      'Usuário',
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ],
                 ),
+                Container(
+                  height: 34,
+                  width: 343,
+                  child: TextFormField(
+                    cursorColor: Colors.grey,
+                    controller: usuarioController,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(
+                              width: 1, color: Colors.grey.shade300)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(width: 1, color: Colors.grey)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Senha',
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                  ],
+                ),
+                Container(
+                  height: 34,
+                  width: 343,
+                  child: TextFormField(
+                    cursorColor: Colors.grey,
+                    controller: senhaController,
+                    decoration: InputDecoration(
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(
+                              width: 1, color: Colors.grey.shade300)),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(7),
+                          borderSide: BorderSide(width: 1, color: Colors.grey)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 120,
+                ),
+                SizedBox(
+                  width: 100,
+                  height: 30,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Login',
+                      style: TextStyle(fontWeight: FontWeight.w900),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll<Color>(
+                        Color(0XFF198A68),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
