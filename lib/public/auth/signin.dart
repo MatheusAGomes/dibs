@@ -33,8 +33,11 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 100, horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(children: [
+          SizedBox(
+            height: 80,
+          ),
           Center(
             child: Image.asset('assets/images/logoDibs.png'),
           ),
@@ -153,6 +156,25 @@ class _SignInScreenState extends State<SignInScreen> {
                       backgroundColor: MaterialStatePropertyAll<Color>(
                         Color(0XFF198A68),
                       ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 100,
+                  height: 30,
+                  child: OutlinedButton(
+                    onPressed: () {},
+                    child: Text(
+                      'Cadastrar',
+                      style: TextStyle(
+                          fontWeight: FontWeight.w900,
+                          color: Color(0XFF198A68)),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(width: 1.5, color: Color(0XFF198A68)),
                     ),
                   ),
                 )
