@@ -1,3 +1,4 @@
+import 'package:dibs/private/mainScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           physics: ClampingScrollPhysics(),
           controller: pc,
           onPageChanged: setPaginaAtual,
-          children: [Text('data'), Text('data')],
+          children: [MainScreen(), Text('data')],
         ),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.white,

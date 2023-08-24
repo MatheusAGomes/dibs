@@ -31,12 +31,12 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           );
         } else if (snapshot.error != null) {
-          return SignInScreen();
+          return EstruturasScreen();
         } else {
           if (auth.estaAutenticado) {
-            return EstruturasScreen();
-          } else {
             return SignInScreen();
+          } else {
+            return EstruturasScreen();
           }
         }
       },
