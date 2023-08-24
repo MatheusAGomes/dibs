@@ -99,6 +99,9 @@ class _MainScreenState extends State<MainScreen> {
                       ],
                     ),
                   ]),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Container(
                     height: 230,
                     child: ListView(
@@ -178,7 +181,191 @@ class _MainScreenState extends State<MainScreen> {
                         ]),
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Stack(children: [
+                    Positioned(
+                      right: 143,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Próximos a você',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 20,
+                                color: Color(0xff7EF4D1)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Próximos a você',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ]),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 120,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Stack(alignment: Alignment.bottomLeft, children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'assets/images/PericlesEx.png'),
+                                ),
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(10)),
+                            width: 120,
+                          ),
+                          Container(
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(10),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 70,
+                              width: 100,
+                              child: Text(
+                                'Churrasquinho Menos é Mais',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        ]),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Stack(alignment: Alignment.bottomLeft, children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'assets/images/PericlesEx.png'),
+                                ),
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(10)),
+                            width: 120,
+                          ),
+                          Container(
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(10),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 70,
+                              width: 100,
+                              child: Text(
+                                'Churrasquinho Menos é Mais',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        ]),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Stack(alignment: Alignment.bottomLeft, children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'assets/images/PericlesEx.png'),
+                                ),
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(10)),
+                            width: 120,
+                          ),
+                          Container(
+                            width: 120,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(10),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 70,
+                              width: 100,
+                              child: Text(
+                                'Churrasquinho Menos é Mais',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Stack(children: [
+                    Positioned(
+                      right: 189,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Categorias',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 20,
+                                color: Color(0xff7EF4D1)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        Text(
+                          'Categorias',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w900, fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ]),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ),
