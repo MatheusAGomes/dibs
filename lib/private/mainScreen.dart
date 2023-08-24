@@ -33,71 +33,154 @@ class _MainScreenState extends State<MainScreen> {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.asset('assets/images/logoDibs.png'),
-                    Icon(
-                      Icons.person,
-                      size: 40,
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Container(
-                  height: 34,
-                  width: 343,
-                  child: TextFormField(
-                    cursorColor: Colors.grey,
-                    controller: buscaController,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      hintText: 'Busque eventos',
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(
-                              width: 1, color: Colors.grey.shade300)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(width: 1, color: Colors.grey)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Image.asset('assets/images/logoDibs.png'),
+                      Icon(
+                        Icons.person,
+                        size: 40,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    height: 34,
+                    width: 343,
+                    child: TextFormField(
+                      cursorColor: Colors.grey,
+                      controller: buscaController,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.search),
+                        hintText: 'Busque eventos',
+                        contentPadding:
+                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide: BorderSide(
+                                width: 1, color: Colors.grey.shade300)),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(7),
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.grey)),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Stack(children: [
-                  Positioned(
-                    right: 69,
-                    child: Row(
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Stack(children: [
+                    Positioned(
+                      right: 69,
+                      child: Row(
+                        children: [
+                          Text(
+                            'Eventos mais procurados',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w900,
+                                fontSize: 20,
+                                color: Color(0xff7EF4D1)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
                       children: [
                         Text(
                           'Eventos mais procurados',
                           style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 20,
-                              color: Color(0xff7EF4D1)),
+                              fontWeight: FontWeight.w900, fontSize: 20),
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        'Eventos mais procurados',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                ])
-              ],
+                  ]),
+                  Container(
+                    height: 230,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        Stack(alignment: Alignment.bottomLeft, children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'assets/images/PericlesEx.png'),
+                                ),
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(10)),
+                            width: 200,
+                          ),
+                          Container(
+                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(10),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 70,
+                              width: 200,
+                              child: Text(
+                                'Churrasquinho Menos é Mais',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 24),
+                              ),
+                            ),
+                          ),
+                        ]),
+                        Stack(alignment: Alignment.bottomLeft, children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                      'assets/images/PericlesEx.png'),
+                                ),
+                                borderRadius:
+                                    BorderRadiusDirectional.circular(10)),
+                            width: 200,
+                          ),
+                          Container(
+                            width: 200,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(10),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                  colors: [Colors.transparent, Colors.black]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: SizedBox(
+                              height: 70,
+                              width: 200,
+                              child: Text(
+                                'Churrasquinho Menos é Mais',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 24),
+                              ),
+                            ),
+                          ),
+                        ]),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));
