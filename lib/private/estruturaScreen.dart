@@ -41,33 +41,47 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           physics: ClampingScrollPhysics(),
           controller: pc,
           onPageChanged: setPaginaAtual,
-          children: [MainScreen(), Text('data')],
+          children: [MainScreen(), Text('data'), Text('text')],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Colors.white,
-          backgroundColor: ColorService.azul,
-          selectedItemColor: ColorService.dourado,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: paginaAtual,
-          items: [
-            BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                ),
-                label: 'Inicio'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Perfil',
+        bottomNavigationBar: Container(
+          height: 70,
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
             ),
-          ],
-          onTap: (pagina) {
-            pc.animateToPage(
-              pagina,
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.ease,
-            );
-          },
-          // backgroundColor: Colors.grey[100],
+            child: BottomNavigationBar(
+              unselectedItemColor: Colors.grey,
+              backgroundColor: Colors.grey.shade300,
+              selectedItemColor: ColorService.verde,
+              type: BottomNavigationBarType.fixed,
+
+              currentIndex: paginaAtual,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home,
+                    ),
+                    label: 'Tela inicial'),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.confirmation_num),
+                  label: 'Ingresso',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.attach_money),
+                  label: 'Ingresso',
+                ),
+              ],
+              onTap: (pagina) {
+                pc.animateToPage(
+                  pagina,
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.ease,
+                );
+              },
+              // backgroundColor: Colors.grey[100],
+            ),
+          ),
         ),
       ),
     );

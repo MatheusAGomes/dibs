@@ -366,6 +366,63 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [Colors.green, Colors.blue]),
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(10)),
+                              height: 58,
+                              width: 125,
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(Icons.theater_comedy_rounded),
+                                    Text(
+                                      'Teatro',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w900),
+                                    )
+                                  ]),
+                            ),
+                          ),
+                          InkWell(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [Colors.red, Colors.yellow]),
+                                  borderRadius:
+                                      BorderRadiusDirectional.circular(10)),
+                              height: 58,
+                              width: 125,
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Icon(Icons.music_note),
+                                    Text(
+                                      'Shows',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w900),
+                                    )
+                                  ]),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  )
                 ],
               ),
             ),
