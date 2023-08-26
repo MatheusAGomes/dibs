@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -107,78 +108,18 @@ class _MainScreenState extends State<MainScreen> {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        Stack(alignment: Alignment.bottomLeft, children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      'assets/images/PericlesEx.png'),
-                                ),
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(10)),
-                            width: 200,
-                          ),
-                          Container(
-                            width: 200,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(10),
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Colors.transparent, Colors.black]),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: SizedBox(
-                              height: 70,
-                              width: 200,
-                              child: Text(
-                                'Churrasquinho Menos é Mais',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 24),
-                              ),
-                            ),
-                          ),
-                        ]),
-                        Stack(alignment: Alignment.bottomLeft, children: [
-                          Container(
-                            decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage(
-                                      'assets/images/PericlesEx.png'),
-                                ),
-                                borderRadius:
-                                    BorderRadiusDirectional.circular(10)),
-                            width: 200,
-                          ),
-                          Container(
-                            width: 200,
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(10),
-                              gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [Colors.transparent, Colors.black]),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: SizedBox(
-                              height: 70,
-                              width: 200,
-                              child: Text(
-                                'Churrasquinho Menos é Mais',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 24),
-                              ),
-                            ),
-                          ),
-                        ]),
+                        BannerPrincipal(
+                          image: AssetImage('assets/images/PericlesEx.png'),
+                          titulo: 'Churrasquinho Menos é Mais',
+                        ),
+                        BannerPrincipal(
+                          image: AssetImage('assets/images/PericlesEx.png'),
+                          titulo: 'Churrasquinho Menos é Mais',
+                        ),
+                        BannerPrincipal(
+                          image: AssetImage('assets/images/PericlesEx.png'),
+                          titulo: 'Churrasquinho Menos é Mais',
+                        ),
                       ],
                     ),
                   ),
