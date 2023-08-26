@@ -100,7 +100,10 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                               onPressed: () {},
                               icon: Icon(Icons.add),
                             ),
-                            Text('Novo anúncio')
+                            Text(
+                              'Novo anúncio',
+                              style: TextStyle(fontWeight: FontWeight.w900),
+                            )
                           ]),
                           Divider(),
                           Container(
