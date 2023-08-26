@@ -1,3 +1,4 @@
+import 'package:dibs/private/anuncieIngressoScreen.dart';
 import 'package:dibs/private/mainScreen.dart';
 import 'package:dibs/private/meusIngressosScreen.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,11 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           physics: ClampingScrollPhysics(),
           controller: pc,
           onPageChanged: setPaginaAtual,
-          children: [MainScreen(), MeusIngressosScreen(), Text('text')],
+          children: [
+            MainScreen(),
+            MeusIngressosScreen(),
+            AnuncieIngressoScreen()
+          ],
         ),
         bottomNavigationBar: Container(
           height: 70,
