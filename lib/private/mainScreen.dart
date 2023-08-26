@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dio/dio.dart';
@@ -200,56 +201,36 @@ class _MainScreenState extends State<MainScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [Colors.green, Colors.blue]),
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(10)),
-                              height: 58,
-                              width: 125,
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(Icons.theater_comedy_rounded),
-                                    Text(
-                                      'Teatro',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w900),
-                                    )
-                                  ]),
-                            ),
-                          ),
-                          InkWell(
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
-                                      colors: [Colors.red, Colors.yellow]),
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(10)),
-                              height: 58,
-                              width: 125,
-                              child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Icon(Icons.music_note),
-                                    Text(
-                                      'Shows',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w900),
-                                    )
-                                  ]),
-                            ),
-                          ),
+                          BannerCategoria(
+                              icon: Icon(Icons.theater_comedy),
+                              titulo: 'Shows',
+                              corUm: Colors.green,
+                              corDois: Colors.blue),
+                          BannerCategoria(
+                              icon: Icon(Icons.music_note),
+                              titulo: 'Teatro',
+                              corUm: Colors.red,
+                              corDois: Colors.yellow),
                         ],
-                      )
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          BannerCategoria(
+                              icon: Icon(Icons.directions_walk),
+                              titulo: 'Corridas',
+                              corUm: Colors.pink.shade100,
+                              corDois: Colors.pink.shade300),
+                          BannerCategoria(
+                              icon: Icon(Icons.church),
+                              titulo: 'Teatro',
+                              corUm: Colors.green.shade200,
+                              corDois: Colors.yellow),
+                        ],
+                      ),
                     ],
                   )
                 ],
