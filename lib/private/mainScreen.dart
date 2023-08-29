@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
@@ -205,24 +206,12 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                    Row(
-                      children: [
-                        Text(
-                          'Eventos mais procurados',
-                          style: GoogleFonts.jost(
-                            textStyle: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 22,
-                                letterSpacing: -1.41,
-                                shadows: <Shadow>[
-                                  Shadow(
-                                      offset: Offset(1.5,1.5),
-                                      color: Color.fromRGBO(126, 244, 209, 0.72)
-                                  )
-                                ])
-                          ),
-                        ),
-                      ],
-                    ),
+                  Row(
+                    children: [
+                      Text('Eventos mais procurados',
+                          style: TextStyleService.corSublinhada),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -246,17 +235,7 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Text(
                         'Próximos a você',
-                        style: GoogleFonts.jost(
-                            textStyle: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 22,
-                                letterSpacing: -1.41,
-                                shadows: <Shadow>[
-                                  Shadow(
-                                      offset: Offset(1.5,1.5),
-                                      color: Color.fromRGBO(126, 244, 209, 0.72)
-                                  )
-                                ])
-                        ),
+                        style: TextStyleService.corSublinhada,
                       ),
                     ],
                   ),
@@ -283,17 +262,7 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Text(
                         'Categorias',
-                        style: GoogleFonts.jost(
-                            textStyle: const TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 22,
-                                letterSpacing: -1.41,
-                                shadows: <Shadow>[
-                                  Shadow(
-                                      offset: Offset(1.5,1.5),
-                                      color: Color.fromRGBO(126, 244, 209, 0.72)
-                                  )
-                                ])
-                        ),
+                        style: TextStyleService.corSublinhada,
                       ),
                     ],
                   ),
