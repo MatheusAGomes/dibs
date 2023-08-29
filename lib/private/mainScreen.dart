@@ -5,6 +5,7 @@ import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -88,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
                     }
                   },
                   itemBuilder: (BuildContext bc) {
-                    return const [
+                    return [
                       PopupMenuItem(
                         height: 30,
                         child: Row(
@@ -204,31 +205,24 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Stack(children: [
-                    Positioned(
-                      right: 69,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Eventos mais procurados',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                                color: Color(0xff7EF4D1)),
-                          ),
-                        ],
-                      ),
-                    ),
                     Row(
                       children: [
                         Text(
                           'Eventos mais procurados',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20),
+                          style: GoogleFonts.jost(
+                            textStyle: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 22,
+                                letterSpacing: -1.41,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                      offset: Offset(1.5,1.5),
+                                      color: Color.fromRGBO(126, 244, 209, 0.72)
+                                  )
+                                ])
+                          ),
                         ),
                       ],
                     ),
-                  ]),
                   SizedBox(
                     height: 10,
                   ),
@@ -248,31 +242,24 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Stack(children: [
-                    Positioned(
-                      right: 143,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Próximos a você',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                                color: Color(0xff7EF4D1)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Próximos a você',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20),
+                  Row(
+                    children: [
+                      Text(
+                        'Próximos a você',
+                        style: GoogleFonts.jost(
+                            textStyle: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 22,
+                                letterSpacing: -1.41,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                      offset: Offset(1.5,1.5),
+                                      color: Color.fromRGBO(126, 244, 209, 0.72)
+                                  )
+                                ])
                         ),
-                      ],
-                    ),
-                  ]),
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -282,12 +269,9 @@ class _MainScreenState extends State<MainScreen> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 3,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: BannerSecundario(
-                            image: AssetImage('assets/images/PericlesEx.png'),
-                            titulo: 'Churrasquinho Menos é Mais',
-                          ),
+                        return BannerSecundario(
+                          image: AssetImage('assets/images/PericlesEx.png'),
+                          titulo: 'Churrasquinho Menos é Mais',
                         );
                       },
                     ),
@@ -295,31 +279,24 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Stack(children: [
-                    Positioned(
-                      right: 189,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Categorias',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                                color: Color(0xff7EF4D1)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Categorias',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20),
+                  Row(
+                    children: [
+                      Text(
+                        'Categorias',
+                        style: GoogleFonts.jost(
+                            textStyle: const TextStyle(
+                                fontWeight: FontWeight.w700, fontSize: 22,
+                                letterSpacing: -1.41,
+                                shadows: <Shadow>[
+                                  Shadow(
+                                      offset: Offset(1.5,1.5),
+                                      color: Color.fromRGBO(126, 244, 209, 0.72)
+                                  )
+                                ])
                         ),
-                      ],
-                    ),
-                  ]),
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),
