@@ -2,6 +2,7 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
+import 'package:dibs/widget/modalAjuda.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,9 @@ import '../../../shared/routes/routes.dart';
 import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
+
+import '../widget/modalPerfil.dart';
+import '../widget/modalMeusCartoes.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -32,6 +36,139 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          title: Image.asset('assets/images/logoDibs.png'),
+          actions: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: PopupMenuButton(
+                  constraints:
+                      const BoxConstraints.expand(width: 150, height: 170),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(15.0))),
+                  icon: const Icon(
+                    Icons.person,
+                    size: 40,
+                    color: Colors.black,
+                  ),
+                  onSelected: (value) {
+                    switch (value) {
+                      case 'MeuPerfil':
+                        showModalBottomSheet<void>(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ModalPerfil();
+                          },
+                        );
+                        break;
+
+                      case 'MeusCartões':
+                        showModalBottomSheet<void>(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ModalMeusCartoes();
+                          },
+                        );
+                        break;
+
+                      case 'Ajuda':
+                        showModalBottomSheet<void>(
+                          isScrollControlled: true,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ModalAjuda();
+                          },
+                        );
+                        break;
+                      default:
+                    }
+                  },
+                  itemBuilder: (BuildContext bc) {
+                    return const [
+                      PopupMenuItem(
+                        height: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Olá,{user}",
+                              style: TextStyle(fontWeight: FontWeight.w900),
+                            ),
+                            Icon(
+                              Icons.person,
+                              color: Colors.black,
+                            )
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem(
+                        height: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Meu perfil",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        value: 'MeuPerfil',
+                      ),
+                      PopupMenuItem(
+                        height: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Meus cartões",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        value: 'MeusCartões',
+                      ),
+                      PopupMenuItem(
+                        height: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Ajuda",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        value: 'Ajuda',
+                      ),
+                      PopupMenuItem(
+                        height: 30,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Sair",
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        value: 'Sair',
+                      )
+                    ];
+                  }),
+            )
+          ],
+          actionsIconTheme: IconThemeData(),
+        ),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Padding(
@@ -39,19 +176,6 @@ class _MainScreenState extends State<MainScreen> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Image.asset('assets/images/logoDibs.png'),
-                      Icon(
-                        Icons.person,
-                        size: 40,
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
                   Container(
                     height: 34,
                     width: 343,
@@ -59,7 +183,10 @@ class _MainScreenState extends State<MainScreen> {
                       cursorColor: Colors.grey,
                       controller: buscaController,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.search),
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Colors.grey,
+                        ),
                         hintText: 'Busque eventos',
                         contentPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 10),
