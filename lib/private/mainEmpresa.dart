@@ -19,6 +19,7 @@ import '../../models/auth.dart';
 
 import '../widget/modalPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
+import 'meusEventosEmpresaScreen.dart';
 import 'minhaEmpresa.dart';
 
 class MainEmpresa extends StatefulWidget {
@@ -86,7 +87,13 @@ class _MainEmpresaState extends State<MainEmpresa> {
                 SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MeusEventosEmpresaScreen()));
+                        },
                         child: Text(
                           'Meus Eventos',
                           style: TextStyle(color: Colors.black),
