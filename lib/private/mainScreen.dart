@@ -70,6 +70,8 @@ class _MainScreenState extends State<MainScreen> {
                       case 'MeusCartões':
                         showModalBottomSheet<void>(
                           isScrollControlled: true,
+                          enableDrag: true,
+                          isDismissible: true,
                           context: context,
                           builder: (BuildContext context) {
                             return ModalMeusCartoes();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../shared/functions/utils.dart';
 import '../shared/service/colorService.dart';
 import 'meuCartaoComponente.dart';
 
@@ -33,17 +34,33 @@ class ModalMeusCartoes extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height,
+                height: MediaQuery.of(context).size.height * 0.7,
                 width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: 5,
                   itemBuilder: (context, index) => Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: MeuCartaoComponente(
-                        numero: "1234123412341234", tipo: "Crédito"),
+                        numero: substituirTresPrimeirosGruposPorAsteriscos(
+                            "1234123412341234"),
+                        tipo: "Crédito"),
                   ),
                 ),
-              )
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: TextButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.orange)),
+                  onPressed: () {},
+                  child: const Text(
+                    'Adicionar cartão',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

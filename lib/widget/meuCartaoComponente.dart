@@ -16,7 +16,7 @@ class MeuCartaoComponente extends StatelessWidget {
     return InkWell(
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.grey.shade500,
+            color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(11)),
         height: 50,
         child: Padding(
@@ -33,7 +33,10 @@ class MeuCartaoComponente extends StatelessWidget {
                     Text(numero!),
                   ],
                 ),
-                Text(tipo!)
+                Text(
+                  tipo!,
+                  style: TextStyle(color: Colors.grey.shade500),
+                )
               ],
             ),
             Icon(Icons.delete_outline_outlined)
