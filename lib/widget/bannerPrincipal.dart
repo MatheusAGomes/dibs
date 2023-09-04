@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../shared/service/colorService.dart';
 
@@ -30,11 +31,19 @@ class BannerPrincipal extends StatelessWidget {
       Padding(
         padding: const EdgeInsets.only(left: 10),
         child: SizedBox(
-          height: 70,
+          height: 60,
           width: 200,
           child: Text(
             titulo,
-            style: TextStyle(color: Colors.white, fontSize: 24),
+            style: GoogleFonts.jost(
+                textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: -0.41,
+                  height: 1.13
+                )
+            ) ,
           ),
         ),
       ),

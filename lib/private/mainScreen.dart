@@ -1,10 +1,12 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -88,7 +90,7 @@ class _MainScreenState extends State<MainScreen> {
                     }
                   },
                   itemBuilder: (BuildContext bc) {
-                    return const [
+                    return [
                       PopupMenuItem(
                         height: 30,
                         child: Row(
@@ -204,31 +206,12 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Stack(children: [
-                    Positioned(
-                      right: 69,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Eventos mais procurados',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                                color: Color(0xff7EF4D1)),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Eventos mais procurados',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ]),
+                  Row(
+                    children: [
+                      Text('Eventos mais procurados',
+                          style: TextStyleService.corSublinhada),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -248,31 +231,14 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Stack(children: [
-                    Positioned(
-                      right: 143,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Próximos a você',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                                color: Color(0xff7EF4D1)),
-                          ),
-                        ],
+                  Row(
+                    children: [
+                      Text(
+                        'Próximos a você',
+                        style: TextStyleService.corSublinhada,
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Próximos a você',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ]),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -282,12 +248,9 @@ class _MainScreenState extends State<MainScreen> {
                       scrollDirection: Axis.horizontal,
                       itemCount: 3,
                       itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 5),
-                          child: BannerSecundario(
-                            image: AssetImage('assets/images/PericlesEx.png'),
-                            titulo: 'Churrasquinho Menos é Mais',
-                          ),
+                        return BannerSecundario(
+                          image: AssetImage('assets/images/PericlesEx.png'),
+                          titulo: 'Churrasquinho Menos é Mais',
                         );
                       },
                     ),
@@ -295,31 +258,14 @@ class _MainScreenState extends State<MainScreen> {
                   SizedBox(
                     height: 10,
                   ),
-                  Stack(children: [
-                    Positioned(
-                      right: 189,
-                      child: Row(
-                        children: [
-                          Text(
-                            'Categorias',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w900,
-                                fontSize: 20,
-                                color: Color(0xff7EF4D1)),
-                          ),
-                        ],
+                  Row(
+                    children: [
+                      Text(
+                        'Categorias',
+                        style: TextStyleService.corSublinhada,
                       ),
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Categorias',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w900, fontSize: 20),
-                        ),
-                      ],
-                    ),
-                  ]),
+                    ],
+                  ),
                   SizedBox(
                     height: 10,
                   ),

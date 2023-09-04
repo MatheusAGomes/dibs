@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/auth.dart';
 import '../../private/estruturaScreen.dart';
+import '../../private/mainEmpresa.dart';
 import '../../shared/service/colorService.dart';
 import 'signin.dart';
 
@@ -36,7 +37,8 @@ class _AuthScreenState extends State<AuthScreen> {
           if (auth.estaAutenticado) {
             return SignInScreen();
           } else {
-            return EstruturasScreen();
+            // return EstruturasScreen();
+            return MainEmpresa();
           }
         }
       },
