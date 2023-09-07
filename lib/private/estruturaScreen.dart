@@ -75,7 +75,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.attach_money),
-                  label: 'Ingresso',
+                  label: 'Vendas',
                 ),
               ],
               onTap: (pagina) {

@@ -65,3 +65,21 @@ String getTextAfterLastSlash(String territorio) {
     return territorio;
   }
 }
+
+String substituirTresPrimeirosGruposPorAsteriscos(String numeros) {
+  if (numeros.length != 16) {
+    return "A string deve conter exatamente 16 dígitos.";
+  }
+
+  List<String> grupos = [];
+  for (int i = 0; i < 16; i += 4) {
+    if (i < 12) {
+      grupos.add('****');
+    } else {
+      String grupo = numeros.substring(i, i + 4);
+      grupos.add(grupo);
+    }
+  }
+
+  return grupos.join(' ');
+}
