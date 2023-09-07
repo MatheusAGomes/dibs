@@ -84,31 +84,37 @@ String substituirTresPrimeirosGruposPorAsteriscos(String numeros) {
   return grupos.join(' ');
 }
 
-String obscureName(String fullName) {
+String hideLastName(String fullName) {
   if (fullName == null || fullName.isEmpty) {
     return fullName;
   }
 
-  // Determina quantos caracteres devem ser obscurecidos (aqui, estamos obscurecendo os últimos 4 caracteres)
-  int obscureCount = 4;
+  // Procura o último espaço na string para separar nome e sobrenome
+  int lastSpaceIndex = fullName.lastIndexOf(' ');
 
-  // Obtém o comprimento da string
-  int length = fullName.length;
-
-  // Verifica se o comprimento é menor que a quantidade de caracteres a serem obscurecidos
-  if (length <= obscureCount) {
-    return '*' * length; // Retorna asteriscos do mesmo comprimento que a string
+  // Se não houver espaço na string, apenas retorne a string original
+  if (lastSpaceIndex == -1) {
+    return fullName;
   }
 
-  // Pega os primeiros caracteres da string e adiciona asteriscos para obscurecer o restante
-  String obscured =
-      fullName.substring(0, length - obscureCount) + '*' * obscureCount;
+  // Obtém o nome e o sobrenome
+  String firstName = fullName.substring(0, lastSpaceIndex);
+  String lastName = fullName.substring(lastSpaceIndex + 1);
 
-  return obscured;
-}
+  // Determina quantos caracteres do sobrenome devem ser escondidos
+  int charsToHide = 0;
+  if (fullName.length > 10) {
+    charsToHide = 6;
+  } else {
+    charsToHide = 4;
+  }
 
-void main() {
-  String nomeCompleto = "John Doe";
-  String nomeObscurecido = obscureName(nomeCompleto);
-  print(nomeObscurecido); // Saída: "John ***"
+  // Calcula a parte do sobrenome a ser escondida
+  String hiddenPart = '*' * charsToHide;
+
+  // Cria o nome com o sobrenome parcialmente escondido
+  String partiallyHiddenName =
+      '$firstName ${lastName.substring(0, charsToHide).replaceAll(RegExp(r'[^ ]'), '*')}';
+
+  return partiallyHiddenName;
 }

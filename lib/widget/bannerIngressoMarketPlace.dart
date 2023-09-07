@@ -75,7 +75,7 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                                   Icon(
                                     Icons.person,
                                   ),
-                                  Text(obscureName('Luis Ciarbello')),
+                                  Text(hideLastName('Luis Ciarbello')),
                                 ],
                               ),
                               Row(
