@@ -83,3 +83,32 @@ String substituirTresPrimeirosGruposPorAsteriscos(String numeros) {
 
   return grupos.join(' ');
 }
+
+String obscureName(String fullName) {
+  if (fullName == null || fullName.isEmpty) {
+    return fullName;
+  }
+
+  // Determina quantos caracteres devem ser obscurecidos (aqui, estamos obscurecendo os últimos 4 caracteres)
+  int obscureCount = 4;
+
+  // Obtém o comprimento da string
+  int length = fullName.length;
+
+  // Verifica se o comprimento é menor que a quantidade de caracteres a serem obscurecidos
+  if (length <= obscureCount) {
+    return '*' * length; // Retorna asteriscos do mesmo comprimento que a string
+  }
+
+  // Pega os primeiros caracteres da string e adiciona asteriscos para obscurecer o restante
+  String obscured =
+      fullName.substring(0, length - obscureCount) + '*' * obscureCount;
+
+  return obscured;
+}
+
+void main() {
+  String nomeCompleto = "John Doe";
+  String nomeObscurecido = obscureName(nomeCompleto);
+  print(nomeObscurecido); // Saída: "John ***"
+}
