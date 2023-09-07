@@ -9,12 +9,13 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   String? cpf;
   String? codigoDoIngresso;
   ImageProvider? fotoDoEvento;
-  InfoMeuIngressoScreen({
-    required this.codigoDoIngresso,
-    required this.cpf,
-    required this.nomeDoTitular,
-    required this.fotoDoEvento,
-  });
+  bool status;
+  InfoMeuIngressoScreen(
+      {required this.codigoDoIngresso,
+      required this.cpf,
+      required this.nomeDoTitular,
+      required this.fotoDoEvento,
+      required this.status});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                       ),
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Text(
                           'Titular',
                           style: TextStyle(fontWeight: FontWeight.w900),
@@ -81,22 +82,34 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.3,
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                if (status != true) {
+                                  return;
+                                }
+                              },
                               child: Text(
                                 'Transferir',
                                 style: TextStyle(color: Colors.white),
                               ),
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
-                                      Color(0xff198A68)))),
+                                      status
+                                          ? Color(0xff198A68)
+                                          : Colors.grey))),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.3,
                           child: TextButton(
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
-                                      Color(0xff198A68))),
-                              onPressed: () {},
+                                      status
+                                          ? Color(0xff198A68)
+                                          : Colors.grey)),
+                              onPressed: () {
+                                if (status != true) {
+                                  return;
+                                }
+                              },
                               child: Text(
                                 'Editar',
                                 style: TextStyle(color: Colors.white),
