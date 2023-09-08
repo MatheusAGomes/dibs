@@ -101,6 +101,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: BannerMeuIgresso(
+                          anuncio: false,
                           image: AssetImage('assets/images/PericlesEx.png'),
                           titulo: 'Churrasquinho menos é mais',
                           data: '20/12/2020',

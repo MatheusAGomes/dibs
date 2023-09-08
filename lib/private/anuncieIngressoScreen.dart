@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/private/modalMeusIngressosAnuncio.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
@@ -95,16 +96,27 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                 value == 0
                     ? Column(
                         children: [
-                          Row(children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(Icons.add),
+                          InkWell(
+                            onTap: () => showModalBottomSheet<void>(
+                              isScrollControlled: true,
+                              enableDrag: true,
+                              isDismissible: true,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return ModalMeusIngressosAnuncio();
+                              },
                             ),
-                            Text(
-                              'Novo anúncio',
-                              style: TextStyle(fontWeight: FontWeight.w900),
-                            )
-                          ]),
+                            child: Row(children: [
+                              Icon(Icons.add),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                'Novo anúncio',
+                                style: TextStyle(fontWeight: FontWeight.w900),
+                              )
+                            ]),
+                          ),
                           Divider(),
                           Container(
                             height: MediaQuery.of(context).size.height,
@@ -116,6 +128,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIgresso(
+                                    anuncio: false,
                                     image: AssetImage(
                                         'assets/images/PericlesEx.png'),
                                     titulo: 'Churrasquinho menos é mais',
@@ -144,6 +157,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIgresso(
+                                    anuncio: false,
                                     image: AssetImage(
                                         'assets/images/PericlesEx.png'),
                                     titulo: 'Churrasquinho menos é mais',

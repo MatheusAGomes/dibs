@@ -262,17 +262,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Colors.orange)),
-                    onPressed: () {
-                      showModalBottomSheet<void>(
-                        isScrollControlled: true,
-                        enableDrag: true,
-                        isDismissible: true,
-                        context: context,
-                        builder: (BuildContext context) {
-                          return ModalNovoCartao();
-                        },
-                      );
-                    },
+                    onPressed: () {},
                     child: Text(
                       'Adicionar cartão',
                       style: TextStyle(color: Colors.white),
