@@ -1,3 +1,4 @@
+import 'package:dibs/private/modalNovoCartao.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/functions/utils.dart';
@@ -14,39 +15,40 @@ class ModalMeusCartoes extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  Text(
-                    'Meus cartões',
-                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Meus cartões',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w900, fontSize: 20),
+                      ),
+                      InkWell(
+                        child: Icon(Icons.close),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
                   ),
-                  InkWell(
-                    child: Icon(Icons.close),
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
+                  SizedBox(
+                    height: 10,
                   ),
+                  Column(
+                      children: List.generate(2, (index) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      child: MeuCartaoComponente(
+                          numero: substituirTresPrimeirosGruposPorAsteriscos(
+                              "1234123412341234"),
+                          tipo: "Crédito"),
+                    );
+                  })),
                 ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.7,
-                width: MediaQuery.of(context).size.width,
-                child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: 5,
-                  itemBuilder: (context, index) => Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    child: MeuCartaoComponente(
-                        numero: substituirTresPrimeirosGruposPorAsteriscos(
-                            "1234123412341234"),
-                        tipo: "Crédito"),
-                  ),
-                ),
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
@@ -54,8 +56,16 @@ class ModalMeusCartoes extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Colors.orange)),
-                  onPressed: () {},
-                  child: const Text(
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return ModalNovoCartao();
+                      },
+                    );
+                  },
+                  child: Text(
                     'Adicionar cartão',
                     style: TextStyle(color: Colors.white),
                   ),
