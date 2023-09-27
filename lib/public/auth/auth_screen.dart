@@ -1,3 +1,4 @@
+import 'package:dibs/public/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -37,9 +38,10 @@ class _AuthScreenState extends State<AuthScreen> {
           if (auth.estaAutenticado) {
             return SignInScreen();
           } else {
-            return EstruturasScreen();
+            //return EstruturasScreen();
             //return MainEmpresa();
             //return SignInScreen();
+            return SignUpScreen();
           }
         }
       },
