@@ -1,3 +1,4 @@
+import 'package:dibs/private/categoriaScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/service/colorService.dart';
@@ -17,7 +18,14 @@ class BannerCategoria extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CategoriaScreen(corUm, titulo, corDois)));
+      },
       child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -30,7 +38,9 @@ class BannerCategoria extends StatelessWidget {
           icon,
           Text(
             titulo,
-            style: TextStyle(fontWeight: FontWeight.w900),
+            style: TextStyle(
+              fontWeight: FontWeight.w900,
+            ),
           )
         ]),
       ),

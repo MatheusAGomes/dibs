@@ -118,3 +118,10 @@ String hideLastName(String fullName) {
 
   return partiallyHiddenName;
 }
+
+Color adjustShade(Color color, int shade) {
+  final int r = color.red + shade > 255 ? 255 : color.red + shade;
+  final int g = color.green + shade > 255 ? 255 : color.green + shade;
+  final int b = color.blue + shade > 255 ? 255 : color.blue + shade;
+  return Color.fromARGB(color.alpha, r, g, b);
+}
