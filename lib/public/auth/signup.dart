@@ -56,7 +56,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconButton(
-                          onPressed: (() {}), icon: Icon(Icons.arrow_back_ios)),
+                          onPressed: (() {
+                            Navigator.pop(context);
+                          }),
+                          icon: Icon(Icons.arrow_back_ios)),
                       Image.asset("assets/images/Dibs logo.png")
                     ],
                   ),
