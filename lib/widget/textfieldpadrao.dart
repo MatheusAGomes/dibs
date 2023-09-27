@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 
 import '../shared/service/colorService.dart';
 
-
 class TextFieldPadrao extends StatefulWidget {
   final Key? textFormFildKey;
   final TextEditingController? controller;
@@ -25,28 +24,30 @@ class TextFieldPadrao extends StatefulWidget {
   final bool? enable;
   List<TextInputFormatter>? inputFormatter;
   final bool? semMensagem;
-  TextFieldPadrao({
-    this.textFormFildKey,
-    this.hintText,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.keyboardtype = TextInputType.text,
-    this.hideTextfild = false,
-    required this.click,
-    this.fontSize = 14,
-    this.validator,
-    this.controller,
-    this.onchange,
-    this.textInputAction,
-    this.onFieldSubmitted,
-    this.focusNode,
-    this.errorText,
-    this.padding,
-    this.maxlength,
-    this.enable,
-    this.inputFormatter,
-    this.semMensagem
-  });
+  final bool? filled;
+
+  TextFieldPadrao(
+      {this.textFormFildKey,
+      this.hintText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.keyboardtype = TextInputType.text,
+      this.hideTextfild = false,
+      required this.click,
+      this.fontSize = 14,
+      this.validator,
+      this.controller,
+      this.onchange,
+      this.textInputAction,
+      this.onFieldSubmitted,
+      this.focusNode,
+      this.errorText,
+      this.padding,
+      this.maxlength,
+      this.enable,
+      this.inputFormatter,
+      this.filled,
+      this.semMensagem});
 
   @override
   State<TextFieldPadrao> createState() => _TextFieldPadraoState();
@@ -55,8 +56,6 @@ class TextFieldPadrao extends StatefulWidget {
 class _TextFieldPadraoState extends State<TextFieldPadrao> {
   @override
   Widget build(BuildContext context) {
-
-
     return TextFormField(
       inputFormatters: widget.inputFormatter,
       enabled: widget.enable,
@@ -76,9 +75,11 @@ class _TextFieldPadraoState extends State<TextFieldPadrao> {
       keyboardType: widget.keyboardtype,
       style: TextStyle(fontSize: widget.fontSize),
       decoration: InputDecoration(
-        isDense:  widget.semMensagem != null ? widget.semMensagem : false ,
-        errorStyle: widget.semMensagem != null ? TextStyle(height: 0.01, color: Colors.transparent) : TextStyle(height: 0),
-        filled: widget.enable == false ? true : false,
+        isDense: widget.semMensagem != null ? widget.semMensagem : false,
+        errorStyle: widget.semMensagem != null
+            ? TextStyle(height: 0.01, color: Colors.transparent)
+            : TextStyle(height: 0),
+        filled: widget.filled,
         fillColor: const Color(0xfff2f2f2),
         counterText: "",
         floatingLabelAlignment: FloatingLabelAlignment.center,
@@ -100,7 +101,7 @@ class _TextFieldPadraoState extends State<TextFieldPadrao> {
         hintStyle: const TextStyle(color: Colors.grey),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
-            borderSide: BorderSide(width: 1, color: ColorService.cinza)),
+            borderSide: BorderSide(width: 1, color: Colors.transparent)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(width: 1, color: ColorService.azul)),

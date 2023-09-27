@@ -1,6 +1,7 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -10,6 +11,7 @@ import '../../../shared/routes/routes.dart';
 import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
+import '../../widget/textfieldpadrao.dart';
 
 class SignInScreen extends StatefulWidget {
   SignInScreen({Key? key}) : super(key: key);
@@ -32,157 +34,153 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(children: [
-          SizedBox(
-            height: 80,
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            colorFilter:
+                ColorFilter.mode(Color(0xff7EF4D1), BlendMode.modulate),
+            image: AssetImage("assets/images/loginPageImage.png"),
+            fit: BoxFit.cover,
           ),
-          Center(
-            child: Image.asset('assets/images/logoDibs.png'),
-          ),
-          SizedBox(
-            height: 23,
-          ),
-          AnimatedToggleSwitch<int>.size(
-            current: value,
-            values: [0, 1],
-            height: 30,
-            indicatorSize: Size(130, 50),
-            indicatorColor: Colors.white,
-            innerColor: Colors.grey.shade300,
-            customIconBuilder: (context, local, global) {
-              if (local.value == 0)
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Cliente',
-                        style: TextStyle(fontWeight: FontWeight.w500)),
-                  ],
-                );
-              else
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Empresa',
-                        style: TextStyle(fontWeight: FontWeight.w500)),
-                  ],
-                );
-            },
-            indicatorBorderRadius: BorderRadius.circular(7),
-            borderColor:
-                value.isEven ? Colors.grey.shade300 : Colors.grey.shade300,
-            borderRadius: BorderRadiusDirectional.circular(9),
-            //colorBuilder: (i) => i.isEven ? Colors.grey : Colors.grey,
-            onChanged: (i) => setState(() => value = i),
-          ),
-          SizedBox(
-            height: 65,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'Usuário',
-                      style: TextStyle(fontWeight: FontWeight.w900),
-                    ),
-                  ],
-                ),
-                Container(
-                  height: 34,
-                  width: 343,
-                  child: TextFormField(
-                    cursorColor: Colors.grey,
-                    controller: usuarioController,
-                    decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(
-                              width: 1, color: Colors.grey.shade300)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(width: 1, color: Colors.grey)),
-                    ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [Image.asset("assets/images/Dibs logo.png")],
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      'Senha',
-                      style: TextStyle(fontWeight: FontWeight.w900),
-                    ),
-                  ],
-                ),
-                Container(
-                  height: 34,
-                  width: 343,
-                  child: TextFormField(
-                    cursorColor: Colors.grey,
-                    controller: senhaController,
-                    decoration: InputDecoration(
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(
-                              width: 1, color: Colors.grey.shade300)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(7),
-                          borderSide: BorderSide(width: 1, color: Colors.grey)),
-                    ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                ),
-                SizedBox(
-                  height: 120,
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 30,
-                  child: ElevatedButton(
-                    onPressed: () {},
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.6,
                     child: Text(
-                      'Login',
-                      style: TextStyle(fontWeight: FontWeight.w900),
+                      'Revenda segura e intuitiva',
+                      style: TextStyle(
+                          height: 1,
+                          fontWeight: FontWeight.w800,
+                          fontSize: 45,
+                          letterSpacing: -1.41,
+                          shadows: <Shadow>[
+                            Shadow(
+                                offset: Offset(1.5, 1.5),
+                                color: Color.fromRGBO(126, 244, 209, 0.72))
+                          ]),
                     ),
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStatePropertyAll<Color>(
-                        Color(0XFF198A68),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.05,
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Text(
+                      'A solução definitiva para compra e revenda de ingressos.\nSeus eventos mais marcantes estão aqui.',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Usuario',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Material(
+                      elevation: 10.0,
+                      borderRadius: BorderRadius.circular(11),
+                      child: TextFieldPadrao(
+                        click: () {},
+                        enable: true,
+                        filled: true,
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                SizedBox(
-                  width: 100,
-                  height: 30,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Cadastrar',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w900,
-                          color: Color(0XFF198A68)),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(width: 1.5, color: Color(0XFF198A68)),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width * 0.05,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Senha',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    child: Material(
+                      elevation: 10.0,
+                      borderRadius: BorderRadius.circular(11),
+                      child: TextFieldPadrao(
+                        click: () {},
+                        enable: true,
+                        filled: true,
+                      ),
                     ),
                   ),
-                )
-              ],
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  Center(
+                    child: InkWell(
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            'Entrar',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: ColorService.verde,
+                        ),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Ainda não é usuário?',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'Cadastre-se agora',
+                            style: TextStyle(color: ColorService.verde),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ]),
+        ),
       ),
     );
   }
