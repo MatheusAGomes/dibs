@@ -1,8 +1,10 @@
+import 'package:dibs/widget/modalEditar.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../shared/service/colorService.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
+import '../widget/modalTrasferencia.dart';
 
 class InfoMeuIngressoScreen extends StatelessWidget {
   String? nomeDoTitular;
@@ -86,6 +88,10 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                 if (status != true) {
                                   return;
                                 }
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: ((context) =>
+                                        ModalTransferencia()));
                               },
                               child: Text(
                                 'Transferir',
@@ -109,6 +115,10 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                 if (status != true) {
                                   return;
                                 }
+                                showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    builder: ((context) => ModalEditar()));
                               },
                               child: Text(
                                 'Editar',

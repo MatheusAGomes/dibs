@@ -38,10 +38,10 @@ class _AuthScreenState extends State<AuthScreen> {
           if (auth.estaAutenticado) {
             return SignInScreen();
           } else {
-            //return EstruturasScreen();
+            return EstruturasScreen();
             //return MainEmpresa();
-            //return SignInScreen();
-            return SignUpScreen();
+            // return SignInScreen();
+            //return SignUpScreen();
           }
         }
       },

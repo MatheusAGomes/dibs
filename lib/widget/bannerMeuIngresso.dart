@@ -111,7 +111,7 @@ class BannerMeuIgresso extends StatelessWidget {
                     cpf: '222.222.222-22',
                     fotoDoEvento: image,
                     nomeDoTitular: 'Matheus Assunção Gomes',
-                    status: false,
+                    status: true,
                   );
                 },
               );

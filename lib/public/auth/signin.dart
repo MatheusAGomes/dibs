@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/public/auth/signup.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -167,7 +168,12 @@ class _SignInScreenState extends State<SignInScreen> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpScreen()));
+                          },
                           child: Text(
                             'Cadastre-se agora',
                             style: TextStyle(color: ColorService.verde),
