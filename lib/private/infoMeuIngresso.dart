@@ -117,7 +117,6 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                 }
                                 showModalBottomSheet(
                                     context: context,
-                                    isScrollControlled: true,
                                     builder: ((context) => ModalEditar()));
                               },
                               child: Text(
