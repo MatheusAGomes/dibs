@@ -7,8 +7,14 @@ import '../shared/service/colorService.dart';
 class BannerPrincipal extends StatelessWidget {
   ImageProvider image;
   String titulo;
+  double height;
+  double width;
 
-  BannerPrincipal({required this.image, required this.titulo});
+  BannerPrincipal(
+      {required this.image,
+      required this.titulo,
+      required this.height,
+      required this.width});
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +38,12 @@ class BannerPrincipal extends StatelessWidget {
           decoration: BoxDecoration(
               image: DecorationImage(fit: BoxFit.cover, image: image),
               borderRadius: BorderRadiusDirectional.circular(10)),
-          width: 200,
+          width: width,
+          height: height,
         ),
         Container(
-          width: 200,
+          width: width,
+          height: height,
           decoration: BoxDecoration(
             borderRadius: BorderRadiusDirectional.circular(10),
             gradient: LinearGradient(
@@ -48,7 +56,7 @@ class BannerPrincipal extends StatelessWidget {
           padding: const EdgeInsets.only(left: 10),
           child: SizedBox(
             height: 60,
-            width: 200,
+            width: width,
             child: Text(
               titulo,
               style: GoogleFonts.jost(

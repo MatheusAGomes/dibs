@@ -37,6 +37,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    buscaController.text;
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -224,6 +225,8 @@ class _MainScreenState extends State<MainScreen> {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return BannerPrincipal(
+                          height: 230,
+                          width: 200,
                           image: AssetImage('assets/images/PericlesEx.png'),
                           titulo: 'Churrasquinho Menos é Mais',
                         );
@@ -301,7 +304,7 @@ class _MainScreenState extends State<MainScreen> {
                               corDois: Colors.pink.shade300),
                           BannerCategoria(
                               icon: Icon(Icons.church),
-                              titulo: 'Teatro',
+                              titulo: 'Religioso',
                               corUm: Colors.green.shade200,
                               corDois: Colors.yellow),
                         ],
