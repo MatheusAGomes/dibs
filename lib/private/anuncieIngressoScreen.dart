@@ -128,6 +128,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIgresso(
+                                    empresa: false,
                                     anuncio: false,
                                     image: AssetImage(
                                         'assets/images/PericlesEx.png'),
@@ -157,6 +158,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIgresso(
+                                    empresa: false,
                                     anuncio: false,
                                     image: AssetImage(
                                         'assets/images/PericlesEx.png'),

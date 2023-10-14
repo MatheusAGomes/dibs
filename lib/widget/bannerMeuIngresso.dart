@@ -1,4 +1,5 @@
 import 'package:dibs/private/infoMeuIngresso.dart';
+import 'package:dibs/private/meuEventoScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/service/colorService.dart';
@@ -13,6 +14,7 @@ class BannerMeuIgresso extends StatelessWidget {
   Color corBanner;
   Color corDoLote;
   bool anuncio;
+  bool empresa;
 
   BannerMeuIgresso(
       {required this.image,
@@ -23,7 +25,8 @@ class BannerMeuIgresso extends StatelessWidget {
       required this.tipo,
       required this.corBanner,
       required this.corDoLote,
-      required this.anuncio});
+      required this.anuncio,
+      required this.empresa});
 
   @override
   Widget build(BuildContext context) {
@@ -102,19 +105,24 @@ class BannerMeuIgresso extends StatelessWidget {
           )
         : InkWell(
             onTap: () {
-              showModalBottomSheet<void>(
-                isScrollControlled: true,
-                context: context,
-                builder: (BuildContext context) {
-                  return InfoMeuIngressoScreen(
-                    codigoDoIngresso: 'de7a89f51g477c82e23f68g',
-                    cpf: '222.222.222-22',
-                    fotoDoEvento: image,
-                    nomeDoTitular: 'Matheus Assunção Gomes',
-                    status: true,
-                  );
-                },
-              );
+              if (empresa == false) {
+                showModalBottomSheet<void>(
+                  isScrollControlled: true,
+                  context: context,
+                  builder: (BuildContext context) {
+                    return InfoMeuIngressoScreen(
+                      codigoDoIngresso: 'de7a89f51g477c82e23f68g',
+                      cpf: '222.222.222-22',
+                      fotoDoEvento: image,
+                      nomeDoTitular: 'Matheus Assunção Gomes',
+                      status: true,
+                    );
+                  },
+                );
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MeuEventoScreen()));
+              }
             },
             child: SizedBox(
               height: 200,

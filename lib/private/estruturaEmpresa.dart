@@ -1,6 +1,7 @@
 import 'package:dibs/private/anuncieIngressoScreen.dart';
 import 'package:dibs/private/mainEmpresa.dart';
 import 'package:dibs/private/mainScreen.dart';
+import 'package:dibs/private/meusEventoEmpresaScreen.dart';
 import 'package:dibs/private/meusIngressosScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +47,7 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
           onPageChanged: setPaginaAtual,
           children: [
             MainEmpresaScreen(),
-            MainEmpresaScreen(),
+            MeusEventosEmpresasScreen(),
             MainEmpresaScreen()
           ],
         ),
@@ -72,11 +73,11 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
                     label: 'Tela inicial'),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.confirmation_num),
-                  label: 'Ingresso',
+                  label: 'Eventos',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.attach_money),
-                  label: 'Vendas',
+                  label: 'Relatórios',
                 ),
               ],
               onTap: (pagina) {

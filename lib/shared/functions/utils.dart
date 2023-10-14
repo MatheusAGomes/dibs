@@ -125,3 +125,13 @@ Color adjustShade(Color color, int shade) {
   final int b = color.blue + shade > 255 ? 255 : color.blue + shade;
   return Color.fromARGB(color.alpha, r, g, b);
 }
+
+String limitTo14Words(String text) {
+  List<String> words = text.split(' ');
+  if (words.length <= 14) {
+    return text;
+  } else {
+    List<String> first14Words = words.sublist(0, 14);
+    return '${first14Words.join(' ')}...';
+  }
+}

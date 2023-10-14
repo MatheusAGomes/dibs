@@ -15,14 +15,15 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
-class MeusIngressosScreen extends StatefulWidget {
-  MeusIngressosScreen({Key? key}) : super(key: key);
+class MeusEventosEmpresasScreen extends StatefulWidget {
+  MeusEventosEmpresasScreen({Key? key}) : super(key: key);
 
   @override
-  State<MeusIngressosScreen> createState() => _MeusIngressosScreenState();
+  State<MeusEventosEmpresasScreen> createState() =>
+      _MeusEventosEmpresasScreenState();
 }
 
-class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
+class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
   @override
   void initState() {
     super.initState();
@@ -43,7 +44,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Meus Ingressos',
+                      'Meus Eventos',
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 22),
                     ),
@@ -92,6 +93,30 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                 SizedBox(
                   height: 20,
                 ),
+                Row(
+                  children: [
+                    InkWell(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.grey[300],
+                            borderRadius: BorderRadius.circular(5)),
+                        height: 35,
+                        width: 35,
+                        child: Icon(Icons.add),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        'Novo evento',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 Container(
                   height: MediaQuery.of(context).size.height,
                   child: ListView.builder(
@@ -101,7 +126,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: BannerMeuIgresso(
-                          empresa: false,
+                          empresa: true,
                           anuncio: false,
                           image: AssetImage('assets/images/PericlesEx.png'),
                           titulo: 'Churrasquinho menos é mais',

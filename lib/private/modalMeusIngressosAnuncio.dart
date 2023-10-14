@@ -62,6 +62,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                             );
                           },
                           child: BannerMeuIgresso(
+                            empresa: false,
                             anuncio: true,
                             image: AssetImage('assets/images/PericlesEx.png'),
                             titulo: 'Churrasquinho menos é mais',

@@ -184,6 +184,9 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Olá,{Empresa}', style: TextStyleService.corSublinhada),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
                 Row(
                   children: [
                     InkWell(
