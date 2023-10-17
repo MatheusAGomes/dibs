@@ -103,8 +103,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
                         click: () {},
-                        enable: true,
-                        filled: true,
                       ),
                     ),
                   ),
@@ -126,8 +124,6 @@ class _SignInScreenState extends State<SignInScreen> {
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
                         click: () {},
-                        enable: true,
-                        filled: true,
                       ),
                     ),
                   ),

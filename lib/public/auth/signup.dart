@@ -110,13 +110,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
-                        hintText: 'ex: Robson',
-                        click: () {},
-                        semMensagem: false,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                        filled: true,
-                      ),
+                          // textFormFildKey: nomeKey,
+                          // onchange: (p0) {
+                          //   setState(() {});
+                          //   nomeKey.currentState?.validate();
+                          // },
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Campo obrigatório"),
+                            Validatorless.max(
+                                255, "Número máximo de caracteres é 255")
+                          ]),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.03,
+                              vertical: 0),
+                          // controller: nomeController,
+                          enable: true,
+                          click: () {
+                            // setState(() {
+                            //   alterado = true;
+                            // });
+                          }),
                     ),
                   ),
                   SizedBox(
@@ -136,13 +150,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
-                        hintText: 'ex: César',
-                        click: () {},
-                        semMensagem: false,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                        filled: true,
-                      ),
+                          // textFormFildKey: nomeKey,
+                          // onchange: (p0) {
+                          //   setState(() {});
+                          //   nomeKey.currentState?.validate();
+                          // },
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Campo obrigatório"),
+                            Validatorless.max(
+                                255, "Número máximo de caracteres é 255")
+                          ]),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.03,
+                              vertical: 0),
+                          // controller: nomeController,
+                          enable: true,
+                          click: () {
+                            // setState(() {
+                            //   alterado = true;
+                            // });
+                          }),
                     ),
                   ),
                   SizedBox(
@@ -162,13 +190,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
-                        hintText: 'ex: 111.111.111-11',
-                        click: () {},
-                        semMensagem: false,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                        filled: true,
-                      ),
+                          // textFormFildKey: nomeKey,
+                          // onchange: (p0) {
+                          //   setState(() {});
+                          //   nomeKey.currentState?.validate();
+                          // },
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Campo obrigatório"),
+                            Validatorless.max(
+                                255, "Número máximo de caracteres é 255")
+                          ]),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.03,
+                              vertical: 0),
+                          // controller: nomeController,
+                          enable: true,
+                          click: () {
+                            // setState(() {
+                            //   alterado = true;
+                            // });
+                          }),
                     ),
                   ),
                   SizedBox(
@@ -188,13 +230,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
-                        hintText: 'ex: 20/09/2001',
-                        click: () {},
-                        semMensagem: false,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                        filled: true,
-                      ),
+                          // textFormFildKey: nomeKey,
+                          // onchange: (p0) {
+                          //   setState(() {});
+                          //   nomeKey.currentState?.validate();
+                          // },
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Campo obrigatório"),
+                            Validatorless.max(
+                                255, "Número máximo de caracteres é 255")
+                          ]),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.03,
+                              vertical: 0),
+                          // controller: nomeController,
+                          enable: true,
+                          click: () {
+                            // setState(() {
+                            //   alterado = true;
+                            // });
+                          }),
                     ),
                   ),
                   SizedBox(
@@ -214,13 +270,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
-                        hintText: 'ex: robson.cesar@dibs.com',
-                        click: () {},
-                        semMensagem: false,
-                        padding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                        filled: true,
-                      ),
+                          // textFormFildKey: nomeKey,
+                          // onchange: (p0) {
+                          //   setState(() {});
+                          //   nomeKey.currentState?.validate();
+                          // },
+                          validator: Validatorless.multiple([
+                            Validatorless.required("Campo obrigatório"),
+                            Validatorless.max(
+                                255, "Número máximo de caracteres é 255")
+                          ]),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.03,
+                              vertical: 0),
+                          // controller: nomeController,
+                          enable: true,
+                          click: () {
+                            // setState(() {
+                            //   alterado = true;
+                            // });
+                          }),
                     ),
                   ),
                   SizedBox(

@@ -31,26 +31,48 @@ class ModalPerfil extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03,),
-              Text('Dados Pessoais',style: TextStyle(fontWeight: FontWeight.w900,fontSize: 15),),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.03,
+              ),
+              Text(
+                'Dados Pessoais',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      'Nome',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Nome',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.person,color: Colors.grey,),
-                      hintText: 'ex:Joao',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -59,18 +81,33 @@ class ModalPerfil extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Sobrenome',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Sobrenome',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.person,color: Colors.grey,),
-                      hintText: 'ex:Roberto',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -79,18 +116,33 @@ class ModalPerfil extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'CPF',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'CPF',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.badge,color: Colors.grey,),
-                      hintText: 'ex: 123.456.789-00',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -99,18 +151,33 @@ class ModalPerfil extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Data de nascimento',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Data de nascimento',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.calendar_month_sharp,color: Colors.grey,),
-                      hintText: 'ex: 20/09/2001',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -119,18 +186,33 @@ class ModalPerfil extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Email',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Email',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.mail_outline,color: Colors.grey,),
-                      hintText: 'ex: joao@gmail.com',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -139,18 +221,33 @@ class ModalPerfil extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Telefone',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Telefone',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.call,color: Colors.grey,),
-                      hintText: 'ex: (11) 99753-7095',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -180,25 +277,46 @@ class ModalPerfil extends StatelessWidget {
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
-              ),              Text('Alterar senha',style: TextStyle(fontWeight: FontWeight.w900,fontSize: 15),),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.01,),
+              ),
+              Text(
+                'Alterar senha',
+                style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Senha atual',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Senha atual',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.lock,color: Colors.grey,),
-                      hintText: '**********',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -210,18 +328,33 @@ class ModalPerfil extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      'Nova senha',style: TextStyle(fontWeight: FontWeight.bold),),
+                    'Nova senha',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.lock,color: Colors.grey,),
-                      hintText: 'ex: (11) 99753-7095',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -249,7 +382,6 @@ class ModalPerfil extends StatelessWidget {
                   ),
                 ),
               ),
-
             ],
           ),
         ),

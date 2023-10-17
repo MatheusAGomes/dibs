@@ -37,13 +37,27 @@ class ModalTransferencia extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      hintText: 'exemplo@email.com',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),

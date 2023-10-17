@@ -53,7 +53,7 @@ class BannerPrincipal extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding: EdgeInsets.only(left: 10),
           child: SizedBox(
             height: 60,
             width: width,

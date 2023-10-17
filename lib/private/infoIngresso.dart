@@ -1,7 +1,11 @@
+import 'package:dibs/private/ingressosAnunciados.dart';
+import 'package:dibs/shared/functions/utils.dart';
+import 'package:dibs/widget/bannerCompraIngresso.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/service/colorService.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
+import 'infoPedidoScreen.dart';
 
 class InfoIngressoScreen extends StatelessWidget {
   String? nomeDoEvento;
@@ -31,10 +35,13 @@ class InfoIngressoScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
                         children: [Icon(Icons.calendar_month), Text(data!)],
+                      ),
+                      SizedBox(
+                        width: 10,
                       ),
                       Row(
                         children: [Icon(Icons.schedule), Text(hora!)],
@@ -50,98 +57,104 @@ class InfoIngressoScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(descricao!),
+                  Text(limitTo14Words(descricao!)),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                          isScrollControlled: true,
+                          context: context,
+                          useSafeArea: true,
+                          builder: (context) => IngressosAnunciadosScreen());
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.confirmation_num,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Text(
+                          'Ver ingressos anunciados',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.grey,
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Row(
                     children: [
                       Text(
-                        'INGRESSOS',
+                        'Camarote - 4° Lote',
                         style: TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 20),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Color(0xff6698D2),
-                      ),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.23,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Icon(
-                                    Icons.confirmation_num,
-                                    size: 30,
-                                  ),
-                                  Text(
-                                    'Inteira',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 15),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Text("R\$ 540.00")
-                          ]),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: 10),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(11),
-                        color: Color(0xff6698D2),
-                      ),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.23,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Icon(
-                                    Icons.confirmation_num,
-                                    size: 30,
-                                  ),
-                                  Text(
-                                    'Inteira',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 15),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Text("R\$ 540.00")
-                          ]),
-                    ),
-                  ),
+                  BannerCompraIngresso(
+                      tipoDoIngresso: 'Inteira', valor: '20,00'),
+                  BannerCompraIngresso(
+                      tipoDoIngresso: 'Meia entrada', valor: '20,00'),
                   Row(
                     children: [
                       Text(
-                        'MARKETPLACE',
+                        'Pista - 4° Lote',
                         style: TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 20),
                       ),
                     ],
                   ),
                   Column(
-                      children: List.generate(3, (index) {
-                    return BannerIngressoMarketPlace(
+                      children: List.generate(2, (index) {
+                    return BannerCompraIngresso(
                         tipoDoIngresso: 'Inteira', valor: '540.00');
                   })),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => InfoPedidoScreen(
+                                      numero: 2,
+                                    )));
+                      },
+                      child: Container(
+                        child: Center(
+                          child: Text(
+                            'Comprar',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          color: Color(0xFF198A68),
+                        ),
+                        width: 120,
+                        height: 40,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ),

@@ -34,19 +34,31 @@ class ModalEditar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      'Nome'),
+                  Text('Nome'),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.person,color: Colors.grey,),
-                      hintText: 'Aluisio',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),
@@ -54,19 +66,31 @@ class ModalEditar extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                      'CPF'),
+                  Text('CPF'),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.badge,color: Colors.grey,),
-                      hintText: '123.456.789-00',
-                      click: () {},
-                      semMensagem: false,
-                      padding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-                      filled: true,
-                    ),
+                        // textFormFildKey: nomeKey,
+                        // onchange: (p0) {
+                        //   setState(() {});
+                        //   nomeKey.currentState?.validate();
+                        // },
+                        // validator: Validatorless.multiple([
+                        //   Validatorless.required("Campo obrigatório"),
+                        //   Validatorless.max(
+                        //       255, "Número máximo de caracteres é 255")
+                        // ]),
+                        padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.width * 0.03,
+                            vertical: 0),
+                        // controller: nomeController,
+                        enable: true,
+                        click: () {
+                          // setState(() {
+                          //   alterado = true;
+                          // });
+                        }),
                   ),
                 ],
               ),

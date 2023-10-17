@@ -40,6 +40,7 @@ class _MainScreenState extends State<MainScreen> {
     buscaController.text;
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.transparent,
           title: Image.asset('assets/images/logoDibs.png'),

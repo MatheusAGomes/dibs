@@ -43,6 +43,7 @@ class ModalMeusCartoes extends StatelessWidget {
                     return Padding(
                       padding: EdgeInsets.symmetric(vertical: 5),
                       child: MeuCartaoComponente(
+                          nome: 'Matheus Gomes',
                           numero: substituirTresPrimeirosGruposPorAsteriscos(
                               "1234123412341234"),
                           tipo: "Crédito"),

@@ -5,11 +5,10 @@ import '../shared/service/colorService.dart';
 class MeuCartaoComponente extends StatelessWidget {
   String? numero;
   String? tipo;
+  String? nome;
 
-  MeuCartaoComponente({
-    required this.numero,
-    required this.tipo,
-  });
+  MeuCartaoComponente(
+      {required this.numero, required this.tipo, required this.nome});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class MeuCartaoComponente extends StatelessWidget {
         decoration: BoxDecoration(
             color: Colors.grey.shade300,
             borderRadius: BorderRadius.circular(11)),
-        height: 50,
+        height: 60,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child:
@@ -32,6 +31,10 @@ class MeuCartaoComponente extends StatelessWidget {
                   children: [
                     Text(numero!),
                   ],
+                ),
+                Text(
+                  nome!,
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   tipo!,
