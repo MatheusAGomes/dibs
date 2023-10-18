@@ -1,5 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/private/modalMeusIngressosAnuncio.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
@@ -8,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../../../shared/constance/constance.dart';
 import '../../../shared/routes/routes.dart';
@@ -36,8 +38,9 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 22),
           child: SingleChildScrollView(
+            // scrollDirection: null,
             child: Column(
               children: [
                 Row(
@@ -45,8 +48,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                   children: [
                     Text(
                       'Anuncie seu ingresso',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 22),
+                      style: TextStyleService.regularTitle,
                     ),
                     Icon(
                       Icons.person,
@@ -61,26 +63,31 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                   current: value,
                   values: [0, 1],
                   height: 30,
-                  indicatorSize: Size(130, 50),
+                  indicatorSize: Size(150, 50),
                   indicatorColor: Colors.white,
                   innerColor: Colors.grey.shade300,
                   customIconBuilder: (context, local, global) {
-                    if (local.value == 0)
+                    if (local.value == 0) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Meus anúncios',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: local.value.isEven
+                                  ? TextStyleService.toggleSwitchActiveText
+                                  : TextStyleService.toggleSwitchInactiveText),
                         ],
                       );
-                    else
+                    } else {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Vendidos',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: local.value.isEven
+                              ? TextStyleService.toggleSwitchInactiveText
+                                  : TextStyleService.toggleSwitchActiveText),
                         ],
                       );
+                    }
                   },
                   indicatorBorderRadius: BorderRadius.circular(7),
                   borderColor: value.isEven
@@ -127,7 +134,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                 return Padding(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
-                                  child: BannerMeuIgresso(
+                                  child: BannerMeuIngresso(
                                     empresa: false,
                                     anuncio: false,
                                     image: AssetImage(
@@ -157,7 +164,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                 return Padding(
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
-                                  child: BannerMeuIgresso(
+                                  child: BannerMeuIngresso(
                                     empresa: false,
                                     anuncio: false,
                                     image: AssetImage(

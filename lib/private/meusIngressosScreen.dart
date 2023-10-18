@@ -1,4 +1,5 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
@@ -35,7 +36,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 22),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -43,9 +44,8 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Meus Ingressos',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 22),
+                      'Meus ingressos',
+                      style: TextStyleService.regularTitle,
                     ),
                     Icon(
                       Icons.person,
@@ -60,26 +60,31 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                   current: value,
                   values: [0, 1],
                   height: 30,
-                  indicatorSize: Size(130, 50),
+                  indicatorSize: Size(150, 50),
                   indicatorColor: Colors.white,
                   innerColor: Colors.grey.shade300,
                   customIconBuilder: (context, local, global) {
-                    if (local.value == 0)
+                    if (local.value == 0) {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Ativos',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: local.value.isEven
+                                ? TextStyleService.toggleSwitchActiveText
+                                : TextStyleService.toggleSwitchInactiveText),
                         ],
                       );
-                    else
+                    } else {
                       return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Expirados',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: local.value.isEven
+                                  ? TextStyleService.toggleSwitchInactiveText
+                                  : TextStyleService.toggleSwitchActiveText),
                         ],
                       );
+                    }
                   },
                   indicatorBorderRadius: BorderRadius.circular(7),
                   borderColor: value.isEven
@@ -100,11 +105,11 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: BannerMeuIgresso(
+                        child: BannerMeuIngresso(
                           empresa: false,
                           anuncio: false,
                           image: AssetImage('assets/images/PericlesEx.png'),
-                          titulo: 'Churrasquinho menos é mais',
+                          titulo: 'Churrasquinho Menos é Mais',
                           data: '20/12/2020',
                           hora: '19:00',
                           lote: '1° Lote',
