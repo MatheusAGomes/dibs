@@ -1,10 +1,12 @@
 import 'package:dibs/private/infoMeuIngresso.dart';
 import 'package:dibs/private/meuEventoScreen.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../shared/service/colorService.dart';
 
-class BannerMeuIgresso extends StatelessWidget {
+class BannerMeuIngresso extends StatelessWidget {
   ImageProvider image;
   String titulo;
   String data;
@@ -16,7 +18,7 @@ class BannerMeuIgresso extends StatelessWidget {
   bool anuncio;
   bool empresa;
 
-  BannerMeuIgresso(
+  BannerMeuIngresso(
       {required this.image,
       required this.titulo,
       required this.data,
@@ -32,7 +34,7 @@ class BannerMeuIgresso extends StatelessWidget {
   Widget build(BuildContext context) {
     return anuncio
         ? SizedBox(
-            height: 200,
+            height: 220,
             child: Stack(alignment: Alignment.bottomLeft, children: [
               Container(
                 decoration: BoxDecoration(
@@ -62,14 +64,21 @@ class BannerMeuIgresso extends StatelessWidget {
                             Row(
                               children: [
                                 Icon(Icons.calendar_month_outlined),
-                                Text(data)
+                                Text(data,
+                                  style: TextStyleService.ticketBannerDateTime
+                                )
                               ],
                             ),
                             SizedBox(
                               width: 30,
                             ),
                             Row(
-                              children: [Icon(Icons.schedule), Text(hora)],
+                              children: [
+                                // Icon(Icons.schedule),
+                                Text(hora,
+                                style: TextStyleService.ticketBannerDateTime
+                                )
+                              ],
                             )
                           ],
                         ),
@@ -77,7 +86,7 @@ class BannerMeuIgresso extends StatelessWidget {
                           children: [
                             Text(
                               titulo,
-                              style: TextStyle(fontWeight: FontWeight.w900),
+                              style: TextStyleService.ticketBannerTitle
                             ),
                           ],
                         ),
@@ -154,15 +163,21 @@ class BannerMeuIgresso extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.calendar_month_outlined),
-                                  Text(data)
+                                  Icon(FontAwesomeIcons.calendarDay, size: 20,),
+                                  Text(data,
+                                      style: TextStyleService.ticketBannerDateTime
+                                  )
                                 ],
                               ),
                               SizedBox(
                                 width: 30,
                               ),
                               Row(
-                                children: [Icon(Icons.schedule), Text(hora)],
+                                children: [
+                                  Icon(Icons.schedule),
+                                  Text(hora,
+                                      style: TextStyleService.ticketBannerDateTime
+                                  )],
                               )
                             ],
                           ),
@@ -170,7 +185,7 @@ class BannerMeuIgresso extends StatelessWidget {
                             children: [
                               Text(
                                 titulo,
-                                style: TextStyle(fontWeight: FontWeight.w900),
+                                style: TextStyleService.ticketBannerTitle,
                               ),
                             ],
                           ),

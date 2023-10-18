@@ -1,5 +1,6 @@
 import 'package:dibs/private/categoriaScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../shared/service/colorService.dart';
 
@@ -38,9 +39,12 @@ class BannerCategoria extends StatelessWidget {
           icon,
           Text(
             titulo,
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-            ),
+            style: GoogleFonts.jost(
+              textStyle: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 16
+              )
+            ) ,
           )
         ]),
       ),

@@ -293,7 +293,7 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BannerCategoria(
-                              icon: Icon(Icons.theater_comedy),
+                              icon: Icon(Icons.theater_comedy, size: 35,),
                               titulo: 'Shows',
                               corUm: Colors.green,
                               corDois: Colors.blue),
