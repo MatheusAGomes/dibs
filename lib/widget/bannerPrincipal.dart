@@ -9,9 +9,10 @@ class BannerPrincipal extends StatelessWidget {
   String titulo;
   double height;
   double width;
-
+  String id;
   BannerPrincipal(
-      {required this.image,
+      {required this.id,
+      required this.image,
       required this.titulo,
       required this.height,
       required this.width});

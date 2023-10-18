@@ -5,7 +5,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
+import '../main.dart';
 import '../repositories/autenticacao.dart';
+import '../repositories/autenticationResponse.dart';
 import '../repositories/authentication-repository.dart';
 import '../repositories/refreshToken.dart';
 import '../shared/store.dart';
@@ -32,44 +34,28 @@ class Auth with ChangeNotifier {
 
   void decodificarToken(token) {
     final decodedToken = JwtDecoder.decode(token);
-    this.authDecoded = jsonDecode(decodedToken['sub']);
+    this.authDecoded = decodedToken;
   }
 
   String decodificar(response) {
-    final authorization = response.headers.map['authorization'];
-    String token = authorization[0].toString().split(' ')[1];
-    this.decodificarToken(token);
+    String token = response;
+
+    decodificarToken(token);
     print(this.authDecoded);
     return token;
   }
 
   Future<void> _autenticar(String username, String password) async {
-    LoginApi loginApi = LoginApi(this._dio);
+    LoginApi loginApi = LoginApi(dio);
     try {
-      final data = await loginApi
-          .authenticate(Autenticacao(username: username, password: password));
+      AutenticationResponse data = await loginApi
+          .authenticate(Autenticacao(login: username, password: password));
 
-      _token = this.decodificar(data.response);
+      _token = this.decodificar(data.token);
       print(token);
       Store.saveString(this._key, _token!);
-      notifyListeners();
-      //Store.saveString(this._key, _token!);
-    } on DioError catch (dioError) {
-      throw dioError;
-    } catch (e) {
-      print(e);
-    }
-    return Future.value();
-  }
+      Store.save('cred', {'username': username, 'password': password});
 
-  Future<void> atualizar() async {
-    RefreshApi refreshApi = RefreshApi(this._dio);
-    try {
-      final data = await refreshApi.refreshToken();
-
-      _token = this.decodificar(data.response);
-      print(token);
-      Store.saveString(this._key, _token!);
       notifyListeners();
       //Store.saveString(this._key, _token!);
     } on DioError catch (dioError) {

@@ -6,10 +6,10 @@ part 'autenticacao.g.dart';
 
 @JsonSerializable()
 class Autenticacao {
-  String username;
+  String login;
   String password;
 
-  Autenticacao({required this.username, required this.password});
+  Autenticacao({required this.login, required this.password});
 
   factory Autenticacao.fromJson(Map<String, dynamic> json) =>
       _$AutenticacaoFromJson(json);

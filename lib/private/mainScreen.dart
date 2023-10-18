@@ -1,4 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:dibs/models/events.dart';
+import 'package:dibs/shared/enum/EventStatus.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
@@ -21,7 +23,8 @@ import '../widget/modalPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
 class MainScreen extends StatefulWidget {
-  MainScreen({Key? key}) : super(key: key);
+  List<Events> listaDeEventos;
+  MainScreen({required this.listaDeEventos});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -37,7 +40,10 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    buscaController.text;
+    Auth auth = Provider.of<Auth>(context, listen: false);
+    List<Events> lista_filtrada = widget.listaDeEventos
+        .where((e) => e.status == EventStatusEnum.PUBLISHED)
+        .toList();
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -101,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Olá,{user}",
+                              "Olá,${auth.authDecoded!['login'].toString()}",
                               style: TextStyle(fontWeight: FontWeight.w900),
                             ),
                             Icon(
@@ -158,12 +164,17 @@ class _MainScreenState extends State<MainScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
-                              "Sair",
-                              style: TextStyle(
-                                  color: Colors.red,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 12),
+                            InkWell(
+                              onTap: () {
+                                auth.deslogar();
+                              },
+                              child: Text(
+                                "Sair",
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 12),
+                              ),
                             ),
                           ],
                         ),
@@ -222,14 +233,15 @@ class _MainScreenState extends State<MainScreen> {
                   Container(
                     height: 230,
                     child: ListView.builder(
-                      itemCount: 3,
+                      itemCount: lista_filtrada.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return BannerPrincipal(
+                          id: lista_filtrada[index].id!,
                           height: 230,
                           width: 200,
                           image: AssetImage('assets/images/PericlesEx.png'),
-                          titulo: 'Churrasquinho Menos é Mais',
+                          titulo: lista_filtrada[index].name!,
                         );
                       },
                     ),

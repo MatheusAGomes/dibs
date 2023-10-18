@@ -1,3 +1,5 @@
+import 'package:dibs/models/auth.dart';
+import 'package:dibs/models/events.dart';
 import 'package:dibs/private/anuncieIngressoScreen.dart';
 import 'package:dibs/private/mainScreen.dart';
 import 'package:dibs/private/meusIngressosScreen.dart';
@@ -10,9 +12,9 @@ import '../../main.dart';
 import '../shared/service/colorService.dart';
 
 class EstruturasScreen extends StatefulWidget {
-  int pagina;
-  int? Matheu;
-  EstruturasScreen({this.pagina = 1});
+  int? pagina;
+  List<Events>? listaDeEventos;
+  EstruturasScreen({required this.pagina, required this.listaDeEventos});
   @override
   _EstruturasScreenState createState() => _EstruturasScreenState();
 }
@@ -20,6 +22,7 @@ class EstruturasScreen extends StatefulWidget {
 class _EstruturasScreenState extends State<EstruturasScreen> {
   late int paginaAtual;
   late PageController pc;
+
   @override
   initState() {
     paginaAtual = 0;
@@ -44,7 +47,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           controller: pc,
           onPageChanged: setPaginaAtual,
           children: [
-            MainScreen(),
+            MainScreen(listaDeEventos: widget.listaDeEventos!),
             MeusIngressosScreen(),
             AnuncieIngressoScreen()
           ],

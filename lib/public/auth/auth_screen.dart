@@ -1,3 +1,5 @@
+import 'package:dibs/main.dart';
+import 'package:dibs/models/statusFilter.dart';
 import 'package:dibs/private/estruturaEmpresa.dart';
 import 'package:dibs/public/auth/signup.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +7,7 @@ import 'package:provider/provider.dart';
 
 import '../../models/auth.dart';
 import '../../private/estruturaScreen.dart';
+import '../../repositories/events-repository.dart';
 import '../../shared/service/colorService.dart';
 import 'signin.dart';
 
@@ -33,15 +36,23 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           );
         } else if (snapshot.error != null) {
-          return EstruturasScreen();
+          return SignInScreen();
         } else {
           if (auth.estaAutenticado) {
-            return SignInScreen();
+            return FutureBuilder(
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return EstruturasScreen(
+                      pagina: 1,
+                      listaDeEventos: snapshot.data![0],
+                    );
+                  } else {
+                    return SignInScreen();
+                  }
+                },
+                future: Future.wait([EventsRepository(dio).getListEvents()]));
           } else {
-            return EstruturasScreen();
-            //return EstruturaEmpresa();
-            // return SignInScreen();
-            //return SignUpScreen();
+            return SignInScreen();
           }
         }
       },
