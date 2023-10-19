@@ -54,7 +54,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 AnimatedToggleSwitch<int>.size(
                   current: value,

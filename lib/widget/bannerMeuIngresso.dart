@@ -34,7 +34,7 @@ class BannerMeuIngresso extends StatelessWidget {
   Widget build(BuildContext context) {
     return anuncio
         ? SizedBox(
-            height: 220,
+            height: 200,
             child: Stack(alignment: Alignment.bottomLeft, children: [
               Container(
                 decoration: BoxDecoration(
@@ -65,8 +65,8 @@ class BannerMeuIngresso extends StatelessWidget {
                               children: [
                                 Icon(Icons.calendar_month_outlined),
                                 Text(data,
-                                  style: TextStyleService.ticketBannerDateTime
-                                )
+                                    style:
+                                        TextStyleService.ticketBannerDateTime)
                               ],
                             ),
                             SizedBox(
@@ -76,18 +76,16 @@ class BannerMeuIngresso extends StatelessWidget {
                               children: [
                                 // Icon(Icons.schedule),
                                 Text(hora,
-                                style: TextStyleService.ticketBannerDateTime
-                                )
+                                    style:
+                                        TextStyleService.ticketBannerDateTime)
                               ],
                             )
                           ],
                         ),
                         Row(
                           children: [
-                            Text(
-                              titulo,
-                              style: TextStyleService.ticketBannerTitle
-                            ),
+                            Text(titulo,
+                                style: TextStyleService.ticketBannerTitle),
                           ],
                         ),
                         Row(
@@ -134,7 +132,7 @@ class BannerMeuIngresso extends StatelessWidget {
               }
             },
             child: SizedBox(
-              height: 200,
+              height: 220,
               child: Stack(alignment: Alignment.bottomLeft, children: [
                 Container(
                   decoration: BoxDecoration(
@@ -143,7 +141,7 @@ class BannerMeuIngresso extends StatelessWidget {
                   width: 300,
                 ),
                 Container(
-                  height: 70,
+                  height: 80,
                   width: 300,
                   decoration: BoxDecoration(
                     color: corBanner,
@@ -151,63 +149,75 @@ class BannerMeuIngresso extends StatelessWidget {
                         bottomEnd: Radius.circular(10),
                         bottomStart: Radius.circular(10)),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: SizedBox(
-                      height: 70,
-                      width: 300,
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(FontAwesomeIcons.calendarDay, size: 20,),
-                                  Text(data,
-                                      style: TextStyleService.ticketBannerDateTime
-                                  )
-                                ],
-                              ),
-                              SizedBox(
-                                width: 30,
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.schedule),
-                                  Text(hora,
-                                      style: TextStyleService.ticketBannerDateTime
-                                  )],
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                titulo,
-                                style: TextStyleService.ticketBannerTitle,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Text(
-                                lote,
-                                style: TextStyle(
-                                    color: corDoLote,
-                                    fontWeight: FontWeight.w900),
-                              ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                tipo,
-                                style: TextStyle(color: Colors.black54),
-                              )
-                            ],
-                          )
-                        ],
-                      )),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 10, top: 8),
+                    child: SizedBox(
+                        // height: 80,
+                        // width: 300,
+                        child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  FontAwesomeIcons.calendarDay,
+                                  size: 18,
+                                ),
+                                SizedBox(width: 2),
+                                Text(data,
+                                    style:
+                                        TextStyleService.ticketBannerDateTime)
+                              ],
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(FontAwesomeIcons.solidClock, size: 18),
+                                SizedBox(width: 2),
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Text(hora,
+                                    style: TextStyleService.ticketBannerDateTime,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        SizedBox(height: 2),
+                        Row(
+                          children: [
+                            Text(
+                              titulo,
+                              style: TextStyleService.ticketBannerTitle,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              lote,
+                              style: TextStyle(
+                                  color: corDoLote,
+                                  fontWeight: FontWeight.w900),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              tipo,
+                              style: TextStyle(color: Colors.black54),
+                            )
+                          ],
+                        )
+                      ],
+                    )),
+                  ),
                 ),
               ]),
             ),

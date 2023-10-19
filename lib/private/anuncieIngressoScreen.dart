@@ -57,7 +57,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 AnimatedToggleSwitch<int>.size(
                   current: value,
@@ -83,7 +83,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                         children: [
                           Text('Vendidos',
                               style: local.value.isEven
-                              ? TextStyleService.toggleSwitchInactiveText
+                                  ? TextStyleService.toggleSwitchInactiveText
                                   : TextStyleService.toggleSwitchActiveText),
                         ],
                       );
@@ -113,18 +113,38 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                 return ModalMeusIngressosAnuncio();
                               },
                             ),
-                            child: Row(children: [
-                              Icon(Icons.add),
+                            child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                              Center(
+                                child: Ink(
+                                  width: 40,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                      color: Color(0xFFD9D9D9),
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Icon(
+                                    FontAwesomeIcons.plus,
+                                    color: Colors.black,
+                                    size: 24,
+                                  ),
+                                ),
+                              ),
                               SizedBox(
                                 width: 10,
                               ),
                               Text(
-                                'Novo anúncio',
-                                style: TextStyle(fontWeight: FontWeight.w900),
+                                'Novo Anúncio',
+                                style: TextStyleService.iconButtonText,
                               )
                             ]),
                           ),
-                          Divider(),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Divider(
+                            color: Color(0xFFD9D9D9),
+                            thickness: 1,
+                          ),
                           Container(
                             height: MediaQuery.of(context).size.height,
                             child: ListView.builder(
@@ -139,11 +159,11 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                     anuncio: false,
                                     image: AssetImage(
                                         'assets/images/PericlesEx.png'),
-                                    titulo: 'Churrasquinho menos é mais',
+                                    titulo: 'Patati e Patatá em Osasco',
                                     data: '20/12/2020',
                                     hora: '19:00',
-                                    lote: '1° Lote',
-                                    tipo: 'Meia-Entrada',
+                                    lote: 'CAMAROTE - 1° LOTE',
+                                    tipo: 'Meia Entrada',
                                     corBanner: Colors.green,
                                     corDoLote: Colors.green.shade900,
                                   ),

@@ -217,7 +217,7 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Container(
                     height: 230,
@@ -246,7 +246,7 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Container(
                     height: 120,
@@ -273,7 +273,7 @@ class _MainScreenState extends State<MainScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 10,
+                    height: 5,
                   ),
                   Column(
                     children: [
