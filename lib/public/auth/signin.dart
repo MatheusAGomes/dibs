@@ -32,6 +32,20 @@ class _SignInScreenState extends State<SignInScreen> {
 
   TextEditingController senhaController = TextEditingController();
 
+  Future<void> _submit() async {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
+    try {
+      await auth.logar(
+        usuarioController.text.toLowerCase().toString(),
+        senhaController.text.toString(),
+      );
+      Navigator.pushNamed(context, Routes.AUTH);
+    } on DioError catch (dioError) {
+      //  ToastService.showToastError(dioError.message);
+    } finally {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +116,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
+                        controller: usuarioController,
                         click: () {},
                       ),
                     ),
@@ -123,6 +138,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       elevation: 10.0,
                       borderRadius: BorderRadius.circular(11),
                       child: TextFieldPadrao(
+                        controller: senhaController,
                         click: () {},
                       ),
                     ),
@@ -132,6 +148,10 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   Center(
                     child: InkWell(
+                      onTap: () {
+                        print('a');
+                        _submit();
+                      },
                       child: Container(
                         child: Center(
                           child: Text(

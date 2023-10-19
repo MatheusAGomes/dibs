@@ -1,7 +1,6 @@
 import 'package:dibs/widget/modalEditar.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-
 import '../shared/service/colorService.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
 import '../widget/modalTrasferencia.dart';
@@ -37,10 +36,24 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 25),
                       child: Column(
                         children: [
-                          QrImage(
-                            data: codigoDoIngresso!,
-                            version: QrVersions.auto,
-                            size: 250.0,
+                          CustomPaint(
+                            size: Size.square(10),
+                            painter: QrPainter(
+                              data: codigoDoIngresso!,
+                              version: QrVersions.auto,
+                              eyeStyle: const QrEyeStyle(
+                                eyeShape: QrEyeShape.square,
+                                color: Color(0xff128760),
+                              ),
+                              dataModuleStyle: const QrDataModuleStyle(
+                                dataModuleShape: QrDataModuleShape.circle,
+                                color: Color(0xff1a5441),
+                              ),
+                              // size: 320.0,
+                              embeddedImageStyle: const QrEmbeddedImageStyle(
+                                size: Size.square(60),
+                              ),
+                            ),
                           ),
                           Center(child: Text(codigoDoIngresso!)),
                         ],

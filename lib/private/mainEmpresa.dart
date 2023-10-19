@@ -214,6 +214,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 Container(
                   child: BannerPrincipal(
+                    id: '1',
                     height: 200,
                     width: 400,
                     image: AssetImage('assets/images/PericlesEx.png'),

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'authentication-repository.dart';
+part of 'events-repository.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,12 +8,12 @@ part of 'authentication-repository.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _LoginApi implements LoginApi {
-  _LoginApi(
+class _EventsRepository implements EventsRepository {
+  _EventsRepository(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/auth/login';
+    baseUrl ??= 'http://192.168.195.189:8080/events';
   }
 
   final Dio _dio;
@@ -21,26 +21,53 @@ class _LoginApi implements LoginApi {
   String? baseUrl;
 
   @override
-  Future<AutenticationResponse> authenticate(authentication) async {
+  Future<List<Events>> getListEvents() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(authentication.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<AutenticationResponse>(Options(
-      method: 'POST',
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Events>>(Options(
+      method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '',
+              '/list',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = AutenticationResponse.fromJson(_result.data!);
+    var value = _result.data!
+        .map((dynamic i) => Events.fromJson(i as Map<String, dynamic>))
+        .toList();
+    return value;
+  }
+
+  @override
+  Future<List<Events>> getListEventsFilter(status) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(status.toJson());
+    final _result =
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Events>>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/list',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    var value = _result.data!
+        .map((dynamic i) => Events.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 

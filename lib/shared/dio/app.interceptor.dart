@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
+import '../../main.dart';
 import '../constance/environment.dart';
 import '../routes/routes.dart';
 import '../service/toastService.dart';
@@ -26,7 +27,7 @@ class AppInterceptors extends Interceptor {
     Routes.navigatorKey.currentContext!.loaderOverlay.show();
     final token = await Store.getString('auth');
     if (token != null && options.baseUrl.contains(Environment.BASE_URL)) {
-      options.headers['authorization'] = token;
+      options.headers['Authorization'] = token;
     }
 
     return interceptorHandler.next(options);

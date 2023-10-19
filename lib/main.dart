@@ -7,14 +7,19 @@ import 'package:provider/provider.dart';
 
 import 'models/auth.dart';
 import 'public/auth/auth_screen.dart';
+import 'shared/dio/app.interceptor.dart';
 import 'shared/routes/routes.dart';
 import 'shared/service/colorService.dart';
 
 void main() {
+  dio.interceptors.add(logger);
+  dio.interceptors.add(AppInterceptors());
+
   runApp(const MyApp());
 }
 
 Dio dio = Dio();
+
 final logger = PrettyDioLogger(
     requestHeader: true,
     requestBody: true,

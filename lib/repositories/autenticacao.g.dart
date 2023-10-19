@@ -7,12 +7,12 @@ part of 'autenticacao.dart';
 // **************************************************************************
 
 Autenticacao _$AutenticacaoFromJson(Map<String, dynamic> json) => Autenticacao(
-      username: json['username'] as String,
+      login: json['login'] as String,
       password: json['password'] as String,
     );
 
 Map<String, dynamic> _$AutenticacaoToJson(Autenticacao instance) =>
     <String, dynamic>{
-      'username': instance.username,
+      'login': instance.login,
       'password': instance.password,
     };
