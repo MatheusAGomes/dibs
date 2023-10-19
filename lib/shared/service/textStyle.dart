@@ -50,9 +50,9 @@ class TextStyleService {
   static TextStyle ticketBannerType = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w400,
-          fontSize: 16,
+          fontSize: 14,
           letterSpacing: 0,
-          // height: 0.2,
+          height: 1.1,
           color: Color(0x8A000000)
       )
   );

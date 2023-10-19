@@ -37,11 +37,11 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 25),
                       child: Column(
                         children: [
-                          QrImage(
-                            data: codigoDoIngresso!,
-                            version: QrVersions.auto,
-                            size: 250.0,
-                          ),
+                          // QrImage(
+                          //   data: codigoDoIngresso!,
+                          //   version: QrVersions.auto,
+                          //   size: 250.0,
+                          // ),
                           Center(child: Text(codigoDoIngresso!)),
                         ],
                       ),

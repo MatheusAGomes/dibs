@@ -101,7 +101,7 @@ class BannerMeuIngresso extends StatelessWidget {
                             ),
                             Text(
                               tipo,
-                              style: TextStyle(color: Colors.black54),
+                              style:TextStyleService.corSublinhada,
                             )
                           ],
                         )
@@ -199,6 +199,7 @@ class BannerMeuIngresso extends StatelessWidget {
                           ],
                         ),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(
                               lote,
@@ -211,7 +212,7 @@ class BannerMeuIngresso extends StatelessWidget {
                             ),
                             Text(
                               tipo,
-                              style: TextStyle(color: Colors.black54),
+                              style: TextStyleService.ticketBannerType,
                             )
                           ],
                         )
