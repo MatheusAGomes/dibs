@@ -213,7 +213,7 @@ class _MainScreenState extends State<MainScreen> {
                   Row(
                     children: [
                       Text('Eventos mais procurados',
-                          style: TextStyleService.corSublinhada),
+                          style: TextStyleService.corSublinhadaMainScreen),
                     ],
                   ),
                   SizedBox(
@@ -241,7 +241,7 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Text(
                         'Próximos a você',
-                        style: TextStyleService.corSublinhada,
+                        style: TextStyleService.corSublinhadaMainScreen,
                       ),
                     ],
                   ),
@@ -268,7 +268,7 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Text(
                         'Categorias',
-                        style: TextStyleService.corSublinhada,
+                        style: TextStyleService.corSublinhadaMainScreen,
                       ),
                     ],
                   ),

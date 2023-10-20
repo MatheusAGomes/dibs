@@ -42,7 +42,9 @@ class BannerMeuIngresso extends StatelessWidget {
             lote: lote,
             tipo: tipo,
             corBanner: corBanner,
-            corDoLote: corDoLote,)
+            corDoLote: corDoLote,
+            ticket: true,
+    )
         : InkWell(
             onTap: () {
               if (empresa == false) {
@@ -72,6 +74,8 @@ class BannerMeuIngresso extends StatelessWidget {
                 lote: lote,
                 tipo: tipo,
                 corBanner: corBanner,
-                corDoLote: corDoLote,));
+                corDoLote: corDoLote,
+                ticket: false
+            ));
   }
 }

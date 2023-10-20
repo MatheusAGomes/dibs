@@ -46,7 +46,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Camarote - 4° Lote',
-                    style: TextStyleService.corSublinhada),
+                    style: TextStyleService.corSublinhadaMainScreen),
                 Divider(),
                 Column(
                     children: List.generate(2, (index) {

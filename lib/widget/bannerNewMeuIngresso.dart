@@ -13,8 +13,10 @@ class BannerNewMeuIngresso extends StatelessWidget {
   String hora;
   String lote;
   String tipo;
+  String local;
   Color corBanner;
   Color corDoLote;
+  bool ticket;
 
   BannerNewMeuIngresso(
       {required this.image,
@@ -25,7 +27,8 @@ class BannerNewMeuIngresso extends StatelessWidget {
       required this.tipo,
       required this.corBanner,
       required this.corDoLote,
-      });
+      required this.ticket,
+      this.local = "Campinas - SP"});
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,13 @@ class BannerNewMeuIngresso extends StatelessWidget {
           height: 80,
           width: 300,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                  color: Color(0x40000000),
+                  blurRadius: 8,
+                  offset: Offset(0, 2),
+                  blurStyle: BlurStyle.inner)
+            ],
             color: corBanner,
             borderRadius: BorderRadiusDirectional.only(
                 bottomEnd: Radius.circular(10),
@@ -95,23 +105,36 @@ class BannerNewMeuIngresso extends StatelessWidget {
                     ),
                   ],
                 ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(
-                      lote,
-                      style: TextStyleService(batchColor: corDoLote)
-                          .ticketBannerBatch,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      tipo,
-                      style: TextStyleService.ticketBannerType,
-                    )
-                  ],
-                )
+                ticket
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            lote,
+                            style: TextStyleService(batchColor: corDoLote)
+                                .ticketBannerBatch,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(
+                            tipo,
+                            style: TextStyleService.ticketBannerType,
+                          )
+                        ],
+                      )
+                    : Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.locationDot,
+                            size: 16,
+                            color: ColorService.cinzaBannerIngresso,
+                          ),
+                          SizedBox(width: 4),
+                          Text(local, style: TextStyleService.ticketBannerType)
+                        ],
+                      ),
               ],
             )),
           ),

@@ -15,7 +15,81 @@ class TextStyleService {
       )
   );
 
-  static TextStyle corSublinhada = GoogleFonts.jost(
+  static TextStyle defaultTextField = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w500,
+        letterSpacing: -0.41,
+        fontSize: 12
+      )
+  );
+
+  static TextStyle defaultSignIn = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          letterSpacing: -0.41,
+          fontSize: 17,
+          height: 1
+      )
+  );
+
+  static TextStyle greenSignIn = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          letterSpacing: -0.41,
+          fontSize: 17,
+          height: 1,
+          color: Color(0xFF198A68),
+          decoration: TextDecoration.underline
+      )
+  );
+
+  static TextStyle labelSignIn = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w600,
+          letterSpacing: -0.41,
+          fontSize: 15,
+      )
+  );
+
+  static TextStyle defaultButton = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        letterSpacing: -0.41,
+        fontSize: 16,
+        color: Color(0xFFFFFFFF),
+        shadows: <Shadow>[
+            Shadow(
+              offset: Offset(2, 2),
+              color: Color(0x1A000000),
+              blurRadius: 1
+            )
+        ]
+      )
+  );
+
+  static TextStyle corSublinhadaSignIn = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w700,
+          fontSize: 50,
+          color: Color(0xFF000000),
+          letterSpacing: -1.41,
+          height: 1,
+          shadows: <Shadow>[
+            Shadow(
+                offset: Offset(1.5, 1.5),
+                color: Color.fromRGBO(126, 244, 209, 0.72))
+          ]));
+
+  static TextStyle mediumSpacing141 = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 17,
+          letterSpacing: -1.41,
+          height: 1,
+          color: Color(0xFF000000),
+      ));
+
+  static TextStyle corSublinhadaMainScreen = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w700,
           fontSize: 22,

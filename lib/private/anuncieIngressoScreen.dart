@@ -152,7 +152,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIngresso(
                                     empresa: false,
-                                    anuncio: false,
+                                    anuncio: true,
                                     image: AssetImage(
                                         'assets/images/PericlesEx.png'),
                                     titulo: 'Patati e Patatá em Osasco',

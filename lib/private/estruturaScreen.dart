@@ -59,7 +59,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
               topRight: Radius.circular(20),
             ),
             child: BottomNavigationBar(
-              selectedFontSize: 14,
+              selectedFontSize: 13,
               unselectedFontSize: 12,
               selectedLabelStyle: TextStyleService.bottomNavigationBar,
               unselectedLabelStyle: TextStyleService.bottomNavigationBar,
@@ -77,9 +77,9 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
                     ),
                     label: 'Tela inicial'),
                 BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.ticket,
+                  icon: Icon(FontAwesomeIcons.ticketSimple,
                     size: 20,),
-                  label: 'Ingresso',
+                  label: 'Ingressos',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.dollarSign,

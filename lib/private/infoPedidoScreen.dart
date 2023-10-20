@@ -54,7 +54,7 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
               children: [
                 Text(
                   'Informações dos ingressos',
-                  style: TextStyleService.corSublinhada,
+                  style: TextStyleService.corSublinhadaMainScreen,
                 ),
                 Text('Camarote - 4° lote',
                     style: TextStyle(fontWeight: FontWeight.bold)),
@@ -130,7 +130,7 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                 ),
                 Text(
                   'Forma de pagamento',
-                  style: TextStyleService.corSublinhada,
+                  style: TextStyleService.corSublinhadaMainScreen,
                 ),
                 InkWell(
                   onTap: () {

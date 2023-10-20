@@ -1,3 +1,4 @@
+import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/service/colorService.dart';
@@ -254,27 +255,7 @@ class ModalPerfil extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
-              Center(
-                child: InkWell(
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        'Salvar',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: ColorService.verde,
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                  ),
-                ),
-              ),
+              ButtonPadrao(text: "Salvar", click: () { print('de'); },),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
@@ -361,27 +342,7 @@ class ModalPerfil extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
-              Center(
-                child: InkWell(
-                  child: Container(
-                    child: Center(
-                      child: Text(
-                        'Alterar senha',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: ColorService.verde,
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.5,
-                  ),
-                ),
-              ),
+              ButtonPadrao(text: "Alterar senha", click: () { print('de'); },),
             ],
           ),
         ),
