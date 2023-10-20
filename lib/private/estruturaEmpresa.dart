@@ -48,7 +48,6 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
           children: [
             MainEmpresaScreen(),
             MeusEventosEmpresasScreen(),
-            MainEmpresaScreen()
           ],
         ),
         bottomNavigationBar: Container(
@@ -75,10 +74,7 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
                   icon: Icon(Icons.confirmation_num),
                   label: 'Eventos',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.attach_money),
-                  label: 'Relatórios',
-                ),
+
               ],
               onTap: (pagina) {
                 pc.animateToPage(

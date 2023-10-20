@@ -12,11 +12,13 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   String? codigoDoIngresso;
   ImageProvider? fotoDoEvento;
   bool status;
+  // bool anuncio;
   InfoMeuIngressoScreen(
       {required this.codigoDoIngresso,
       required this.cpf,
       required this.nomeDoTitular,
       required this.fotoDoEvento,
+        // required this. anuncio,
       required this.status});
 
   @override
@@ -78,7 +80,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    Row(
+                 // trocar um dos dois para o de cancear
+                 // anuncio ?
+                 Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(
@@ -125,7 +129,55 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                               )),
                         ),
                       ],
-                    ),
+                    ) ,
+                 //     : Row(
+                 //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 //   children: [
+                 //     SizedBox(
+                 //       width: MediaQuery.of(context).size.width * 0.3,
+                 //       child: TextButton(
+                 //           onPressed: () {
+                 //             if (status != true) {
+                 //               return;
+                 //             }
+                 //             showModalBottomSheet(
+                 //                 context: context,
+                 //                 builder: ((context) =>
+                 //                     ModalTransferencia()));
+                 //           },
+                 //           child: Text(
+                 //             'Transferir',
+                 //             style: TextStyle(color: Colors.white),
+                 //           ),
+                 //           style: ButtonStyle(
+                 //               backgroundColor: MaterialStateProperty.all(
+                 //                   status
+                 //                       ? Color(0xff198A68)
+                 //                       : Colors.grey))),
+                 //     ),
+                 //     SizedBox(
+                 //       width: MediaQuery.of(context).size.width * 0.3,
+                 //       child: TextButton(
+                 //           style: ButtonStyle(
+                 //               backgroundColor: MaterialStateProperty.all(
+                 //                   status
+                 //                       ? Color(0xff198A68)
+                 //                       : Colors.grey)),
+                 //           onPressed: () {
+                 //             if (status != true) {
+                 //               return;
+                 //             }
+                 //             showModalBottomSheet(
+                 //                 context: context,
+                 //                 builder: ((context) => ModalEditar()));
+                 //           },
+                 //           child: Text(
+                 //             'Editar',
+                 //             style: TextStyle(color: Colors.white),
+                 //           )),
+                 //     ),
+                 //   ],
+                 // ) ,
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),

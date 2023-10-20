@@ -1,7 +1,9 @@
 import 'package:dibs/private/anuncieIngressoScreen.dart';
 import 'package:dibs/private/mainScreen.dart';
 import 'package:dibs/private/meusIngressosScreen.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:provider/provider.dart';
 
@@ -57,6 +59,10 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
               topRight: Radius.circular(20),
             ),
             child: BottomNavigationBar(
+              selectedFontSize: 14,
+              unselectedFontSize: 12,
+              selectedLabelStyle: TextStyleService.bottomNavigationBar,
+              unselectedLabelStyle: TextStyleService.bottomNavigationBar,
               unselectedItemColor: Colors.grey,
               backgroundColor: Colors.grey.shade300,
               selectedItemColor: ColorService.verde,
@@ -66,15 +72,18 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
               items: [
                 BottomNavigationBarItem(
                     icon: Icon(
-                      Icons.home,
+                     FontAwesomeIcons.house,
+                      size: 20,
                     ),
                     label: 'Tela inicial'),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.confirmation_num),
+                  icon: Icon(FontAwesomeIcons.ticket,
+                    size: 20,),
                   label: 'Ingresso',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.attach_money),
+                  icon: Icon(FontAwesomeIcons.dollarSign,
+                    size: 20),
                   label: 'Vendas',
                 ),
               ],

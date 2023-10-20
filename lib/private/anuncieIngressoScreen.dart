@@ -115,20 +115,16 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                             ),
                             child: Row(crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                              Center(
-                                child: Ink(
-                                  width: 40,
-                                  height: 40,
-                                  decoration: BoxDecoration(
-                                      color: Color(0xFFD9D9D9),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Icon(
-                                    FontAwesomeIcons.plus,
-                                    color: Colors.black,
-                                    size: 24,
+                                  InkWell(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[300],
+                                          borderRadius: BorderRadius.circular(5)),
+                                      height: 40,
+                                      width: 40,
+                                      child: Icon(FontAwesomeIcons.plus),
+                                    ),
                                   ),
-                                ),
-                              ),
                               SizedBox(
                                 width: 10,
                               ),

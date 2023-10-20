@@ -2,6 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextStyleService {
+
+
+  Color batchColor;
+
+  TextStyleService({required this.batchColor});
+
+  static TextStyle bottomNavigationBar = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w400,
+        letterSpacing: -0.41,
+      )
+  );
+
   static TextStyle corSublinhada = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w700,
@@ -38,21 +51,22 @@ class TextStyleService {
       )
   );
 
-  // static TextStyle ticketBannerBatch = GoogleFonts.jost(
-  //     textStyle: const TextStyle(
-  //         fontWeight: FontWeight.w500,
-  //         fontSize: 13,
-  //         letterSpacing: -1.5,
-  //         height: 0.2,
-  //     )
-  // );
+  TextStyle get ticketBannerBatch => GoogleFonts.jost(
+    textStyle: TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 15,
+      letterSpacing: -1.0,
+      height: 1.3,
+      color: batchColor,
+    ),
+  );
 
   static TextStyle ticketBannerType = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w400,
-          fontSize: 14,
+          fontSize: 15,
           letterSpacing: 0,
-          height: 1.1,
+          height: 1.3,
           color: Color(0x8A000000)
       )
   );
