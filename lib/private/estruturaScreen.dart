@@ -46,7 +46,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           children: [
             MainScreen(listaDeEventos: widget.listaDeEventos!),
             const MeusIngressosScreen(),
-            const AnuncieIngressoScreen()
+             AnuncieIngressoScreen()
           ],
         ),
         bottomNavigationBar: SizedBox(
