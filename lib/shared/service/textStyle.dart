@@ -34,6 +34,26 @@ class TextStyleService {
         fontWeight: FontWeight.w500,
         fontSize: 13,
         letterSpacing: -1.5,
+        height: 0.2
+      )
+  );
+
+  // static TextStyle ticketBannerBatch = GoogleFonts.jost(
+  //     textStyle: const TextStyle(
+  //         fontWeight: FontWeight.w500,
+  //         fontSize: 13,
+  //         letterSpacing: -1.5,
+  //         height: 0.2,
+  //     )
+  // );
+
+  static TextStyle ticketBannerType = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 16,
+          letterSpacing: 0,
+          // height: 0.2,
+          color: Color(0x8A000000)
       )
   );
 
@@ -51,6 +71,14 @@ class TextStyleService {
         fontWeight: FontWeight.w400,
         fontSize: 11,
         letterSpacing: -0.08,
+      )
+  );
+
+  static TextStyle iconButtonText = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 18,
+        letterSpacing: -1.08,
       )
   );
 

@@ -42,8 +42,8 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 20,
+                SizedBox(
+                  height: 15,
                 ),
                 AnimatedToggleSwitch<int>.size(
                   current: value,
@@ -87,6 +87,9 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                   height: 20,
                 ),
                 SizedBox(
+                  height: 20,
+                ),
+                Container(
                   height: MediaQuery.of(context).size.height,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,

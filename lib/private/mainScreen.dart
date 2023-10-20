@@ -1,3 +1,4 @@
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/models/events.dart';
 import 'package:dibs/shared/enum/EventStatus.dart';
 import 'package:dibs/shared/service/textStyle.dart';
@@ -5,10 +6,17 @@ import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dibs/widget/modalAjuda.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
+import '../../../shared/constance/constance.dart';
+import '../../../shared/routes/routes.dart';
 
+import '../../../shared/service/colorService.dart';
+import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
 import '../widget/modalPerfil.dart';
@@ -171,6 +179,7 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ],
                         ),
+                        value: 'Sair',
                       )
                     ];
                   }),
@@ -219,8 +228,8 @@ class _MainScreenState extends State<MainScreen> {
                           style: TextStyleService.corSublinhada),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 5,
                   ),
                   SizedBox(
                     height: 230,
@@ -249,10 +258,10 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
                   SizedBox(
+                    height: 5,
+                  ),
+                  Container(
                     height: 120,
                     child: ListView.builder(
                       itemCount: listaFiltrada.length,
@@ -277,8 +286,8 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: 5,
                   ),
                   Column(
                     children: [
