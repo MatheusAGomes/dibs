@@ -1,20 +1,9 @@
-import 'package:dibs/private/estruturaScreen.dart';
-import 'package:dibs/private/formaDePagamento.dart';
-import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/shared/routes/routes.dart';
-import 'package:dibs/shared/service/textStyle.dart';
-import 'package:dibs/widget/modalEditar.dart';
-import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../shared/service/colorService.dart';
-import '../widget/bannerIngressoMarketPlace.dart';
-import '../widget/modalTrasferencia.dart';
 
 class CompraFinalizada extends StatefulWidget {
-  CompraFinalizada();
+  const CompraFinalizada({super.key});
 
   @override
   State<CompraFinalizada> createState() => _CompraFinalizadaState();
@@ -32,7 +21,7 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.close,
                 color: Colors.grey,
               )),
@@ -42,27 +31,27 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-              Center(
+              const Center(
                 child: Icon(
                   Icons.check_circle_outline_outlined,
                   color: Color(0xFF198A68),
                   size: 120,
                 ),
               ),
-              Text('Compra finalizada!'),
-              Text('Pagamento realizado com sucesso.'),
+              const Text('Compra finalizada!'),
+              const Text('Pagamento realizado com sucesso.'),
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4),
                 ),
                 elevation: 4,
                 color: Colors.grey[200],
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.zero,
-                  child: Container(
+                  child: SizedBox(
                     height: 40,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -71,7 +60,7 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Card(
@@ -80,9 +69,9 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                 ),
                 elevation: 4,
                 color: Colors.grey[200],
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                  child: Container(
+                  child: SizedBox(
                     height: 150,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -124,7 +113,7 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               InkWell(
@@ -135,9 +124,9 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                   ),
                   elevation: 4,
                   color: Colors.grey[200],
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.zero,
-                    child: Container(
+                    child: SizedBox(
                       height: 40,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -147,7 +136,7 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               InkWell(
@@ -160,9 +149,9 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                   ),
                   elevation: 4,
                   color: Colors.grey[200],
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.zero,
-                    child: Container(
+                    child: SizedBox(
                       height: 40,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,

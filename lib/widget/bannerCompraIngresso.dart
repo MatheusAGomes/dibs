@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
 
 class BannerCompraIngresso extends StatefulWidget {
   String? tipoDoIngresso;
   String? valor;
-  BannerCompraIngresso({required this.tipoDoIngresso, required this.valor});
+  BannerCompraIngresso({super.key, required this.tipoDoIngresso, required this.valor});
 
   @override
   State<BannerCompraIngresso> createState() => _BannerCompraIngressoState();
@@ -18,7 +16,7 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 0, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 6),
       elevation: 4,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(11),
@@ -26,7 +24,7 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
       color: Colors.white,
       child: Container(
         height: MediaQuery.of(context).size.height * 0.08,
-        padding: EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -36,11 +34,11 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
               children: [
                 Text(
                   widget.tipoDoIngresso!,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "R\$ ${widget.valor}",
-                  style: TextStyle(color: Colors.grey),
+                  style: const TextStyle(color: Colors.grey),
                 )
               ],
             ),
@@ -57,18 +55,18 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
                       }
                     }),
                     child: Container(
-                      child: Icon(Icons.remove),
                       color: Colors.grey[300],
                       height: 30,
                       width: 30,
+                      child: const Icon(Icons.remove),
                     ),
                   ),
                   InkWell(
                     child: Container(
-                      child: Center(child: Text(quantidade.toInt().toString())),
                       height: 30,
                       width: 30,
                       color: Colors.white,
+                      child: Center(child: Text(quantidade.toInt().toString())),
                     ),
                   ),
                   InkWell(
@@ -76,10 +74,10 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
                       quantidade++;
                     }),
                     child: Container(
-                      child: Icon(Icons.add),
                       height: 30,
                       width: 30,
                       color: Colors.grey[300],
+                      child: const Icon(Icons.add),
                     ),
                   ),
                 ],

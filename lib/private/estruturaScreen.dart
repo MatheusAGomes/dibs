@@ -1,20 +1,17 @@
-import 'package:dibs/models/auth.dart';
 import 'package:dibs/models/events.dart';
 import 'package:dibs/private/anuncieIngressoScreen.dart';
 import 'package:dibs/private/mainScreen.dart';
 import 'package:dibs/private/meusIngressosScreen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
 
-import '../../main.dart';
 
 import '../shared/service/colorService.dart';
 
 class EstruturasScreen extends StatefulWidget {
   int? pagina;
   List<Events>? listaDeEventos;
-  EstruturasScreen({required this.pagina, required this.listaDeEventos});
+  EstruturasScreen({super.key, required this.pagina, required this.listaDeEventos});
   @override
   _EstruturasScreenState createState() => _EstruturasScreenState();
 }
@@ -43,19 +40,19 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         body: PageView(
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           controller: pc,
           onPageChanged: setPaginaAtual,
           children: [
             MainScreen(listaDeEventos: widget.listaDeEventos!),
-            MeusIngressosScreen(),
-            AnuncieIngressoScreen()
+            const MeusIngressosScreen(),
+            const AnuncieIngressoScreen()
           ],
         ),
-        bottomNavigationBar: Container(
+        bottomNavigationBar: SizedBox(
           height: 70,
           child: ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
@@ -66,7 +63,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
               type: BottomNavigationBarType.fixed,
 
               currentIndex: paginaAtual,
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                     icon: Icon(
                       Icons.home,

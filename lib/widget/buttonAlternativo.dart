@@ -29,7 +29,7 @@ class ButtonAlternativo extends StatelessWidget {
         child: Center(
           child: Text(
             btnName,
-            style: Theme.of(context).textTheme.headline3!.copyWith(
+            style: Theme.of(context).textTheme.displaySmall!.copyWith(
                   fontSize: MediaQuery.of(context).size.height *
                       0.02,
                   color: ColorService.azul,

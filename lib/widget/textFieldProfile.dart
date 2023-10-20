@@ -18,7 +18,7 @@ class TextFieldPerfil extends StatefulWidget {
   final FocusNode? focusNode;
   final int? maxLength;
   final counterText;
-  const TextFieldPerfil({
+  const TextFieldPerfil({super.key, 
     required this.controller,
     this.textFormFildKey,
     required this.editable,
@@ -44,7 +44,7 @@ class _MyTextFiealProfiledState extends State<TextFieldPerfil> {
       maxLength: widget.maxLength,
 
       key: widget.textFormFildKey,
-      focusNode: widget.focusNode ?? null,
+      focusNode: widget.focusNode,
       inputFormatters: widget.inputFormatter,
       onChanged: widget.onchange,
       validator: widget.validator,
@@ -58,14 +58,14 @@ class _MyTextFiealProfiledState extends State<TextFieldPerfil> {
 
             borderSide: BorderSide(width: 1, color: Color(0XFFDDE2EA))),
         contentPadding:
-             EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+             const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
         focusedErrorBorder:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(width: 1, color: Colors.red),
+          borderSide: const BorderSide(width: 1, color: Colors.red),
         ),
         errorBorder:  OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(width: 1, color: Colors.red),
+          borderSide: const BorderSide(width: 1, color: Colors.red),
         ),
         hintStyle: TextStyle(
           color: ColorService.verde,

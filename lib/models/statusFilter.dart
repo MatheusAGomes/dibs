@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../shared/enum/EventStatus.dart';
 
 part 'statusFilter.g.dart';
 

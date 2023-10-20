@@ -1,8 +1,6 @@
 import 'package:dibs/widget/modalEditar.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import '../shared/service/colorService.dart';
-import '../widget/bannerIngressoMarketPlace.dart';
 import '../widget/modalTrasferencia.dart';
 
 class InfoMeuIngressoScreen extends StatelessWidget {
@@ -12,7 +10,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   ImageProvider? fotoDoEvento;
   bool status;
   InfoMeuIngressoScreen(
-      {required this.codigoDoIngresso,
+      {super.key, required this.codigoDoIngresso,
       required this.cpf,
       required this.nomeDoTitular,
       required this.fotoDoEvento,
@@ -33,11 +31,11 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 25),
+                      padding: const EdgeInsets.symmetric(vertical: 25),
                       child: Column(
                         children: [
                           CustomPaint(
-                            size: Size.square(10),
+                            size: const Size.square(10),
                             painter: QrPainter(
                               data: codigoDoIngresso!,
                               version: QrVersions.auto,
@@ -59,8 +57,8 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Row(
-                      children: const [
+                    const Row(
+                      children: [
                         Text(
                           'Titular',
                           style: TextStyle(fontWeight: FontWeight.w900),
@@ -75,7 +73,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Text(
                           'CPF',
@@ -104,17 +102,17 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                 showModalBottomSheet(
                                     context: context,
                                     builder: ((context) =>
-                                        ModalTransferencia()));
+                                        const ModalTransferencia()));
                               },
-                              child: Text(
-                                'Transferir',
-                                style: TextStyle(color: Colors.white),
-                              ),
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       status
-                                          ? Color(0xff198A68)
-                                          : Colors.grey))),
+                                          ? const Color(0xff198A68)
+                                          : Colors.grey)),
+                              child: const Text(
+                                'Transferir',
+                                style: TextStyle(color: Colors.white),
+                              )),
                         ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.3,
@@ -122,7 +120,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       status
-                                          ? Color(0xff198A68)
+                                          ? const Color(0xff198A68)
                                           : Colors.grey)),
                               onPressed: () {
                                 if (status != true) {
@@ -130,9 +128,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                 }
                                 showModalBottomSheet(
                                     context: context,
-                                    builder: ((context) => ModalEditar()));
+                                    builder: ((context) => const ModalEditar()));
                               },
-                              child: Text(
+                              child: const Text(
                                 'Editar',
                                 style: TextStyle(color: Colors.white),
                               )),
@@ -154,7 +152,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
+                  icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
                     Navigator.pop(context);
                   }),

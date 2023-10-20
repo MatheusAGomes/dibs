@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -21,12 +19,12 @@ String enumToName(Enum? value, List<Map> enums) {
   if (value == null) {
     return retorno;
   }
-  enums.forEach((element) {
+  for (var element in enums) {
     if (element['value'] == value) {
       retorno = element['name'];
-      return;
+      continue;
     }
-  });
+  }
   return retorno;
 }
 
@@ -38,7 +36,7 @@ String firtsLastName(String nomeCompleto) {
 
 String truncarTexto(String texto) {
   if (texto.length > 35) {
-    return texto.substring(0, 35) + "...";
+    return "${texto.substring(0, 35)}...";
   }
   return texto;
 }
@@ -85,7 +83,7 @@ String substituirTresPrimeirosGruposPorAsteriscos(String numeros) {
 }
 
 String hideLastName(String fullName) {
-  if (fullName == null || fullName.isEmpty) {
+  if (fullName.isEmpty) {
     return fullName;
   }
 

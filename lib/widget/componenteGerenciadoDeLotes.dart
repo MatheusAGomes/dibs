@@ -1,12 +1,9 @@
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../private/infoIngresso.dart';
-import '../shared/service/colorService.dart';
 
 class ComponenteGerenciadoDeLotes extends StatelessWidget {
-  ComponenteGerenciadoDeLotes();
+  const ComponenteGerenciadoDeLotes({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +11,14 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey, width: 1),
           borderRadius: BorderRadius.circular(7)),
+      height: 60,
+      width: 300,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 7, horizontal: 15),
+        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -42,7 +41,7 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                           appBar: AppBar(
                             elevation: 0,
                             backgroundColor: Colors.transparent,
-                            title: Text(
+                            title: const Text(
                               'Editar lote',
                               style: TextStyle(color: Colors.black),
                             ),
@@ -51,19 +50,19 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.arrow_back_ios,
                                   color: Colors.black,
                                 )),
                           ),
                           body: Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 vertical: 20, horizontal: 20),
                             child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Titulo'),
+                                  const Text('Titulo'),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
@@ -80,7 +79,7 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('Qntd. de ingressos'),
+                                          const Text('Qntd. de ingressos'),
                                           SizedBox(
                                             height: MediaQuery.of(context)
                                                     .size
@@ -101,7 +100,7 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text('Preço'),
+                                          const Text('Preço'),
                                           SizedBox(
                                             height: MediaQuery.of(context)
                                                     .size
@@ -120,7 +119,7 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  Text('Lote Programado'),
+                                  const Text('Lote Programado'),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
@@ -129,7 +128,7 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                                       enable: false,
                                     ),
                                   ),
-                                  Text('Status'),
+                                  const Text('Status'),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
@@ -138,27 +137,27 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                                       enable: false,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 20,
                                   ),
                                   Center(
                                     child: InkWell(
                                       onTap: () {},
                                       child: Container(
-                                        child: Center(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          color: const Color(0xFF198A68),
+                                        ),
+                                        width: 140,
+                                        height: 40,
+                                        child: const Center(
                                           child: Text(
                                             'Salvar',
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),
                                         ),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          color: Color(0xFF198A68),
-                                        ),
-                                        width: 140,
-                                        height: 40,
                                       ),
                                     ),
                                   )
@@ -172,15 +171,15 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(5)),
-                    child: Icon(
+                    height: 35,
+                    width: 35,
+                    child: const Icon(
                       Icons.edit,
                       color: Colors.black,
                     ),
-                    height: 35,
-                    width: 35,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 InkWell(
@@ -188,12 +187,12 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.grey[300],
                         borderRadius: BorderRadius.circular(5)),
-                    child: Icon(
+                    height: 35,
+                    width: 35,
+                    child: const Icon(
                       Icons.delete,
                       color: Colors.red,
                     ),
-                    height: 35,
-                    width: 35,
                   ),
                 )
               ],
@@ -201,8 +200,6 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
           ],
         ),
       ),
-      height: 60,
-      width: 300,
     );
   }
 }

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +8,12 @@ import '../main.dart';
 import '../repositories/autenticacao.dart';
 import '../repositories/autenticationResponse.dart';
 import '../repositories/authentication-repository.dart';
-import '../repositories/refreshToken.dart';
 import '../shared/store.dart';
 
 class Auth with ChangeNotifier {
-  Dio _dio;
+  final Dio _dio;
   String? _token;
-  String _key = 'auth';
+  final String _key = 'auth';
   Map<String, dynamic>? authDecoded;
 
   Auth(this._dio);
@@ -34,14 +32,14 @@ class Auth with ChangeNotifier {
 
   void decodificarToken(token) {
     final decodedToken = JwtDecoder.decode(token);
-    this.authDecoded = decodedToken;
+    authDecoded = decodedToken;
   }
 
   String decodificar(response) {
     String token = response;
 
     decodificarToken(token);
-    print(this.authDecoded);
+    print(authDecoded);
     return token;
   }
 
@@ -51,15 +49,15 @@ class Auth with ChangeNotifier {
       AutenticationResponse data = await loginApi
           .authenticate(Autenticacao(login: username, password: password));
 
-      _token = this.decodificar(data.token);
+      _token = decodificar(data.token);
       print(token);
-      Store.saveString(this._key, _token!);
+      Store.saveString(_key, _token!);
       Store.save('cred', {'username': username, 'password': password});
 
       notifyListeners();
       //Store.saveString(this._key, _token!);
-    } on DioError catch (dioError) {
-      throw dioError;
+    } on DioError {
+      rethrow;
     } catch (e) {
       print(e);
     }
@@ -86,7 +84,7 @@ class Auth with ChangeNotifier {
 
   void deslogar() {
     _token = null;
-    Store.remove(this._key);
+    Store.remove(_key);
     notifyListeners();
   }
 }

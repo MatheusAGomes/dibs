@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-import '../../main.dart';
 import '../constance/environment.dart';
 import '../routes/routes.dart';
 import '../service/toastService.dart';

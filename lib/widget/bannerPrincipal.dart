@@ -1,8 +1,12 @@
+import 'package:dibs/models/eventsClient.dart';
+import 'package:dibs/models/lote.dart';
 import 'package:dibs/private/infoIngresso.dart';
+import 'package:dibs/repositories/eventsClient-repository.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../shared/service/colorService.dart';
+import '../main.dart';
+import '../repositories/loteEvent-repository.dart';
 
 class BannerPrincipal extends StatelessWidget {
   ImageProvider image;
@@ -11,7 +15,8 @@ class BannerPrincipal extends StatelessWidget {
   double width;
   String id;
   BannerPrincipal(
-      {required this.id,
+      {super.key,
+      required this.id,
       required this.image,
       required this.titulo,
       required this.height,
@@ -20,20 +25,26 @@ class BannerPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => showModalBottomSheet<void>(
-        isScrollControlled: true,
-        context: context,
-        builder: (BuildContext context) {
-          return InfoIngressoScreen(
-            nomeDoEvento: titulo,
-            data: '24/08/2023',
-            descricao:
-                'Menos é mais novamente em Campinas para mais um show maravilhoso open bar e open food...',
-            fotoDoEvento: image,
-            hora: '19:00',
-          );
-        },
-      ),
+      onTap: () async {
+        //
+        EventsClient a = await EventsClientRepository(dio).getListEvents(id);
+        List<Lote> b = await LoteRepository(dio)
+            .getLotes('635bbe3c-0051-46c0-9695-e49fe5b88119');
+
+        showModalBottomSheet<void>(
+          isScrollControlled: true,
+          context: context,
+          builder: (BuildContext context) {
+            return InfoIngressoScreen(
+              nomeDoEvento: a.name,
+              data: a.startDate,
+              descricao: a.description,
+              fotoDoEvento: image,
+              hora: a.time,
+            );
+          },
+        );
+      },
       child: Stack(alignment: Alignment.bottomLeft, children: [
         Container(
           decoration: BoxDecoration(
@@ -47,21 +58,21 @@ class BannerPrincipal extends StatelessWidget {
           height: height,
           decoration: BoxDecoration(
             borderRadius: BorderRadiusDirectional.circular(10),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [Colors.transparent, Colors.black]),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 10),
+          padding: const EdgeInsets.only(left: 10),
           child: SizedBox(
             height: 60,
             width: width,
             child: Text(
               titulo,
               style: GoogleFonts.jost(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       color: Colors.white,
                       fontSize: 22,
                       fontWeight: FontWeight.w600,

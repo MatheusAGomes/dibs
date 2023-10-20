@@ -1,17 +1,10 @@
 import 'package:dibs/private/compraFinalizada.dart';
 import 'package:dibs/shared/service/textStyle.dart';
-import 'package:dibs/widget/modalEditar.dart';
-import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../shared/service/colorService.dart';
-import '../widget/bannerIngressoMarketPlace.dart';
-import '../widget/modalTrasferencia.dart';
 
 class ResumoDaCompra extends StatefulWidget {
-  ResumoDaCompra();
+  const ResumoDaCompra({super.key});
 
   @override
   State<ResumoDaCompra> createState() => _ResumoDaCompraState();
@@ -26,7 +19,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Pedido',
           style: TextStyle(color: Colors.black),
         ),
@@ -34,7 +27,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
@@ -43,7 +36,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,16 +45,16 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                   'Resumo da compra',
                   style: TextStyleService.corSublinhada,
                 ),
-                Text('Ingressos',
+                const Text('Ingressos',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(7),
                   ),
                   elevation: 4,
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                    child: Container(
+                    child: SizedBox(
                       height: 85,
                       child: Column(
                         children: [
@@ -107,7 +100,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
@@ -116,21 +109,21 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CompraFinalizada()));
+                              builder: (context) => const CompraFinalizada()));
                     },
                     child: Container(
-                      child: Center(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: const Color(0xFF198A68),
+                      ),
+                      width: 120,
+                      height: 40,
+                      child: const Center(
                         child: Text(
                           'Finalizar pedido',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: Color(0xFF198A68),
-                      ),
-                      width: 120,
-                      height: 40,
                     ),
                   ),
                 ),

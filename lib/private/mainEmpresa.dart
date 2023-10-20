@@ -1,28 +1,16 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/shared/service/textStyle.dart';
-import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
-import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dibs/widget/modalAjuda.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:provider/provider.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../../../shared/constance/constance.dart';
-import '../../../shared/routes/routes.dart';
 
-import '../../../shared/service/colorService.dart';
-import '../../../shared/store.dart';
-import '../../models/auth.dart';
 
 import '../widget/modalPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
 class MainEmpresaScreen extends StatefulWidget {
-  MainEmpresaScreen({Key? key}) : super(key: key);
+  const MainEmpresaScreen({Key? key}) : super(key: key);
 
   @override
   State<MainEmpresaScreen> createState() => _MainEmpresaScreenState();
@@ -46,11 +34,11 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
           title: Image.asset('assets/images/logoDibs.png'),
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: PopupMenuButton(
                   constraints:
                       const BoxConstraints.expand(width: 150, height: 170),
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   icon: const Icon(
                     Icons.menu_rounded,
@@ -64,7 +52,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return ModalPerfil();
+                            return const ModalPerfil();
                           },
                         );
                         break;
@@ -76,7 +64,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           isDismissible: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return ModalMeusCartoes();
+                            return const ModalMeusCartoes();
                           },
                         );
                         break;
@@ -95,7 +83,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   },
                   itemBuilder: (BuildContext bc) {
                     return [
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -111,8 +99,9 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           ],
                         ),
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'MeuPerfil',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -123,10 +112,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                             ),
                           ],
                         ),
-                        value: 'MeuPerfil',
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'MeusCartões',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -137,10 +126,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                             ),
                           ],
                         ),
-                        value: 'MeusCartões',
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'Ajuda',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -151,10 +140,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                             ),
                           ],
                         ),
-                        value: 'Ajuda',
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'Sair',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -167,18 +156,17 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                             ),
                           ],
                         ),
-                        value: 'Sair',
                       )
                     ];
                   }),
             )
           ],
-          actionsIconTheme: IconThemeData(),
+          actionsIconTheme: const IconThemeData(),
         ),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: SingleChildScrollView(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,10 +184,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                             borderRadius: BorderRadius.circular(5)),
                         height: 35,
                         width: 35,
-                        child: Icon(Icons.add),
+                        child: const Icon(Icons.add),
                       ),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         'Novo evento',
@@ -208,8 +196,8 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                     )
                   ],
                 ),
-                Divider(),
-                Text('Proximo Evento',
+                const Divider(),
+                const Text('Proximo Evento',
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                 Container(
@@ -217,14 +205,14 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                     id: '1',
                     height: 200,
                     width: 400,
-                    image: AssetImage('assets/images/PericlesEx.png'),
+                    image: const AssetImage('assets/images/PericlesEx.png'),
                     titulo: 'Churrasquinho Menos é Mais',
                   ),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                Text(
+                const Text(
                   'Lotes ativos',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
@@ -240,13 +228,13 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                       animation: true,
                       lineHeight: 20.0,
                       animationDuration: 2500,
-                      barRadius: Radius.circular(5),
+                      barRadius: const Radius.circular(5),
                       percent: 0.8,
                       linearStrokeCap: LinearStrokeCap.roundAll,
-                      progressColor: Color(0xFF198A68),
-                      backgroundColor: Color(0xFFDADADA),
+                      progressColor: const Color(0xFF198A68),
+                      backgroundColor: const Color(0xFFDADADA),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -273,13 +261,13 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                       animation: true,
                       lineHeight: 20.0,
                       animationDuration: 2500,
-                      barRadius: Radius.circular(5),
+                      barRadius: const Radius.circular(5),
                       percent: 0.4,
                       linearStrokeCap: LinearStrokeCap.roundAll,
-                      progressColor: Color(0xFF10B981),
-                      backgroundColor: Color(0xFFDADADA),
+                      progressColor: const Color(0xFF10B981),
+                      backgroundColor: const Color(0xFFDADADA),
                     ),
-                    Padding(
+                    const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -295,7 +283,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                Text(
+                const Text(
                   'Ingressos totais vendidos',
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
@@ -305,15 +293,15 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   animation: true,
                   lineHeight: 20.0,
                   animationDuration: 2500,
-                  barRadius: Radius.circular(5),
+                  barRadius: const Radius.circular(5),
                   percent: 0.849,
-                  center: Text(
+                  center: const Text(
                     '849/1000',
                     style: TextStyle(color: Colors.white),
                   ),
                   linearStrokeCap: LinearStrokeCap.roundAll,
-                  progressColor: Color(0xFF198A68),
-                  backgroundColor: Color(0xFFDADADA),
+                  progressColor: const Color(0xFF198A68),
+                  backgroundColor: const Color(0xFFDADADA),
                 ),
               ],
             )),

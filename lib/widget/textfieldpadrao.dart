@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../shared/service/InputDecorationService.dart';
-import '../shared/service/colorService.dart';
 
 class TextFieldPadrao extends StatefulWidget {
   final GlobalKey<FormFieldState>? textFormFildKey;
@@ -24,7 +23,7 @@ class TextFieldPadrao extends StatefulWidget {
   final int? maxlength;
   final bool? enable;
   List<TextInputFormatter>? inputFormatter;
-  TextFieldPadrao({
+  TextFieldPadrao({super.key, 
     this.textFormFildKey,
     this.hintText,
     this.prefixIcon,

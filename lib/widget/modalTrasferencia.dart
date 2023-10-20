@@ -4,35 +4,35 @@ import 'package:flutter/material.dart';
 import '../shared/service/colorService.dart';
 
 class ModalTransferencia extends StatelessWidget {
-  ModalTransferencia();
+  const ModalTransferencia({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Transferir Ingresso',
                     style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                   ),
                   InkWell(
-                    child: Icon(Icons.close),
+                    child: const Icon(Icons.close),
                     onTap: () {
                       Navigator.pop(context);
                     },
                   ),
                 ],
               ),
-              Divider(),
+              const Divider(),
               Column(
                 children: [
-                  Text(
+                  const Text(
                       'Insira o email da conta para a qual deseja transferir:'),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
@@ -67,7 +67,13 @@ class ModalTransferencia extends StatelessWidget {
               Center(
                 child: InkWell(
                   child: Container(
-                    child: Center(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: ColorService.verde,
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: const Center(
                       child: Text(
                         'Transferir',
                         style: TextStyle(
@@ -76,12 +82,6 @@ class ModalTransferencia extends StatelessWidget {
                             fontSize: 16),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: ColorService.verde,
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.5,
                   ),
                 ),
               ),

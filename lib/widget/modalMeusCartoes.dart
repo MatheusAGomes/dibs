@@ -2,17 +2,16 @@ import 'package:dibs/private/modalNovoCartao.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
 import 'meuCartaoComponente.dart';
 
 class ModalMeusCartoes extends StatelessWidget {
-  ModalMeusCartoes();
+  const ModalMeusCartoes({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -22,26 +21,26 @@ class ModalMeusCartoes extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         'Meus cartões',
                         style: TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 20),
                       ),
                       InkWell(
-                        child: Icon(Icons.close),
+                        child: const Icon(Icons.close),
                         onTap: () {
                           Navigator.pop(context);
                         },
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Column(
                       children: List.generate(2, (index) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: MeuCartaoComponente(
                           nome: 'Matheus Gomes',
                           numero: substituirTresPrimeirosGruposPorAsteriscos(
@@ -62,11 +61,11 @@ class ModalMeusCartoes extends StatelessWidget {
                       isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
-                        return ModalNovoCartao();
+                        return const ModalNovoCartao();
                       },
                     );
                   },
-                  child: Text(
+                  child: const Text(
                     'Adicionar cartão',
                     style: TextStyle(color: Colors.white),
                   ),

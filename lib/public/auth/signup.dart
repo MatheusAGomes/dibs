@@ -1,20 +1,12 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
-import '../../../shared/constance/constance.dart';
-import '../../../shared/routes/routes.dart';
 
 import '../../../shared/service/colorService.dart';
-import '../../../shared/store.dart';
-import '../../models/auth.dart';
 import '../../widget/textfieldpadrao.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -37,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             colorFilter:
                 ColorFilter.mode(Color(0xff7EF4D1), BlendMode.modulate),
@@ -47,7 +39,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onPressed: (() {
                             Navigator.pop(context);
                           }),
-                          icon: Icon(Icons.arrow_back_ios)),
+                          icon: const Icon(Icons.arrow_back_ios)),
                       Image.asset("assets/images/Dibs logo.png")
                     ],
                   ),
@@ -68,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
-                    child: Text(
+                    child: const Text(
                       'Cadastro',
                       style: TextStyle(
                           height: 1,
@@ -87,7 +79,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: Text(
+                    child: const Text(
                       'Colocar um texto aqui pra fazer marketing',
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
@@ -96,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Primeiro nome',
@@ -136,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Sobrenome',
@@ -176,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'CPF',
@@ -216,7 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Data de nascimento',
@@ -256,7 +248,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Email',
@@ -299,7 +291,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Center(
                     child: InkWell(
                       child: Container(
-                        child: Center(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: ColorService.verde,
+                        ),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: const Center(
                           child: Text(
                             'Cadastar-se',
                             style: TextStyle(
@@ -308,12 +306,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 fontSize: 16),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: ColorService.verde,
-                        ),
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.5,
                       ),
                     ),
                   ),
@@ -325,11 +317,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Deseja cadastrar um evento?',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        Text(
+                        const Text(
                           'Envie um email para o contato abaixo',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),

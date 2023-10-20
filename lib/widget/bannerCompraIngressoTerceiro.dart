@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
 
 class BannerCompraIngressoTerceiro extends StatefulWidget {
   String? tipoDoIngresso;
   String? valor;
   String? nome;
   BannerCompraIngressoTerceiro(
-      {required this.tipoDoIngresso, required this.valor, required this.nome});
+      {super.key, required this.tipoDoIngresso, required this.valor, required this.nome});
 
   @override
   State<BannerCompraIngressoTerceiro> createState() =>
@@ -27,8 +25,8 @@ class _BannerCompraIngressoTerceiroState
       ),
       elevation: 4,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: SizedBox(
           height: 80,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,16 +36,16 @@ class _BannerCompraIngressoTerceiroState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [Text(widget.nome!), Icon(Icons.lock)],
+                    children: [Text(widget.nome!), const Icon(Icons.lock)],
                   ),
                   Text(widget.tipoDoIngresso!),
-                  Text('R\$ 222,00')
+                  const Text('R\$ 222,00')
                 ],
               ),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: Color(0xFF198A68))),
+                    border: Border.all(color: const Color(0xFF198A68))),
                 child: Row(
                   children: [
                     InkWell(
@@ -57,27 +55,27 @@ class _BannerCompraIngressoTerceiroState
                         }
                       }),
                       child: Container(
-                        child: Icon(
+                        color: const Color(0xFF198A68),
+                        height: 30,
+                        width: 30,
+                        child: const Icon(
                           Icons.remove,
                           color: Colors.white,
                         ),
-                        color: Color(0xFF198A68),
-                        height: 30,
-                        width: 30,
                       ),
                     ),
                     InkWell(
                       child: Container(
+                        height: 30,
+                        width: 30,
+                        color: const Color(0xFF198A68).withOpacity(0.5),
                         child: Center(
                             child: Text(
                           quantidade.toInt().toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                           ),
                         )),
-                        height: 30,
-                        width: 30,
-                        color: Color(0xFF198A68).withOpacity(0.5),
                       ),
                     ),
                     InkWell(
@@ -85,13 +83,13 @@ class _BannerCompraIngressoTerceiroState
                         quantidade++;
                       }),
                       child: Container(
-                        child: Icon(
+                        height: 30,
+                        width: 30,
+                        color: const Color(0xFF198A68),
+                        child: const Icon(
                           Icons.add,
                           color: Colors.white,
                         ),
-                        height: 30,
-                        width: 30,
-                        color: Color(0xFF198A68),
                       ),
                     ),
                   ],

@@ -1,7 +1,4 @@
 import 'package:dibs/main.dart';
-import 'package:dibs/models/statusFilter.dart';
-import 'package:dibs/private/estruturaEmpresa.dart';
-import 'package:dibs/public/auth/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +10,7 @@ import 'signin.dart';
 
 class AuthScreen extends StatefulWidget {
   final String? possiblelink;
-  const AuthScreen(this.possiblelink);
+  const AuthScreen(this.possiblelink, {super.key});
   @override
   State<AuthScreen> createState() => _AuthScreenState();
 }
@@ -36,7 +33,7 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
           );
         } else if (snapshot.error != null) {
-          return SignInScreen();
+          return const SignInScreen();
         } else {
           if (auth.estaAutenticado) {
             return FutureBuilder(
@@ -47,12 +44,12 @@ class _AuthScreenState extends State<AuthScreen> {
                       listaDeEventos: snapshot.data![0],
                     );
                   } else {
-                    return SignInScreen();
+                    return const SignInScreen();
                   }
                 },
                 future: Future.wait([EventsRepository(dio).getListEvents()]));
           } else {
-            return SignInScreen();
+            return const SignInScreen();
           }
         }
       },

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../shared/service/colorService.dart';
 
 class ModalAjuda extends StatelessWidget {
-  ModalAjuda();
+  ModalAjuda({super.key});
 
   TextEditingController assuntoController = TextEditingController();
 
@@ -11,7 +10,7 @@ class ModalAjuda extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -20,23 +19,23 @@ class ModalAjuda extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Ajuda',
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                     ),
                     InkWell(
-                      child: Icon(Icons.close),
+                      child: const Icon(Icons.close),
                       onTap: () {
                         Navigator.pop(context);
                       },
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Como posso te ajudar ?',
@@ -44,18 +43,18 @@ class ModalAjuda extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Column(
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Text('Assunto',
                             style: TextStyle(fontWeight: FontWeight.w900)),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       height: 34,
                       width: 343,
                       child: TextFormField(
@@ -63,7 +62,7 @@ class ModalAjuda extends StatelessWidget {
                         controller: assuntoController,
                         decoration: InputDecoration(
                           contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7),
                               borderSide: BorderSide(
@@ -71,24 +70,24 @@ class ModalAjuda extends StatelessWidget {
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7),
                               borderSide:
-                                  BorderSide(width: 1, color: Colors.grey)),
+                                  const BorderSide(width: 1, color: Colors.grey)),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Column(
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Text('Pergunta/Reclamação',
                             style: TextStyle(fontWeight: FontWeight.w900)),
                       ],
                     ),
-                    Container(
+                    SizedBox(
                       height: 34,
                       width: 343,
                       child: TextFormField(
@@ -96,7 +95,7 @@ class ModalAjuda extends StatelessWidget {
                         controller: assuntoController,
                         decoration: InputDecoration(
                           contentPadding:
-                              EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                              const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7),
                               borderSide: BorderSide(
@@ -104,22 +103,22 @@ class ModalAjuda extends StatelessWidget {
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(7),
                               borderSide:
-                                  BorderSide(width: 1, color: Colors.grey)),
+                                  const BorderSide(width: 1, color: Colors.grey)),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Row(
+                const Row(
                   children: [
                     Text('Email para contato',
                         style: TextStyle(fontWeight: FontWeight.w900)),
                   ],
                 ),
-                Row(
+                const Row(
                   children: [
                     Text('suporte@trocatroca.com',
                         style: TextStyle(

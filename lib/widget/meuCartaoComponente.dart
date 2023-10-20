@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../shared/service/colorService.dart';
 
 class MeuCartaoComponente extends StatelessWidget {
   String? numero;
@@ -8,7 +7,7 @@ class MeuCartaoComponente extends StatelessWidget {
   String? nome;
 
   MeuCartaoComponente(
-      {required this.numero, required this.tipo, required this.nome});
+      {super.key, required this.numero, required this.tipo, required this.nome});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +18,10 @@ class MeuCartaoComponente extends StatelessWidget {
             borderRadius: BorderRadius.circular(11)),
         height: 60,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Icon(Icons.credit_card),
+            const Icon(Icons.credit_card),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +33,7 @@ class MeuCartaoComponente extends StatelessWidget {
                 ),
                 Text(
                   nome!,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   tipo!,
@@ -42,7 +41,7 @@ class MeuCartaoComponente extends StatelessWidget {
                 )
               ],
             ),
-            Icon(Icons.delete_outline_outlined)
+            const Icon(Icons.delete_outline_outlined)
           ]),
         ),
       ),

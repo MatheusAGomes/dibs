@@ -7,7 +7,7 @@ import 'autenticacao.dart';
 
 part 'authentication-repository.g.dart';
 
-@RestApi(baseUrl: Environment.BASE_URL + "/auth/login")
+@RestApi(baseUrl: "${Environment.BASE_URL}/auth/login")
 abstract class LoginApi {
   factory LoginApi(Dio dio, {String baseUrl}) = _LoginApi;
 

@@ -31,14 +31,14 @@ class ButtonPadrao extends StatelessWidget {
               height: MediaQuery.of(context).size.height * height,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: this.delete ? Colors.red :  ColorService.azul,
+                color: delete ? Colors.red :  ColorService.azul,
                 // ignore: prefer_const_constructors
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
               child: Center(
                 child: Text(
                   btnName,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: MediaQuery.of(context).size.height *
                           0.021,
                       color: Colors.white,
@@ -57,7 +57,7 @@ class ButtonPadrao extends StatelessWidget {
               child: Center(
                 child: Text(
                   btnName,
-                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                  style: Theme.of(context).textTheme.displaySmall!.copyWith(
                       fontSize: MediaQuery.of(context).size.height *
                           0.021,
                       color: Colors.white,

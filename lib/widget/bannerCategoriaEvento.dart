@@ -1,7 +1,5 @@
-import 'package:dibs/private/categoriaScreen.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/service/colorService.dart';
 
 class BannerCategoriaEvento extends StatelessWidget {
   ImageProvider image;
@@ -12,7 +10,7 @@ class BannerCategoriaEvento extends StatelessWidget {
   Color corDois;
 
   BannerCategoriaEvento(
-      {required this.image,
+      {super.key, required this.image,
       required this.titulo,
       required this.data,
       required this.corUm,
@@ -37,7 +35,7 @@ class BannerCategoriaEvento extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClipRRect(
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(11),
                       bottomLeft: Radius.circular(11)),
                   child: Image(image: image)),
@@ -54,13 +52,13 @@ class BannerCategoriaEvento extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.calendar_month,
                             size: 18,
                           ),
                           Text(
                             data,
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           )
                         ],
                       ),
@@ -70,13 +68,13 @@ class BannerCategoriaEvento extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.schedule,
                             size: 18,
                           ),
                           Text(
                             hora,
-                            style: TextStyle(fontSize: 12),
+                            style: const TextStyle(fontSize: 12),
                           )
                         ],
                       )
@@ -84,7 +82,7 @@ class BannerCategoriaEvento extends StatelessWidget {
                   ),
                   Text(
                     titulo,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.w900,
                     ),
                   ),

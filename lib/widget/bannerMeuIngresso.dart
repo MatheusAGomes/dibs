@@ -4,7 +4,6 @@ import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../shared/service/colorService.dart';
 
 class BannerMeuIngresso extends StatelessWidget {
   ImageProvider image;
@@ -19,7 +18,7 @@ class BannerMeuIngresso extends StatelessWidget {
   bool empresa;
 
   BannerMeuIngresso(
-      {required this.image,
+      {super.key, required this.image,
       required this.titulo,
       required this.data,
       required this.hora,
@@ -47,7 +46,7 @@ class BannerMeuIngresso extends StatelessWidget {
                 width: 300,
                 decoration: BoxDecoration(
                   color: corBanner,
-                  borderRadius: BorderRadiusDirectional.only(
+                  borderRadius: const BorderRadiusDirectional.only(
                       bottomEnd: Radius.circular(10),
                       bottomStart: Radius.circular(10)),
                 ),
@@ -63,13 +62,13 @@ class BannerMeuIngresso extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Icon(Icons.calendar_month_outlined),
+                                const Icon(Icons.calendar_month_outlined),
                                 Text(data,
                                   style: TextStyleService.ticketBannerDateTime
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 30,
                             ),
                             Row(
@@ -98,12 +97,12 @@ class BannerMeuIngresso extends StatelessWidget {
                                   color: corDoLote,
                                   fontWeight: FontWeight.w900),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 10,
                             ),
                             Text(
                               tipo,
-                              style: TextStyle(color: Colors.black54),
+                              style: const TextStyle(color: Colors.black54),
                             )
                           ],
                         )
@@ -130,7 +129,7 @@ class BannerMeuIngresso extends StatelessWidget {
                 );
               } else {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MeuEventoScreen()));
+                    MaterialPageRoute(builder: (context) => const MeuEventoScreen()));
               }
             },
             child: SizedBox(
@@ -147,7 +146,7 @@ class BannerMeuIngresso extends StatelessWidget {
                   width: 300,
                   decoration: BoxDecoration(
                     color: corBanner,
-                    borderRadius: BorderRadiusDirectional.only(
+                    borderRadius: const BorderRadiusDirectional.only(
                         bottomEnd: Radius.circular(10),
                         bottomStart: Radius.circular(10)),
                   ),
@@ -163,18 +162,18 @@ class BannerMeuIngresso extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Icon(FontAwesomeIcons.calendarDay, size: 20,),
+                                  const Icon(FontAwesomeIcons.calendarDay, size: 20,),
                                   Text(data,
                                       style: TextStyleService.ticketBannerDateTime
                                   )
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 30,
                               ),
                               Row(
                                 children: [
-                                  Icon(Icons.schedule),
+                                  const Icon(Icons.schedule),
                                   Text(hora,
                                       style: TextStyleService.ticketBannerDateTime
                                   )],
@@ -197,12 +196,12 @@ class BannerMeuIngresso extends StatelessWidget {
                                     color: corDoLote,
                                     fontWeight: FontWeight.w900),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Text(
                                 tipo,
-                                style: TextStyle(color: Colors.black54),
+                                style: const TextStyle(color: Colors.black54),
                               )
                             ],
                           )

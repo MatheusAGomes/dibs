@@ -1,14 +1,11 @@
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/functions/utils.dart';
 import '../widget/bannerCompraIngressoTerceiro.dart';
-import '../widget/meuCartaoComponente.dart';
 import 'infoPedidoScreen.dart';
-import 'modalNovoCartao.dart';
 
 class IngressosAnunciadosScreen extends StatefulWidget {
-  IngressosAnunciadosScreen();
+  const IngressosAnunciadosScreen({super.key});
 
   @override
   State<IngressosAnunciadosScreen> createState() =>
@@ -23,7 +20,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Ingressos Anunciados',
           style: TextStyle(color: Colors.black),
         ),
@@ -31,7 +28,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
@@ -40,25 +37,25 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Camarote - 4° Lote',
                     style: TextStyleService.corSublinhada),
-                Divider(),
+                const Divider(),
                 Column(
                     children: List.generate(2, (index) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 2),
+                    padding: const EdgeInsets.symmetric(vertical: 2),
                     child: BannerCompraIngressoTerceiro(
                         nome: 'Matheus Gomes',
                         tipoDoIngresso: 'Meia entrada',
                         valor: 'R\$ 200.00'),
                   );
                 })),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
@@ -72,18 +69,18 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                                   )));
                     },
                     child: Container(
-                      child: Center(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: const Color(0xFF198A68),
+                      ),
+                      width: 120,
+                      height: 40,
+                      child: const Center(
                         child: Text(
                           'Comprar',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: Color(0xFF198A68),
-                      ),
-                      width: 120,
-                      height: 40,
                     ),
                   ),
                 ),

@@ -1,4 +1,3 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/models/events.dart';
 import 'package:dibs/shared/enum/EventStatus.dart';
 import 'package:dibs/shared/service/textStyle.dart';
@@ -6,17 +5,10 @@ import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dibs/widget/modalAjuda.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../../../shared/constance/constance.dart';
-import '../../../shared/routes/routes.dart';
 
-import '../../../shared/service/colorService.dart';
-import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
 import '../widget/modalPerfil.dart';
@@ -24,7 +16,7 @@ import '../widget/modalMeusCartoes.dart';
 
 class MainScreen extends StatefulWidget {
   List<Events> listaDeEventos;
-  MainScreen({required this.listaDeEventos});
+  MainScreen({super.key, required this.listaDeEventos});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -41,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context, listen: false);
-    List<Events> lista_filtrada = widget.listaDeEventos
+    List<Events> listaFiltrada = widget.listaDeEventos
         .where((e) => e.status == EventStatusEnum.PUBLISHED)
         .toList();
     return Scaffold(
@@ -52,11 +44,11 @@ class _MainScreenState extends State<MainScreen> {
           title: Image.asset('assets/images/logoDibs.png'),
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               child: PopupMenuButton(
                   constraints:
                       const BoxConstraints.expand(width: 150, height: 170),
-                  shape: RoundedRectangleBorder(
+                  shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   icon: const Icon(
                     Icons.person,
@@ -70,7 +62,7 @@ class _MainScreenState extends State<MainScreen> {
                           isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return ModalPerfil();
+                            return const ModalPerfil();
                           },
                         );
                         break;
@@ -82,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                           isDismissible: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return ModalMeusCartoes();
+                            return const ModalMeusCartoes();
                           },
                         );
                         break;
@@ -108,17 +100,18 @@ class _MainScreenState extends State<MainScreen> {
                           children: [
                             Text(
                               "Olá,${auth.authDecoded!['login'].toString()}",
-                              style: TextStyle(fontWeight: FontWeight.w900),
+                              style: const TextStyle(fontWeight: FontWeight.w900),
                             ),
-                            Icon(
+                            const Icon(
                               Icons.person,
                               color: Colors.black,
                             )
                           ],
                         ),
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'MeuPerfil',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -129,10 +122,10 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ],
                         ),
-                        value: 'MeuPerfil',
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'MeusCartões',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -143,10 +136,10 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ],
                         ),
-                        value: 'MeusCartões',
                       ),
-                      PopupMenuItem(
+                      const PopupMenuItem(
                         height: 30,
+                        value: 'Ajuda',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -157,10 +150,10 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ],
                         ),
-                        value: 'Ajuda',
                       ),
                       PopupMenuItem(
                         height: 30,
+                        value: 'Sair',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -168,7 +161,7 @@ class _MainScreenState extends State<MainScreen> {
                               onTap: () {
                                 auth.deslogar();
                               },
-                              child: Text(
+                              child: const Text(
                                 "Sair",
                                 style: TextStyle(
                                     color: Colors.red,
@@ -178,35 +171,34 @@ class _MainScreenState extends State<MainScreen> {
                             ),
                           ],
                         ),
-                        value: 'Sair',
                       )
                     ];
                   }),
             )
           ],
-          actionsIconTheme: IconThemeData(),
+          actionsIconTheme: const IconThemeData(),
         ),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 34,
                     width: 343,
                     child: TextFormField(
                       cursorColor: Colors.grey,
                       controller: buscaController,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.search,
                           color: Colors.grey,
                         ),
                         hintText: 'Busque eventos',
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                            const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(7),
                             borderSide: BorderSide(
@@ -214,11 +206,11 @@ class _MainScreenState extends State<MainScreen> {
                         focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(7),
                             borderSide:
-                                BorderSide(width: 1, color: Colors.grey)),
+                                const BorderSide(width: 1, color: Colors.grey)),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -227,26 +219,26 @@ class _MainScreenState extends State<MainScreen> {
                           style: TextStyleService.corSublinhada),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Container(
+                  SizedBox(
                     height: 230,
                     child: ListView.builder(
-                      itemCount: lista_filtrada.length,
+                      itemCount: listaFiltrada.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         return BannerPrincipal(
-                          id: lista_filtrada[index].id!,
+                          id: listaFiltrada[index].id!,
                           height: 230,
                           width: 200,
-                          image: AssetImage('assets/images/PericlesEx.png'),
-                          titulo: lista_filtrada[index].name!,
+                          image: const AssetImage('assets/images/PericlesEx.png'),
+                          titulo: listaFiltrada[index].name!,
                         );
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -257,23 +249,24 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Container(
+                  SizedBox(
                     height: 120,
                     child: ListView.builder(
+                      itemCount: listaFiltrada.length,
                       scrollDirection: Axis.horizontal,
-                      itemCount: 3,
                       itemBuilder: (context, index) {
                         return BannerSecundario(
-                          image: AssetImage('assets/images/PericlesEx.png'),
-                          titulo: 'Churrasquinho Menos é Mais',
+                          id: listaFiltrada[index].id!,
+                          image: const AssetImage('assets/images/PericlesEx.png'),
+                          titulo: listaFiltrada[index].name!,
                         );
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
@@ -284,7 +277,7 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Column(
@@ -293,30 +286,33 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BannerCategoria(
-                              icon: Icon(Icons.theater_comedy, size: 35,),
+                              icon: const Icon(
+                                Icons.theater_comedy,
+                                size: 35,
+                              ),
                               titulo: 'Shows',
                               corUm: Colors.green,
                               corDois: Colors.blue),
                           BannerCategoria(
-                              icon: Icon(Icons.music_note),
+                              icon: const Icon(Icons.music_note),
                               titulo: 'Teatro',
                               corUm: Colors.red,
                               corDois: Colors.yellow),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BannerCategoria(
-                              icon: Icon(Icons.directions_walk),
+                              icon: const Icon(Icons.directions_walk),
                               titulo: 'Corridas',
                               corUm: Colors.pink.shade100,
                               corDois: Colors.pink.shade300),
                           BannerCategoria(
-                              icon: Icon(Icons.church),
+                              icon: const Icon(Icons.church),
                               titulo: 'Religioso',
                               corUm: Colors.green.shade200,
                               corDois: Colors.yellow),

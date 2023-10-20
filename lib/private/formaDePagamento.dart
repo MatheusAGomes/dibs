@@ -1,19 +1,11 @@
-import 'package:dibs/shared/service/textStyle.dart';
-import 'package:dibs/widget/modalEditar.dart';
-import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_flutter/qr_flutter.dart';
-import 'package:validatorless/validatorless.dart';
 
 import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
-import '../widget/bannerIngressoMarketPlace.dart';
 import '../widget/meuCartaoComponente.dart';
-import '../widget/modalTrasferencia.dart';
 import 'modalNovoCartao.dart';
 
 class FormaDePagamento extends StatefulWidget {
-  FormaDePagamento();
+  const FormaDePagamento({super.key});
 
   @override
   State<FormaDePagamento> createState() => _FormaDePagamentoState();
@@ -27,7 +19,7 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Forma de pagamento',
           style: TextStyle(color: Colors.black),
         ),
@@ -35,7 +27,7 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
@@ -44,13 +36,13 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Cartão', style: TextStyle(fontWeight: FontWeight.bold)),
-                SizedBox(
+                const Text('Cartão', style: TextStyle(fontWeight: FontWeight.bold)),
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
@@ -59,7 +51,7 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                         isScrollControlled: true,
                         context: context,
                         builder: (BuildContext context) {
-                          return ModalNovoCartao();
+                          return const ModalNovoCartao();
                         });
                   },
                   child: Row(
@@ -70,23 +62,23 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                         decoration: BoxDecoration(
                             color: Colors.grey,
                             borderRadius: BorderRadius.circular(3)),
-                        child: Icon(Icons.add),
+                        child: const Icon(Icons.add),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
-                      Text(
+                      const Text(
                         'Novo Cartão',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
                 ),
-                Divider(),
+                const Divider(),
                 Column(
                     children: List.generate(2, (index) {
                   return Padding(
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: MeuCartaoComponente(
                         nome: 'Matheus Gomes',
                         numero: substituirTresPrimeirosGruposPorAsteriscos(
@@ -94,25 +86,25 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                         tipo: "Crédito"),
                   );
                 })),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Center(
                   child: InkWell(
                     onTap: () {},
                     child: Container(
-                      child: Center(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7),
+                        color: const Color(0xFF198A68),
+                      ),
+                      width: 120,
+                      height: 40,
+                      child: const Center(
                         child: Text(
                           'Continuar',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: Color(0xFF198A68),
-                      ),
-                      width: 120,
-                      height: 40,
                     ),
                   ),
                 ),

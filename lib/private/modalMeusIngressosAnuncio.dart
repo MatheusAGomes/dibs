@@ -2,11 +2,9 @@ import 'package:dibs/private/modalConfigAnuncio.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
 
 class ModalMeusIngressosAnuncio extends StatefulWidget {
-  ModalMeusIngressosAnuncio();
+  const ModalMeusIngressosAnuncio({super.key});
 
   @override
   State<ModalMeusIngressosAnuncio> createState() =>
@@ -21,7 +19,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: Column(
@@ -29,13 +27,13 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Meus Ingressos',
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                     ),
                     InkWell(
-                      child: Icon(Icons.close),
+                      child: const Icon(Icons.close),
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -57,14 +55,14 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                               isScrollControlled: true,
                               context: context,
                               builder: (BuildContext context) {
-                                return modalConfigAnuncio();
+                                return const modalConfigAnuncio();
                               },
                             );
                           },
                           child: BannerMeuIngresso(
                             empresa: false,
                             anuncio: true,
-                            image: AssetImage('assets/images/PericlesEx.png'),
+                            image: const AssetImage('assets/images/PericlesEx.png'),
                             titulo: 'Churrasquinho menos é mais',
                             data: '20/12/2020',
                             hora: '19:00',

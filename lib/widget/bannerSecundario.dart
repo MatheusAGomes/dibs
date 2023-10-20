@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../main.dart';
+import '../models/eventsClient.dart';
 import '../private/infoIngresso.dart';
-import '../shared/service/colorService.dart';
+import '../repositories/eventsClient-repository.dart';
 
 class BannerSecundario extends StatelessWidget {
   ImageProvider image;
+  String id;
   String titulo;
 
-  BannerSecundario({required this.image, required this.titulo});
+  BannerSecundario(
+      {super.key, required this.id, required this.image, required this.titulo});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => showModalBottomSheet<void>(
-        isScrollControlled: true,
-        context: context,
-        builder: (BuildContext context) {
-          return InfoIngressoScreen(
-            nomeDoEvento: titulo,
-            data: '24/08/2023',
-            descricao:
-                'Menos é mais novamente em Campinas para mais um show maravilhoso open bar e open food...',
-            fotoDoEvento: image,
-            hora: '19:00',
-          );
-        },
-      ),
+      onTap: () async {
+        EventsClient a = await EventsClientRepository(dio).getListEvents(id);
+
+        showModalBottomSheet<void>(
+          isScrollControlled: true,
+          context: context,
+          builder: (BuildContext context) {
+            return InfoIngressoScreen(
+              nomeDoEvento: a.name,
+              data: a.startDate,
+              descricao: a.description,
+              fotoDoEvento: image,
+              hora: a.time,
+            );
+          },
+        );
+      },
       child: Stack(alignment: Alignment.bottomLeft, children: [
         Container(
           decoration: BoxDecoration(
@@ -41,7 +48,7 @@ class BannerSecundario extends StatelessWidget {
           width: 120,
           decoration: BoxDecoration(
             borderRadius: BorderRadiusDirectional.circular(10),
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [Colors.transparent, Colors.black]),
@@ -55,7 +62,7 @@ class BannerSecundario extends StatelessWidget {
             child: Text(
               titulo,
               style: GoogleFonts.jost(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                       color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w600,

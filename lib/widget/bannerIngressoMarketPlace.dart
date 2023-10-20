@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
 
 class BannerIngressoMarketPlace extends StatefulWidget {
   String? tipoDoIngresso;
   String? valor;
   BannerIngressoMarketPlace(
-      {required this.tipoDoIngresso, required this.valor});
+      {super.key, required this.tipoDoIngresso, required this.valor});
 
   @override
   State<BannerIngressoMarketPlace> createState() =>
@@ -26,13 +25,13 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
         });
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: aberto
             ? Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11),
-                  color: Color(0xffFF8A65),
+                  color: const Color(0xffFF8A65),
                 ),
                 child: Column(
                   children: [
@@ -44,13 +43,13 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.confirmation_num,
                                   size: 30,
                                 ),
                                 Text(
                                   widget.tipoDoIngresso!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w900,
                                       fontSize: 15),
                                 ),
@@ -59,7 +58,7 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                           ),
                           Text("R\$ ${widget.valor}")
                         ]),
-                    Divider(),
+                    const Divider(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -72,13 +71,13 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.person,
                                   ),
                                   Text(hideLastName('Luis Ciarbello')),
                                 ],
                               ),
-                              Row(
+                              const Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
@@ -99,7 +98,7 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                           children: [
                             IconButton(
                                 onPressed: () {},
-                                icon: Icon(Icons.shopping_cart_checkout))
+                                icon: const Icon(Icons.shopping_cart_checkout))
                           ],
                         )
                       ],
@@ -108,10 +107,10 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                 ),
               )
             : Container(
-                padding: EdgeInsets.all(5),
+                padding: const EdgeInsets.all(5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(11),
-                  color: Color(0xffFF8A65),
+                  color: const Color(0xffFF8A65),
                 ),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -121,13 +120,13 @@ class _BannerIngressoMarketPlaceState extends State<BannerIngressoMarketPlace> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.confirmation_num,
                               size: 30,
                             ),
                             Text(
                               widget.tipoDoIngresso!,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w900, fontSize: 15),
                             ),
                           ],

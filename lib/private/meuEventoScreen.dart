@@ -1,17 +1,12 @@
 import 'package:dibs/widget/componenteGerenciadoDeLotes.dart';
-import 'package:dibs/widget/modalEditar.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
-import '../widget/bannerIngressoMarketPlace.dart';
-import '../widget/modalTrasferencia.dart';
 
 class MeuEventoScreen extends StatelessWidget {
-  MeuEventoScreen();
+  const MeuEventoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +25,7 @@ class MeuEventoScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
+                        const Row(
                           children: [
                             Icon(Icons.calendar_month),
                             Text("10/10/2020"),
@@ -38,12 +33,12 @@ class MeuEventoScreen extends StatelessWidget {
                             Text('20:20')
                           ],
                         ),
-                        Text(
+                        const Text(
                           'Churrasquinho menos é mais',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        Row(
+                        const Row(
                           children: [
                             Icon(Icons.location_on),
                             Text('Campinas,São Paulo')
@@ -68,7 +63,7 @@ class MeuEventoScreen extends StatelessWidget {
                                           appBar: AppBar(
                                             elevation: 0,
                                             backgroundColor: Colors.transparent,
-                                            title: Text(
+                                            title: const Text(
                                               'Editar evento',
                                               style: TextStyle(
                                                   color: Colors.black),
@@ -78,14 +73,14 @@ class MeuEventoScreen extends StatelessWidget {
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   Icons.arrow_back_ios,
                                                   color: Colors.black,
                                                 )),
                                           ),
                                           body: SingleChildScrollView(
                                             child: Padding(
-                                              padding: EdgeInsets.symmetric(
+                                              padding: const EdgeInsets.symmetric(
                                                   vertical: 20, horizontal: 20),
                                               child: Column(
                                                 mainAxisAlignment:
@@ -93,7 +88,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text('Foto de capa'),
+                                                  const Text('Foto de capa'),
                                                   Container(
                                                     height: 105,
                                                     width: 300,
@@ -105,7 +100,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                             color: Colors.grey,
                                                             width: 1)),
                                                   ),
-                                                  Text('Titulo'),
+                                                  const Text('Titulo'),
                                                   SizedBox(
                                                     height:
                                                         MediaQuery.of(context)
@@ -127,7 +122,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Text('Data'),
+                                                          const Text('Data'),
                                                           SizedBox(
                                                             height: MediaQuery.of(
                                                                         context)
@@ -152,7 +147,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                             CrossAxisAlignment
                                                                 .start,
                                                         children: [
-                                                          Text('Horário'),
+                                                          const Text('Horário'),
                                                           SizedBox(
                                                             height: MediaQuery.of(
                                                                         context)
@@ -174,7 +169,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                       )
                                                     ],
                                                   ),
-                                                  Text('Local'),
+                                                  const Text('Local'),
                                                   SizedBox(
                                                     height:
                                                         MediaQuery.of(context)
@@ -186,7 +181,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                       enable: false,
                                                     ),
                                                   ),
-                                                  Text('Categoria'),
+                                                  const Text('Categoria'),
                                                   SizedBox(
                                                     height:
                                                         MediaQuery.of(context)
@@ -198,7 +193,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                       enable: false,
                                                     ),
                                                   ),
-                                                  Text('Descrição'),
+                                                  const Text('Descrição'),
                                                   SizedBox(
                                                     height:
                                                         MediaQuery.of(context)
@@ -211,14 +206,24 @@ class MeuEventoScreen extends StatelessWidget {
                                                       enable: false,
                                                     ),
                                                   ),
-                                                  SizedBox(
+                                                  const SizedBox(
                                                     height: 20,
                                                   ),
                                                   Center(
                                                     child: InkWell(
                                                       onTap: () {},
                                                       child: Container(
-                                                        child: Center(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(7),
+                                                          color:
+                                                              const Color(0xFF198A68),
+                                                        ),
+                                                        width: 140,
+                                                        height: 40,
+                                                        child: const Center(
                                                           child: Text(
                                                             'Salvar',
                                                             style: TextStyle(
@@ -226,16 +231,6 @@ class MeuEventoScreen extends StatelessWidget {
                                                                     .white),
                                                           ),
                                                         ),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(7),
-                                                          color:
-                                                              Color(0xFF198A68),
-                                                        ),
-                                                        width: 140,
-                                                        height: 40,
                                                       ),
                                                     ),
                                                   )
@@ -253,10 +248,10 @@ class MeuEventoScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5)),
                                     height: 35,
                                     width: 35,
-                                    child: Icon(Icons.edit),
+                                    child: const Icon(Icons.edit),
                                   ),
                                 ),
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: Text(
                                     'Editar evento',
@@ -278,7 +273,7 @@ class MeuEventoScreen extends StatelessWidget {
                                           appBar: AppBar(
                                             elevation: 0,
                                             backgroundColor: Colors.transparent,
-                                            title: Text(
+                                            title: const Text(
                                               'Gerenciar lotes',
                                               style: TextStyle(
                                                   color: Colors.black),
@@ -288,14 +283,14 @@ class MeuEventoScreen extends StatelessWidget {
                                                 onPressed: () {
                                                   Navigator.pop(context);
                                                 },
-                                                icon: Icon(
+                                                icon: const Icon(
                                                   Icons.arrow_back_ios,
                                                   color: Colors.black,
                                                 )),
                                           ),
                                           body: SingleChildScrollView(
                                             child: Padding(
-                                              padding: EdgeInsets.symmetric(
+                                              padding: const EdgeInsets.symmetric(
                                                   vertical: 20, horizontal: 20),
                                               child: Column(
                                                   mainAxisAlignment:
@@ -311,7 +306,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                           builder: (BuildContext
                                                               context) {
                                                             return Padding(
-                                                              padding: EdgeInsets
+                                                              padding: const EdgeInsets
                                                                   .symmetric(
                                                                       vertical:
                                                                           20,
@@ -325,7 +320,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                       CrossAxisAlignment
                                                                           .start,
                                                                   children: [
-                                                                    Text(
+                                                                    const Text(
                                                                       'Novo lote',
                                                                       style: TextStyle(
                                                                           fontSize:
@@ -333,8 +328,8 @@ class MeuEventoScreen extends StatelessWidget {
                                                                           fontWeight:
                                                                               FontWeight.bold),
                                                                     ),
-                                                                    Divider(),
-                                                                    Text(
+                                                                    const Divider(),
+                                                                    const Text(
                                                                         'Titulo'),
                                                                     SizedBox(
                                                                       height: MediaQuery.of(context)
@@ -358,7 +353,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Text('Qntd. de ingressos'),
+                                                                            const Text('Qntd. de ingressos'),
                                                                             SizedBox(
                                                                               height: MediaQuery.of(context).size.height * 0.05,
                                                                               width: MediaQuery.of(context).size.width * 0.4,
@@ -373,7 +368,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                           crossAxisAlignment:
                                                                               CrossAxisAlignment.start,
                                                                           children: [
-                                                                            Text('Preço'),
+                                                                            const Text('Preço'),
                                                                             SizedBox(
                                                                               height: MediaQuery.of(context).size.height * 0.05,
                                                                               width: MediaQuery.of(context).size.width * 0.4,
@@ -386,7 +381,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                         )
                                                                       ],
                                                                     ),
-                                                                    Text(
+                                                                    const Text(
                                                                         'Lote Programado'),
                                                                     SizedBox(
                                                                       height: MediaQuery.of(context)
@@ -401,7 +396,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                             false,
                                                                       ),
                                                                     ),
-                                                                    Text(
+                                                                    const Text(
                                                                         'Status'),
                                                                     SizedBox(
                                                                       height: MediaQuery.of(context)
@@ -416,7 +411,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                             false,
                                                                       ),
                                                                     ),
-                                                                    SizedBox(
+                                                                    const SizedBox(
                                                                       height:
                                                                           20,
                                                                     ),
@@ -427,25 +422,25 @@ class MeuEventoScreen extends StatelessWidget {
                                                                             () {},
                                                                         child:
                                                                             Container(
+                                                                          decoration:
+                                                                              BoxDecoration(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(7),
+                                                                            color:
+                                                                                const Color(0xFF198A68),
+                                                                          ),
+                                                                          width:
+                                                                              140,
+                                                                          height:
+                                                                              40,
                                                                           child:
-                                                                              Center(
+                                                                              const Center(
                                                                             child:
                                                                                 Text(
                                                                               'Salvar',
                                                                               style: TextStyle(color: Colors.white),
                                                                             ),
                                                                           ),
-                                                                          decoration:
-                                                                              BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(7),
-                                                                            color:
-                                                                                Color(0xFF198A68),
-                                                                          ),
-                                                                          width:
-                                                                              140,
-                                                                          height:
-                                                                              40,
                                                                         ),
                                                                       ),
                                                                     )
@@ -457,8 +452,6 @@ class MeuEventoScreen extends StatelessWidget {
                                                       child: Row(
                                                         children: [
                                                           Container(
-                                                            child:
-                                                                Icon(Icons.add),
                                                             height: 35,
                                                             width: 35,
                                                             decoration: BoxDecoration(
@@ -468,8 +461,10 @@ class MeuEventoScreen extends StatelessWidget {
                                                                     BorderRadius
                                                                         .circular(
                                                                             5)),
+                                                            child:
+                                                                const Icon(Icons.add),
                                                           ),
-                                                          Padding(
+                                                          const Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
                                                                     horizontal:
@@ -480,30 +475,41 @@ class MeuEventoScreen extends StatelessWidget {
                                                         ],
                                                       ),
                                                     ),
-                                                    Divider(),
-                                                    Text('Lotes Ativos'),
-                                                    ComponenteGerenciadoDeLotes(),
-                                                    SizedBox(
+                                                    const Divider(),
+                                                    const Text('Lotes Ativos'),
+                                                    const ComponenteGerenciadoDeLotes(),
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
-                                                    ComponenteGerenciadoDeLotes(),
-                                                    SizedBox(
+                                                    const ComponenteGerenciadoDeLotes(),
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
-                                                    Text('Lotes Finalizados'),
-                                                    ComponenteGerenciadoDeLotes(),
-                                                    SizedBox(
+                                                    const Text('Lotes Finalizados'),
+                                                    const ComponenteGerenciadoDeLotes(),
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
-                                                    ComponenteGerenciadoDeLotes(),
-                                                    SizedBox(
+                                                    const ComponenteGerenciadoDeLotes(),
+                                                    const SizedBox(
                                                       height: 10,
                                                     ),
                                                     Center(
                                                       child: InkWell(
                                                         onTap: () {},
                                                         child: Container(
-                                                          child: Center(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        7),
+                                                            color: const Color(
+                                                                0xFF198A68),
+                                                          ),
+                                                          width: 140,
+                                                          height: 40,
+                                                          child: const Center(
                                                             child: Text(
                                                               'Salvar',
                                                               style: TextStyle(
@@ -511,17 +517,6 @@ class MeuEventoScreen extends StatelessWidget {
                                                                       .white),
                                                             ),
                                                           ),
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        7),
-                                                            color: Color(
-                                                                0xFF198A68),
-                                                          ),
-                                                          width: 140,
-                                                          height: 40,
                                                         ),
                                                       ),
                                                     )
@@ -538,10 +533,10 @@ class MeuEventoScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(5)),
                                     height: 35,
                                     width: 35,
-                                    child: Icon(Icons.settings),
+                                    child: const Icon(Icons.settings),
                                   ),
                                 ),
-                                Padding(
+                                const Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 10),
                                   child: Text(
                                     'Gerenciar Lotes',
@@ -553,8 +548,8 @@ class MeuEventoScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Divider(),
-                        Text(
+                        const Divider(),
+                        const Text(
                           'Relatorio de venda',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
@@ -562,7 +557,7 @@ class MeuEventoScreen extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
-                        Text(
+                        const Text(
                           'Lotes ativos',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
@@ -579,13 +574,13 @@ class MeuEventoScreen extends StatelessWidget {
                               animation: true,
                               lineHeight: 20.0,
                               animationDuration: 2500,
-                              barRadius: Radius.circular(5),
+                              barRadius: const Radius.circular(5),
                               percent: 0.8,
                               linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: Color(0xFF198A68),
-                              backgroundColor: Color(0xFFDADADA),
+                              progressColor: const Color(0xFF198A68),
+                              backgroundColor: const Color(0xFFDADADA),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 40),
                               child: Row(
                                 mainAxisAlignment:
@@ -614,13 +609,13 @@ class MeuEventoScreen extends StatelessWidget {
                               animation: true,
                               lineHeight: 20.0,
                               animationDuration: 2500,
-                              barRadius: Radius.circular(5),
+                              barRadius: const Radius.circular(5),
                               percent: 0.4,
                               linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: Color(0xFF10B981),
-                              backgroundColor: Color(0xFFDADADA),
+                              progressColor: const Color(0xFF10B981),
+                              backgroundColor: const Color(0xFFDADADA),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 40),
                               child: Row(
                                 mainAxisAlignment:
@@ -651,13 +646,13 @@ class MeuEventoScreen extends StatelessWidget {
                               animation: true,
                               lineHeight: 20.0,
                               animationDuration: 2500,
-                              barRadius: Radius.circular(5),
+                              barRadius: const Radius.circular(5),
                               percent: 0.8,
                               linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: Color(0xFF198A68),
-                              backgroundColor: Color(0xFFDADADA),
+                              progressColor: const Color(0xFF198A68),
+                              backgroundColor: const Color(0xFFDADADA),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 40),
                               child: Row(
                                 mainAxisAlignment:
@@ -686,13 +681,13 @@ class MeuEventoScreen extends StatelessWidget {
                               animation: true,
                               lineHeight: 20.0,
                               animationDuration: 2500,
-                              barRadius: Radius.circular(5),
+                              barRadius: const Radius.circular(5),
                               percent: 0.4,
                               linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: Color(0xFF10B981),
-                              backgroundColor: Color(0xFFDADADA),
+                              progressColor: const Color(0xFF10B981),
+                              backgroundColor: const Color(0xFFDADADA),
                             ),
-                            Padding(
+                            const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 40),
                               child: Row(
                                 mainAxisAlignment:
@@ -711,7 +706,7 @@ class MeuEventoScreen extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
-                        Text(
+                        const Text(
                           'Ingressos totais vendidos',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
@@ -722,19 +717,19 @@ class MeuEventoScreen extends StatelessWidget {
                           animation: true,
                           lineHeight: 20.0,
                           animationDuration: 2500,
-                          barRadius: Radius.circular(5),
+                          barRadius: const Radius.circular(5),
                           percent: 0.849,
-                          center: Text(
+                          center: const Text(
                             '849/1000',
                             style: TextStyle(color: Colors.white),
                           ),
                           linearStrokeCap: LinearStrokeCap.roundAll,
-                          progressColor: Color(0xFF198A68),
-                          backgroundColor: Color(0xFFDADADA),
+                          progressColor: const Color(0xFF198A68),
+                          backgroundColor: const Color(0xFFDADADA),
                         ),
                       ])),
               Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.transparent,
                   image: DecorationImage(
                       fit: BoxFit.cover,
@@ -745,7 +740,7 @@ class MeuEventoScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: IconButton(
-                    icon: Icon(Icons.arrow_back_ios),
+                    icon: const Icon(Icons.arrow_back_ios),
                     onPressed: () {
                       Navigator.pop(context);
                     }),

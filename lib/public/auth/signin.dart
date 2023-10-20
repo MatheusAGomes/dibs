@@ -1,12 +1,8 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/public/auth/signup.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../../../shared/constance/constance.dart';
 import '../../../shared/routes/routes.dart';
 
 import '../../../shared/service/colorService.dart';
@@ -15,7 +11,7 @@ import '../../models/auth.dart';
 import '../../widget/textfieldpadrao.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({Key? key}) : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -25,6 +21,13 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      String? gamb = await Store.getString("auth");
+      if (gamb == null) {
+        Auth auth = Provider.of<Auth>(context, listen: false);
+        auth.deslogar();
+      }
+    });
   }
 
   int value = 0;
@@ -41,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
         senhaController.text.toString(),
       );
       Navigator.pushNamed(context, Routes.AUTH);
-    } on DioError catch (dioError) {
+    } on DioError {
       //  ToastService.showToastError(dioError.message);
     } finally {}
   }
@@ -52,7 +55,7 @@ class _SignInScreenState extends State<SignInScreen> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             colorFilter:
                 ColorFilter.mode(Color(0xff7EF4D1), BlendMode.modulate),
@@ -62,7 +65,7 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
-                    child: Text(
+                    child: const Text(
                       'Revenda segura e intuitiva',
                       style: TextStyle(
                           height: 1,
@@ -94,7 +97,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: Text(
+                    child: const Text(
                       'A solução definitiva para compra e revenda de ingressos.\nSeus eventos mais marcantes estão aqui.',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -102,7 +105,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Usuario',
@@ -124,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Senha',
@@ -153,7 +156,13 @@ class _SignInScreenState extends State<SignInScreen> {
                         _submit();
                       },
                       child: Container(
-                        child: Center(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: ColorService.verde,
+                        ),
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        width: MediaQuery.of(context).size.width * 0.5,
+                        child: const Center(
                           child: Text(
                             'Entrar',
                             style: TextStyle(
@@ -162,12 +171,6 @@ class _SignInScreenState extends State<SignInScreen> {
                                 fontSize: 16),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: ColorService.verde,
-                        ),
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.5,
                       ),
                     ),
                   ),
@@ -179,7 +182,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'Ainda não é usuário?',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -188,7 +191,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => SignUpScreen()));
+                                    builder: (context) => const SignUpScreen()));
                           },
                           child: Text(
                             'Cadastre-se agora',

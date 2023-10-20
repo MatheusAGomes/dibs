@@ -1,20 +1,15 @@
-import 'package:dibs/private/anuncieIngressoScreen.dart';
 import 'package:dibs/private/mainEmpresa.dart';
-import 'package:dibs/private/mainScreen.dart';
 import 'package:dibs/private/meusEventoEmpresaScreen.dart';
-import 'package:dibs/private/meusIngressosScreen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:provider/provider.dart';
 
-import '../../main.dart';
 
 import '../shared/service/colorService.dart';
 
 class EstruturaEmpresa extends StatefulWidget {
   int pagina;
   int? Matheu;
-  EstruturaEmpresa({this.pagina = 1});
+  EstruturaEmpresa({super.key, this.pagina = 1});
   @override
   _EstruturaEmpresaState createState() => _EstruturaEmpresaState();
 }
@@ -42,19 +37,19 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
       onWillPop: () async => false,
       child: Scaffold(
         body: PageView(
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           controller: pc,
           onPageChanged: setPaginaAtual,
-          children: [
+          children: const [
             MainEmpresaScreen(),
             MeusEventosEmpresasScreen(),
             MainEmpresaScreen()
           ],
         ),
-        bottomNavigationBar: Container(
+        bottomNavigationBar: SizedBox(
           height: 70,
           child: ClipRRect(
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
             ),
@@ -65,7 +60,7 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
               type: BottomNavigationBarType.fixed,
 
               currentIndex: paginaAtual,
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                     icon: Icon(
                       Icons.home,

@@ -4,13 +4,13 @@ import '../shared/service/colorService.dart';
 import 'textfieldpadrao.dart';
 
 class ModalPerfil extends StatelessWidget {
-  ModalPerfil();
+  const ModalPerfil({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -19,12 +19,12 @@ class ModalPerfil extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Meu perfil',
                     style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                   ),
                   InkWell(
-                    child: Icon(Icons.close),
+                    child: const Icon(Icons.close),
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -34,7 +34,7 @@ class ModalPerfil extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.03,
               ),
-              Text(
+              const Text(
                 'Dados Pessoais',
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
               ),
@@ -45,7 +45,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Nome',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -80,7 +80,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Sobrenome',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -115,7 +115,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'CPF',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -150,7 +150,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Data de nascimento',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -185,7 +185,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Email',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -220,7 +220,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Telefone',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -257,7 +257,13 @@ class ModalPerfil extends StatelessWidget {
               Center(
                 child: InkWell(
                   child: Container(
-                    child: Center(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: ColorService.verde,
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: const Center(
                       child: Text(
                         'Salvar',
                         style: TextStyle(
@@ -266,19 +272,13 @@ class ModalPerfil extends StatelessWidget {
                             fontSize: 16),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: ColorService.verde,
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.5,
                   ),
                 ),
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
-              Text(
+              const Text(
                 'Alterar senha',
                 style: TextStyle(fontWeight: FontWeight.w900, fontSize: 15),
               ),
@@ -289,7 +289,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Senha atual',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -327,7 +327,7 @@ class ModalPerfil extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Nova senha',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -364,7 +364,13 @@ class ModalPerfil extends StatelessWidget {
               Center(
                 child: InkWell(
                   child: Container(
-                    child: Center(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: ColorService.verde,
+                    ),
+                    height: MediaQuery.of(context).size.height * 0.05,
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: const Center(
                       child: Text(
                         'Alterar senha',
                         style: TextStyle(
@@ -373,12 +379,6 @@ class ModalPerfil extends StatelessWidget {
                             fontSize: 16),
                       ),
                     ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: ColorService.verde,
-                    ),
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    width: MediaQuery.of(context).size.width * 0.5,
                   ),
                 ),
               ),

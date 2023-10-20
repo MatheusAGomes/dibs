@@ -1,27 +1,10 @@
-import 'package:animated_toggle_switch/animated_toggle_switch.dart';
-import 'package:dibs/shared/service/textStyle.dart';
-import 'package:dibs/widget/bannerCategoria.dart';
-import 'package:dibs/widget/bannerPrincipal.dart';
-import 'package:dibs/widget/bannerSecundario.dart';
-import 'package:dibs/widget/modalAjuda.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-import 'package:validatorless/validatorless.dart';
 
-import '../../../shared/constance/constance.dart';
-import '../../../shared/routes/routes.dart';
 
-import '../../../shared/service/colorService.dart';
-import '../../../shared/store.dart';
-import '../../models/auth.dart';
 
-import '../widget/modalPerfil.dart';
-import '../widget/modalMeusCartoes.dart';
 
 class MinhaEmpresaScreen extends StatefulWidget {
-  MinhaEmpresaScreen({Key? key}) : super(key: key);
+  const MinhaEmpresaScreen({Key? key}) : super(key: key);
 
   @override
   State<MinhaEmpresaScreen> createState() => _MinhaEmpresaScreenState();
@@ -39,14 +22,14 @@ class _MinhaEmpresaScreenState extends State<MinhaEmpresaScreen> {
         resizeToAvoidBottomInset: false,
         body: SafeArea(
             child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
           child: SingleChildScrollView(
               child: Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     'Minha Empresa',
                     style: TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                   ),
@@ -54,16 +37,16 @@ class _MinhaEmpresaScreenState extends State<MinhaEmpresaScreen> {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.close,
                         color: Colors.grey,
                       )),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('Nome:'),
@@ -73,10 +56,10 @@ class _MinhaEmpresaScreenState extends State<MinhaEmpresaScreen> {
                   Text('Cometa Eventos'),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('Site:'),
@@ -86,10 +69,10 @@ class _MinhaEmpresaScreenState extends State<MinhaEmpresaScreen> {
                   Text('www.cometaeven.com.br'),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('Endereço:'),
@@ -99,10 +82,10 @@ class _MinhaEmpresaScreenState extends State<MinhaEmpresaScreen> {
                   Text('Rua Jasmin, 470'),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text('Email:'),

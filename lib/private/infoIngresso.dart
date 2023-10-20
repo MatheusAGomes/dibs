@@ -3,8 +3,6 @@ import 'package:dibs/shared/functions/utils.dart';
 import 'package:dibs/widget/bannerCompraIngresso.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/service/colorService.dart';
-import '../widget/bannerIngressoMarketPlace.dart';
 import 'infoPedidoScreen.dart';
 
 class InfoIngressoScreen extends StatelessWidget {
@@ -14,7 +12,7 @@ class InfoIngressoScreen extends StatelessWidget {
   String? descricao;
   ImageProvider? fotoDoEvento;
   InfoIngressoScreen(
-      {required this.nomeDoEvento,
+      {super.key, required this.nomeDoEvento,
       required this.data,
       required this.descricao,
       required this.fotoDoEvento,
@@ -38,13 +36,13 @@ class InfoIngressoScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
-                        children: [Icon(Icons.calendar_month), Text(data!)],
+                        children: [const Icon(Icons.calendar_month), Text(data!)],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Row(
-                        children: [Icon(Icons.schedule), Text(hora!)],
+                        children: [const Icon(Icons.schedule), Text(hora!)],
                       )
                     ],
                   ),
@@ -52,13 +50,13 @@ class InfoIngressoScreen extends StatelessWidget {
                     children: [
                       Text(
                         nomeDoEvento!,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 20),
                       ),
                     ],
                   ),
                   Text(limitTo14Words(descricao!)),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   InkWell(
@@ -67,9 +65,9 @@ class InfoIngressoScreen extends StatelessWidget {
                           isScrollControlled: true,
                           context: context,
                           useSafeArea: true,
-                          builder: (context) => IngressosAnunciadosScreen());
+                          builder: (context) => const IngressosAnunciadosScreen());
                     },
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
@@ -93,10 +91,10 @@ class InfoIngressoScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Camarote - 4° Lote',
@@ -109,7 +107,7 @@ class InfoIngressoScreen extends StatelessWidget {
                       tipoDoIngresso: 'Inteira', valor: '20,00'),
                   BannerCompraIngresso(
                       tipoDoIngresso: 'Meia entrada', valor: '20,00'),
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         'Pista - 4° Lote',
@@ -123,7 +121,7 @@ class InfoIngressoScreen extends StatelessWidget {
                     return BannerCompraIngresso(
                         tipoDoIngresso: 'Inteira', valor: '540.00');
                   })),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Center(
@@ -137,22 +135,22 @@ class InfoIngressoScreen extends StatelessWidget {
                                     )));
                       },
                       child: Container(
-                        child: Center(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(7),
+                          color: const Color(0xFF198A68),
+                        ),
+                        width: 120,
+                        height: 40,
+                        child: const Center(
                           child: Text(
                             'Comprar',
                             style: TextStyle(color: Colors.white),
                           ),
                         ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: Color(0xFF198A68),
-                        ),
-                        width: 120,
-                        height: 40,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                 ],
@@ -167,7 +165,7 @@ class InfoIngressoScreen extends StatelessWidget {
             ),
             Container(
               height: MediaQuery.of(context).size.height * 0.35,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   color: Colors.white,
                   gradient: LinearGradient(
                       begin: FractionalOffset.topCenter,
@@ -184,7 +182,7 @@ class InfoIngressoScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
+                  icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () {
                     Navigator.pop(context);
                   }),

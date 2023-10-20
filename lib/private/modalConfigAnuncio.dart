@@ -1,11 +1,8 @@
-import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:flutter/material.dart';
 
-import '../shared/functions/utils.dart';
-import '../shared/service/colorService.dart';
 
 class modalConfigAnuncio extends StatefulWidget {
-  modalConfigAnuncio();
+  const modalConfigAnuncio({super.key});
 
   @override
   State<modalConfigAnuncio> createState() => _modalConfigAnuncioState();
@@ -21,7 +18,7 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
         child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.75,
             child: Column(
@@ -29,33 +26,33 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    const Text(
                       'Anúncios Ativos',
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 20),
                     ),
                     InkWell(
-                      child: Icon(Icons.close),
+                      child: const Icon(Icons.close),
                       onTap: () {
                         Navigator.pop(context);
                       },
                     ),
                   ],
                 ),
-                Divider(),
+                const Divider(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.22,
                   child: ListView.builder(
                     itemCount: 5,
                     itemBuilder: (context, index) => Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
+                      padding: const EdgeInsets.symmetric(vertical: 5),
                       child: Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: MediaQuery.of(context).size.height * 0.08,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(11),
-                            color: Color(0xff2CAA84)),
-                        child: Padding(
+                            color: const Color(0xff2CAA84)),
+                        child: const Padding(
                           padding:
                               EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                           child: Row(
@@ -100,8 +97,8 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     ),
                   ),
                 ),
-                Divider(),
-                Row(
+                const Divider(),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -112,8 +109,8 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     Text("R\$ 123.00"),
                   ],
                 ),
-                Divider(),
-                Row(
+                const Divider(),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -124,8 +121,8 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     Text("R\$ 123.00"),
                   ],
                 ),
-                Divider(),
-                Row(
+                const Divider(),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -136,20 +133,20 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     Text("R\$ 123.00"),
                   ],
                 ),
-                Divider(),
+                const Divider(),
                 Row(
                   children: [
                     Checkbox(
-                      fillColor: MaterialStateProperty.all((Color(0xff2CAA84))),
+                      fillColor: MaterialStateProperty.all((const Color(0xff2CAA84))),
                       value: checkboxValue,
                       onChanged: (value) => setState(() {
                         checkboxValue = value!;
                       }),
                     ),
-                    Text('Concordo com o termos')
+                    const Text('Concordo com o termos')
                   ],
                 ),
-                Row(
+                const Row(
                   children: [
                     Text(
                       'Forma de recebimento',
@@ -167,7 +164,7 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(11),
                     ),
-                    child: Padding(
+                    child: const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -192,13 +189,13 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                   child: TextButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                              checkboxValue ? Color(0xff198A68) : Colors.grey)),
+                              checkboxValue ? const Color(0xff198A68) : Colors.grey)),
                       onPressed: () {
                         if (checkboxValue != true) {
                           return;
                         }
                       },
-                      child: Text(
+                      child: const Text(
                         'Anunciar',
                         style: TextStyle(color: Colors.white),
                       )),

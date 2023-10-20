@@ -27,11 +27,11 @@ class InputDecorationService {
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide(width: 1, color: Colors.red),
+        borderSide: const BorderSide(width: 1, color: Colors.red),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide(width: 1, color: Colors.red),
+        borderSide: const BorderSide(width: 1, color: Colors.red),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(5),
