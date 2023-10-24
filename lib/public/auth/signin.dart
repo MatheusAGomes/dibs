@@ -2,6 +2,7 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/public/auth/signup.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/buttonPadrao.dart';
+import 'package:dibs/widget/expandableTextField.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -85,29 +86,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       Text(
                         'Usuário',
-                        style: TextStyleService.labelSignIn,
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x40000000),
-                            offset: Offset(2,2),
-                            blurRadius: 0.5
-                          )
-                        ]
-                      ),
-                      child: TextFieldPadrao(
-                        click: () {},
-                      ),
-                    )
-                  ),
+                  ExpandableTextField(click: () {}, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
@@ -115,32 +98,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       Text(
                         'Senha',
-                        style: TextStyleService.labelSignIn,
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color(0x40000000),
-                                offset: Offset(2,2),
-                                blurRadius: 0.5
-                            )
-                          ]
-                      ),
-                      child: TextFieldPadrao(
-                        click: () {},
-                        // hintText: "ex: Marilio",
-                        // prefixIcon: Icon(FontAwesomeIcons.idCard,
-                        // size: 16,),
-                      ),
-                    ),
-                  ),
+                  ExpandableTextField(click: () {}, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),

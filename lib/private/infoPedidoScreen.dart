@@ -54,7 +54,11 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
               children: [
                 Text(
                   'Informações dos ingressos',
-                  style: TextStyleService.corSublinhadaMainScreen,
+                  style: TextStyleService(categoryShadow: <Shadow>[
+                    Shadow(
+                        offset: Offset(1.5, 1.5),
+                        color: Color.fromRGBO(126, 244, 209, 0.72))
+                  ]).corSublinhada
                 ),
                 Text('Camarote - 4° lote',
                     style: TextStyle(fontWeight: FontWeight.bold)),
@@ -130,7 +134,11 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                 ),
                 Text(
                   'Forma de pagamento',
-                  style: TextStyleService.corSublinhadaMainScreen,
+                  style: TextStyleService(categoryShadow: <Shadow>[
+                    Shadow(
+                        offset: Offset(1.5, 1.5),
+                        color: Color.fromRGBO(126, 244, 209, 0.72))
+                  ]).corSublinhada
                 ),
                 InkWell(
                   onTap: () {

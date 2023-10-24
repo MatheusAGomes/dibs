@@ -50,7 +50,11 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
               children: [
                 Text(
                   'Resumo da compra',
-                  style: TextStyleService.corSublinhadaMainScreen,
+                  style: TextStyleService(categoryShadow: <Shadow>[
+                    Shadow(
+                        offset: Offset(1.5, 1.5),
+                        color: Color.fromRGBO(126, 244, 209, 0.72))
+                  ]).corSublinhada
                 ),
                 Text('Ingressos',
                     style: TextStyle(fontWeight: FontWeight.bold)),

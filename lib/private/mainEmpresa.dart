@@ -18,7 +18,7 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
-import '../widget/modalPerfil.dart';
+import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
 class MainEmpresaScreen extends StatefulWidget {
@@ -64,7 +64,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return ModalPerfil();
+                            return MeuPerfil();
                           },
                         );
                         break;
@@ -183,7 +183,12 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Olá,{Empresa}', style: TextStyleService.corSublinhadaMainScreen),
+                Text('Olá,{Empresa}',
+                    style: TextStyleService(categoryShadow: <Shadow>[
+                  Shadow(
+                      offset: Offset(1.5, 1.5),
+                      color: Color.fromRGBO(126, 244, 209, 0.72))
+                ]).corSublinhada),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),

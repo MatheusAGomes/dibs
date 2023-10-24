@@ -17,7 +17,7 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
-import '../widget/modalPerfil.dart';
+import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
 class MinhaEmpresaScreen extends StatefulWidget {
