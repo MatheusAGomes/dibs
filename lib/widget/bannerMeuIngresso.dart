@@ -51,6 +51,11 @@ class BannerMeuIngresso extends StatelessWidget {
                 showModalBottomSheet<void>(
                   isScrollControlled: true,
                   context: context,
+                  clipBehavior: Clip.antiAlias,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(10)),
+                  ),
                   builder: (BuildContext context) {
                     return InfoMeuIngressoScreen(
                       codigoDoIngresso: 'de7a89f51g477c82e23f68g',

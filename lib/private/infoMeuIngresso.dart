@@ -30,7 +30,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
           child: Stack(children: <Widget>[
             Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.25,
+                    top: MediaQuery.of(context).size.height * 0.20,
                     left: 19,
                     right: 19),
                 child: Column(
@@ -186,9 +186,12 @@ class InfoMeuIngressoScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                image: DecorationImage(fit: BoxFit.cover, image: fotoDoEvento!),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: fotoDoEvento!,
+                  alignment: Alignment.topCenter),
               ),
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.20,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
