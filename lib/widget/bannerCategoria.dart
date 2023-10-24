@@ -2,7 +2,6 @@ import 'package:dibs/private/categoriaScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class BannerCategoria extends StatelessWidget {
   Icon icon;
   String titulo;
@@ -10,7 +9,8 @@ class BannerCategoria extends StatelessWidget {
   Color corDois;
 
   BannerCategoria(
-      {super.key, required this.icon,
+      {super.key,
+      required this.icon,
       required this.titulo,
       required this.corUm,
       required this.corDois});
@@ -39,11 +39,8 @@ class BannerCategoria extends StatelessWidget {
           Text(
             titulo,
             style: GoogleFonts.jost(
-              textStyle: const TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 16
-              )
-            ) ,
+                textStyle:
+                    const TextStyle(fontWeight: FontWeight.w500, fontSize: 16)),
           )
         ]),
       ),

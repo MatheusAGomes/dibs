@@ -1,10 +1,19 @@
+import 'package:dibs/models/ticketInfoInput.dart';
+import 'package:dibs/models/ticketLote.dart';
+import 'package:dibs/models/ticketOrganizer.dart';
 import 'package:dibs/private/compraFinalizada.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+import '../models/resumoDaCompraString.dart';
+import '../repositories/ticket-repository.dart';
 
 class ResumoDaCompra extends StatefulWidget {
-  const ResumoDaCompra({super.key});
+  List<TicketLote> ticketInfo;
+  List<ResumoDaCompraString> resumoDaCompra;
+
+  ResumoDaCompra({required this.ticketInfo, required this.resumoDaCompra});
 
   @override
   State<ResumoDaCompra> createState() => _ResumoDaCompraState();
@@ -13,6 +22,8 @@ class ResumoDaCompra extends StatefulWidget {
 class _ResumoDaCompraState extends State<ResumoDaCompra> {
   @override
   Widget build(BuildContext context) {
+    print(widget.ticketInfo);
+
     bool checkboxValue = false;
     return Scaffold(
       appBar: AppBar(
@@ -52,49 +63,56 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                     borderRadius: BorderRadius.circular(7),
                   ),
                   elevation: 4,
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: SizedBox(
-                      height: 85,
+                      height: 52 * (widget.resumoDaCompra.length).toDouble(),
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Column(
+                              children: List.generate(
+                                  widget.resumoDaCompra.length, (index) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      '1x - ${widget.resumoDaCompra[index].name}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '${widget.resumoDaCompra[index].tipo} - R\$ ${widget.resumoDaCompra[index].preco}',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          })),
+                          Column(
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Divider(),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    '2x Camarote - 4° Lote',
+                                    'Total',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                   Text(
-                                    'Inteira - R\$ 40,00',
-                                    style: TextStyle(color: Colors.grey),
-                                  ),
+                                    "R\$ ${widget.resumoDaCompra.map((e) => e.preco.toDouble()).reduce((value, element) => value + element)}",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )
                                 ],
-                              ),
-                              Text(
-                                "R\$ 840,00",
-                                style: TextStyle(fontWeight: FontWeight.bold),
                               )
                             ],
                           ),
-                          Divider(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Total',
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                "R\$ 840,00",
-                                style: TextStyle(fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          )
                         ],
                       ),
                     ),
@@ -105,7 +123,11 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                 ),
                 Center(
                   child: InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      print(widget.ticketInfo);
+                      final a = TicketRepository(dio).buyTicket(
+                          TicketOrganizer(ticketBatch: widget.ticketInfo));
+
                       Navigator.push(
                           context,
                           MaterialPageRoute(

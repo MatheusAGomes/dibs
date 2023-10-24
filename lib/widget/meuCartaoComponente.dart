@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-
 class MeuCartaoComponente extends StatelessWidget {
   String? numero;
   String? tipo;
   String? nome;
+  bool? pedido;
 
   MeuCartaoComponente(
-      {super.key, required this.numero, required this.tipo, required this.nome});
+      {super.key,
+      required this.numero,
+      required this.tipo,
+      required this.nome,
+      required this.pedido});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class MeuCartaoComponente extends StatelessWidget {
                 )
               ],
             ),
-            const Icon(Icons.delete_outline_outlined)
+            pedido! ? Icon(Icons.edit) : Icon(Icons.delete_outline_outlined)
           ]),
         ),
       ),

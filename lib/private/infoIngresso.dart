@@ -1,25 +1,42 @@
+import 'package:dibs/models/resumoDaCompraString.dart';
+import 'package:dibs/models/ticketInfoInput.dart';
+import 'package:dibs/models/ticketLote.dart';
 import 'package:dibs/private/ingressosAnunciados.dart';
+import 'package:dibs/private/resumoDaCompra.dart';
+import 'package:dibs/repositories/loteEvent-repository.dart';
 import 'package:dibs/shared/functions/utils.dart';
 import 'package:dibs/widget/bannerCompraIngresso.dart';
 import 'package:flutter/material.dart';
 
+import '../models/lote.dart';
 import 'infoPedidoScreen.dart';
 
-class InfoIngressoScreen extends StatelessWidget {
+class InfoIngressoScreen extends StatefulWidget {
   String? nomeDoEvento;
   String? data;
   String? hora;
   String? descricao;
   ImageProvider? fotoDoEvento;
+  List<Lote> lotes;
   InfoIngressoScreen(
-      {super.key, required this.nomeDoEvento,
+      {super.key,
+      required this.nomeDoEvento,
       required this.data,
       required this.descricao,
       required this.fotoDoEvento,
-      required this.hora});
+      required this.hora,
+      required this.lotes});
 
   @override
+  State<InfoIngressoScreen> createState() => _InfoIngressoScreenState();
+}
+
+class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
+  @override
   Widget build(BuildContext context) {
+    List<TicketLote> listaFinal = [];
+    List<ResumoDaCompraString> listaDeIngressos = [];
+
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -36,26 +53,32 @@ class InfoIngressoScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
-                        children: [const Icon(Icons.calendar_month), Text(data!)],
+                        children: [
+                          const Icon(Icons.calendar_month),
+                          Text(widget.data!)
+                        ],
                       ),
                       const SizedBox(
                         width: 10,
                       ),
                       Row(
-                        children: [const Icon(Icons.schedule), Text(hora!)],
+                        children: [
+                          const Icon(Icons.schedule),
+                          Text(widget.hora!)
+                        ],
                       )
                     ],
                   ),
                   Row(
                     children: [
                       Text(
-                        nomeDoEvento!,
+                        widget.nomeDoEvento!,
                         style: const TextStyle(
                             fontWeight: FontWeight.w900, fontSize: 20),
                       ),
                     ],
                   ),
-                  Text(limitTo14Words(descricao!)),
+                  Text(limitTo14Words(widget.descricao!)),
                   const SizedBox(
                     height: 10,
                   ),
@@ -65,7 +88,8 @@ class InfoIngressoScreen extends StatelessWidget {
                           isScrollControlled: true,
                           context: context,
                           useSafeArea: true,
-                          builder: (context) => const IngressosAnunciadosScreen());
+                          builder: (context) =>
+                              const IngressosAnunciadosScreen());
                     },
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -94,44 +118,144 @@ class InfoIngressoScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Row(
-                    children: [
-                      Text(
-                        'Camarote - 4° Lote',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 20),
-                      ),
-                    ],
-                  ),
-                  BannerCompraIngresso(
-                      tipoDoIngresso: 'Inteira', valor: '20,00'),
-                  BannerCompraIngresso(
-                      tipoDoIngresso: 'Meia entrada', valor: '20,00'),
-                  const Row(
-                    children: [
-                      Text(
-                        'Pista - 4° Lote',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 20),
-                      ),
-                    ],
-                  ),
                   Column(
-                      children: List.generate(2, (index) {
-                    return BannerCompraIngresso(
-                        tipoDoIngresso: 'Inteira', valor: '540.00');
+                      children: List.generate(widget.lotes.length, (index) {
+                    int quantidadeMeia = 0;
+                    int quantidadeInteira = 0;
+                    return Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              widget.lotes[index].name,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w900, fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        widget.lotes[index].hasHalfPriceTickets
+                            ? BannerCompraIngresso(
+                                tipoDoIngresso: 'Inteira',
+                                valor: (widget.lotes[index].announcedPrice)
+                                    .toString(),
+                                quantidade: quantidadeInteira,
+                                less: () {
+                                  TicketLote a = TicketLote(
+                                      batchId: widget.lotes[index].id,
+                                      ticketInfo: [
+                                        TicketInfoInput(
+                                            name: '',
+                                            cpf: '',
+                                            halfPrice: false,
+                                            isOwner: true)
+                                      ]);
+                                  int c = -1;
+                                  for (int i = 0; i < listaFinal.length; i++) {
+                                    if (listaFinal[i].batchId == a.batchId &&
+                                        listaFinal[i].ticketInfo[0].halfPrice ==
+                                            a.ticketInfo[0].halfPrice) {
+                                      c = i;
+                                      break;
+                                    }
+                                  }
+                                  if (c != -1) listaFinal.removeAt(c);
+                                },
+                                add: () {
+                                  listaDeIngressos.add(ResumoDaCompraString(
+                                      name: widget.lotes[index].name,
+                                      tipo: 'Inteira',
+                                      preco:
+                                          widget.lotes[index].announcedPrice));
+                                  listaFinal.add(
+                                    TicketLote(
+                                        batchId: widget.lotes[index].id,
+                                        ticketInfo: [
+                                          TicketInfoInput(
+                                              name: '',
+                                              cpf: '',
+                                              halfPrice: false,
+                                              isOwner: true)
+                                        ]),
+                                  );
+                                })
+                            : SizedBox(),
+                        widget.lotes[index].hasHalfPriceTickets
+                            ? BannerCompraIngresso(
+                                tipoDoIngresso: 'Meia-entrada',
+                                valor: (widget.lotes[index].announcedPrice / 2)
+                                    .toString(),
+                                quantidade: quantidadeMeia,
+                                less: () {
+                                  TicketLote a = TicketLote(
+                                      batchId: widget.lotes[index].id,
+                                      ticketInfo: [
+                                        TicketInfoInput(
+                                            name: '',
+                                            cpf: '',
+                                            halfPrice: true,
+                                            isOwner: true)
+                                      ]);
+                                  int c = -1;
+                                  for (int i = 0; i < listaFinal.length; i++) {
+                                    if (listaFinal[i].batchId == a.batchId &&
+                                        listaFinal[i].ticketInfo[0].halfPrice ==
+                                            a.ticketInfo[0].halfPrice) {
+                                      c = i;
+                                      break;
+                                    }
+                                  }
+                                  if (c != -1) listaFinal.removeAt(c);
+                                },
+                                add: () {
+                                  listaDeIngressos.add(ResumoDaCompraString(
+                                      name: widget.lotes[index].name,
+                                      tipo: 'Meia-Entrada',
+                                      preco:
+                                          widget.lotes[index].announcedPrice /
+                                              2));
+                                  listaFinal.add(
+                                    TicketLote(
+                                        batchId: widget.lotes[index].id,
+                                        ticketInfo: [
+                                          TicketInfoInput(
+                                              name: '',
+                                              cpf: '',
+                                              halfPrice: true,
+                                              isOwner: true)
+                                        ]),
+                                  );
+                                })
+                            : SizedBox(),
+                      ],
+                    );
                   })),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  // const Row(
+                  //   children: [
+                  //     Text(
+                  //       'Pista - 4° Lote',
+                  //       style: TextStyle(
+                  //           fontWeight: FontWeight.w900, fontSize: 20),
+                  //     ),
+                  //   ],
+                  // ),
+                  // Column(
+                  //     children: List.generate(2, (index) {
+                  //   return BannerCompraIngresso(
+                  //       tipoDoIngresso: 'Inteira', valor: '540.00');
+                  // })),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
                   Center(
                     child: InkWell(
                       onTap: () {
+                        print(listaFinal);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => InfoPedidoScreen(
-                                      numero: 2,
+                                      resumoDaCompra: listaDeIngressos,
+                                      ticketInfo: listaFinal,
                                     )));
                       },
                       child: Container(
@@ -159,7 +283,8 @@ class InfoIngressoScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                image: DecorationImage(fit: BoxFit.cover, image: fotoDoEvento!),
+                image: DecorationImage(
+                    fit: BoxFit.cover, image: widget.fotoDoEvento!),
               ),
               height: MediaQuery.of(context).size.height * 0.35,
             ),

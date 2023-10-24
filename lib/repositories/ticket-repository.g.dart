@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card-repository.dart';
+part of 'ticket-repository.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,12 +8,12 @@ part of 'card-repository.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _CardRepository implements CardRepository {
-  _CardRepository(
+class _TicketRepository implements TicketRepository {
+  _TicketRepository(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/cards';
+    baseUrl ??= 'http://192.168.195.189:8080/tickets';
   }
 
   final Dio _dio;
@@ -21,26 +21,51 @@ class _CardRepository implements CardRepository {
   String? baseUrl;
 
   @override
-  Future<List<Cards>> getCards() async {
+  Future<HttpResponse<void>> buyTicket(ticketOrganizer) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(ticketOrganizer.toJson());
     final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Cards>>(Options(
+        await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/buy/organizer',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final httpResponse = HttpResponse(null, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<List<MeuIngressoBanner>> getTickets() async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<MeuIngressoBanner>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/list',
+              '/my-tickets',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => Cards.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) =>
+            MeuIngressoBanner.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }

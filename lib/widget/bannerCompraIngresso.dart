@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
-
 class BannerCompraIngresso extends StatefulWidget {
   String? tipoDoIngresso;
+  int quantidade = 0;
   String? valor;
-  BannerCompraIngresso({super.key, required this.tipoDoIngresso, required this.valor});
+  VoidCallback add;
+  VoidCallback less;
+  BannerCompraIngresso(
+      {super.key,
+      required this.tipoDoIngresso,
+      required this.quantidade,
+      required this.valor,
+      required this.add,
+      required this.less});
 
   @override
   State<BannerCompraIngresso> createState() => _BannerCompraIngressoState();
@@ -12,7 +20,7 @@ class BannerCompraIngresso extends StatefulWidget {
 
 class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
   bool aberto = false;
-  double quantidade = 0;
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -49,11 +57,14 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
               child: Row(
                 children: [
                   InkWell(
-                    onTap: () => setState(() {
-                      if (quantidade > 0) {
-                        quantidade--;
-                      }
-                    }),
+                    onTap: () {
+                      widget.less();
+                      setState(() {
+                        if (widget.quantidade > 0) {
+                          widget.quantidade--;
+                        }
+                      });
+                    },
                     child: Container(
                       color: Colors.grey[300],
                       height: 30,
@@ -66,13 +77,17 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
                       height: 30,
                       width: 30,
                       color: Colors.white,
-                      child: Center(child: Text(quantidade.toInt().toString())),
+                      child: Center(
+                          child: Text(widget.quantidade.toInt().toString())),
                     ),
                   ),
                   InkWell(
-                    onTap: () => setState(() {
-                      quantidade++;
-                    }),
+                    onTap: () {
+                      widget.add();
+                      setState(() {
+                        widget.quantidade++;
+                      });
+                    },
                     child: Container(
                       height: 30,
                       width: 30,

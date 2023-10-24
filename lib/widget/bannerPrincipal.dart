@@ -28,8 +28,7 @@ class BannerPrincipal extends StatelessWidget {
       onTap: () async {
         //
         EventsClient a = await EventsClientRepository(dio).getListEvents(id);
-        List<Lote> b = await LoteRepository(dio)
-            .getLotes('635bbe3c-0051-46c0-9695-e49fe5b88119');
+        List<Lote> b = await LoteRepository(dio).getLotes(id);
 
         showModalBottomSheet<void>(
           isScrollControlled: true,
@@ -41,6 +40,7 @@ class BannerPrincipal extends StatelessWidget {
               descricao: a.description,
               fotoDoEvento: image,
               hora: a.time,
+              lotes: b,
             );
           },
         );

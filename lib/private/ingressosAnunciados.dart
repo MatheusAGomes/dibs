@@ -61,12 +61,13 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                 Center(
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => InfoPedidoScreen(
-                                    numero: 2,
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) => InfoPedidoScreen(
+                      //             ticketInfo: ,
+                      //               numero: 2,
+                      //             )));
                     },
                     child: Container(
                       decoration: BoxDecoration(

@@ -37,6 +37,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Future<void> _submit() async {
     Auth auth = Provider.of<Auth>(context, listen: false);
+    try {
+      auth.deslogar();
+    } catch (e) {}
 
     try {
       await auth.logar(
@@ -191,7 +194,8 @@ class _SignInScreenState extends State<SignInScreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const SignUpScreen()));
+                                    builder: (context) =>
+                                        const SignUpScreen()));
                           },
                           child: Text(
                             'Cadastre-se agora',

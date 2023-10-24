@@ -1,3 +1,4 @@
+import 'package:dibs/models/cards.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/functions/utils.dart';
@@ -5,7 +6,8 @@ import '../widget/meuCartaoComponente.dart';
 import 'modalNovoCartao.dart';
 
 class FormaDePagamento extends StatefulWidget {
-  const FormaDePagamento({super.key});
+  List<Cards> cards;
+  FormaDePagamento({super.key, required this.cards});
 
   @override
   State<FormaDePagamento> createState() => _FormaDePagamentoState();
@@ -41,7 +43,8 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Cartão', style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text('Cartão',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 const SizedBox(
                   height: 10,
                 ),
@@ -76,14 +79,20 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                 ),
                 const Divider(),
                 Column(
-                    children: List.generate(2, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: MeuCartaoComponente(
-                        nome: 'Matheus Gomes',
-                        numero: substituirTresPrimeirosGruposPorAsteriscos(
-                            "1234123412341234"),
-                        tipo: "Crédito"),
+                    children: List.generate(widget.cards.length, (index) {
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pop(context, widget.cards[index]);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: MeuCartaoComponente(
+                          pedido: false,
+                          nome: widget.cards[index].name,
+                          numero: substituirTresPrimeirosGruposPorAsteriscos(
+                              widget.cards[index].number),
+                          tipo: "Crédito"),
+                    ),
                   );
                 })),
                 const SizedBox(

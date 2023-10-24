@@ -50,9 +50,8 @@ class Auth with ChangeNotifier {
           .authenticate(Autenticacao(login: username, password: password));
 
       _token = decodificar(data.token);
-      print(token);
+      print(_token);
       Store.saveString(_key, _token!);
-      Store.save('cred', {'username': username, 'password': password});
 
       notifyListeners();
       //Store.saveString(this._key, _token!);
@@ -84,7 +83,7 @@ class Auth with ChangeNotifier {
 
   void deslogar() {
     _token = null;
-    Store.remove(_key);
+    Store.remove('auth');
     notifyListeners();
   }
 }

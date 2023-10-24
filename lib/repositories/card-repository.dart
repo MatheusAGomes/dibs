@@ -1,3 +1,4 @@
+import 'package:dibs/models/cards.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:retrofit/retrofit.dart' hide Headers;
@@ -9,5 +10,5 @@ abstract class CardRepository {
   factory CardRepository(Dio dio, {String baseUrl}) = _CardRepository;
 
   @GET("/list")
-  Future<HttpResponse> getCards();
+  Future<List<Cards>> getCards();
 }

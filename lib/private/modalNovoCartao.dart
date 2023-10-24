@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ModalNovoCartao extends StatefulWidget {
   const ModalNovoCartao({super.key});
 
@@ -10,6 +9,10 @@ class ModalNovoCartao extends StatefulWidget {
 
 bool checkboxValue = false;
 TextEditingController nomeController = TextEditingController();
+TextEditingController cpfController = TextEditingController();
+TextEditingController numeroController = TextEditingController();
+TextEditingController cvcController = TextEditingController();
+TextEditingController validadeController = TextEditingController();
 
 class _ModalNovoCartaoState extends State<ModalNovoCartao> {
   @override
@@ -40,7 +43,6 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                     ],
                   ),
                   const Divider(),
-
                   Row(
                     children: [
                       Checkbox(
@@ -67,8 +69,8 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                           Icons.person,
                           color: Colors.grey,
                         ),
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(7),
                             borderSide: BorderSide(
@@ -93,7 +95,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                         width: 260,
                         child: TextFormField(
                           cursorColor: Colors.grey,
-                          controller: nomeController,
+                          controller: cpfController,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(
                               Icons.person,
@@ -107,8 +109,8 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                                     width: 1, color: Colors.grey.shade300)),
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(7),
-                                borderSide:
-                                    const BorderSide(width: 1, color: Colors.grey)),
+                                borderSide: const BorderSide(
+                                    width: 1, color: Colors.grey)),
                           ),
                         ),
                       ),
@@ -117,7 +119,6 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                   const SizedBox(
                     height: 10,
                   ),
-
                   const Row(
                     children: [Text('Número do cartão')],
                   ),
@@ -126,14 +127,14 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                     width: 343,
                     child: TextFormField(
                       cursorColor: Colors.grey,
-                      controller: nomeController,
+                      controller: numeroController,
                       decoration: InputDecoration(
                         prefixIcon: const Icon(
                           Icons.credit_card,
                           color: Colors.grey,
                         ),
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(7),
                             borderSide: BorderSide(
@@ -160,7 +161,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                             width: 120,
                             child: TextFormField(
                               cursorColor: Colors.grey,
-                              controller: nomeController,
+                              controller: cvcController,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(
                                   Icons.lock,
@@ -171,8 +172,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: BorderSide(
-                                        width: 1,
-                                        color: Colors.grey.shade300)),
+                                        width: 1, color: Colors.grey.shade300)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
@@ -186,13 +186,13 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Validade'),
+                          Text('Validade'),
                           SizedBox(
                             height: 34,
                             width: 120,
                             child: TextFormField(
                               cursorColor: Colors.grey,
-                              controller: nomeController,
+                              controller: validadeController,
                               decoration: InputDecoration(
                                 prefixIcon: const Icon(
                                   Icons.calendar_today,
@@ -203,8 +203,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: BorderSide(
-                                        width: 1,
-                                        color: Colors.grey.shade300)),
+                                        width: 1, color: Colors.grey.shade300)),
                                 focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(7),
                                     borderSide: const BorderSide(
@@ -216,7 +215,9 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                       )
                     ],
                   ),
-                  const SizedBox(height: 10,)
+                  const SizedBox(
+                    height: 10,
+                  )
                 ],
               ),
               SizedBox(

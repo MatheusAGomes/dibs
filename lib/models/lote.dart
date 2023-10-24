@@ -6,10 +6,23 @@ part 'lote.g.dart';
 
 @JsonSerializable()
 class Lote {
+  String id;
   String name;
   double announcedPrice;
+  bool hasFullPriceTickets;
+  int numberOfFullPriceTickets;
+  bool hasHalfPriceTickets;
+  int numberOfHalfPriceTickets;
 
-  Lote({required this.name, required this.announcedPrice});
+  Lote({
+    required this.id,
+    required this.name,
+    required this.announcedPrice,
+    required this.hasFullPriceTickets,
+    required this.hasHalfPriceTickets,
+    required this.numberOfFullPriceTickets,
+    required this.numberOfHalfPriceTickets,
+  });
 
   factory Lote.fromJson(Map<String, dynamic> json) => _$LoteFromJson(json);
 

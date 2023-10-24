@@ -1,4 +1,5 @@
 import 'package:dibs/main.dart';
+import 'package:dibs/private/estruturaEmpresa.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,18 +21,12 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     String? link = widget.possiblelink;
 
-    Auth auth = Provider.of(context);
+    Auth auth = Provider.of(context, listen: false);
     return FutureBuilder(
       future: auth.tentarLoginAutomatico(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(
-                color: ColorService.cinza,
-              ),
-            ),
-          );
+          return const SignInScreen();
         } else if (snapshot.error != null) {
           return const SignInScreen();
         } else {
@@ -39,9 +34,14 @@ class _AuthScreenState extends State<AuthScreen> {
             return FutureBuilder(
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return EstruturasScreen(
-                      pagina: 1,
-                      listaDeEventos: snapshot.data![0],
+                    if (auth.authDecoded!['role'].toString() == 'CLIENT')
+                      return EstruturasScreen(
+                        pagina: 1,
+                        listaDeEventos: snapshot.data![0],
+                      );
+
+                    return EstruturaEmpresa(
+                      pagina: 0,
                     );
                   } else {
                     return const SignInScreen();

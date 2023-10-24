@@ -3,8 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../main.dart';
 import '../models/eventsClient.dart';
+import '../models/lote.dart';
 import '../private/infoIngresso.dart';
 import '../repositories/eventsClient-repository.dart';
+import '../repositories/loteEvent-repository.dart';
 
 class BannerSecundario extends StatelessWidget {
   ImageProvider image;
@@ -19,12 +21,13 @@ class BannerSecundario extends StatelessWidget {
     return InkWell(
       onTap: () async {
         EventsClient a = await EventsClientRepository(dio).getListEvents(id);
-
+        List<Lote> b = await LoteRepository(dio).getLotes(id);
         showModalBottomSheet<void>(
           isScrollControlled: true,
           context: context,
           builder: (BuildContext context) {
             return InfoIngressoScreen(
+              lotes: b,
               nomeDoEvento: a.name,
               data: a.startDate,
               descricao: a.description,

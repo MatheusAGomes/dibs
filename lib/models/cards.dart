@@ -1,22 +1,22 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'card.g.dart';
+part 'cards.g.dart';
 
 @JsonSerializable()
-class Card {
+class Cards {
   String number;
   String name;
   String cpf;
   String validity;
 
-  Card(
+  Cards(
       {required this.number,
       required this.cpf,
       required this.name,
       required this.validity});
 
-  factory Card.fromJson(Map<String, dynamic> json) {
-    return Card(
+  factory Cards.fromJson(Map<String, dynamic> json) {
+    return Cards(
       name: json['name'] as String,
       cpf: json['cpf'] as String,
       number: json['number'] as String,

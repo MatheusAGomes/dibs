@@ -4,14 +4,13 @@ import 'package:dibs/private/mainScreen.dart';
 import 'package:dibs/private/meusIngressosScreen.dart';
 import 'package:flutter/material.dart';
 
-
-
 import '../shared/service/colorService.dart';
 
 class EstruturasScreen extends StatefulWidget {
   int? pagina;
   List<Events>? listaDeEventos;
-  EstruturasScreen({super.key, required this.pagina, required this.listaDeEventos});
+  EstruturasScreen(
+      {super.key, required this.pagina, required this.listaDeEventos});
   @override
   _EstruturasScreenState createState() => _EstruturasScreenState();
 }
@@ -45,8 +44,8 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           onPageChanged: setPaginaAtual,
           children: [
             MainScreen(listaDeEventos: widget.listaDeEventos!),
-            const MeusIngressosScreen(),
-             AnuncieIngressoScreen()
+            MeusIngressosScreen(),
+            AnuncieIngressoScreen()
           ],
         ),
         bottomNavigationBar: SizedBox(

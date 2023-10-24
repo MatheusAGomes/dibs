@@ -1,6 +1,9 @@
+import 'package:dibs/models/cards.dart';
 import 'package:dibs/private/modalNovoCartao.dart';
+import 'package:dibs/repositories/card-repository.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
 import '../shared/functions/utils.dart';
 import 'meuCartaoComponente.dart';
 
@@ -37,17 +40,28 @@ class ModalMeusCartoes extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Column(
-                      children: List.generate(2, (index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: MeuCartaoComponente(
-                          nome: 'Matheus Gomes',
-                          numero: substituirTresPrimeirosGruposPorAsteriscos(
-                              "1234123412341234"),
-                          tipo: "Crédito"),
-                    );
-                  })),
+                  FutureBuilder<List<Cards>>(
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Column(
+                            children:
+                                List.generate(snapshot.data!.length, (index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: MeuCartaoComponente(
+                                pedido: false,
+                                nome: snapshot.data![index].name,
+                                numero:
+                                    substituirTresPrimeirosGruposPorAsteriscos(
+                                        snapshot.data![index].number),
+                                tipo: "Crédito"),
+                          );
+                        }));
+                      }
+                      return SizedBox();
+                    },
+                    future: CardRepository(dio).getCards(),
+                  ),
                 ],
               ),
               SizedBox(

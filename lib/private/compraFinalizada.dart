@@ -1,7 +1,6 @@
 import 'package:dibs/shared/routes/routes.dart';
 import 'package:flutter/material.dart';
 
-
 class CompraFinalizada extends StatefulWidget {
   const CompraFinalizada({super.key});
 
@@ -141,7 +140,10 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushReplacementNamed(context, Routes.MAINUSER);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                 },
                 child: Card(
                   shape: RoundedRectangleBorder(

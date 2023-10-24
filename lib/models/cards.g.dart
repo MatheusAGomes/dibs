@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card.dart';
+part of 'cards.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-Card _$CardFromJson(Map<String, dynamic> json) => Card(
+Cards _$CardsFromJson(Map<String, dynamic> json) => Cards(
       number: json['number'] as String,
       cpf: json['cpf'] as String,
       name: json['name'] as String,
       validity: json['validity'] as String,
     );
 
-Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
+Map<String, dynamic> _$CardsToJson(Cards instance) => <String, dynamic>{
       'number': instance.number,
       'name': instance.name,
       'cpf': instance.cpf,

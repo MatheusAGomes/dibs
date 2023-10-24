@@ -108,7 +108,8 @@ class _MainScreenState extends State<MainScreen> {
                           children: [
                             Text(
                               "Olá,${auth.authDecoded!['login'].toString()}",
-                              style: const TextStyle(fontWeight: FontWeight.w900),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.w900),
                             ),
                             const Icon(
                               Icons.person,
@@ -168,6 +169,7 @@ class _MainScreenState extends State<MainScreen> {
                             InkWell(
                               onTap: () {
                                 auth.deslogar();
+                                Navigator.pop(context);
                               },
                               child: const Text(
                                 "Sair",
@@ -205,8 +207,8 @@ class _MainScreenState extends State<MainScreen> {
                           color: Colors.grey,
                         ),
                         hintText: 'Busque eventos',
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 10),
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(7),
                             borderSide: BorderSide(
@@ -240,7 +242,8 @@ class _MainScreenState extends State<MainScreen> {
                           id: listaFiltrada[index].id!,
                           height: 230,
                           width: 200,
-                          image: const AssetImage('assets/images/PericlesEx.png'),
+                          image:
+                              const AssetImage('assets/images/PericlesEx.png'),
                           titulo: listaFiltrada[index].name!,
                         );
                       },
@@ -268,7 +271,8 @@ class _MainScreenState extends State<MainScreen> {
                       itemBuilder: (context, index) {
                         return BannerSecundario(
                           id: listaFiltrada[index].id!,
-                          image: const AssetImage('assets/images/PericlesEx.png'),
+                          image:
+                              const AssetImage('assets/images/PericlesEx.png'),
                           titulo: listaFiltrada[index].name!,
                         );
                       },
