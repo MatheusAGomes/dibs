@@ -1,8 +1,12 @@
 import 'package:dibs/shared/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../models/auth.dart';
 
 class CompraFinalizada extends StatefulWidget {
-  const CompraFinalizada({super.key});
+  double total;
+  CompraFinalizada({super.key, required this.total});
 
   @override
   State<CompraFinalizada> createState() => _CompraFinalizadaState();
@@ -11,6 +15,8 @@ class CompraFinalizada extends StatefulWidget {
 class _CompraFinalizadaState extends State<CompraFinalizada> {
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -48,13 +54,15 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                 ),
                 elevation: 4,
                 color: Colors.grey[200],
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.zero,
                   child: SizedBox(
                     height: 40,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [Text('Júlio Cesar Moura')],
+                      children: [
+                        Text("${auth.authDecoded!['login'].toString()}")
+                      ],
                     ),
                   ),
                 ),
@@ -68,7 +76,7 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                 ),
                 elevation: 4,
                 color: Colors.grey[200],
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: SizedBox(
                     height: 150,
@@ -88,7 +96,10 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                         Divider(),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [Text('Subtotal'), Text("R\$ 540,00")],
+                          children: [
+                            Text('Subtotal'),
+                            Text("R\$ ${widget.total}")
+                          ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -102,7 +113,7 @@ class _CompraFinalizadaState extends State<CompraFinalizada> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              "R\$ 540,00",
+                              "R\$ ${widget.total}",
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )
                           ],

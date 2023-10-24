@@ -66,7 +66,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: SizedBox(
-                      height: 52 * (widget.resumoDaCompra.length).toDouble(),
+                      height: 60 * (widget.resumoDaCompra.length).toDouble(),
                       child: Column(
                         children: [
                           Column(
@@ -131,7 +131,12 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const CompraFinalizada()));
+                              builder: (context) => CompraFinalizada(
+                                    total: widget.resumoDaCompra
+                                        .map((e) => e.preco.toDouble())
+                                        .reduce((value, element) =>
+                                            value + element),
+                                  )));
                     },
                     child: Container(
                       decoration: BoxDecoration(
