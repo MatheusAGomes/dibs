@@ -9,7 +9,7 @@ import '../shared/functions/utils.dart';
 import '../shared/service/colorService.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
 import '../widget/meuCartaoComponente.dart';
-import '../widget/modalTrasferencia.dart';
+import '../widget/modalTransferencia.dart';
 import 'modalNovoCartao.dart';
 
 class FormaDePagamento extends StatefulWidget {

@@ -11,7 +11,7 @@ import 'package:validatorless/validatorless.dart';
 
 import '../shared/service/colorService.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
-import '../widget/modalTrasferencia.dart';
+import '../widget/modalTransferencia.dart';
 
 class CompraFinalizada extends StatefulWidget {
   CompraFinalizada();

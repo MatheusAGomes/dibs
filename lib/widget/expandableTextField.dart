@@ -67,7 +67,7 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
                 BoxShadow(
                     color: Color(0x40000000),
                     offset: Offset(2,2),
-                    blurRadius: 0.5
+                    blurRadius: 0.3
                 )
               ]
           ),

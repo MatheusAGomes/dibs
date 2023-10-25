@@ -35,11 +35,11 @@ class TextStyleService {
 
   static TextStyle defaultTextField = GoogleFonts.jost(
       textStyle: const TextStyle(
-          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 12));
+          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13));
 
   static TextStyle defaultFieldLabel = GoogleFonts.jost(
       textStyle: const TextStyle(
-          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 14));
+          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13));
 
   static TextStyle defaultSignIn = GoogleFonts.jost(
       textStyle: const TextStyle(
@@ -170,6 +170,14 @@ class TextStyleService {
     fontSize: 22,
     letterSpacing: -1.41,
   ));
+
+  static TextStyle modalTitle = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w700,
+        fontSize: 22,
+        letterSpacing: -1.41,
+        height: 0.1
+      ));
 
   TextStyle get boldSpacing041 {
     return GoogleFonts.jost(

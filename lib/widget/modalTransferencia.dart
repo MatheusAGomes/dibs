@@ -1,14 +1,14 @@
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../shared/service/colorService.dart';
-import '../shared/service/textStyle.dart';
 import 'buttonPadrao.dart';
 import 'expandableTextField.dart';
 
-class ModalEditar extends StatelessWidget {
-  ModalEditar();
+class ModalTransferencia extends StatelessWidget {
+  ModalTransferencia();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class ModalEditar extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'Editar Ingresso',
+                    'Transferir Ingresso',
                     style: TextStyleService.modalTitle,
                   ),
                   InkWell(
@@ -45,56 +45,32 @@ class ModalEditar extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.01,
               ),
               Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
                     Text(
-                        'Nome',
-                        textAlign: TextAlign.left,
-                        style: TextStyleService.defaultFieldLabel),
+                      'Insira o email da conta para a qual deseja transferir:',
+                      textAlign: TextAlign.left,
+                      style: TextStyleService.defaultFieldLabel),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.005,
                     ),
                     ExpandableTextField(
                         click: () {},
                         height: 0.06,
-                        hintText: "Aluísio de Albuquerque",
+                        hintText: "exemplo@email.com",
                         prefixIcon: Icon(
-                          FontAwesomeIcons.solidUser,
+                          FontAwesomeIcons.at,
                           size: 16,
                         ))
-                  ]
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.005,
-              ),
-              Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                        'CPF',
-                        textAlign: TextAlign.left,
-                        style: TextStyleService.defaultFieldLabel),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.005,
-                    ),
-                    ExpandableTextField(
-                        click: () {},
-                        height: 0.06,
-                        hintText: "123.456.789-00",
-                        prefixIcon: Icon(
-                          FontAwesomeIcons.solidIdCard,
-                          size: 16,
-                        ))
-                  ]
+                ]
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
               ButtonPadrao(
                   enable: true, delete: false,
-                  width: 0.45, text: "Editar", click: () {}),
+                  width: 0.45, text: "Transferir", click: () {}),
             ],
           ),
         ),

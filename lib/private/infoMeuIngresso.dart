@@ -9,7 +9,7 @@ import '../shared/service/colorService.dart';
 import '../shared/service/textStyle.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
 import '../widget/buttonPadrao.dart';
-import '../widget/modalTrasferencia.dart';
+import '../widget/modalTransferencia.dart';
 
 class InfoMeuIngressoScreen extends StatelessWidget {
   String? data;
@@ -253,6 +253,11 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                }
                                showModalBottomSheet(
                                    context: context,
+                                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                                   shape: const RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.vertical(
+                                         top: Radius.circular(10)),
+                                   ),
                                    builder: ((context) =>
                                        ModalTransferencia()));
                              })
@@ -270,6 +275,11 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                }
                                showModalBottomSheet(
                                    context: context,
+                                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                                   shape: const RoundedRectangleBorder(
+                                     borderRadius: BorderRadius.vertical(
+                                         top: Radius.circular(10)),
+                                   ),
                                    builder: ((context) =>
                                        ModalEditar()));
                              })

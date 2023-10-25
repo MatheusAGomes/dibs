@@ -8,7 +8,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../shared/functions/utils.dart';
 import '../shared/service/colorService.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
-import '../widget/modalTrasferencia.dart';
+import '../widget/modalTransferencia.dart';
 
 class MeuEventoScreen extends StatelessWidget {
   MeuEventoScreen();
