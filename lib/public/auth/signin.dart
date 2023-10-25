@@ -98,7 +98,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
                       'A solução definitiva para \ncompra e revenda de ingressos.\nSeus eventos mais marcantes estão aqui.',
-                      style: TextStyleService.mediumSpacing141,
+                      style: TextStyleService(
+                          fontSize: 17,
+                          letterSpacing: -1.41).medium,
                     ),
                   ),
                   SizedBox(
@@ -128,7 +130,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                  ButtonPadrao(text: "Entrar", click: () {print("object");}),
+                  ButtonPadrao(
+                      enable: true, delete: false,
+                      width: 0.5, text: "Entrar", click: () {print("object");}),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),

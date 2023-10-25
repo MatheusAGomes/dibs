@@ -116,6 +116,7 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: BannerMeuIngresso(
+                          ativo: true,
                           empresa: true,
                           anuncio: false,
                           image: const AssetImage('assets/images/PericlesEx.png'),

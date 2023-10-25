@@ -178,6 +178,9 @@ class _MeuPerfilState extends State<MeuPerfil> {
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
                   ButtonPadrao(
+                    enable: true,
+                    delete: false,
+                    width: 0.5,
                     text: "Salvar",
                     click: () {
                       print('de');
@@ -233,7 +236,9 @@ class _MeuPerfilState extends State<MeuPerfil> {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
-                  ButtonPadrao(text: "Alterar senha", click: () {}),
+                  ButtonPadrao(
+                      enable: true, delete: false,
+                      width: 0.5, text: "Alterar senha", click: () {}),
                 ],
               ),
             ),

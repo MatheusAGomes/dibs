@@ -18,6 +18,7 @@ class BannerMeuIngresso extends StatelessWidget {
   Color corDoLote;
   bool anuncio;
   bool empresa;
+  bool ativo;
 
   BannerMeuIngresso(
       {super.key, required this.image,
@@ -29,40 +30,37 @@ class BannerMeuIngresso extends StatelessWidget {
       required this.corBanner,
       required this.corDoLote,
       required this.anuncio,
-      required this.empresa});
+      required this.empresa,
+      required this.ativo});
 
   @override
   Widget build(BuildContext context) {
-    return anuncio
-        ? BannerNewMeuIngresso(
-            image: image,
-            titulo: titulo,
-            data: data,
-            hora: hora,
-            lote: lote,
-            tipo: tipo,
-            corBanner: corBanner,
-            corDoLote: corDoLote,
-            ticket: true,
-    )
-        : InkWell(
+    return InkWell(
             onTap: () {
               if (empresa == false) {
                 showModalBottomSheet<void>(
                   isScrollControlled: true,
                   context: context,
-                  clipBehavior: Clip.antiAlias,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.vertical(
                         top: Radius.circular(10)),
                   ),
                   builder: (BuildContext context) {
                     return InfoMeuIngressoScreen(
+                      anuncio: anuncio,
                       codigoDoIngresso: 'de7a89f51g477c82e23f68g',
                       cpf: '222.222.222-22',
                       fotoDoEvento: image,
                       nomeDoTitular: 'Matheus Assunção Gomes',
-                      status: true,
+                      status: ativo,
+                      data: '20/12/2020',
+                      hora: '19:30',
+                      local: 'Campinas - SP',
+                      nomeEvento: 'Churrasquinho Menos é Mais',
+                      tipoIngresso: 'Meia Entrada',
+                      lote: 'Área Vip - 1° Lote',
+                      preco: 'R\$ 40,00',
                     );
                   },
                 );
@@ -80,7 +78,7 @@ class BannerMeuIngresso extends StatelessWidget {
                 tipo: tipo,
                 corBanner: corBanner,
                 corDoLote: corDoLote,
-                ticket: false
+                ticket: anuncio
             ));
   }
 }
