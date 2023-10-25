@@ -26,21 +26,20 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   bool status;
   bool anuncio;
 
-  InfoMeuIngressoScreen({
-    required this.data,
-    required this.hora,
-    required this.local,
-    required this.nomeEvento,
-    required this.tipoIngresso,
-    required this.codigoDoIngresso,
-    required this.nomeDoTitular,
-    required this.cpf,
-    required this.lote,
-    required this.preco,
-    required this.fotoDoEvento,
-    required this.status,
-    required this.anuncio
-  });
+  InfoMeuIngressoScreen(
+      {required this.data,
+      required this.hora,
+      required this.local,
+      required this.nomeEvento,
+      required this.tipoIngresso,
+      required this.codigoDoIngresso,
+      required this.nomeDoTitular,
+      required this.cpf,
+      required this.lote,
+      required this.preco,
+      required this.fotoDoEvento,
+      required this.status,
+      required this.anuncio});
 
   @override
   Widget build(BuildContext context) {
@@ -64,15 +63,15 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Icon(FontAwesomeIcons.solidCalendar,
-                                size: 16),
+                                Icon(FontAwesomeIcons.solidCalendar, size: 16),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width * 0.005,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.005,
                                 ),
                                 Text(data!,
                                     style: TextStyleService(
-                                        fontSize: 11,
-                                    letterSpacing: -1.41).medium)
+                                            fontSize: 11, letterSpacing: -1.41)
+                                        .medium)
                               ],
                             ),
                             SizedBox(
@@ -81,15 +80,15 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
-                                Icon(FontAwesomeIcons.solidClock,
-                                    size: 16),
+                                Icon(FontAwesomeIcons.solidClock, size: 16),
                                 SizedBox(
-                                  width: MediaQuery.of(context).size.width * 0.005,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.005,
                                 ),
                                 Text(hora!,
                                     style: TextStyleService(
-                                        fontSize: 11,
-                                        letterSpacing: -1.41).medium)
+                                            fontSize: 11, letterSpacing: -1.41)
+                                        .medium)
                               ],
                             ),
                           ],
@@ -97,15 +96,14 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Icon(FontAwesomeIcons.locationDot,
-                                size: 16),
+                            Icon(FontAwesomeIcons.locationDot, size: 16),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.005,
                             ),
                             Text(local!,
                                 style: TextStyleService(
-                                    fontSize: 11,
-                                    letterSpacing: -0.09).medium)
+                                        fontSize: 11, letterSpacing: -0.09)
+                                    .medium)
                           ],
                         )
                       ],
@@ -121,50 +119,45 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                 child: Flexible(
                                     child: Text(nomeEvento!,
                                         textAlign: TextAlign.center,
-                                        style: TextStyleService(fontSize: 16).boldSpacing041)
-                                )
-                            )
+                                        style: TextStyleService(fontSize: 16)
+                                            .boldSpacing041)))
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(tipoIngresso!)
-                          ],
+                          children: [Text(tipoIngresso!)],
                         )
                       ],
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 70, vertical: 5),
                       child: Column(
                         children: [
                           PrettyQrView.data(
                               data: codigoDoIngresso!,
                               decoration: const PrettyQrDecoration(
-                                image: PrettyQrDecorationImage(
-                                  image: AssetImage("assets/icons/DibsLogoQrCode.png"),
-                                  scale: 0.2
-                                ),
-                                shape: PrettyQrSmoothSymbol()
-                              )
-                          ),
+                                  image: PrettyQrDecorationImage(
+                                      image: AssetImage(
+                                          "assets/icons/DibsLogoQrCode.png"),
+                                      scale: 0.2),
+                                  shape: PrettyQrSmoothSymbol())),
                         ],
                       ),
                     ),
-                    Center(child: Text(codigoDoIngresso!,
-                        style: TextStyle(fontSize: 12))),
+                    Center(
+                        child: Text(codigoDoIngresso!,
+                            style: TextStyle(fontSize: 12))),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Titular',
-                          style: TextStyleService(fontSize: 14).boldSpacing041
-                        ),
-                        Text(
-                          'Lote',
-                            style: TextStyleService(fontSize: 14).boldSpacing041
-                        ),
+                        Text('Titular',
+                            style:
+                                TextStyleService(fontSize: 14).boldSpacing041),
+                        Text('Lote',
+                            style:
+                                TextStyleService(fontSize: 14).boldSpacing041),
                       ],
                     ),
                     Row(
@@ -172,15 +165,13 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                       children: [
                         Flexible(
                             flex: 3,
-                            child: Text(
-                            nomeDoTitular!,
-                            style: TextStyle(fontSize: 12)
-                        )),
-                        Flexible(flex: 2, child: Text(
-                            lote!,
-                            textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 12)
-                        )),
+                            child: Text(nomeDoTitular!,
+                                style: TextStyle(fontSize: 12))),
+                        Flexible(
+                            flex: 2,
+                            child: Text(lote!,
+                                textAlign: TextAlign.right,
+                                style: TextStyle(fontSize: 12))),
                       ],
                     ),
                     SizedBox(
@@ -189,93 +180,90 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'CPF',
-                            style: TextStyleService(fontSize: 14).boldSpacing041
-                        ),
-                        Text(
-                          'Preço',
-                            style: TextStyleService(fontSize: 14).boldSpacing041
-                        ),
+                        Text('CPF',
+                            style:
+                                TextStyleService(fontSize: 14).boldSpacing041),
+                        Text('Preço',
+                            style:
+                                TextStyleService(fontSize: 14).boldSpacing041),
                       ],
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Flexible(child: Text(
-                            cpf!,
-                            style: TextStyle(fontSize: 12)
-                        )),
-                        Flexible(child: Text(
-                            preco!,
-                            textAlign: TextAlign.right,
-                            style: TextStyle(fontSize: 12)
-                        )),
+                        Flexible(
+                            child: Text(cpf!, style: TextStyle(fontSize: 12))),
+                        Flexible(
+                            child: Text(preco!,
+                                textAlign: TextAlign.right,
+                                style: TextStyle(fontSize: 12))),
                       ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                     ),
-                 anuncio ? Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                     SizedBox(
-                         width: MediaQuery.of(context).size.width * 0.8,
-                         child: ButtonPadrao(
-                             enable: status,
-                             delete: true,
-                             width: 0.5,
-                             text: 'Cancelar Anúncio',
-                             click: () {
-                               if (status != true) {
-                                 return;
-                               }
-                               showModalBottomSheet(
-                                   context: context,
-                                   builder: ((context) =>
-                                       ModalEditar()));
-                             })
-                     ),
-                   ],
-                 ) : Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     SizedBox(
-                         width: MediaQuery.of(context).size.width * 0.38,
-                         child: ButtonPadrao(
-                             enable: status,
-                             delete: false,
-                             width: 0.5,
-                             text: 'Transferir',
-                             click: () {
-                               if (status != true) {
-                                 return;
-                               }
-                               showModalBottomSheet(
-                                   context: context,
-                                   builder: ((context) =>
-                                       ModalTransferencia()));
-                             })
-                     ),
-                     SizedBox(
-                         width: MediaQuery.of(context).size.width * 0.38,
-                         child: ButtonPadrao(
-                             enable: status,
-                             delete: false,
-                             width: 0.5,
-                             text: 'Editar',
-                             click: () {
-                               if (status != true) {
-                                 return;
-                               }
-                               showModalBottomSheet(
-                                   context: context,
-                                   builder: ((context) =>
-                                       ModalEditar()));
-                             })
-                     ),
-                   ],
-                 ),
+                    anuncio
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  child: ButtonPadrao(
+                                      enable: status,
+                                      delete: true,
+                                      width: 0.5,
+                                      text: 'Cancelar Anúncio',
+                                      click: () {
+                                        if (status != true) {
+                                          return;
+                                        }
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: ((context) =>
+                                                ModalEditar()));
+                                      })),
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.38,
+                                  child: ButtonPadrao(
+                                      enable: status,
+                                      delete: false,
+                                      width: 0.5,
+                                      text: 'Transferir',
+                                      click: () {
+                                        if (status != true) {
+                                          return;
+                                        }
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: ((context) =>
+                                                ModalTransferencia()));
+                                      })),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.38,
+                                  child: ButtonPadrao(
+                                      enable: status,
+                                      delete: false,
+                                      width: 0.5,
+                                      text: 'Editar',
+                                      click: () {
+                                        if (status != true) {
+                                          return;
+                                        }
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: ((context) =>
+                                                ModalEditar()));
+                                      })),
+                            ],
+                          ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                     ),
@@ -285,9 +273,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.transparent,
                 image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: fotoDoEvento!,
-                  alignment: Alignment.topCenter),
+                    fit: BoxFit.cover,
+                    image: fotoDoEvento!,
+                    alignment: Alignment.topCenter),
               ),
               height: MediaQuery.of(context).size.height * 0.20,
             ),

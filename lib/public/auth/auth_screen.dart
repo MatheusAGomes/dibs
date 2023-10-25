@@ -21,14 +21,14 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     String? link = widget.possiblelink;
 
-    Auth auth = Provider.of(context, listen: false);
+    Auth auth = Provider.of(context);
     return FutureBuilder(
       future: auth.tentarLoginAutomatico(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const SignInScreen();
+          return SignInScreen();
         } else if (snapshot.error != null) {
-          return const SignInScreen();
+          return SignInScreen();
         } else {
           if (auth.estaAutenticado) {
             return FutureBuilder(
@@ -44,12 +44,12 @@ class _AuthScreenState extends State<AuthScreen> {
                       pagina: 0,
                     );
                   } else {
-                    return const SignInScreen();
+                    return SignInScreen();
                   }
                 },
                 future: Future.wait([EventsRepository(dio).getListEvents()]));
           } else {
-            return const SignInScreen();
+            return SignInScreen();
           }
         }
       },

@@ -113,26 +113,28 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                 return ModalMeusIngressosAnuncio();
                               },
                             ),
-                            child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+                            child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   InkWell(
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: Colors.grey[300],
-                                          borderRadius: BorderRadius.circular(5)),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
                                       height: 40,
                                       width: 40,
                                       child: Icon(FontAwesomeIcons.plus),
                                     ),
                                   ),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Novo Anúncio',
-                                style: TextStyleService.iconButtonText,
-                              )
-                            ]),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    'Novo Anúncio',
+                                    style: TextStyleService.iconButtonText,
+                                  )
+                                ]),
                           ),
                           SizedBox(
                             height: 5,
@@ -151,6 +153,8 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIngresso(
+                                    id: '1',
+                                    local: 'C',
                                     ativo: true,
                                     empresa: false,
                                     anuncio: true,
@@ -182,6 +186,8 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIngresso(
+                                    id: '1',
+                                    local: 'C',
                                     ativo: true,
                                     empresa: false,
                                     anuncio: false,

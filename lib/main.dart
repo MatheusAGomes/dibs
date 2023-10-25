@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             ),
           ),
           routes: routes.routes,
-          home: const AuthScreen(null),
+          home: AuthScreen(null),
         ),
       ),
     );

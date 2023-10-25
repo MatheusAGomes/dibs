@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../shared/service/InputDecorationService.dart';
+import '../shared/service/textStyle.dart';
 
 class TextFieldPadrao extends StatefulWidget {
   final GlobalKey<FormFieldState>? textFormFildKey;

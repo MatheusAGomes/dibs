@@ -4,9 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
 
-
-
 import '../shared/functions/utils.dart';
+import '../shared/service/textStyle.dart';
 import '../widget/bannerCategoriaEvento.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
@@ -38,7 +37,7 @@ class _CategoriaScreenState extends State<CategoriaScreen> {
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.black,
           centerTitle: true,
-          title: const Text(
+          title: Text(
             'Categorias',
             style: TextStyleService.appBar,
           ),
@@ -60,14 +59,12 @@ class _CategoriaScreenState extends State<CategoriaScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  widget.titulo,
-                  style: TextStyleService(categoryShadow: <Shadow>[
-                    Shadow(
-                        offset: Offset(1.5, 1.5),
-                        color: Color.fromRGBO(126, 244, 209, 0.72))
-                  ]).corSublinhada
-                ),
+                Text(widget.titulo,
+                    style: TextStyleService(categoryShadow: <Shadow>[
+                      Shadow(
+                          offset: Offset(1.5, 1.5),
+                          color: Color.fromRGBO(126, 244, 209, 0.72))
+                    ]).corSublinhada),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.015,
                 ),

@@ -3,6 +3,7 @@ import 'package:dibs/models/ticketOrganizer.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../models/ticketOutput.dart';
 import '../shared/constance/environment.dart';
 
 part 'ticket-repository.g.dart';
@@ -15,4 +16,6 @@ abstract class TicketRepository {
   Future<HttpResponse<void>> buyTicket(@Body() TicketOrganizer ticketOrganizer);
   @GET("/my-tickets")
   Future<List<MeuIngressoBanner>> getTickets();
+  @GET("/{id}")
+  Future<TicketOutput> getTicket(@Path('id') String id);
 }

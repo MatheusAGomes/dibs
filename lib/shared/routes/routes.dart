@@ -14,7 +14,7 @@ class Routes {
   static const String MAINUSER = "/auth/main";
 
   final routes = <String, WidgetBuilder>{
-    Routes.SIGNIN: (BuildContext context) => const SignInScreen(),
+    Routes.SIGNIN: (BuildContext context) => SignInScreen(),
     Routes.AUTH: (BuildContext context) => const AuthScreen(null),
     Routes.MAINUSER: (BuildContext context) =>
         EstruturasScreen(pagina: 1, listaDeEventos: const []),

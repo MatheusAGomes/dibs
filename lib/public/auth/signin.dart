@@ -15,6 +15,7 @@ import '../../../shared/routes/routes.dart';
 import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
+import '../../shared/service/toastService.dart';
 import '../../widget/textfieldpadrao.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -28,25 +29,15 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      String? gamb = await Store.getString("auth");
-      if (gamb == null) {
-        Auth auth = Provider.of<Auth>(context, listen: false);
-        auth.deslogar();
-      }
-    });
   }
-
-  int value = 0;
-  TextEditingController usuarioController = TextEditingController();
-
-  TextEditingController senhaController = TextEditingController();
 
   Future<void> _submit() async {
     Auth auth = Provider.of<Auth>(context, listen: false);
     try {
       auth.deslogar();
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
 
     try {
       await auth.logar(
@@ -55,9 +46,14 @@ class _SignInScreenState extends State<SignInScreen> {
       );
       Navigator.pushNamed(context, Routes.AUTH);
     } on DioError {
-      //  ToastService.showToastError(dioError.message);
+      ToastService.showToastError('erro');
     } finally {}
   }
+
+  int value = 0;
+  TextEditingController usuarioController = TextEditingController();
+
+  TextEditingController senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -98,15 +94,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
                       'A solução definitiva para \ncompra e revenda de ingressos.\nSeus eventos mais marcantes estão aqui.',
-                      style: TextStyleService(
-                          fontSize: 17,
-                          letterSpacing: -1.41).medium,
+                      style:
+                          TextStyleService(fontSize: 17, letterSpacing: -1.41)
+                              .medium,
                     ),
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.1,
                   ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'Usuário',
@@ -114,7 +110,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       )
                     ],
                   ),
-                  ExpandableTextField(click: () {}, height: 0.05),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
@@ -126,13 +125,19 @@ class _SignInScreenState extends State<SignInScreen> {
                       )
                     ],
                   ),
-                  ExpandableTextField(click: () {}, height: 0.05),
+                  ExpandableTextField(
+                      controller: senhaController, click: () {}, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   ButtonPadrao(
-                      enable: true, delete: false,
-                      width: 0.5, text: "Entrar", click: () {print("object");}),
+                      enable: true,
+                      delete: false,
+                      width: 0.5,
+                      text: "Entrar",
+                      click: () {
+                        _submit();
+                      }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
@@ -141,7 +146,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Ainda não é usuário?',
                           style: TextStyleService.defaultSignIn,
                         ),

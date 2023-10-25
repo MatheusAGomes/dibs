@@ -4,8 +4,6 @@ import 'package:dibs/widget/modalAjuda.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-
-
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
@@ -34,13 +32,12 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
           title: Image.asset('assets/images/logoDibs.png'),
           actions: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.symmetric(horizontal: 15),
               child: PopupMenuButton(
-                  constraints:
-                      const BoxConstraints.expand(width: 150, height: 170),
-                  shape: const RoundedRectangleBorder(
+                  constraints: BoxConstraints.expand(width: 150, height: 170),
+                  shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.menu_rounded,
                     size: 25,
                     color: Colors.black,
@@ -52,7 +49,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           isScrollControlled: true,
                           context: context,
                           builder: (BuildContext context) {
-                            return const ModalPerfil();
+                            return MeuPerfil();
                           },
                         );
                         break;
@@ -173,10 +170,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
               children: [
                 Text('Olá,{Empresa}',
                     style: TextStyleService(categoryShadow: <Shadow>[
-                  Shadow(
-                      offset: Offset(1.5, 1.5),
-                      color: Color.fromRGBO(126, 244, 209, 0.72))
-                ]).corSublinhada),
+                      Shadow(
+                          offset: Offset(1.5, 1.5),
+                          color: Color.fromRGBO(126, 244, 209, 0.72))
+                    ]).corSublinhada),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),

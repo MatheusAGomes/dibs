@@ -2,7 +2,6 @@ import 'package:dibs/private/modalConfigAnuncio.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:flutter/material.dart';
 
-
 class ModalMeusIngressosAnuncio extends StatefulWidget {
   const ModalMeusIngressosAnuncio({super.key});
 
@@ -60,10 +59,13 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                             );
                           },
                           child: BannerMeuIngresso(
+                            id: 'd',
+                            local: 'C',
                             ativo: true,
                             empresa: false,
                             anuncio: true,
-                            image: const AssetImage('assets/images/PericlesEx.png'),
+                            image: const AssetImage(
+                                'assets/images/PericlesEx.png'),
                             titulo: 'Churrasquinho menos é mais',
                             data: '20/12/2020',
                             hora: '19:00',

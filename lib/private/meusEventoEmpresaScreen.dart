@@ -2,8 +2,6 @@ import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:flutter/material.dart';
 
-
-
 class MeusEventosEmpresasScreen extends StatefulWidget {
   const MeusEventosEmpresasScreen({Key? key}) : super(key: key);
 
@@ -116,10 +114,13 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: BannerMeuIngresso(
+                          id: '1',
+                          local: 'XC',
                           ativo: true,
                           empresa: true,
                           anuncio: false,
-                          image: const AssetImage('assets/images/PericlesEx.png'),
+                          image:
+                              const AssetImage('assets/images/PericlesEx.png'),
                           titulo: 'Churrasquinho menos é mais',
                           data: '20/12/2020',
                           hora: '19:00',

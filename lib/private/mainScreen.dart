@@ -8,6 +8,7 @@ import 'package:dibs/widget/bannerSecundario.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
@@ -49,8 +50,7 @@ class _MainScreenState extends State<MainScreen> {
           automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: SvgPicture.asset("assets/images/logoDibs.svg",
-            width: 85),
+          title: SvgPicture.asset("assets/images/logoDibs.svg", width: 85),
           titleSpacing: 21,
           actions: [
             Padding(
@@ -258,14 +258,12 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   Row(
                     children: [
-                      Text(
-                        'Próximos a você',
-                        style: TextStyleService(categoryShadow: <Shadow>[
-                          Shadow(
-                              offset: Offset(1.5, 1.5),
-                              color: Color.fromRGBO(126, 244, 209, 0.72))
-                        ]).corSublinhada
-                      ),
+                      Text('Próximos a você',
+                          style: TextStyleService(categoryShadow: <Shadow>[
+                            Shadow(
+                                offset: Offset(1.5, 1.5),
+                                color: Color.fromRGBO(126, 244, 209, 0.72))
+                          ]).corSublinhada),
                     ],
                   ),
                   SizedBox(
@@ -291,14 +289,12 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   Row(
                     children: [
-                      Text(
-                        'Categorias',
-                        style: TextStyleService(categoryShadow: <Shadow>[
-                          Shadow(
-                              offset: Offset(1.5, 1.5),
-                              color: Color.fromRGBO(126, 244, 209, 0.72))
-                        ]).corSublinhada
-                      ),
+                      Text('Categorias',
+                          style: TextStyleService(categoryShadow: <Shadow>[
+                            Shadow(
+                                offset: Offset(1.5, 1.5),
+                                color: Color.fromRGBO(126, 244, 209, 0.72))
+                          ]).corSublinhada),
                     ],
                   ),
                   SizedBox(

@@ -25,112 +25,113 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-
-      FutureBuilder<List<MeuIngressoBanner>>(
+      body: FutureBuilder<List<MeuIngressoBanner>>(
         builder: (context, snapshot) {
-      if (snapshot.hasData) {
-      SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 22),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          if (snapshot.hasData) {
+            return SafeArea(
+                child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 22),
+              child: SingleChildScrollView(
+                child: Column(
                   children: [
-                    Text(
-                      'Meus ingressos',
-                      style: TextStyleService.boldSpacing141,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Meus ingressos',
+                          style: TextStyleService.boldSpacing141,
+                        ),
+                        Icon(
+                          Icons.person,
+                          size: 40,
+                        ),
+                      ],
                     ),
-                    Icon(
-                      Icons.person,
-                      size: 40,
+                    SizedBox(
+                      height: 15,
+                    ),
+                    AnimatedToggleSwitch<int>.size(
+                      current: value,
+                      values: [0, 1],
+                      height: 30,
+                      indicatorSize: Size(150, 50),
+                      indicatorColor: Colors.white,
+                      innerColor: Colors.grey.shade300,
+                      customIconBuilder: (context, local, global) {
+                        if (local.value == 0) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Ativos',
+                                  style: local.value.isEven
+                                      ? TextStyleService.toggleSwitchActiveText
+                                      : TextStyleService
+                                          .toggleSwitchInactiveText),
+                            ],
+                          );
+                        } else {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Expirados',
+                                  style: local.value.isEven
+                                      ? TextStyleService
+                                          .toggleSwitchInactiveText
+                                      : TextStyleService
+                                          .toggleSwitchActiveText),
+                            ],
+                          );
+                        }
+                      },
+                      indicatorBorderRadius: BorderRadius.circular(7),
+                      borderColor: value.isEven
+                          ? Colors.grey.shade300
+                          : Colors.grey.shade300,
+                      borderRadius: BorderRadiusDirectional.circular(9),
+                      //colorBuilder: (i) => i.isEven ? Colors.grey : Colors.grey,
+                      onChanged: (i) => setState(() => value = i),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: BannerMeuIngresso(
+                              id: snapshot.data![index].id,
+                              local: snapshot.data![index].address,
+                              ativo: snapshot.data![index].valid,
+                              empresa: false,
+                              anuncio: false,
+                              image: const AssetImage(
+                                  'assets/images/PericlesEx.png'),
+                              titulo: snapshot.data![index].eventName,
+                              data: snapshot.data![index].startDate,
+                              hora: snapshot.data![index].time!,
+                              lote: '1° Lote',
+                              tipo: 'Meia-Entrada',
+                              corBanner: Colors.green,
+                              corDoLote: Colors.green.shade900,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-                AnimatedToggleSwitch<int>.size(
-                  current: value,
-                  values: [0, 1],
-                  height: 30,
-                  indicatorSize: Size(150, 50),
-                  indicatorColor: Colors.white,
-                  innerColor: Colors.grey.shade300,
-                  customIconBuilder: (context, local, global) {
-                    if (local.value == 0) {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Ativos',
-                              style: local.value.isEven
-                                ? TextStyleService.toggleSwitchActiveText
-                                : TextStyleService.toggleSwitchInactiveText),
-                        ],
-                      );
-                    } else {
-                      return Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Expirados',
-                              style: local.value.isEven
-                                  ? TextStyleService.toggleSwitchInactiveText
-                                  : TextStyleService.toggleSwitchActiveText),
-                        ],
-                      );
-                    }
-                  },
-                  indicatorBorderRadius: BorderRadius.circular(7),
-                  borderColor: value.isEven
-                      ? Colors.grey.shade300
-                      : Colors.grey.shade300,
-                  borderRadius: BorderRadiusDirectional.circular(9),
-                  //colorBuilder: (i) => i.isEven ? Colors.grey : Colors.grey,
-                  onChanged: (i) => setState(() => value = i),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height,
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        child: BannerMeuIngresso(
-                          ativo: value == 0 ? true : false,
-                          empresa: false,
-                          anuncio: false,
-                          image: const AssetImage(
-                              'assets/images/PericlesEx.png'),
-                          titulo: snapshot.data![index].eventName,
-                          data: '20/12/2020',
-                          hora: '19:00',
-                          lote: '1° Lote',
-                          tipo: 'Meia-Entrada',
-                          corBanner: Colors.green,
-                          corDoLote: Colors.green.shade900,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        )
-        );
+              ),
+            ));
           } else {
-          return SizedBox();
+            return SizedBox();
           }
         },
         future: TicketRepository(dio).getTickets(),
       ),
-
     );
   }
 }
