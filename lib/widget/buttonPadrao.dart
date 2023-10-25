@@ -15,9 +15,9 @@ class ButtonPadrao extends StatelessWidget {
     required this.text,
     required this.click,
     this.height = 0.05,
-    this.width = 0.5,
-    this.enable = true,
-    this.delete = false,
+    required this.width,
+    required this.enable,
+    required this.delete,
   });
 
   @override
@@ -37,10 +37,13 @@ class ButtonPadrao extends StatelessWidget {
                 borderRadius: BorderRadius.circular(7),
                 color: delete ? ColorService.vermelho : ColorService.verde,
                 boxShadow: [
-                  BoxShadow(
+                  delete ? BoxShadow(
                       offset: Offset(2, 2),
-                      color: Color(0xB37EF4D1),
-                  ),
+                      color: Color(0xB3F47E7E),
+                  ) : BoxShadow(
+                    offset: Offset(2, 2),
+                    color: Color(0xB37EF4D1),
+                  )
                 ]
               ),
               child: Center(

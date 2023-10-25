@@ -62,6 +62,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                             );
                           },
                           child: BannerMeuIngresso(
+                            ativo: true,
                             empresa: false,
                             anuncio: true,
                             image: AssetImage('assets/images/PericlesEx.png'),

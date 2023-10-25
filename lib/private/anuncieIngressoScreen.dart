@@ -48,7 +48,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                   children: [
                     Text(
                       'Anuncie seu ingresso',
-                      style: TextStyleService.regularTitle,
+                      style: TextStyleService.boldSpacing141,
                     ),
                     Icon(
                       Icons.person,
@@ -151,6 +151,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIngresso(
+                                    ativo: true,
                                     empresa: false,
                                     anuncio: true,
                                     image: AssetImage(
@@ -181,6 +182,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 10),
                                   child: BannerMeuIngresso(
+                                    ativo: true,
                                     empresa: false,
                                     anuncio: false,
                                     image: AssetImage(

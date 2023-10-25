@@ -1,25 +1,46 @@
 import 'package:dibs/widget/modalEditar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../shared/service/colorService.dart';
+import '../shared/service/textStyle.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
+import '../widget/buttonPadrao.dart';
 import '../widget/modalTrasferencia.dart';
 
 class InfoMeuIngressoScreen extends StatelessWidget {
+  String? data;
+  String? hora;
+  String? local;
+  String? nomeEvento;
+  String? tipoIngresso;
+  String? codigoDoIngresso;
   String? nomeDoTitular;
   String? cpf;
-  String? codigoDoIngresso;
+  String? lote;
+  String? preco;
   ImageProvider? fotoDoEvento;
   bool status;
-  // bool anuncio;
-  InfoMeuIngressoScreen(
-      {required this.codigoDoIngresso,
-      required this.cpf,
-      required this.nomeDoTitular,
-      required this.fotoDoEvento,
-        // required this. anuncio,
-      required this.status});
+  bool anuncio;
+
+  InfoMeuIngressoScreen({
+    required this.data,
+    required this.hora,
+    required this.local,
+    required this.nomeEvento,
+    required this.tipoIngresso,
+    required this.codigoDoIngresso,
+    required this.nomeDoTitular,
+    required this.cpf,
+    required this.lote,
+    required this.preco,
+    required this.fotoDoEvento,
+    required this.status,
+    required this.anuncio
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,156 +51,233 @@ class InfoMeuIngressoScreen extends StatelessWidget {
           child: Stack(children: <Widget>[
             Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.20,
-                    left: 19,
-                    right: 19),
+                    top: MediaQuery.of(context).size.height * 0.22,
+                    left: 25,
+                    right: 25),
                 child: Column(
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(FontAwesomeIcons.solidCalendar,
+                                size: 16),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.005,
+                                ),
+                                Text(data!,
+                                    style: TextStyleService(
+                                        fontSize: 11,
+                                    letterSpacing: -1.41).medium)
+                              ],
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.02,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Icon(FontAwesomeIcons.solidClock,
+                                    size: 16),
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width * 0.005,
+                                ),
+                                Text(hora!,
+                                    style: TextStyleService(
+                                        fontSize: 11,
+                                        letterSpacing: -1.41).medium)
+                              ],
+                            ),
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(FontAwesomeIcons.locationDot,
+                                size: 16),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.005,
+                            ),
+                            Text(local!,
+                                style: TextStyleService(
+                                    fontSize: 11,
+                                    letterSpacing: -0.09).medium)
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                    Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Flexible(
+                                    child: Text(nomeEvento!,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyleService(fontSize: 16).boldSpacing041)
+                                )
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(tipoIngresso!)
+                          ],
+                        )
+                      ],
+                    ),
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: 25),
+                      padding: EdgeInsets.symmetric(horizontal: 70, vertical: 5),
                       child: Column(
                         children: [
-                          // QrImage(
-                          //   data: codigoDoIngresso!,
-                          //   version: QrVersions.auto,
-                          //   size: 250.0,
-                          // ),
-                          Center(child: Text(codigoDoIngresso!)),
+                          PrettyQrView.data(
+                              data: codigoDoIngresso!,
+                              decoration: const PrettyQrDecoration(
+                                image: PrettyQrDecorationImage(
+                                  image: AssetImage("assets/icons/DibsLogoQrCode.png"),
+                                  scale: 0.2
+                                ),
+                                shape: PrettyQrSmoothSymbol()
+                              )
+                          ),
                         ],
                       ),
                     ),
+                    Center(child: Text(codigoDoIngresso!,
+                        style: TextStyle(fontSize: 12))),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
                     Row(
-                      children: const [
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
                         Text(
                           'Titular',
-                          style: TextStyle(fontWeight: FontWeight.w900),
+                          style: TextStyleService(fontSize: 14).boldSpacing041
+                        ),
+                        Text(
+                          'Lote',
+                            style: TextStyleService(fontSize: 14).boldSpacing041
                         ),
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(nomeDoTitular!),
+                        Flexible(
+                            flex: 3,
+                            child: Text(
+                            nomeDoTitular!,
+                            style: TextStyle(fontSize: 12)
+                        )),
+                        Flexible(flex: 2, child: Text(
+                            lote!,
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 12)
+                        )),
                       ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'CPF',
-                          style: TextStyle(fontWeight: FontWeight.w900),
+                            style: TextStyleService(fontSize: 14).boldSpacing041
+                        ),
+                        Text(
+                          'Preço',
+                            style: TextStyleService(fontSize: 14).boldSpacing041
                         ),
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(cpf!),
+                        Flexible(child: Text(
+                            cpf!,
+                            style: TextStyle(fontSize: 12)
+                        )),
+                        Flexible(child: Text(
+                            preco!,
+                            textAlign: TextAlign.right,
+                            style: TextStyle(fontSize: 12)
+                        )),
                       ],
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
-                 // trocar um dos dois para o de cancear
-                 // anuncio ?
-                 Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: TextButton(
-                              onPressed: () {
-                                if (status != true) {
-                                  return;
-                                }
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: ((context) =>
-                                        ModalTransferencia()));
-                              },
-                              child: Text(
-                                'Transferir',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      status
-                                          ? Color(0xff198A68)
-                                          : Colors.grey))),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.3,
-                          child: TextButton(
-                              style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      status
-                                          ? Color(0xff198A68)
-                                          : Colors.grey)),
-                              onPressed: () {
-                                if (status != true) {
-                                  return;
-                                }
-                                showModalBottomSheet(
-                                    context: context,
-                                    builder: ((context) => ModalEditar()));
-                              },
-                              child: Text(
-                                'Editar',
-                                style: TextStyle(color: Colors.white),
-                              )),
-                        ),
-                      ],
-                    ) ,
-                 //     : Row(
-                 //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                 //   children: [
-                 //     SizedBox(
-                 //       width: MediaQuery.of(context).size.width * 0.3,
-                 //       child: TextButton(
-                 //           onPressed: () {
-                 //             if (status != true) {
-                 //               return;
-                 //             }
-                 //             showModalBottomSheet(
-                 //                 context: context,
-                 //                 builder: ((context) =>
-                 //                     ModalTransferencia()));
-                 //           },
-                 //           child: Text(
-                 //             'Transferir',
-                 //             style: TextStyle(color: Colors.white),
-                 //           ),
-                 //           style: ButtonStyle(
-                 //               backgroundColor: MaterialStateProperty.all(
-                 //                   status
-                 //                       ? Color(0xff198A68)
-                 //                       : Colors.grey))),
-                 //     ),
-                 //     SizedBox(
-                 //       width: MediaQuery.of(context).size.width * 0.3,
-                 //       child: TextButton(
-                 //           style: ButtonStyle(
-                 //               backgroundColor: MaterialStateProperty.all(
-                 //                   status
-                 //                       ? Color(0xff198A68)
-                 //                       : Colors.grey)),
-                 //           onPressed: () {
-                 //             if (status != true) {
-                 //               return;
-                 //             }
-                 //             showModalBottomSheet(
-                 //                 context: context,
-                 //                 builder: ((context) => ModalEditar()));
-                 //           },
-                 //           child: Text(
-                 //             'Editar',
-                 //             style: TextStyle(color: Colors.white),
-                 //           )),
-                 //     ),
-                 //   ],
-                 // ) ,
+                 anuncio ? Row(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     SizedBox(
+                         width: MediaQuery.of(context).size.width * 0.8,
+                         child: ButtonPadrao(
+                             enable: status,
+                             delete: true,
+                             width: 0.5,
+                             text: 'Cancelar Anúncio',
+                             click: () {
+                               if (status != true) {
+                                 return;
+                               }
+                               showModalBottomSheet(
+                                   context: context,
+                                   builder: ((context) =>
+                                       ModalEditar()));
+                             })
+                     ),
+                   ],
+                 ) : Row(
+                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                   children: [
+                     SizedBox(
+                         width: MediaQuery.of(context).size.width * 0.38,
+                         child: ButtonPadrao(
+                             enable: status,
+                             delete: false,
+                             width: 0.5,
+                             text: 'Transferir',
+                             click: () {
+                               if (status != true) {
+                                 return;
+                               }
+                               showModalBottomSheet(
+                                   context: context,
+                                   builder: ((context) =>
+                                       ModalTransferencia()));
+                             })
+                     ),
+                     SizedBox(
+                         width: MediaQuery.of(context).size.width * 0.38,
+                         child: ButtonPadrao(
+                             enable: status,
+                             delete: false,
+                             width: 0.5,
+                             text: 'Editar',
+                             click: () {
+                               if (status != true) {
+                                 return;
+                               }
+                               showModalBottomSheet(
+                                   context: context,
+                                   builder: ((context) =>
+                                       ModalEditar()));
+                             })
+                     ),
+                   ],
+                 ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
+                      height: MediaQuery.of(context).size.height * 0.04,
                     ),
                   ],
                 )),

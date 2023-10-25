@@ -45,7 +45,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                   children: [
                     Text(
                       'Meus ingressos',
-                      style: TextStyleService.regularTitle,
+                      style: TextStyleService.boldSpacing141,
                     ),
                     Icon(
                       Icons.person,
@@ -106,6 +106,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: BannerMeuIngresso(
+                          ativo: value == 0 ? true : false,
                           empresa: false,
                           anuncio: false,
                           image: AssetImage('assets/images/PericlesEx.png'),

@@ -52,10 +52,11 @@ dependencies:
   google_fonts: ^4.0.4
   permission_handler: ^8.3.0
   animated_toggle_switch: ^0.7.0
-  qr_flutter: ^4.0.0
+  qr_flutter: ^4.1.0
   percent_indicator: ^4.2.3
   flutter_svg: ^2.0.5
-  
+  pretty_qr_code: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
