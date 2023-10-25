@@ -18,4 +18,10 @@ abstract class TicketRepository {
   Future<List<MeuIngressoBanner>> getTickets();
   @GET("/{id}")
   Future<TicketOutput> getTicket(@Path('id') String id);
+  @PUT("/edit/{id}")
+  Future<HttpResponse<void>> editTicket(
+      @Path('id') String id, @Body() String nome, String cpf);
+  @PUT("/transfer/{id}")
+  Future<HttpResponse<void>> transferTicket(
+      @Path('id') String id, @Body() String email);
 }

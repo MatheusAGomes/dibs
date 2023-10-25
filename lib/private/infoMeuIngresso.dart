@@ -25,9 +25,11 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   ImageProvider? fotoDoEvento;
   bool status;
   bool anuncio;
+  String id;
 
   InfoMeuIngressoScreen(
       {required this.data,
+      required this.id,
       required this.hora,
       required this.local,
       required this.nomeEvento,
@@ -220,8 +222,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                         }
                                         showModalBottomSheet(
                                             context: context,
-                                            builder: ((context) =>
-                                                ModalEditar()));
+                                            builder: ((context) => ModalEditar(
+                                                  id: id,
+                                                )));
                                       })),
                             ],
                           )
@@ -243,7 +246,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                         showModalBottomSheet(
                                             context: context,
                                             builder: ((context) =>
-                                                ModalTransferencia()));
+                                                ModalTransferencia(
+                                                  id: id,
+                                                )));
                                       })),
                               SizedBox(
                                   width:
@@ -259,8 +264,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                         }
                                         showModalBottomSheet(
                                             context: context,
-                                            builder: ((context) =>
-                                                ModalEditar()));
+                                            builder: ((context) => ModalEditar(
+                                                  id: id,
+                                                )));
                                       })),
                             ],
                           ),

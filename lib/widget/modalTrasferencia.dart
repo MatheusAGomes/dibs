@@ -1,11 +1,20 @@
+import 'package:dibs/main.dart';
+import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 
 import '../shared/service/colorService.dart';
 
-class ModalTransferencia extends StatelessWidget {
-  const ModalTransferencia({super.key});
+class ModalTransferencia extends StatefulWidget {
+  String id;
+  ModalTransferencia({required this.id});
 
+  @override
+  State<ModalTransferencia> createState() => _ModalTransferenciaState();
+}
+
+class _ModalTransferenciaState extends State<ModalTransferencia> {
+  TextEditingController email = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,6 +46,7 @@ class ModalTransferencia extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
+                        controller: email,
                         // textFormFildKey: nomeKey,
                         // onchange: (p0) {
                         //   setState(() {});
@@ -66,6 +76,10 @@ class ModalTransferencia extends StatelessWidget {
               ),
               Center(
                 child: InkWell(
+                  onTap: () async {
+                    await TicketRepository(dio)
+                        .transferTicket(widget.id, email.text);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),

@@ -1,10 +1,23 @@
+import 'package:dibs/repositories/ticket-repository.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
+import '../main.dart';
 import '../shared/service/colorService.dart';
 
-class ModalEditar extends StatelessWidget {
-  const ModalEditar({super.key});
+class ModalEditar extends StatefulWidget {
+  String id;
+  ModalEditar({required this.id});
+
+  @override
+  State<ModalEditar> createState() => _ModalEditarState();
+}
+
+class _ModalEditarState extends State<ModalEditar> {
+  TextEditingController nome = TextEditingController();
+  TextEditingController cpf = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +67,7 @@ class ModalEditar extends StatelessWidget {
                             vertical: 0),
                         // controller: nomeController,
                         enable: true,
+                        controller: nome,
                         click: () {
                           // setState(() {
                           //   alterado = true;
@@ -70,6 +84,7 @@ class ModalEditar extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                     child: TextFieldPadrao(
+                        controller: cpf,
                         // textFormFildKey: nomeKey,
                         // onchange: (p0) {
                         //   setState(() {});
@@ -99,6 +114,16 @@ class ModalEditar extends StatelessWidget {
               ),
               Center(
                 child: InkWell(
+                  onTap: () async {
+                    await TicketRepository(dio)
+                        .editTicket(widget.id, nome.text, cpf.text)
+                        .whenComplete(() {
+                      ToastService.showToastInfo(
+                          'Sucesso alterado com sucesso');
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    });
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
