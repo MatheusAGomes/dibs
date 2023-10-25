@@ -6,7 +6,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 
 
-import '../widget/modalPerfil.dart';
+import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
 class MainEmpresaScreen extends StatefulWidget {
@@ -171,7 +171,12 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Olá,{Empresa}', style: TextStyleService.corSublinhada),
+                Text('Olá,{Empresa}',
+                    style: TextStyleService(categoryShadow: <Shadow>[
+                  Shadow(
+                      offset: Offset(1.5, 1.5),
+                      color: Color.fromRGBO(126, 244, 209, 0.72))
+                ]).corSublinhada),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
 
 
 
 import '../shared/functions/utils.dart';
 import '../widget/bannerCategoriaEvento.dart';
+import '../widget/meuPerfil.dart';
+import '../widget/modalMeusCartoes.dart';
 
 class CategoriaScreen extends StatefulWidget {
   Color cor;
@@ -30,17 +36,18 @@ class _CategoriaScreenState extends State<CategoriaScreen> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
+          foregroundColor: Colors.black,
           centerTitle: true,
           title: const Text(
             'Categorias',
-            style: TextStyle(color: Colors.black),
+            style: TextStyleService.appBar,
           ),
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
-                Icons.arrow_back_ios,
+              icon: Icon(
+                FontAwesomeIcons.angleLeft,
                 color: Colors.black,
               )),
         ),
@@ -55,15 +62,14 @@ class _CategoriaScreenState extends State<CategoriaScreen> {
               children: [
                 Text(
                   widget.titulo,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: -1.41,
-                      shadows: <Shadow>[
-                        Shadow(
-                            offset: const Offset(1.5, 1.5),
-                            color: adjustShade(widget.cordois, 0))
-                      ]),
+                  style: TextStyleService(categoryShadow: <Shadow>[
+                    Shadow(
+                        offset: Offset(1.5, 1.5),
+                        color: Color.fromRGBO(126, 244, 209, 0.72))
+                  ]).corSublinhada
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.015,
                 ),
                 BannerCategoriaEvento(
                   titulo: 'Churrasquinho menos é mais',

@@ -23,7 +23,8 @@ class TextFieldPadrao extends StatefulWidget {
   final int? maxlength;
   final bool? enable;
   List<TextInputFormatter>? inputFormatter;
-  TextFieldPadrao({super.key, 
+
+  TextFieldPadrao({
     this.textFormFildKey,
     this.hintText,
     this.prefixIcon,
@@ -31,7 +32,7 @@ class TextFieldPadrao extends StatefulWidget {
     this.keyboardtype = TextInputType.text,
     this.hideTextfild = false,
     required this.click,
-    this.fontSize = 14,
+    this.fontSize = 10,
     this.validator,
     this.controller,
     this.onchange,
@@ -68,7 +69,7 @@ class _TextFieldPadraoState extends State<TextFieldPadrao> {
       },
       obscureText: widget.hideTextfild,
       keyboardType: widget.keyboardtype,
-      style: TextStyle(fontSize: widget.fontSize),
+      style: TextStyleService.defaultTextField,
       cursorColor: Colors.grey,
       decoration: InputDecorationService(
               prefixIcon: widget.prefixIcon, hint: widget.hintText)

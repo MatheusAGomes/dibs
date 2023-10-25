@@ -21,25 +21,26 @@ class InputDecorationService {
         vertical: 0,
       ),
       hintStyle: TextStyle(color: ColorService.cinza),
+      // border: InputBorder.none,
       disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide(width: 1, color: ColorService.cinza),
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(width: 1, color: Color(0x33000000)),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: const BorderSide(width: 1, color: Colors.red),
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(width: 2, color: Color(0xFFFF3636)),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: const BorderSide(width: 1, color: Colors.red),
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(width: 2, color: Color(0xFFFF3636)),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide(width: 1, color: ColorService.cinza),
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(width: 1, color: Color(0x33000000)),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(5),
-        borderSide: BorderSide(width: 1, color: ColorService.azul),
+        borderRadius: BorderRadius.circular(7),
+        borderSide: BorderSide(width: 1, color: Color(0x80000000)),
       ),
     );
   }

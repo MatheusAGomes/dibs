@@ -20,7 +20,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Ingressos Anunciados',
           style: TextStyle(color: Colors.black),
         ),
@@ -28,7 +28,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
               color: Colors.black,
             )),
@@ -37,25 +37,29 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Camarote - 4° Lote',
-                    style: TextStyleService.corSublinhada),
-                const Divider(),
+                    style: TextStyleService(categoryShadow: <Shadow>[
+                      Shadow(
+                          offset: Offset(1.5, 1.5),
+                          color: Color.fromRGBO(126, 244, 209, 0.72))
+                    ]).corSublinhada),
+                Divider(),
                 Column(
                     children: List.generate(2, (index) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    padding: EdgeInsets.symmetric(vertical: 2),
                     child: BannerCompraIngressoTerceiro(
                         nome: 'Matheus Gomes',
                         tipoDoIngresso: 'Meia entrada',
                         valor: 'R\$ 200.00'),
                   );
                 })),
-                const SizedBox(
+                SizedBox(
                   height: 10,
                 ),
                 Center(

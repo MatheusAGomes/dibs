@@ -1,7 +1,14 @@
 import 'package:dibs/public/auth/signup.dart';
+import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/widget/buttonPadrao.dart';
+import 'package:dibs/widget/expandableTextField.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:validatorless/validatorless.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../shared/routes/routes.dart';
 
@@ -11,7 +18,7 @@ import '../../models/auth.dart';
 import '../../widget/textfieldpadrao.dart';
 
 class SignInScreen extends StatefulWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  SignInScreen({Key? key}) : super(key: key);
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -60,9 +67,7 @@ class _SignInScreenState extends State<SignInScreen> {
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            colorFilter:
-                ColorFilter.mode(Color(0xff7EF4D1), BlendMode.modulate),
-            image: AssetImage("assets/images/loginPageImage.png"),
+            image: AssetImage("assets/images/signinBackground.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -74,25 +79,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [Image.asset("assets/images/Dibs logo.png")],
+                    children: [SvgPicture.asset("assets/images/logoDibs.svg")],
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    child: const Text(
-                      'Revenda segura e intuitiva',
-                      style: TextStyle(
-                          height: 1,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 45,
-                          letterSpacing: -1.41,
-                          shadows: <Shadow>[
-                            Shadow(
-                                offset: Offset(1.5, 1.5),
-                                color: Color.fromRGBO(126, 244, 209, 0.72))
-                          ]),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    child: Text(
+                      'Revenda segura \ne intuitiva',
+                      style: TextStyleService.corSublinhadaSignIn,
                     ),
                   ),
                   SizedBox(
@@ -100,9 +96,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: const Text(
-                      'A solução definitiva para compra e revenda de ingressos.\nSeus eventos mais marcantes estão aqui.',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    child: Text(
+                      'A solução definitiva para \ncompra e revenda de ingressos.\nSeus eventos mais marcantes estão aqui.',
+                      style: TextStyleService.mediumSpacing141,
                     ),
                   ),
                   SizedBox(
@@ -111,74 +107,30 @@ class _SignInScreenState extends State<SignInScreen> {
                   const Row(
                     children: [
                       Text(
-                        'Usuario',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'Usuário',
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                        controller: usuarioController,
-                        click: () {},
-                      ),
-                    ),
-                  ),
+                  ExpandableTextField(click: () {}, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'Senha',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                        controller: senhaController,
-                        click: () {},
-                      ),
-                    ),
-                  ),
+                  ExpandableTextField(click: () {}, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        print('a');
-                        _submit();
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: ColorService.verde,
-                        ),
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: const Center(
-                          child: Text(
-                            'Entrar',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  ButtonPadrao(text: "Entrar", click: () {print("object");}),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
                   Center(
                     child: Column(
@@ -187,7 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       children: [
                         const Text(
                           'Ainda não é usuário?',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyleService.defaultSignIn,
                         ),
                         InkWell(
                           onTap: () {
@@ -199,7 +151,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           },
                           child: Text(
                             'Cadastre-se agora',
-                            style: TextStyle(color: ColorService.verde),
+                            style: TextStyleService.greenSignIn,
                           ),
                         )
                       ],

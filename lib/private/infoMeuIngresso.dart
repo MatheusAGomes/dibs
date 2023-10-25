@@ -9,11 +9,13 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   String? codigoDoIngresso;
   ImageProvider? fotoDoEvento;
   bool status;
+  // bool anuncio;
   InfoMeuIngressoScreen(
       {super.key, required this.codigoDoIngresso,
       required this.cpf,
       required this.nomeDoTitular,
       required this.fotoDoEvento,
+        // required this. anuncio,
       required this.status});
 
   @override
@@ -25,7 +27,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
           child: Stack(children: <Widget>[
             Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.25,
+                    top: MediaQuery.of(context).size.height * 0.20,
                     left: 19,
                     right: 19),
                 child: Column(
@@ -34,25 +36,11 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 25),
                       child: Column(
                         children: [
-                          CustomPaint(
-                            size: const Size.square(10),
-                            painter: QrPainter(
-                              data: codigoDoIngresso!,
-                              version: QrVersions.auto,
-                              eyeStyle: const QrEyeStyle(
-                                eyeShape: QrEyeShape.square,
-                                color: Color(0xff128760),
-                              ),
-                              dataModuleStyle: const QrDataModuleStyle(
-                                dataModuleShape: QrDataModuleShape.circle,
-                                color: Color(0xff1a5441),
-                              ),
-                              // size: 320.0,
-                              embeddedImageStyle: const QrEmbeddedImageStyle(
-                                size: Size.square(60),
-                              ),
-                            ),
-                          ),
+                          // QrImage(
+                          //   data: codigoDoIngresso!,
+                          //   version: QrVersions.auto,
+                          //   size: 250.0,
+                          // ),
                           Center(child: Text(codigoDoIngresso!)),
                         ],
                       ),
@@ -89,7 +77,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
-                    Row(
+                 // trocar um dos dois para o de cancear
+                 // anuncio ?
+                 Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         SizedBox(
@@ -136,7 +126,55 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                               )),
                         ),
                       ],
-                    ),
+                    ) ,
+                 //     : Row(
+                 //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 //   children: [
+                 //     SizedBox(
+                 //       width: MediaQuery.of(context).size.width * 0.3,
+                 //       child: TextButton(
+                 //           onPressed: () {
+                 //             if (status != true) {
+                 //               return;
+                 //             }
+                 //             showModalBottomSheet(
+                 //                 context: context,
+                 //                 builder: ((context) =>
+                 //                     ModalTransferencia()));
+                 //           },
+                 //           child: Text(
+                 //             'Transferir',
+                 //             style: TextStyle(color: Colors.white),
+                 //           ),
+                 //           style: ButtonStyle(
+                 //               backgroundColor: MaterialStateProperty.all(
+                 //                   status
+                 //                       ? Color(0xff198A68)
+                 //                       : Colors.grey))),
+                 //     ),
+                 //     SizedBox(
+                 //       width: MediaQuery.of(context).size.width * 0.3,
+                 //       child: TextButton(
+                 //           style: ButtonStyle(
+                 //               backgroundColor: MaterialStateProperty.all(
+                 //                   status
+                 //                       ? Color(0xff198A68)
+                 //                       : Colors.grey)),
+                 //           onPressed: () {
+                 //             if (status != true) {
+                 //               return;
+                 //             }
+                 //             showModalBottomSheet(
+                 //                 context: context,
+                 //                 builder: ((context) => ModalEditar()));
+                 //           },
+                 //           child: Text(
+                 //             'Editar',
+                 //             style: TextStyle(color: Colors.white),
+                 //           )),
+                 //     ),
+                 //   ],
+                 // ) ,
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
@@ -145,9 +183,12 @@ class InfoMeuIngressoScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                image: DecorationImage(fit: BoxFit.cover, image: fotoDoEvento!),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: fotoDoEvento!,
+                  alignment: Alignment.topCenter),
               ),
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery.of(context).size.height * 0.20,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

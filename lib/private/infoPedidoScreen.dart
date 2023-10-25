@@ -61,86 +61,93 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Text(
-                //   'Informações dos ingressos',
-                //   style: TextStyleService.corSublinhada,
-                // ),
-                // const Text('Camarote - 4° lote',
-                //     style: TextStyle(fontWeight: FontWeight.bold)),
-                // const Text(
-                //   'Inteira - R\$ 400,00',
-                //   style: TextStyle(color: Colors.grey),
-                // ),
-                // const Text('Nome'),
-                // SizedBox(
-                //   height: 35,
-                //   child: TextFieldPadrao(
-                //       prefixIcon: const Icon(Icons.person),
-                //       hintText: "Aluísio de Albuquerque",
-                //       // textFormFildKey: nomeKey,
-                //       // onchange: (p0) {
-                //       //   setState(() {});
-                //       //   nomeKey.currentState?.validate();
-                //       // },
-                //       validator: Validatorless.multiple([
-                //         Validatorless.required("Campo obrigatório"),
-                //         Validatorless.max(
-                //             255, "Número máximo de caracteres é 255")
-                //       ]),
-                //       padding: EdgeInsets.symmetric(
-                //           horizontal: MediaQuery.of(context).size.width * 0.03,
-                //           vertical: 0),
-                //       controller: nomeController,
-                //       enable: true,
-                //       click: () {
-                //         // setState(() {
-                //         //   alterado = true;
-                //         // });
-                //       }),
-                // ),
-                // const Text('CPF'),
-                // SizedBox(
-                //   height: 35,
-                //   child: TextFieldPadrao(
-                //       prefixIcon: const Icon(Icons.badge),
-                //       hintText: "111.111.111-11",
-                //       // textFormFildKey: nomeKey,
-                //       // onchange: (p0) {
-                //       //   setState(() {});
-                //       //   nomeKey.currentState?.validate();
-                //       // },
-                //       validator: Validatorless.multiple([
-                //         Validatorless.required("Campo obrigatório"),
-                //         Validatorless.max(
-                //             255, "Número máximo de caracteres é 255")
-                //       ]),
-                //       padding: EdgeInsets.symmetric(
-                //           horizontal: MediaQuery.of(context).size.width * 0.03,
-                //           vertical: 0),
-                //       // controller: nomeController,
-                //       enable: true,
-                //       click: () {
-                //         // setState(() {
-                //         //   alterado = true;
-                //         // });
-                //       }),
-                // ),
-                // Row(
-                //   children: [
-                //     Checkbox(
-                //       fillColor:
-                //           MaterialStateProperty.all(const Color(0xFF198A68)),
-                //       value: checkboxValue,
-                //       onChanged: (value) => setState(() {
-                //         checkboxValue = value!;
-                //       }),
-                //     ),
-                //     const Text('Sou titular deste cartão')
-                //   ],
-                // ),
+                Text(
+                  'Informações dos ingressos',
+                  style: TextStyleService(categoryShadow: <Shadow>[
+                    Shadow(
+                        offset: Offset(1.5, 1.5),
+                        color: Color.fromRGBO(126, 244, 209, 0.72))
+                  ]).corSublinhada
+                ),
+                Text('Camarote - 4° lote',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  'Inteira - R\$ 400,00',
+                  style: TextStyle(color: Colors.grey),
+                ),
+                Text('Nome'),
+                SizedBox(
+                  height: 35,
+                  child: TextFieldPadrao(
+                      prefixIcon: Icon(Icons.person),
+                      hintText: "Aluísio de Albuquerque",
+                      // textFormFildKey: nomeKey,
+                      // onchange: (p0) {
+                      //   setState(() {});
+                      //   nomeKey.currentState?.validate();
+                      // },
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ]),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.03,
+                          vertical: 0),
+                      controller: nomeController,
+                      enable: true,
+                      click: () {
+                        // setState(() {
+                        //   alterado = true;
+                        // });
+                      }),
+                ),
+                Text('CPF'),
+                SizedBox(
+                  height: 35,
+                  child: TextFieldPadrao(
+                      prefixIcon: Icon(Icons.badge),
+                      hintText: "111.111.111-11",
+                      // textFormFildKey: nomeKey,
+                      // onchange: (p0) {
+                      //   setState(() {});
+                      //   nomeKey.currentState?.validate();
+                      // },
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ]),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.03,
+                          vertical: 0),
+                      // controller: nomeController,
+                      enable: true,
+                      click: () {
+                        // setState(() {
+                        //   alterado = true;
+                        // });
+                      }),
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      fillColor: MaterialStateProperty.all(Color(0xFF198A68)),
+                      value: checkboxValue,
+                      onChanged: (value) => setState(() {
+                        checkboxValue = value!;
+                      }),
+                    ),
+                    Text('Sou titular deste cartão')
+                  ],
+                ),
                 Text(
                   'Forma de pagamento',
-                  style: TextStyleService.corSublinhada,
+                  style: TextStyleService(categoryShadow: <Shadow>[
+                    Shadow(
+                        offset: Offset(1.5, 1.5),
+                        color: Color.fromRGBO(126, 244, 209, 0.72))
+                  ]).corSublinhada
                 ),
                 InkWell(
                     onTap: () async {

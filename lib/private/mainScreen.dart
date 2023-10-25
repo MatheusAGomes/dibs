@@ -19,7 +19,7 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
-import '../widget/modalPerfil.dart';
+import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
 class MainScreen extends StatefulWidget {
@@ -49,14 +49,16 @@ class _MainScreenState extends State<MainScreen> {
           automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Image.asset('assets/images/logoDibs.png'),
+          title: SvgPicture.asset("assets/images/logoDibs.svg",
+            width: 85),
+          titleSpacing: 21,
           actions: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: PopupMenuButton(
                   constraints:
-                      const BoxConstraints.expand(width: 150, height: 170),
-                  shape: const RoundedRectangleBorder(
+                      const BoxConstraints.expand(width: 180, height: 170),
+                  shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   icon: const Icon(
                     Icons.person,
@@ -66,13 +68,10 @@ class _MainScreenState extends State<MainScreen> {
                   onSelected: (value) {
                     switch (value) {
                       case 'MeuPerfil':
-                        showModalBottomSheet<void>(
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const ModalPerfil();
-                          },
-                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MeuPerfil()));
                         break;
 
                       case 'MeusCartões':
@@ -226,7 +225,11 @@ class _MainScreenState extends State<MainScreen> {
                   Row(
                     children: [
                       Text('Eventos mais procurados',
-                          style: TextStyleService.corSublinhada),
+                          style: TextStyleService(categoryShadow: <Shadow>[
+                            Shadow(
+                                offset: Offset(1.5, 1.5),
+                                color: Color.fromRGBO(126, 244, 209, 0.72))
+                          ]).corSublinhada),
                     ],
                   ),
                   SizedBox(
@@ -237,6 +240,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: ListView.builder(
                       itemCount: listaFiltrada.length,
                       scrollDirection: Axis.horizontal,
+                      clipBehavior: Clip.none,
                       itemBuilder: (context, index) {
                         return BannerPrincipal(
                           id: listaFiltrada[index].id!,
@@ -256,7 +260,11 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Text(
                         'Próximos a você',
-                        style: TextStyleService.corSublinhada,
+                        style: TextStyleService(categoryShadow: <Shadow>[
+                          Shadow(
+                              offset: Offset(1.5, 1.5),
+                              color: Color.fromRGBO(126, 244, 209, 0.72))
+                        ]).corSublinhada
                       ),
                     ],
                   ),
@@ -285,7 +293,11 @@ class _MainScreenState extends State<MainScreen> {
                     children: [
                       Text(
                         'Categorias',
-                        style: TextStyleService.corSublinhada,
+                        style: TextStyleService(categoryShadow: <Shadow>[
+                          Shadow(
+                              offset: Offset(1.5, 1.5),
+                              color: Color.fromRGBO(126, 244, 209, 0.72))
+                        ]).corSublinhada
                       ),
                     ],
                   ),
