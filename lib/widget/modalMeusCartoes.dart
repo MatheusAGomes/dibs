@@ -61,6 +61,11 @@ class ModalMeusCartoes extends StatelessWidget {
                     showModalBottomSheet<void>(
                       isScrollControlled: true,
                       context: context,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(10)),
+                      ),
                       builder: (BuildContext context) {
                         return ModalNovoCartao();
                       },
