@@ -186,7 +186,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
 
-
+],),
               ButtonPadrao(
                   enable: true, delete: false,
                   width: 0.45, text: "Salvar", click: () {}),

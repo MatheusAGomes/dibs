@@ -221,7 +221,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                showModalBottomSheet(
                                    context: context,
                                    builder: ((context) =>
-                                       ModalEditar()));
+                                       ModalEditar(id: id,)));
                              })
                      ),
                    ],
@@ -269,7 +269,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                          top: Radius.circular(10)),
                                    ),
                                    builder: ((context) =>
-                                       ModalEditar()));
+                                       ModalEditar(id: id,)));
                              })
                      ),
                    ],
