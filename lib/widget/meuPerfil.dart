@@ -182,9 +182,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                     delete: false,
                     width: 0.5,
                     text: "Salvar",
-                    click: () {
-                      print('de');
-                    },
+                    click: () {},
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,

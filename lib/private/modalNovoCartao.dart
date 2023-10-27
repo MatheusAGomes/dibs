@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../shared/functions/utils.dart';
+import '../shared/service/colorService.dart';
+import '../shared/service/textStyle.dart';
+import '../widget/buttonPadrao.dart';
+import '../widget/expandableTextField.dart';
 
 class ModalNovoCartao extends StatefulWidget {
   const ModalNovoCartao({super.key});
@@ -19,220 +26,170 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+        // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 18, bottom: 35),
         child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      const Text(
-                        'Novo cartão',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 20),
+                      Text(
+                        'Novo Cartão',
+                        style: TextStyleService.modalTitle,
                       ),
                       InkWell(
-                        child: const Icon(Icons.close),
+                        child: Icon(
+                            FontAwesomeIcons.xmark,
+                            size: 18),
                         onTap: () {
                           Navigator.pop(context);
                         },
                       ),
                     ],
                   ),
-                  const Divider(),
-                  Row(
-                    children: [
-                      Checkbox(
-                        fillColor: MaterialStateProperty.all(Colors.orange),
-                        value: checkboxValue,
-                        onChanged: (value) => setState(() {
-                          checkboxValue = value!;
-                        }),
-                      ),
-                      const Text('Sou titular deste cartão')
-                    ],
+                  Divider(
+                    color: Color(0x66000000),
+                    thickness: 1,
                   ),
-                  const Row(
-                    children: [Text('Nome')],
+
+
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Nome (como descrito no cartão)',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        ExpandableTextField(
+                          controller: nomeController,
+                            click: () {},
+                            height: 0.06,
+                            hintText: "ALUÍSIO ALBUQUERQUE",
+                            prefixIcon: Icon(
+                              FontAwesomeIcons.solidUser,
+                              size: 16,
+                            ))
+                      ]
                   ),
                   SizedBox(
-                    height: 34,
-                    width: 343,
-                    child: TextFormField(
-                      cursorColor: Colors.grey,
-                      controller: nomeController,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.person,
-                          color: Colors.grey,
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'CPF',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
                         ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 10),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.grey)),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Row(
-                    children: [Text('CPF')],
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 34,
-                        width: 260,
-                        child: TextFormField(
-                          cursorColor: Colors.grey,
+                        ExpandableTextField(
                           controller: cpfController,
-                          decoration: InputDecoration(
-                            prefixIcon: const Icon(
-                              Icons.person,
-                              color: Colors.grey,
-                            ),
-                            contentPadding: const EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: BorderSide(
-                                    width: 1, color: Colors.grey.shade300)),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(7),
-                                borderSide: const BorderSide(
-                                    width: 1, color: Colors.grey)),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  const Row(
-                    children: [Text('Número do cartão')],
+                            click: () {},
+                            height: 0.06,
+                            hintText: "123.456.789-00",
+                            prefixIcon: Icon(
+                              FontAwesomeIcons.solidIdCard,
+                              size: 16,
+                            ))
+                      ]
                   ),
                   SizedBox(
-                    height: 34,
-                    width: 343,
-                    child: TextFormField(
-                      cursorColor: Colors.grey,
-                      controller: numeroController,
-                      decoration: InputDecoration(
-                        prefixIcon: const Icon(
-                          Icons.credit_card,
-                          color: Colors.grey,
-                        ),
-                        contentPadding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 10),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(7),
-                            borderSide:
-                                const BorderSide(width: 1, color: Colors.grey)),
-                      ),
-                    ),
+                    height: MediaQuery.of(context).size.height * 0.005,
                   ),
-                  const SizedBox(
-                    height: 10,
+
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Número do Cartão',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        ExpandableTextField(
+                          controller: numeroController,
+                            click: () {},
+                            height: 0.06,
+                            hintText: "3454 9429 0482 4820",
+                            prefixIcon: Icon(
+                              FontAwesomeIcons.solidCreditCard,
+                              size: 16,
+                            ))
+                      ]
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text('CVC'),
-                          SizedBox(
-                            height: 34,
-                            width: 120,
-                            child: TextFormField(
-                              cursorColor: Colors.grey,
-                              controller: cvcController,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(
-                                  Icons.lock,
-                                  color: Colors.grey,
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide: BorderSide(
-                                        width: 1, color: Colors.grey.shade300)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide: const BorderSide(
-                                        width: 1, color: Colors.grey)),
-                              ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                'CVV',
+                                textAlign: TextAlign.left,
+                                style: TextStyleService.defaultFieldLabel),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.005,
                             ),
-                          ),
-                        ],
+                            ExpandableTextField(
+                                click: () {},
+                                width: 0.42,
+                                height: 0.06,
+                                hintText: "***",
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.lock,
+                                  size: 16,
+                                ))
+                          ]
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text('Validade'),
-                          SizedBox(
-                            height: 34,
-                            width: 120,
-                            child: TextFormField(
-                              cursorColor: Colors.grey,
-                              controller: validadeController,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(
-                                  Icons.calendar_today,
-                                  color: Colors.grey,
-                                ),
-                                contentPadding: const EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide: BorderSide(
-                                        width: 1, color: Colors.grey.shade300)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(7),
-                                    borderSide: const BorderSide(
-                                        width: 1, color: Colors.grey)),
-                              ),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                'Expira em',
+                                textAlign: TextAlign.left,
+                                style: TextStyleService.defaultFieldLabel),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.005,
                             ),
-                          ),
-                        ],
-                      )
+                            ExpandableTextField(
+                                click: () {},
+                                width: 0.42,
+                                height: 0.06,
+                                hintText: "03/29",
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.solidCreditCard,
+                                  size: 16,
+                                ))
+                          ]
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  )
-                ],
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: TextButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all(Colors.orange)),
-                  onPressed: () {},
-                  child: const Text(
-                    'Adicionar cartão',
-                    style: TextStyle(color: Colors.white),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
-                ),
-              ),
+
+
+              ButtonPadrao(
+                  enable: true, delete: false,
+                  width: 0.45, text: "Salvar", click: () {}),
             ],
           ),
         ),

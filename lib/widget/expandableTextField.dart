@@ -24,6 +24,7 @@ class ExpandableTextField extends StatefulWidget{
   final bool? enable;
   List<TextInputFormatter>? inputFormatter;
   final double height;
+  final double width;
 
 
   ExpandableTextField({
@@ -47,6 +48,7 @@ class ExpandableTextField extends StatefulWidget{
     this.enable,
     this.inputFormatter,
     required this.height,
+    this.width = 1
   });
 
 
@@ -59,6 +61,7 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
   Widget build(BuildContext context) {
     return SizedBox(
         height: MediaQuery.of(context).size.height * widget.height,
+        width: MediaQuery.of(context).size.width * widget.width,
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(7),
@@ -67,7 +70,7 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
                 BoxShadow(
                     color: Color(0x40000000),
                     offset: Offset(2,2),
-                    blurRadius: 0.5
+                    blurRadius: 0.3
                 )
               ]
           ),

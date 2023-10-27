@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/auth.dart';
+import '../shared/service/colorService.dart';
+import '../widget/bannerIngressoMarketPlace.dart';
+import '../widget/modalTransferencia.dart';
 
 class CompraFinalizada extends StatefulWidget {
   double total;
