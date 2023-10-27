@@ -3,6 +3,7 @@ import 'package:dibs/models/ticketOrganizer.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../models/modeloRespostaEditTicket.dart';
 import '../models/ticketOutput.dart';
 import '../shared/constance/environment.dart';
 
@@ -19,8 +20,8 @@ abstract class TicketRepository {
   @GET("/{id}")
   Future<TicketOutput> getTicket(@Path('id') String id);
   @PUT("/edit/{id}")
-  Future<HttpResponse<void>> editTicket(
-      @Path('id') String id, @Body() String nome, String cpf);
+  Future<HttpResponse<void>> editTicket(@Path('id') String id,
+      @Body() ModeloRespostaEditTicket respostaEditTicket);
   @PUT("/transfer/{id}")
   Future<HttpResponse<void>> transferTicket(
       @Path('id') String id, @Body() String email);

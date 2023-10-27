@@ -59,7 +59,7 @@ class BannerMeuIngresso extends StatelessWidget {
                     id: a.id,
                     anuncio: anuncio,
                     codigoDoIngresso: a.qrCode,
-                    cpf: UtilBrasilFields.obterCpf(a.cpf),
+                    cpf: a.cpf,
                     fotoDoEvento: image,
                     nomeDoTitular: a.name,
                     status: a.valid,

@@ -1,5 +1,6 @@
 import 'package:dibs/main.dart';
 import 'package:dibs/repositories/ticket-repository.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 
@@ -78,7 +79,12 @@ class _ModalTransferenciaState extends State<ModalTransferencia> {
                 child: InkWell(
                   onTap: () async {
                     await TicketRepository(dio)
-                        .transferTicket(widget.id, email.text);
+                        .transferTicket(widget.id, email.text)
+                        .whenComplete(() {
+                      ToastService.showToastInfo('Ingresso transferido');
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    });
                   },
                   child: Container(
                     decoration: BoxDecoration(

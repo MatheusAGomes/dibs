@@ -1,3 +1,5 @@
+import 'package:dibs/models/modeloRespostaEditTicket.dart';
+import 'package:dibs/private/modalNovoCartao.dart';
 import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
@@ -116,7 +118,10 @@ class _ModalEditarState extends State<ModalEditar> {
                 child: InkWell(
                   onTap: () async {
                     await TicketRepository(dio)
-                        .editTicket(widget.id, nome.text, cpf.text)
+                        .editTicket(
+                            widget.id,
+                            ModeloRespostaEditTicket(
+                                name: nome.text, cpf: cpf.text))
                         .whenComplete(() {
                       ToastService.showToastInfo(
                           'Sucesso alterado com sucesso');

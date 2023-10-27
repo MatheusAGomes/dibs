@@ -96,13 +96,13 @@ class _TicketRepository implements TicketRepository {
   @override
   Future<HttpResponse<void>> editTicket(
     id,
-    nome,
-    cpf,
+    respostaEditTicket,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = nome;
+    final _data = <String, dynamic>{};
+    _data.addAll(respostaEditTicket.toJson());
     final _result =
         await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(Options(
       method: 'PUT',
