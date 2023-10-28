@@ -72,7 +72,6 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                     child: SizedBox(
-                      height: 60 * (widget.resumoDaCompra.length).toDouble(),
                       child: Column(
                         children: [
                           Column(

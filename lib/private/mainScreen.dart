@@ -166,7 +166,7 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             InkWell(
-                              onTap: () {
+                              onTap: () async {
                                 auth.deslogar();
                                 Navigator.pop(context);
                               },

@@ -81,9 +81,9 @@ class Auth with ChangeNotifier {
     }
   }
 
-  void deslogar() {
+  void deslogar() async {
     _token = null;
-    Store.remove('auth');
+    await Store.remove('auth');
     notifyListeners();
   }
 }

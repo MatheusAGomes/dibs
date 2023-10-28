@@ -51,7 +51,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                     itemCount: widget.meuIngressos.length,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        padding: EdgeInsets.symmetric(vertical: 10),
                         child: InkWell(
                             onTap: () {
                               showModalBottomSheet<void>(

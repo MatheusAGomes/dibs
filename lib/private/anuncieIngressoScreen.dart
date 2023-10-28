@@ -41,9 +41,24 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
-          future: TicketRepository(dio).getTickets(),
+          future: Future.wait([
+            TicketRepository(dio).getTickets(),
+            TicketRepository(dio).getSoldTickets()
+          ]),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              List<MeuIngressoBanner> meusingressosavenda = snapshot.data![0]
+                  .where(
+                    (element) => element.forSale,
+                  )
+                  .toList();
+              List<MeuIngressoBanner> meusingressosparavender =
+                  snapshot.data![0]
+                      .where(
+                        (element) => element.forSale == false,
+                      )
+                      .toList();
+              List<MeuIngressoBanner> meusIngressosVendidos = snapshot.data![1];
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 22),
                 child: SingleChildScrollView(
@@ -126,7 +141,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                       context: context,
                                       builder: (BuildContext context) {
                                         return ModalMeusIngressosAnuncio(
-                                          meuIngressos: a,
+                                          meuIngressos: meusingressosparavender,
                                         );
                                       },
                                     );
@@ -167,32 +182,33 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   height: MediaQuery.of(context).size.height,
                                   child: ListView.builder(
                                     scrollDirection: Axis.vertical,
-                                    itemCount: snapshot.data!.length,
+                                    itemCount: meusingressosavenda.length,
                                     itemBuilder: (context, index) {
-                                      if (snapshot.data![index].forSale)
-                                        return Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: BannerMeuIngresso(
-                                            id: snapshot.data![index].id,
-                                            local:
-                                                snapshot.data![index].address,
-                                            ativo: snapshot.data![index].valid,
-                                            empresa: false,
-                                            anuncio: true,
-                                            image: AssetImage(
-                                                'assets/images/PericlesEx.png'),
-                                            titulo:
-                                                snapshot.data![index].eventName,
-                                            data:
-                                                snapshot.data![index].startDate,
-                                            hora: snapshot.data![index].time!,
-                                            lote: 'Lote',
-                                            tipo: 'Meia Entrada',
-                                            corBanner: Colors.green,
-                                            corDoLote: Colors.green.shade900,
-                                          ),
-                                        );
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        child: BannerMeuIngresso(
+                                          id: meusingressosavenda[index].id,
+                                          local: meusingressosavenda[index]
+                                              .address,
+                                          ativo:
+                                              meusingressosavenda[index].valid,
+                                          empresa: false,
+                                          anuncio: true,
+                                          image: AssetImage(
+                                              'assets/images/PericlesEx.png'),
+                                          titulo: meusingressosavenda[index]
+                                              .eventName,
+                                          data: meusingressosavenda[index]
+                                              .startDate,
+                                          hora:
+                                              meusingressosavenda[index].time!,
+                                          lote: 'Lote',
+                                          tipo: 'Meia Entrada',
+                                          corBanner: Colors.green,
+                                          corDoLote: Colors.green.shade900,
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),
@@ -204,32 +220,33 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   height: MediaQuery.of(context).size.height,
                                   child: ListView.builder(
                                     scrollDirection: Axis.vertical,
-                                    itemCount: snapshot.data!.length,
+                                    itemCount: meusIngressosVendidos!.length,
                                     itemBuilder: (context, index) {
-                                      if (!snapshot.data![index].forSale)
-                                        return Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: BannerMeuIngresso(
-                                            id: snapshot.data![index].id,
-                                            local:
-                                                snapshot.data![index].address,
-                                            ativo: snapshot.data![index].valid,
-                                            empresa: false,
-                                            anuncio: true,
-                                            image: AssetImage(
-                                                'assets/images/PericlesEx.png'),
-                                            titulo:
-                                                snapshot.data![index].eventName,
-                                            data:
-                                                snapshot.data![index].startDate,
-                                            hora: snapshot.data![index].time!,
-                                            lote: 'Lote',
-                                            tipo: 'Meia Entrada',
-                                            corBanner: Colors.green,
-                                            corDoLote: Colors.green.shade900,
-                                          ),
-                                        );
+                                      return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        child: BannerMeuIngresso(
+                                          id: meusIngressosVendidos[index].id,
+                                          local: meusIngressosVendidos[index]
+                                              .address,
+                                          ativo: meusIngressosVendidos[index]
+                                              .valid,
+                                          empresa: false,
+                                          anuncio: true,
+                                          image: AssetImage(
+                                              'assets/images/PericlesEx.png'),
+                                          titulo: meusIngressosVendidos[index]
+                                              .eventName,
+                                          data: meusIngressosVendidos[index]
+                                              .startDate,
+                                          hora: meusIngressosVendidos[index]
+                                              .time!,
+                                          lote: 'Lote',
+                                          tipo: 'Meia Entrada',
+                                          corBanner: Colors.green,
+                                          corDoLote: Colors.green.shade900,
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),

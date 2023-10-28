@@ -38,4 +38,6 @@ abstract class TicketRepository {
   @PUT("/remove-announce/{ticketId")
   Future<HttpResponse<void>> removeAnnounceTicket(
       @Path('ticketId') String idDoEvento);
+  @GET("/sold-tickets")
+  Future<List<MeuIngressoBanner>> getSoldTickets();
 }

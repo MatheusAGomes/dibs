@@ -17,9 +17,9 @@ bool checkboxValue = false;
 TextEditingController nomeController = TextEditingController();
 
 String? formadePagamento;
+TextEditingController valor = TextEditingController(text: '');
 
 class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
-  TextEditingController valor = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -163,7 +163,6 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                             .then((value) => ToastService.showToastInfo(
                                   'Ingresso anunciado',
                                 ));
-                        Navigator.pop(context);
                         Navigator.pop(context);
                         Navigator.pop(context);
                       },
