@@ -1,5 +1,7 @@
 import 'package:dibs/models/meuIngressoBanner.dart';
+import 'package:dibs/models/ticketClientInput.dart';
 import 'package:dibs/models/ticketOrganizer.dart';
+import 'package:dibs/models/ticketsForSale.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -25,4 +27,15 @@ abstract class TicketRepository {
   @PUT("/transfer/{id}")
   Future<HttpResponse<void>> transferTicket(
       @Path('id') String id, @Body() String email);
+  @GET("/announced-tickets/{id}")
+  Future<List<TicketForSale>> getTicketForSale(@Path('id') String idDoEvento);
+  @POST("/buy/client")
+  Future<HttpResponse<void>> buyTicketFromClient(
+      @Body() TicketClientInput ticketOrganizer);
+  @PUT("/announce/{id}")
+  Future<HttpResponse<void>> announceTicket(
+      @Path('id') String idDoEvento, @Body() double price);
+  @PUT("/remove-announce/{ticketId")
+  Future<HttpResponse<void>> removeAnnounceTicket(
+      @Path('ticketId') String idDoEvento);
 }

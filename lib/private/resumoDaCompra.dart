@@ -7,13 +7,19 @@ import 'package:flutter/material.dart';
 
 import '../main.dart';
 import '../models/resumoDaCompraString.dart';
+import '../models/ticketClientInput.dart';
 import '../repositories/ticket-repository.dart';
 
 class ResumoDaCompra extends StatefulWidget {
-  List<TicketLote> ticketInfo;
+  List<TicketLote>? ticketInfo;
+  TicketClientInput? ticketOrganizer;
   List<ResumoDaCompraString> resumoDaCompra;
-
-  ResumoDaCompra({required this.ticketInfo, required this.resumoDaCompra});
+  bool compraComOrganizacao;
+  ResumoDaCompra(
+      {required this.ticketInfo,
+      required this.resumoDaCompra,
+      required this.compraComOrganizacao,
+      required this.ticketOrganizer});
 
   @override
   State<ResumoDaCompra> createState() => _ResumoDaCompraState();
@@ -22,8 +28,6 @@ class ResumoDaCompra extends StatefulWidget {
 class _ResumoDaCompraState extends State<ResumoDaCompra> {
   @override
   Widget build(BuildContext context) {
-    print(widget.ticketInfo);
-
     bool checkboxValue = false;
     return Scaffold(
       appBar: AppBar(
@@ -52,14 +56,12 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Resumo da compra',
-                  style: TextStyleService(categoryShadow: <Shadow>[
-                    Shadow(
-                        offset: Offset(1.5, 1.5),
-                        color: Color.fromRGBO(126, 244, 209, 0.72))
-                  ]).corSublinhada
-                ),
+                Text('Resumo da compra',
+                    style: TextStyleService(categoryShadow: <Shadow>[
+                      Shadow(
+                          offset: Offset(1.5, 1.5),
+                          color: Color.fromRGBO(126, 244, 209, 0.72))
+                    ]).corSublinhada),
                 const Text('Ingressos',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 Card(
@@ -128,9 +130,13 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                 Center(
                   child: InkWell(
                     onTap: () async {
-                      print(widget.ticketInfo);
-                      final a = TicketRepository(dio).buyTicket(
-                          TicketOrganizer(ticketBatch: widget.ticketInfo));
+                      if (widget.compraComOrganizacao) {
+                        final a = await TicketRepository(dio).buyTicket(
+                            TicketOrganizer(ticketBatch: widget.ticketInfo!));
+                      } else {
+                        final b = await TicketRepository(dio)
+                            .buyTicketFromClient(widget.ticketOrganizer!);
+                      }
 
                       Navigator.push(
                           context,

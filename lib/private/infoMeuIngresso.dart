@@ -1,3 +1,4 @@
+import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/widget/modalEditar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -5,6 +6,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
+import '../main.dart';
 import '../shared/service/colorService.dart';
 import '../shared/service/textStyle.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
@@ -204,76 +206,81 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                     ),
-                 anuncio ? Row(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   children: [
-                     SizedBox(
-                         width: MediaQuery.of(context).size.width * 0.8,
-                         child: ButtonPadrao(
-                             enable: status,
-                             delete: true,
-                             width: 0.5,
-                             text: 'Cancelar Anúncio',
-                             click: () {
-                               if (status != true) {
-                                 return;
-                               }
-                               showModalBottomSheet(
-                                   context: context,
-                                   builder: ((context) =>
-                                       ModalEditar(id: id,)));
-                             })
-                     ),
-                   ],
-                 )  : Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     SizedBox(
-                         width: MediaQuery.of(context).size.width * 0.38,
-                         child: ButtonPadrao(
-                             enable: status,
-                             delete: false,
-                             width: 0.5,
-                             text: 'Transferir',
-                             click: () {
-                               if (status != true) {
-                                 return;
-                               }
-                               showModalBottomSheet(
-                                   context: context,
-                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                   shape: const RoundedRectangleBorder(
-                                     borderRadius: BorderRadius.vertical(
-                                         top: Radius.circular(10)),
-                                   ),
-                                   builder: ((context) =>
-                                       ModalTransferencia()));
-                             })
-                     ),
-                     SizedBox(
-                         width: MediaQuery.of(context).size.width * 0.38,
-                         child: ButtonPadrao(
-                             enable: status,
-                             delete: false,
-                             width: 0.5,
-                             text: 'Editar',
-                             click: () {
-                               if (status != true) {
-                                 return;
-                               }
-                               showModalBottomSheet(
-                                   context: context,
-                                   clipBehavior: Clip.antiAliasWithSaveLayer,
-                                   shape: const RoundedRectangleBorder(
-                                     borderRadius: BorderRadius.vertical(
-                                         top: Radius.circular(10)),
-                                   ),
-                                   builder: ((context) =>
-                                       ModalEditar(id: id,)));
-                             })
-                     ),
-                   ],
-                 ),
+                    anuncio
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.8,
+                                  child: ButtonPadrao(
+                                      enable: status,
+                                      delete: true,
+                                      width: 0.5,
+                                      text: 'Cancelar Anúncio',
+                                      click: () async {
+                                        if (status != true) {
+                                          return;
+                                        }
+                                        await TicketRepository(dio)
+                                            .removeAnnounceTicket(id);
+                                      })),
+                            ],
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.38,
+                                  child: ButtonPadrao(
+                                      enable: status,
+                                      delete: false,
+                                      width: 0.5,
+                                      text: 'Transferir',
+                                      click: () {
+                                        if (status != true) {
+                                          return;
+                                        }
+                                        showModalBottomSheet(
+                                            context: context,
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            shape: const RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.vertical(
+                                                      top: Radius.circular(10)),
+                                            ),
+                                            builder: ((context) =>
+                                                ModalTransferencia()));
+                                      })),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.38,
+                                  child: ButtonPadrao(
+                                      enable: status,
+                                      delete: false,
+                                      width: 0.5,
+                                      text: 'Editar',
+                                      click: () {
+                                        if (status != true) {
+                                          return;
+                                        }
+                                        showModalBottomSheet(
+                                            context: context,
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            shape: const RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.vertical(
+                                                      top: Radius.circular(10)),
+                                            ),
+                                            builder: ((context) => ModalEditar(
+                                                  id: id,
+                                                )));
+                                      })),
+                            ],
+                          ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.04,
                     ),

@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
-
 class BannerCompraIngressoTerceiro extends StatefulWidget {
   String? tipoDoIngresso;
   String? valor;
   String? nome;
+  int? quantidadeDisponivel;
+  VoidCallback add;
+  VoidCallback less;
   BannerCompraIngressoTerceiro(
-      {super.key, required this.tipoDoIngresso, required this.valor, required this.nome});
+      {super.key,
+      required this.add,
+      required this.less,
+      required this.tipoDoIngresso,
+      required this.valor,
+      required this.nome,
+      required this.quantidadeDisponivel});
 
   @override
   State<BannerCompraIngressoTerceiro> createState() =>
@@ -27,7 +35,7 @@ class _BannerCompraIngressoTerceiroState
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SizedBox(
-          height: 80,
+          height: 90,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -39,7 +47,8 @@ class _BannerCompraIngressoTerceiroState
                     children: [Text(widget.nome!), const Icon(Icons.lock)],
                   ),
                   Text(widget.tipoDoIngresso!),
-                  const Text('R\$ 222,00')
+                  Text(widget.valor!),
+                  Text('Qnt. diponivel: ${widget.quantidadeDisponivel}')
                 ],
               ),
               Container(
@@ -52,6 +61,7 @@ class _BannerCompraIngressoTerceiroState
                       onTap: () => setState(() {
                         if (quantidade > 0) {
                           quantidade--;
+                          widget.less();
                         }
                       }),
                       child: Container(
@@ -80,7 +90,10 @@ class _BannerCompraIngressoTerceiroState
                     ),
                     InkWell(
                       onTap: () => setState(() {
-                        quantidade++;
+                        if (quantidade < widget.quantidadeDisponivel!) {
+                          quantidade++;
+                          widget.add();
+                        }
                       }),
                       child: Container(
                         height: 30,

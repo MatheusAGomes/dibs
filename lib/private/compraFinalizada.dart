@@ -9,6 +9,7 @@ import '../widget/modalTransferencia.dart';
 
 class CompraFinalizada extends StatefulWidget {
   double total;
+
   CompraFinalizada({super.key, required this.total});
 
   @override

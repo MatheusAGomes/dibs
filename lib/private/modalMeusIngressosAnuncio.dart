@@ -2,8 +2,12 @@ import 'package:dibs/private/modalConfigAnuncio.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:flutter/material.dart';
 
+import '../models/meuIngressoBanner.dart';
+import '../widget/bannerCategoriaEvento.dart';
+
 class ModalMeusIngressosAnuncio extends StatefulWidget {
-  const ModalMeusIngressosAnuncio({super.key});
+  List<MeuIngressoBanner> meuIngressos;
+  ModalMeusIngressosAnuncio({super.key, required this.meuIngressos});
 
   @override
   State<ModalMeusIngressosAnuncio> createState() =>
@@ -44,37 +48,30 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                   height: MediaQuery.of(context).size.height * 0.67,
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    itemCount: 5,
+                    itemCount: widget.meuIngressos.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: InkWell(
-                          onTap: () {
-                            showModalBottomSheet<void>(
-                              isScrollControlled: true,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return const modalConfigAnuncio();
-                              },
-                            );
-                          },
-                          child: BannerMeuIngresso(
-                            id: 'd',
-                            local: 'C',
-                            ativo: true,
-                            empresa: false,
-                            anuncio: true,
-                            image: const AssetImage(
-                                'assets/images/PericlesEx.png'),
-                            titulo: 'Churrasquinho menos é mais',
-                            data: '20/12/2020',
-                            hora: '19:00',
-                            lote: '1° Lote',
-                            tipo: 'Meia-Entrada',
-                            corBanner: Colors.green,
-                            corDoLote: Colors.green.shade900,
-                          ),
-                        ),
+                            onTap: () {
+                              showModalBottomSheet<void>(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return modalConfigAnuncio(
+                                    idDoEvento: widget.meuIngressos[index].id,
+                                  );
+                                },
+                              );
+                            },
+                            child: BannerCategoriaEvento(
+                              titulo: widget.meuIngressos[index].eventName,
+                              corUm: Colors.green,
+                              corDois: Colors.green,
+                              data: widget.meuIngressos[index].startDate,
+                              hora: widget.meuIngressos[index].time!,
+                              image: AssetImage('assets/images/PericlesEx.png'),
+                            )),
                       );
                     },
                   ),

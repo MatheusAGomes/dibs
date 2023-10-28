@@ -1,8 +1,13 @@
+import 'package:dibs/repositories/ticket-repository.dart';
+import 'package:dibs/shared/service/toastService.dart';
+import 'package:dibs/widget/expandableTextField.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
 
 class modalConfigAnuncio extends StatefulWidget {
-  const modalConfigAnuncio({super.key});
+  String idDoEvento;
+  modalConfigAnuncio({required this.idDoEvento});
 
   @override
   State<modalConfigAnuncio> createState() => _modalConfigAnuncioState();
@@ -14,6 +19,7 @@ TextEditingController nomeController = TextEditingController();
 String? formadePagamento;
 
 class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
+  TextEditingController valor = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -40,64 +46,6 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                   ],
                 ),
                 const Divider(),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.22,
-                  child: ListView.builder(
-                    itemCount: 5,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        height: MediaQuery.of(context).size.height * 0.08,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(11),
-                            color: const Color(0xff2CAA84)),
-                        child: const Padding(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Tipo do ingresso',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w800),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          'Nome do vendedor',
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'R\$ 123.00',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                )
-                              ]),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                const Divider(),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -122,7 +70,7 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                   ],
                 ),
                 const Divider(),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
@@ -130,14 +78,27 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                       style:
                           TextStyle(fontWeight: FontWeight.w900, fontSize: 17),
                     ),
-                    Text("R\$ 123.00"),
+                    Row(
+                      children: [
+                        Text("R\$ "),
+                        Container(
+                          width: 50,
+                          child: ExpandableTextField(
+                            click: () {},
+                            height: 0.05,
+                            controller: nomeController,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
                 const Divider(),
                 Row(
                   children: [
                     Checkbox(
-                      fillColor: MaterialStateProperty.all((const Color(0xff2CAA84))),
+                      fillColor:
+                          MaterialStateProperty.all((const Color(0xff2CAA84))),
                       value: checkboxValue,
                       onChanged: (value) => setState(() {
                         checkboxValue = value!;
@@ -189,11 +150,22 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                   child: TextButton(
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
-                              checkboxValue ? const Color(0xff198A68) : Colors.grey)),
-                      onPressed: () {
+                              checkboxValue
+                                  ? const Color(0xff198A68)
+                                  : Colors.grey)),
+                      onPressed: () async {
                         if (checkboxValue != true) {
                           return;
                         }
+                        await TicketRepository(dio)
+                            .announceTicket(widget.idDoEvento,
+                                double.parse(nomeController.text))
+                            .then((value) => ToastService.showToastInfo(
+                                  'Ingresso anunciado',
+                                ));
+                        Navigator.pop(context);
+                        Navigator.pop(context);
+                        Navigator.pop(context);
                       },
                       child: const Text(
                         'Anunciar',

@@ -132,3 +132,10 @@ String limitTo14Words(String text) {
     return '${first14Words.join(' ')}...';
   }
 }
+
+String addEllipsis(String inputString, int maxLength) {
+  if (inputString.length <= maxLength) {
+    return inputString; // A string já é curta o suficiente, não é necessário adicionar reticências.
+  }
+  return inputString.substring(0, maxLength) + "...";
+}

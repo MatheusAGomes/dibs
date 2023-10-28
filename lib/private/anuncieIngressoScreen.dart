@@ -18,6 +18,7 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 import '../main.dart';
+import '../models/meuIngressoBanner.dart';
 import '../repositories/ticket-repository.dart';
 
 class AnuncieIngressoScreen extends StatefulWidget {
@@ -114,15 +115,22 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                           ? Column(
                               children: [
                                 InkWell(
-                                  onTap: () => showModalBottomSheet<void>(
-                                    isScrollControlled: true,
-                                    enableDrag: true,
-                                    isDismissible: true,
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return ModalMeusIngressosAnuncio();
-                                    },
-                                  ),
+                                  onTap: () async {
+                                    List<MeuIngressoBanner> a =
+                                        await TicketRepository(dio)
+                                            .getTickets();
+                                    showModalBottomSheet<void>(
+                                      isScrollControlled: true,
+                                      enableDrag: true,
+                                      isDismissible: true,
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return ModalMeusIngressosAnuncio(
+                                          meuIngressos: a,
+                                        );
+                                      },
+                                    );
+                                  },
                                   child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -179,7 +187,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                             data:
                                                 snapshot.data![index].startDate,
                                             hora: snapshot.data![index].time!,
-                                            lote: 'Lote?',
+                                            lote: 'Lote',
                                             tipo: 'Meia Entrada',
                                             corBanner: Colors.green,
                                             corDoLote: Colors.green.shade900,
@@ -196,28 +204,32 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   height: MediaQuery.of(context).size.height,
                                   child: ListView.builder(
                                     scrollDirection: Axis.vertical,
-                                    itemCount: 5,
+                                    itemCount: snapshot.data!.length,
                                     itemBuilder: (context, index) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 10),
-                                        child: BannerMeuIngresso(
-                                          id: '1',
-                                          local: 'C',
-                                          ativo: true,
-                                          empresa: false,
-                                          anuncio: false,
-                                          image: AssetImage(
-                                              'assets/images/PericlesEx.png'),
-                                          titulo: 'Churrasquinho menos é mais',
-                                          data: '20/12/2020',
-                                          hora: '19:00',
-                                          lote: '1° Lote',
-                                          tipo: 'Meia-Entrada',
-                                          corBanner: Colors.green,
-                                          corDoLote: Colors.green.shade900,
-                                        ),
-                                      );
+                                      if (!snapshot.data![index].forSale)
+                                        return Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: BannerMeuIngresso(
+                                            id: snapshot.data![index].id,
+                                            local:
+                                                snapshot.data![index].address,
+                                            ativo: snapshot.data![index].valid,
+                                            empresa: false,
+                                            anuncio: true,
+                                            image: AssetImage(
+                                                'assets/images/PericlesEx.png'),
+                                            titulo:
+                                                snapshot.data![index].eventName,
+                                            data:
+                                                snapshot.data![index].startDate,
+                                            hora: snapshot.data![index].time!,
+                                            lote: 'Lote',
+                                            tipo: 'Meia Entrada',
+                                            corBanner: Colors.green,
+                                            corDoLote: Colors.green.shade900,
+                                          ),
+                                        );
                                     },
                                   ),
                                 ),

@@ -7,6 +7,7 @@ part of 'eventsClient.dart';
 // **************************************************************************
 
 EventsClient _$EventsClientFromJson(Map<String, dynamic> json) => EventsClient(
+      id: json['id'] as String,
       status: json['status'] as String,
       startDate: json['startDate'] as String,
       time: json['time'] as String,
@@ -19,6 +20,7 @@ EventsClient _$EventsClientFromJson(Map<String, dynamic> json) => EventsClient(
 
 Map<String, dynamic> _$EventsClientToJson(EventsClient instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'picture': instance.picture,
       'startDate': instance.startDate,
       'time': instance.time,

@@ -1,10 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'eventsClient.g.dart';
 
 @JsonSerializable()
 class EventsClient {
+  String id;
   String picture;
   String startDate;
   String time;
@@ -15,6 +15,7 @@ class EventsClient {
   String status;
 
   EventsClient({
+    required this.id,
     required this.status,
     required this.startDate,
     required this.time,

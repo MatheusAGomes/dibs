@@ -27,6 +27,7 @@ class BannerSecundario extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return InfoIngressoScreen(
+              id: id,
               lotes: b,
               nomeDoEvento: a.name,
               data: a.startDate,

@@ -12,7 +12,7 @@ MeuIngressoBanner _$MeuIngressoBannerFromJson(Map<String, dynamic> json) =>
       eventId: json['eventId'] as String,
       eventName: json['eventName'] as String,
       address: json['address'] as String,
-      picture: json['picture'] as String,
+      picture: json['picture'] as String?,
       startDate: json['startDate'] as String,
       time: json['time'] as String?,
       valid: json['valid'] as bool,

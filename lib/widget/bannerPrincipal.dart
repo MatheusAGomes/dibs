@@ -35,6 +35,7 @@ class BannerPrincipal extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return InfoIngressoScreen(
+              id: a.id,
               nomeDoEvento: a.name,
               data: a.startDate,
               descricao: a.description,

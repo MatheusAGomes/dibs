@@ -9,7 +9,7 @@ class MeuIngressoBanner {
   String id;
   String eventName;
   String eventId;
-  String picture;
+  String? picture;
   String address;
   String startDate;
   String? time;

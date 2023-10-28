@@ -1,17 +1,21 @@
 import 'package:dibs/models/resumoDaCompraString.dart';
 import 'package:dibs/models/ticketInfoInput.dart';
 import 'package:dibs/models/ticketLote.dart';
+import 'package:dibs/models/ticketsForSale.dart';
 import 'package:dibs/private/ingressosAnunciados.dart';
 import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/repositories/loteEvent-repository.dart';
+import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/shared/functions/utils.dart';
 import 'package:dibs/widget/bannerCompraIngresso.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
 import '../models/lote.dart';
 import 'infoPedidoScreen.dart';
 
 class InfoIngressoScreen extends StatefulWidget {
+  String id;
   String? nomeDoEvento;
   String? data;
   String? hora;
@@ -20,6 +24,7 @@ class InfoIngressoScreen extends StatefulWidget {
   List<Lote> lotes;
   InfoIngressoScreen(
       {super.key,
+      required this.id,
       required this.nomeDoEvento,
       required this.data,
       required this.descricao,
@@ -83,13 +88,16 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                     height: 10,
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
+                      List<TicketForSale> tickets = await TicketRepository(dio)
+                          .getTicketForSale(widget.id);
                       showModalBottomSheet(
                           isScrollControlled: true,
                           context: context,
                           useSafeArea: true,
-                          builder: (context) =>
-                              const IngressosAnunciadosScreen());
+                          builder: (context) => IngressosAnunciadosScreen(
+                                tickets: tickets,
+                              ));
                     },
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -229,23 +237,6 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                       ],
                     );
                   })),
-                  // const Row(
-                  //   children: [
-                  //     Text(
-                  //       'Pista - 4° Lote',
-                  //       style: TextStyle(
-                  //           fontWeight: FontWeight.w900, fontSize: 20),
-                  //     ),
-                  //   ],
-                  // ),
-                  // Column(
-                  //     children: List.generate(2, (index) {
-                  //   return BannerCompraIngresso(
-                  //       tipoDoIngresso: 'Inteira', valor: '540.00');
-                  // })),
-                  // const SizedBox(
-                  //   height: 10,
-                  // ),
                   Center(
                     child: InkWell(
                       onTap: () {
@@ -254,8 +245,10 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => InfoPedidoScreen(
+                                      compraComOrganizacao: true,
                                       resumoDaCompra: listaDeIngressos,
                                       ticketInfo: listaFinal,
+                                      ticketOrganizer: null,
                                     )));
                       },
                       child: Container(

@@ -13,14 +13,21 @@ import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../models/ticketClientInput.dart';
 import '../shared/functions/utils.dart';
 import '../widget/meuCartaoComponente.dart';
 
 class InfoPedidoScreen extends StatefulWidget {
-  List<TicketLote> ticketInfo;
+  List<TicketLote>? ticketInfo;
+  TicketClientInput? ticketOrganizer;
   List<ResumoDaCompraString> resumoDaCompra;
+  bool compraComOrganizacao;
   InfoPedidoScreen(
-      {super.key, required this.ticketInfo, required this.resumoDaCompra});
+      {super.key,
+      required this.ticketOrganizer,
+      required this.ticketInfo,
+      required this.resumoDaCompra,
+      required this.compraComOrganizacao});
 
   @override
   State<InfoPedidoScreen> createState() => _InfoPedidoScreenState();
@@ -61,94 +68,12 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Informações dos ingressos',
-                  style: TextStyleService(categoryShadow: <Shadow>[
-                    Shadow(
-                        offset: Offset(1.5, 1.5),
-                        color: Color.fromRGBO(126, 244, 209, 0.72))
-                  ]).corSublinhada
-                ),
-                Text('Camarote - 4° lote',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                Text(
-                  'Inteira - R\$ 400,00',
-                  style: TextStyle(color: Colors.grey),
-                ),
-                Text('Nome'),
-                SizedBox(
-                  height: 35,
-                  child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.person),
-                      hintText: "Aluísio de Albuquerque",
-                      // textFormFildKey: nomeKey,
-                      // onchange: (p0) {
-                      //   setState(() {});
-                      //   nomeKey.currentState?.validate();
-                      // },
-                      validator: Validatorless.multiple([
-                        Validatorless.required("Campo obrigatório"),
-                        Validatorless.max(
-                            255, "Número máximo de caracteres é 255")
-                      ]),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width * 0.03,
-                          vertical: 0),
-                      controller: nomeController,
-                      enable: true,
-                      click: () {
-                        // setState(() {
-                        //   alterado = true;
-                        // });
-                      }),
-                ),
-                Text('CPF'),
-                SizedBox(
-                  height: 35,
-                  child: TextFieldPadrao(
-                      prefixIcon: Icon(Icons.badge),
-                      hintText: "111.111.111-11",
-                      // textFormFildKey: nomeKey,
-                      // onchange: (p0) {
-                      //   setState(() {});
-                      //   nomeKey.currentState?.validate();
-                      // },
-                      validator: Validatorless.multiple([
-                        Validatorless.required("Campo obrigatório"),
-                        Validatorless.max(
-                            255, "Número máximo de caracteres é 255")
-                      ]),
-                      padding: EdgeInsets.symmetric(
-                          horizontal: MediaQuery.of(context).size.width * 0.03,
-                          vertical: 0),
-                      // controller: nomeController,
-                      enable: true,
-                      click: () {
-                        // setState(() {
-                        //   alterado = true;
-                        // });
-                      }),
-                ),
-                Row(
-                  children: [
-                    Checkbox(
-                      fillColor: MaterialStateProperty.all(Color(0xFF198A68)),
-                      value: checkboxValue,
-                      onChanged: (value) => setState(() {
-                        checkboxValue = value!;
-                      }),
-                    ),
-                    Text('Sou titular deste cartão')
-                  ],
-                ),
-                Text(
-                  'Forma de pagamento',
-                  style: TextStyleService(categoryShadow: <Shadow>[
-                    Shadow(
-                        offset: Offset(1.5, 1.5),
-                        color: Color.fromRGBO(126, 244, 209, 0.72))
-                  ]).corSublinhada
-                ),
+                Text('Forma de pagamento',
+                    style: TextStyleService(categoryShadow: <Shadow>[
+                      Shadow(
+                          offset: Offset(1.5, 1.5),
+                          color: Color.fromRGBO(126, 244, 209, 0.72))
+                    ]).corSublinhada),
                 InkWell(
                     onTap: () async {
                       final cards = await CardRepository(dio).getCards();
@@ -224,6 +149,9 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ResumoDaCompra(
+                                    compraComOrganizacao:
+                                        widget.compraComOrganizacao,
+                                    ticketOrganizer: widget.ticketOrganizer,
                                     resumoDaCompra: widget.resumoDaCompra,
                                     ticketInfo: widget.ticketInfo,
                                   )));
