@@ -22,22 +22,37 @@ class BannerSecundario extends StatelessWidget {
       onTap: () async {
         EventsClient a = await EventsClientRepository(dio).getListEvents(id);
         List<Lote> b = await LoteRepository(dio).getLotes(id);
-        showModalBottomSheet<void>(
-          isScrollControlled: true,
-          context: context,
-          builder: (BuildContext context) {
-            return InfoIngressoScreen(
-              id: id,
-              lotes: b,
-              nomeDoEvento: a.name,
-              data: a.startDate,
-              local: a.address,
-              descricao: a.description,
-              fotoDoEvento: image,
-              hora: a.time,
-            );
-          },
-        );
+
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => InfoIngressoScreen(
+                  id: a.id,
+                  nomeDoEvento: a.name,
+                  data: a.startDate,
+                  descricao: a.description,
+                  fotoDoEvento: image,
+                  hora: a.time,
+                  local: a.address,
+                  lotes: b,
+                )));
+
+        // showModalBottomSheet<void>(
+        //   isScrollControlled: true,
+        //   context: context,
+        //   builder: (BuildContext context) {
+        //     return InfoIngressoScreen(
+        //       id: id,
+        //       lotes: b,
+        //       nomeDoEvento: a.name,
+        //       data: a.startDate,
+        //       local: a.address,
+        //       descricao: a.description,
+        //       fotoDoEvento: image,
+        //       hora: a.time,
+        //     );
+        //   },
+        // );
       },
       child: Stack(alignment: Alignment.bottomLeft, children: [
         Container(

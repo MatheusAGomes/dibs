@@ -50,170 +50,149 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
     List<TicketLote> listaFinal = [];
     List<ResumoDaCompraString> listaDeIngressos = [];
 
-    return SafeArea(
-      child: Container(
-        color: Colors.white,
-        child: SingleChildScrollView(
-          child: Stack(children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.20,
-                  left: 19,
-                  right: 19),
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.calendarDay,
-                            size: 18,
-                          ),
-                          SizedBox(width: 2),
-                          Text(widget.data!,
-                              style: TextStyleService.eventDateTime)
-                        ],
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Icon(FontAwesomeIcons.solidClock, size: 18),
-                          SizedBox(width: 2),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              widget.hora!,
-                              style: TextStyleService.eventDateTime,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        widget.nomeDoEvento!,
-                        style: TextStyleService.boldSpacing141,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        FontAwesomeIcons.locationDot,
-                        size: 17,
-                        color: ColorService.cinzaBannerIngresso,
-                      ),
-                      SizedBox(width: 4),
-                      Text(widget.local!, style: TextStyleService.eventLocal)
-                    ],
-                  ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.015),
-                  Row(
-                    children: [
-                      Text(limitTo14Words(widget.descricao!),
-                        textAlign: TextAlign.left,
-                        style: TextStyle(letterSpacing: -0.41))],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.015,
-                  ),
-                  InkWell(
-                    onTap: () async {
-                      List<TicketForSale> tickets = await TicketRepository(dio)
-                          .getTicketForSale(widget.id);
-                      showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          useSafeArea: true,
-                          builder: (context) => IngressosAnunciadosScreen(
-                                tickets: tickets,
-                              ));
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                       crossAxisAlignment: CrossAxisAlignment.center,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Container(
+          color: Colors.white,
+          child: SingleChildScrollView(
+            child: Stack(children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.20,
+                    left: 19,
+                    right: 19),
+                child: Column(
+                  children: [
+                    Row(
                       children: [
-                        Transform.rotate(angle: 67 * pi / 180,
-                          child: Icon(
-                            FontAwesomeIcons.ticketSimple,
-                            size: 14,
-                            color: Colors.grey,
-                        )),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(
+                              FontAwesomeIcons.calendarDay,
+                              size: 18,
+                            ),
+                            SizedBox(width: 2),
+                            Text(widget.data!,
+                                style: TextStyleService.eventDateTime)
+                          ],
+                        ),
                         SizedBox(
-                          width: 5,
+                          width: 10,
                         ),
-                        Text(
-                          'Ver ingressos anunciados',
-                          style: TextStyleService.announcedTickets,
-                        ),
-                        SizedBox(
-                          width: 3,
-                        ),
-                        Icon(
-                          FontAwesomeIcons.angleRight,
-                          size: 16,
-                          color: Colors.grey,
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(FontAwesomeIcons.solidClock, size: 18),
+                            SizedBox(width: 2),
+                            Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Text(
+                                widget.hora!,
+                                style: TextStyleService.eventDateTime,
+                              ),
+                            ),
+                          ],
                         )
                       ],
                     ),
-                  ),
-                  Column(
-                      children: List.generate(widget.lotes.length, (index) {
-                    int quantidadeMeia = 0;
-                    int quantidadeInteira = 0;
-                    return Column(
+                    Row(
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              widget.lotes[index].name,
-                              style: TextStyleService.eventBatch,
-                            ),
-                          ],
+                        Text(
+                          widget.nomeDoEvento!,
+                          style: TextStyleService.boldSpacing141,
                         ),
-                        widget.lotes[index].hasHalfPriceTickets
-                            ? BannerCompraIngresso(
-                                tipoDoIngresso: 'Inteira',
-                                valor: (widget.lotes[index].announcedPrice)
-                                    .toString(),
-                                quantidade: quantidadeInteira,
-                                less: () {
-                                  TicketLote a = TicketLote(
-                                      batchId: widget.lotes[index].id,
-                                      ticketInfo: [
-                                        TicketInfoInput(
-                                            name: '',
-                                            cpf: '',
-                                            halfPrice: false,
-                                            isOwner: true)
-                                      ]);
-                                  int c = -1;
-                                  for (int i = 0; i < listaFinal.length; i++) {
-                                    if (listaFinal[i].batchId == a.batchId &&
-                                        listaFinal[i].ticketInfo[0].halfPrice ==
-                                            a.ticketInfo[0].halfPrice) {
-                                      c = i;
-                                      break;
-                                    }
-                                  }
-                                  if (c != -1) listaFinal.removeAt(c);
-                                },
-                                add: () {
-                                  listaDeIngressos.add(ResumoDaCompraString(
-                                      name: widget.lotes[index].name,
-                                      tipo: 'Inteira',
-                                      preco:
-                                          widget.lotes[index].announcedPrice));
-                                  listaFinal.add(
-                                    TicketLote(
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.locationDot,
+                          size: 17,
+                          color: ColorService.cinzaBannerIngresso,
+                        ),
+                        SizedBox(width: 4),
+                        Text(widget.local!, style: TextStyleService.eventLocal)
+                      ],
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.015),
+                    Row(
+                      children: [
+                        Text(limitTo14Words(widget.descricao!),
+                            textAlign: TextAlign.left,
+                            style: TextStyle(letterSpacing: -0.41))
+                      ],
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.015,
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        List<TicketForSale> tickets =
+                            await TicketRepository(dio)
+                                .getTicketForSale(widget.id);
+                        showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            useSafeArea: true,
+                            builder: (context) => IngressosAnunciadosScreen(
+                                  tickets: tickets,
+                                ));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Transform.rotate(
+                              angle: 67 * pi / 180,
+                              child: Icon(
+                                FontAwesomeIcons.ticketSimple,
+                                size: 14,
+                                color: Colors.grey,
+                              )),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            'Ver ingressos anunciados',
+                            style: TextStyleService.announcedTickets,
+                          ),
+                          SizedBox(
+                            width: 3,
+                          ),
+                          Icon(
+                            FontAwesomeIcons.angleRight,
+                            size: 16,
+                            color: Colors.grey,
+                          )
+                        ],
+                      ),
+                    ),
+                    Column(
+                        children: List.generate(widget.lotes.length, (index) {
+                      int quantidadeMeia = 0;
+                      int quantidadeInteira = 0;
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                widget.lotes[index].name,
+                                style: TextStyleService.eventBatch,
+                              ),
+                            ],
+                          ),
+                          widget.lotes[index].hasHalfPriceTickets
+                              ? BannerCompraIngresso(
+                                  tipoDoIngresso: 'Inteira',
+                                  valor: (widget.lotes[index].announcedPrice)
+                                      .toString(),
+                                  quantidade: quantidadeInteira,
+                                  less: () {
+                                    TicketLote a = TicketLote(
                                         batchId: widget.lotes[index].id,
                                         ticketInfo: [
                                           TicketInfoInput(
@@ -221,47 +200,53 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                               cpf: '',
                                               halfPrice: false,
                                               isOwner: true)
-                                        ]),
-                                  );
-                                })
-                            : SizedBox(),
-                        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                        widget.lotes[index].hasHalfPriceTickets
-                            ? BannerCompraIngresso(
-                                tipoDoIngresso: 'Meia entrada',
-                                valor: (widget.lotes[index].announcedPrice / 2)
-                                    .toString(),
-                                quantidade: quantidadeMeia,
-                                less: () {
-                                  TicketLote a = TicketLote(
-                                      batchId: widget.lotes[index].id,
-                                      ticketInfo: [
-                                        TicketInfoInput(
-                                            name: '',
-                                            cpf: '',
-                                            halfPrice: true,
-                                            isOwner: true)
-                                      ]);
-                                  int c = -1;
-                                  for (int i = 0; i < listaFinal.length; i++) {
-                                    if (listaFinal[i].batchId == a.batchId &&
-                                        listaFinal[i].ticketInfo[0].halfPrice ==
-                                            a.ticketInfo[0].halfPrice) {
-                                      c = i;
-                                      break;
+                                        ]);
+                                    int c = -1;
+                                    for (int i = 0;
+                                        i < listaFinal.length;
+                                        i++) {
+                                      if (listaFinal[i].batchId == a.batchId &&
+                                          listaFinal[i]
+                                                  .ticketInfo[0]
+                                                  .halfPrice ==
+                                              a.ticketInfo[0].halfPrice) {
+                                        c = i;
+                                        break;
+                                      }
                                     }
-                                  }
-                                  if (c != -1) listaFinal.removeAt(c);
-                                },
-                                add: () {
-                                  listaDeIngressos.add(ResumoDaCompraString(
-                                      name: widget.lotes[index].name,
-                                      tipo: 'Meia entrada',
-                                      preco:
-                                          widget.lotes[index].announcedPrice /
-                                              2));
-                                  listaFinal.add(
-                                    TicketLote(
+                                    if (c != -1) listaFinal.removeAt(c);
+                                  },
+                                  add: () {
+                                    listaDeIngressos.add(ResumoDaCompraString(
+                                        name: widget.lotes[index].name,
+                                        tipo: 'Inteira',
+                                        preco: widget
+                                            .lotes[index].announcedPrice));
+                                    listaFinal.add(
+                                      TicketLote(
+                                          batchId: widget.lotes[index].id,
+                                          ticketInfo: [
+                                            TicketInfoInput(
+                                                name: '',
+                                                cpf: '',
+                                                halfPrice: false,
+                                                isOwner: true)
+                                          ]),
+                                    );
+                                  })
+                              : SizedBox(),
+                          SizedBox(
+                              height:
+                                  MediaQuery.of(context).size.height * 0.01),
+                          widget.lotes[index].hasHalfPriceTickets
+                              ? BannerCompraIngresso(
+                                  tipoDoIngresso: 'Meia entrada',
+                                  valor:
+                                      (widget.lotes[index].announcedPrice / 2)
+                                          .toString(),
+                                  quantidade: quantidadeMeia,
+                                  less: () {
+                                    TicketLote a = TicketLote(
                                         batchId: widget.lotes[index].id,
                                         ticketInfo: [
                                           TicketInfoInput(
@@ -269,75 +254,131 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                               cpf: '',
                                               halfPrice: true,
                                               isOwner: true)
-                                        ]),
-                                  );
-                                })
-                            : SizedBox(),
-                      ],
-                    );
-                  })),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                  widget.lotes.isNotEmpty ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ButtonPadrao(
-                          text: 'Comprar',
-                          click: () {
-                            print(listaFinal);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => InfoPedidoScreen(
-                                        compraComOrganizacao: true,
-                                        resumoDaCompra: listaDeIngressos,
-                                        ticketInfo: listaFinal,
-                                        ticketOrganizer: null
-                                    )));
-                          },
-                          width: 0.45,
-                          enable: true,
-                          delete: false
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.04)
-                    ],
-                  )
-                  : SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                ],
+                                        ]);
+                                    int c = -1;
+                                    for (int i = 0;
+                                        i < listaFinal.length;
+                                        i++) {
+                                      if (listaFinal[i].batchId == a.batchId &&
+                                          listaFinal[i]
+                                                  .ticketInfo[0]
+                                                  .halfPrice ==
+                                              a.ticketInfo[0].halfPrice) {
+                                        c = i;
+                                        break;
+                                      }
+                                    }
+                                    if (c != -1) listaFinal.removeAt(c);
+                                  },
+                                  add: () {
+                                    listaDeIngressos.add(ResumoDaCompraString(
+                                        name: widget.lotes[index].name,
+                                        tipo: 'Meia entrada',
+                                        preco:
+                                            widget.lotes[index].announcedPrice /
+                                                2));
+                                    listaFinal.add(
+                                      TicketLote(
+                                          batchId: widget.lotes[index].id,
+                                          ticketInfo: [
+                                            TicketInfoInput(
+                                                name: '',
+                                                cpf: '',
+                                                halfPrice: true,
+                                                isOwner: true)
+                                          ]),
+                                    );
+                                  })
+                              : SizedBox(),
+                        ],
+                      );
+                    })),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                    widget.lotes.isNotEmpty
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ButtonPadrao(
+                                  text: 'Comprar',
+                                  click: () {
+                                    print(listaFinal);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                InfoPedidoScreen(
+                                                    compraComOrganizacao: true,
+                                                    resumoDaCompra:
+                                                        listaDeIngressos,
+                                                    ticketInfo: listaFinal,
+                                                    ticketOrganizer: null)));
+                                  },
+                                  width: 0.45,
+                                  enable: true,
+                                  delete: false),
+                              SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.04)
+                            ],
+                          )
+                        : SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.4,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(FontAwesomeIcons.solidCalendarXmark,
+                                    size: 60, color: Colors.grey),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.025),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: MediaQuery.of(context).size.width * 0.03),
+                                  child: Text(
+                                      'Não foram encontrados ingressos disponíveis para este evento.',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(color: Colors.grey.shade700)),
+                                )
+                              ],
+                            )),
+                  ],
+                ),
               ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                image: DecorationImage(
-                    fit: BoxFit.cover, image: widget.fotoDoEvento!),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.transparent,
+                  image: DecorationImage(
+                      fit: BoxFit.cover, image: widget.fotoDoEvento!),
+                ),
+                height: MediaQuery.of(context).size.height * 0.20,
               ),
-              height: MediaQuery.of(context).size.height * 0.20,
-            ),
-            Container(
-              height: MediaQuery.of(context).size.height * 0.20,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  gradient: LinearGradient(
-                      begin: FractionalOffset.topCenter,
-                      end: FractionalOffset.bottomCenter,
-                      colors: [
-                        Colors.transparent,
-                        Colors.white,
-                      ],
-                      stops: [
-                        0.0,
-                        1.0
-                      ])),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  icon: const Icon(Icons.arrow_back_ios),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  }),
-            ),
-          ]),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.20,
+                decoration: const BoxDecoration(
+                    color: Colors.white,
+                    gradient: LinearGradient(
+                        begin: FractionalOffset.topCenter,
+                        end: FractionalOffset.bottomCenter,
+                        colors: [
+                          Colors.transparent,
+                          Colors.white,
+                        ],
+                        stops: [
+                          0.0,
+                          1.0
+                        ])),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    icon: const Icon(Icons.arrow_back_ios),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    }),
+              ),
+            ]),
+          ),
         ),
       ),
     );
