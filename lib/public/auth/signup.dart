@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
 
 import '../../../shared/service/colorService.dart';
+import '../../shared/service/textStyle.dart';
+import '../../widget/buttonPadrao.dart';
+import '../../widget/expandableTextField.dart';
 import '../../widget/textfieldpadrao.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -31,9 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            colorFilter:
-                ColorFilter.mode(Color(0xff7EF4D1), BlendMode.modulate),
-            image: AssetImage("assets/images/loginPageImage.png"),
+            image: AssetImage("assets/images/signinBackground.jpg"),
             fit: BoxFit.cover,
           ),
         ),
@@ -46,32 +49,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       IconButton(
                           onPressed: (() {
                             Navigator.pop(context);
                           }),
-                          icon: const Icon(Icons.arrow_back_ios)),
-                      Image.asset("assets/images/Dibs logo.png")
-                    ],
+                          icon: const Icon(FontAwesomeIcons.angleLeft)),
+                      SvgPicture.asset("assets/images/logoDibs.svg")                    ],
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.6,
-                    child: const Text(
+                    child: Text(
                       'Cadastro',
-                      style: TextStyle(
-                          height: 1,
-                          fontWeight: FontWeight.w800,
-                          fontSize: 30,
-                          letterSpacing: -1.41,
-                          shadows: <Shadow>[
-                            Shadow(
-                                offset: Offset(1.5, 1.5),
-                                color: Color.fromRGBO(126, 244, 209, 0.72))
-                          ]),
+                      style: TextStyleService(fontSize: 33).corSublinhadaSignIn,
                     ),
                   ),
                   SizedBox(
@@ -86,254 +80,180 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.02,
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'Primeiro nome',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                          // textFormFildKey: nomeKey,
-                          // onchange: (p0) {
-                          //   setState(() {});
-                          //   nomeKey.currentState?.validate();
-                          // },
-                          validator: Validatorless.multiple([
-                            Validatorless.required("Campo obrigatório"),
-                            Validatorless.max(
-                                255, "Número máximo de caracteres é 255")
-                          ]),
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.03,
-                              vertical: 0),
-                          // controller: nomeController,
-                          enable: true,
-                          click: () {
-                            // setState(() {
-                            //   alterado = true;
-                            // });
-                          }),
-                    ),
+                    height: MediaQuery.of(context).size.height * 0.01,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.05,
-                  ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'Sobrenome',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                          // textFormFildKey: nomeKey,
-                          // onchange: (p0) {
-                          //   setState(() {});
-                          //   nomeKey.currentState?.validate();
-                          // },
-                          validator: Validatorless.multiple([
-                            Validatorless.required("Campo obrigatório"),
-                            Validatorless.max(
-                                255, "Número máximo de caracteres é 255")
-                          ]),
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.03,
-                              vertical: 0),
-                          // controller: nomeController,
-                          enable: true,
-                          click: () {
-                            // setState(() {
-                            //   alterado = true;
-                            // });
-                          }),
-                    ),
+                    height: MediaQuery.of(context).size.height * 0.01,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.05,
-                  ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'CPF',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                          // textFormFildKey: nomeKey,
-                          // onchange: (p0) {
-                          //   setState(() {});
-                          //   nomeKey.currentState?.validate();
-                          // },
-                          validator: Validatorless.multiple([
-                            Validatorless.required("Campo obrigatório"),
-                            Validatorless.max(
-                                255, "Número máximo de caracteres é 255")
-                          ]),
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.03,
-                              vertical: 0),
-                          // controller: nomeController,
-                          enable: true,
-                          click: () {
-                            // setState(() {
-                            //   alterado = true;
-                            // });
-                          }),
-                    ),
+                    height: MediaQuery.of(context).size.height * 0.01,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.05,
-                  ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'Data de nascimento',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                          // textFormFildKey: nomeKey,
-                          // onchange: (p0) {
-                          //   setState(() {});
-                          //   nomeKey.currentState?.validate();
-                          // },
-                          validator: Validatorless.multiple([
-                            Validatorless.required("Campo obrigatório"),
-                            Validatorless.max(
-                                255, "Número máximo de caracteres é 255")
-                          ]),
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.03,
-                              vertical: 0),
-                          // controller: nomeController,
-                          enable: true,
-                          click: () {
-                            // setState(() {
-                            //   alterado = true;
-                            // });
-                          }),
-                    ),
+                    height: MediaQuery.of(context).size.height * 0.01,
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.05,
-                  ),
-                  const Row(
+                  Row(
                     children: [
                       Text(
                         'Email',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyleService.labelSubtitle,
                       )
                     ],
                   ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Telefone',
+                        style: TextStyleService.labelSubtitle,
+                      )
+                    ],
+                  ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        'Senha',
+                        style: TextStyleService.labelSubtitle,
+                      )
+                    ],
+                  ),
+                  ExpandableTextField(
+                      controller: usuarioController,
+                      click: () {},
+                      height: 0.05,
+                      validator: Validatorless.multiple([
+                        Validatorless.required("Campo obrigatório"),
+                        Validatorless.max(
+                            255, "Número máximo de caracteres é 255")
+                      ])),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
-                    child: Material(
-                      elevation: 10.0,
-                      borderRadius: BorderRadius.circular(11),
-                      child: TextFieldPadrao(
-                          // textFormFildKey: nomeKey,
-                          // onchange: (p0) {
-                          //   setState(() {});
-                          //   nomeKey.currentState?.validate();
-                          // },
-                          validator: Validatorless.multiple([
-                            Validatorless.required("Campo obrigatório"),
-                            Validatorless.max(
-                                255, "Número máximo de caracteres é 255")
-                          ]),
-                          padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.03,
-                              vertical: 0),
-                          // controller: nomeController,
-                          enable: true,
-                          click: () {
-                            // setState(() {
-                            //   alterado = true;
-                            // });
-                          }),
-                    ),
                   ),
+                  ButtonPadrao(
+                      enable: true,
+                      delete: false,
+                      width: 0.5,
+                      text: "Cadastre-se",
+                      click: () {}),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.05,
-                  ),
-                  Center(
-                    child: InkWell(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: ColorService.verde,
-                        ),
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: const Center(
-                          child: Text(
-                            'Cadastar-se',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
+                    height: MediaQuery.of(context).size.height * 0.04,
                   ),
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        const Text(
+                        Text(
                           'Deseja cadastrar um evento?',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyleService.defaultSignIn
                         ),
-                        const Text(
+                        Text(
                           'Envie um email para o contato abaixo',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyleService.defaultSignIn,
                         ),
                         InkWell(
                           onTap: () {},
                           child: Text(
                             'contato@dibs.com.br',
-                            style: TextStyle(
-                                color: ColorService.verde,
-                                fontWeight: FontWeight.bold),
+                            style: TextStyleService.greenSignIn,
                           ),
-                        )
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.04,
+                        ),
                       ],
                     ),
                   ),

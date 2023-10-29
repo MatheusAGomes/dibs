@@ -84,7 +84,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: Text(
                       'Revenda segura \ne intuitiva',
-                      style: TextStyleService.corSublinhadaSignIn,
+                      style: TextStyleService(fontSize: 50).corSublinhadaSignIn,
                     ),
                   ),
                   SizedBox(

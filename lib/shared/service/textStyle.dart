@@ -9,8 +9,11 @@ class TextStyleService {
   final double? letterSpacing;
   final List<Shadow>? categoryShadow;
 
-  TextStyleService({this.batchColor, this.categoryShadow, this.fontSize,
-    this.letterSpacing});
+  TextStyleService(
+      {this.batchColor,
+      this.categoryShadow,
+      this.fontSize,
+      this.letterSpacing});
 
   static TextStyle bottomNavigationBar = GoogleFonts.jost(
       textStyle: const TextStyle(
@@ -28,10 +31,10 @@ class TextStyleService {
 
   static TextStyle toggleSwitchInactiveText = GoogleFonts.inter(
       textStyle: const TextStyle(
-        fontWeight: FontWeight.w400,
-        fontSize: 11,
-        letterSpacing: -0.08,
-      ));
+    fontWeight: FontWeight.w400,
+    fontSize: 11,
+    letterSpacing: -0.08,
+  ));
 
   static TextStyle defaultTextField = GoogleFonts.jost(
       textStyle: const TextStyle(
@@ -60,12 +63,12 @@ class TextStyleService {
   TextStyle get medium {
     return GoogleFonts.jost(
         textStyle: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: fontSize!,
-          letterSpacing: letterSpacing!,
-          height: 1,
-          color: const Color(0xFF000000),
-        ));
+      fontWeight: FontWeight.w500,
+      fontSize: fontSize!,
+      letterSpacing: letterSpacing!,
+      height: 1,
+      color: const Color(0xFF000000),
+    ));
   }
 
   static TextStyle ticketBannerDateTime = GoogleFonts.jost(
@@ -94,12 +97,11 @@ class TextStyleService {
           letterSpacing: -0.08,
           color: Color.fromRGBO(0, 0, 0, 1)));
 
-
   static TextStyle labelSubtitle = GoogleFonts.jost(
       textStyle: const TextStyle(
-      fontWeight: FontWeight.w600,
-      letterSpacing: -0.41,
-      fontSize: 15,
+    fontWeight: FontWeight.w600,
+    letterSpacing: -0.41,
+    fontSize: 15,
   ));
 
   static TextStyle appBar = GoogleFonts.jost(
@@ -111,17 +113,17 @@ class TextStyleService {
 
   static TextStyle ticketBannerTitle = GoogleFonts.jost(
       textStyle: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 18,
-        letterSpacing: -0.61,
-      ));
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    letterSpacing: -0.61,
+  ));
 
   static TextStyle iconButtonText = GoogleFonts.jost(
       textStyle: const TextStyle(
-        fontWeight: FontWeight.w600,
-        fontSize: 18,
-        letterSpacing: -1.08,
-      ));
+    fontWeight: FontWeight.w600,
+    fontSize: 18,
+    letterSpacing: -1.08,
+  ));
 
   static TextStyle defaultButton = GoogleFonts.jost(
       textStyle: const TextStyle(
@@ -133,18 +135,20 @@ class TextStyleService {
         Shadow(offset: Offset(2, 2), color: Color(0x1A000000), blurRadius: 1)
       ]));
 
-  static TextStyle corSublinhadaSignIn = GoogleFonts.jost(
-      textStyle: const TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 50,
-          color: Color(0xFF000000),
-          letterSpacing: -1.41,
-          height: 1,
-          shadows: <Shadow>[
-        Shadow(
-            offset: Offset(1.5, 1.5),
-            color: Color.fromRGBO(126, 244, 209, 0.72))
-      ]));
+  TextStyle get corSublinhadaSignIn {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+            fontWeight: FontWeight.w700,
+            fontSize: fontSize,
+            color: Color(0xFF000000),
+            letterSpacing: -1.41,
+            height: 1,
+            shadows: <Shadow>[
+          Shadow(
+              offset: Offset(1.5, 1.5),
+              color: Color.fromRGBO(126, 244, 209, 0.72))
+        ]));
+  }
 
   TextStyle get corSublinhada {
     return GoogleFonts.jost(
@@ -153,15 +157,16 @@ class TextStyleService {
         fontSize: 22,
         letterSpacing: -1.41,
         shadows: categoryShadow!,
-      ),);
+      ),
+    );
   }
 
   TextStyle get bold {
     return GoogleFonts.jost(
         textStyle: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: fontSize!,
-        ));
+      fontWeight: FontWeight.w700,
+      fontSize: fontSize!,
+    ));
   }
 
   static TextStyle boldSpacing141 = GoogleFonts.jost(
@@ -173,18 +178,17 @@ class TextStyleService {
 
   static TextStyle modalTitle = GoogleFonts.jost(
       textStyle: const TextStyle(
-        fontWeight: FontWeight.w700,
-        fontSize: 22,
-        letterSpacing: -1.41,
-        height: 0.1
-      ));
+          fontWeight: FontWeight.w700,
+          fontSize: 22,
+          letterSpacing: -1.41,
+          height: 0.1));
 
   TextStyle get boldSpacing041 {
     return GoogleFonts.jost(
         textStyle: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: fontSize,
-          letterSpacing: -0.41,
-        ));
+      fontWeight: FontWeight.w700,
+      fontSize: fontSize,
+      letterSpacing: -0.41,
+    ));
   }
 }
