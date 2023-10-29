@@ -277,24 +277,31 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                     );
                   })),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.04),
-                  ButtonPadrao(
-                      text: 'Comprar',
-                      click: () {
-                          print(listaFinal);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => InfoPedidoScreen(
-                                    compraComOrganizacao: true,
-                                    resumoDaCompra: listaDeIngressos,
-                                    ticketInfo: listaFinal,
-                                    ticketOrganizer: null
-                                  )));
-                        },
-                      width: 0.45,
-                      enable: true,
-                      delete: false),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  widget.lotes.isNotEmpty ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ButtonPadrao(
+                          text: 'Comprar',
+                          click: () {
+                            print(listaFinal);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => InfoPedidoScreen(
+                                        compraComOrganizacao: true,
+                                        resumoDaCompra: listaDeIngressos,
+                                        ticketInfo: listaFinal,
+                                        ticketOrganizer: null
+                                    )));
+                          },
+                          width: 0.45,
+                          enable: true,
+                          delete: false
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.04)
+                    ],
+                  )
+                  : SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 ],
               ),
             ),
