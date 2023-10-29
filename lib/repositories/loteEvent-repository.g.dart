@@ -13,7 +13,7 @@ class _LoteRepository implements LoteRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/batches';
+    baseUrl ??= '${Environment.BASE_URL}/batches';
   }
 
   final Dio _dio;
