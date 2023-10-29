@@ -1,6 +1,7 @@
 import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextStyleService {
@@ -71,10 +72,48 @@ class TextStyleService {
     ));
   }
 
+  static TextStyle ticketInput = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+          letterSpacing: -0.41)
+  );
+
+  static TextStyle announcedTickets = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          letterSpacing: -0.91,
+          height: 1.3,
+          color: Colors.grey));
+
+  static TextStyle ticketPrice = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13,
+          letterSpacing: -0.91,
+          height: 1.2,
+          color: Colors.grey));
+
+  static TextStyle eventLocal = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+          letterSpacing: -0.41,
+          height: 1.3,
+          color: Color(0x8A000000)));
+
   static TextStyle ticketBannerDateTime = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w500,
           fontSize: 13,
+          letterSpacing: -1.5,
+          height: 0.2));
+
+  static TextStyle eventDateTime = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
           letterSpacing: -1.5,
           height: 0.2));
 
@@ -124,6 +163,14 @@ class TextStyleService {
     fontSize: 18,
     letterSpacing: -1.08,
   ));
+
+  static TextStyle eventBatch = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 20,
+        letterSpacing: -0.91,
+        height: 2
+      ));
 
   static TextStyle defaultButton = GoogleFonts.jost(
       textStyle: const TextStyle(

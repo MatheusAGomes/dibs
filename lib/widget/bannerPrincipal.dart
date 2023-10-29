@@ -41,6 +41,7 @@ class BannerPrincipal extends StatelessWidget {
               descricao: a.description,
               fotoDoEvento: image,
               hora: a.time,
+              local: a.address,
               lotes: b,
             );
           },

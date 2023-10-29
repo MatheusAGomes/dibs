@@ -31,6 +31,7 @@ class BannerSecundario extends StatelessWidget {
               lotes: b,
               nomeDoEvento: a.name,
               data: a.startDate,
+              local: a.address,
               descricao: a.description,
               fotoDoEvento: image,
               hora: a.time,

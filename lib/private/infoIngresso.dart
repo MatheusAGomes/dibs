@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:dibs/models/resumoDaCompraString.dart';
 import 'package:dibs/models/ticketInfoInput.dart';
 import 'package:dibs/models/ticketLote.dart';
@@ -8,10 +10,14 @@ import 'package:dibs/repositories/loteEvent-repository.dart';
 import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/shared/functions/utils.dart';
 import 'package:dibs/widget/bannerCompraIngresso.dart';
+import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../main.dart';
 import '../models/lote.dart';
+import '../shared/service/colorService.dart';
+import '../shared/service/textStyle.dart';
 import 'infoPedidoScreen.dart';
 
 class InfoIngressoScreen extends StatefulWidget {
@@ -19,6 +25,7 @@ class InfoIngressoScreen extends StatefulWidget {
   String? nomeDoEvento;
   String? data;
   String? hora;
+  String? local;
   String? descricao;
   ImageProvider? fotoDoEvento;
   List<Lote> lotes;
@@ -30,7 +37,8 @@ class InfoIngressoScreen extends StatefulWidget {
       required this.descricao,
       required this.fotoDoEvento,
       required this.hora,
-      required this.lotes});
+      required this.lotes,
+      required this.local});
 
   @override
   State<InfoIngressoScreen> createState() => _InfoIngressoScreenState();
@@ -49,27 +57,40 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
           child: Stack(children: <Widget>[
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.35,
+                  top: MediaQuery.of(context).size.height * 0.20,
                   left: 19,
                   right: 19),
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Icon(Icons.calendar_month),
-                          Text(widget.data!)
+                          Icon(
+                            FontAwesomeIcons.calendarDay,
+                            size: 18,
+                          ),
+                          SizedBox(width: 2),
+                          Text(widget.data!,
+                              style: TextStyleService.eventDateTime)
                         ],
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 10,
                       ),
                       Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Icon(Icons.schedule),
-                          Text(widget.hora!)
+                          Icon(FontAwesomeIcons.solidClock, size: 18),
+                          SizedBox(width: 2),
+                          Align(
+                            alignment: Alignment.bottomLeft,
+                            child: Text(
+                              widget.hora!,
+                              style: TextStyleService.eventDateTime,
+                            ),
+                          ),
                         ],
                       )
                     ],
@@ -78,14 +99,31 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                     children: [
                       Text(
                         widget.nomeDoEvento!,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w900, fontSize: 20),
+                        style: TextStyleService.boldSpacing141,
                       ),
                     ],
                   ),
-                  Text(limitTo14Words(widget.descricao!)),
-                  const SizedBox(
-                    height: 10,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.locationDot,
+                        size: 17,
+                        color: ColorService.cinzaBannerIngresso,
+                      ),
+                      SizedBox(width: 4),
+                      Text(widget.local!, style: TextStyleService.eventLocal)
+                    ],
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+                  Row(
+                    children: [
+                      Text(limitTo14Words(widget.descricao!),
+                        textAlign: TextAlign.left,
+                        style: TextStyle(letterSpacing: -0.41))],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.015,
                   ),
                   InkWell(
                     onTap: () async {
@@ -99,32 +137,33 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                 tickets: tickets,
                               ));
                     },
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
+                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.confirmation_num,
-                          color: Colors.grey,
-                        ),
+                        Transform.rotate(angle: 67 * pi / 180,
+                          child: Icon(
+                            FontAwesomeIcons.ticketSimple,
+                            size: 14,
+                            color: Colors.grey,
+                        )),
                         SizedBox(
                           width: 5,
                         ),
                         Text(
                           'Ver ingressos anunciados',
-                          style: TextStyle(color: Colors.grey),
+                          style: TextStyleService.announcedTickets,
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 3,
                         ),
                         Icon(
-                          Icons.arrow_forward_ios,
+                          FontAwesomeIcons.angleRight,
+                          size: 16,
                           color: Colors.grey,
                         )
                       ],
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
                   ),
                   Column(
                       children: List.generate(widget.lotes.length, (index) {
@@ -136,8 +175,7 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                           children: [
                             Text(
                               widget.lotes[index].name,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900, fontSize: 20),
+                              style: TextStyleService.eventBatch,
                             ),
                           ],
                         ),
@@ -187,9 +225,10 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                   );
                                 })
                             : SizedBox(),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
                         widget.lotes[index].hasHalfPriceTickets
                             ? BannerCompraIngresso(
-                                tipoDoIngresso: 'Meia-entrada',
+                                tipoDoIngresso: 'Meia entrada',
                                 valor: (widget.lotes[index].announcedPrice / 2)
                                     .toString(),
                                 quantidade: quantidadeMeia,
@@ -217,7 +256,7 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                 add: () {
                                   listaDeIngressos.add(ResumoDaCompraString(
                                       name: widget.lotes[index].name,
-                                      tipo: 'Meia-Entrada',
+                                      tipo: 'Meia entrada',
                                       preco:
                                           widget.lotes[index].announcedPrice /
                                               2));
@@ -237,39 +276,25 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                       ],
                     );
                   })),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        print(listaFinal);
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => InfoPedidoScreen(
-                                      compraComOrganizacao: true,
-                                      resumoDaCompra: listaDeIngressos,
-                                      ticketInfo: listaFinal,
-                                      ticketOrganizer: null,
-                                    )));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          color: const Color(0xFF198A68),
-                        ),
-                        width: 120,
-                        height: 40,
-                        child: const Center(
-                          child: Text(
-                            'Comprar',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  ButtonPadrao(
+                      text: 'Comprar',
+                      click: () {
+                          print(listaFinal);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => InfoPedidoScreen(
+                                    compraComOrganizacao: true,
+                                    resumoDaCompra: listaDeIngressos,
+                                    ticketInfo: listaFinal,
+                                    ticketOrganizer: null
+                                  )));
+                        },
+                      width: 0.45,
+                      enable: true,
+                      delete: false),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 ],
               ),
             ),
@@ -279,10 +304,10 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                 image: DecorationImage(
                     fit: BoxFit.cover, image: widget.fotoDoEvento!),
               ),
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.20,
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.35,
+              height: MediaQuery.of(context).size.height * 0.20,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   gradient: LinearGradient(
