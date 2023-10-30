@@ -126,6 +126,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ],
                   ),
                   ExpandableTextField(
+                      hideTextfild: true,
                       controller: senhaController, click: () {}, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
