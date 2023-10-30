@@ -3,7 +3,10 @@ import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
+import '../models/auth.dart';
+import '../shared/functions/utils.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
@@ -24,6 +27,8 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
     buscaController.text;
     return Scaffold(
         appBar: AppBar(
@@ -80,13 +85,13 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   },
                   itemBuilder: (BuildContext bc) {
                     return [
-                      const PopupMenuItem(
+                       PopupMenuItem(
                         height: 30,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Olá,{user}",
+                        'Olá,${addEllipsis(auth.authDecoded!['login'].toString(),4)}',
                               style: TextStyle(fontWeight: FontWeight.w900),
                             ),
                             Icon(
@@ -138,7 +143,11 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           ],
                         ),
                       ),
-                      const PopupMenuItem(
+                       PopupMenuItem(
+                        onTap: () async {
+                          auth.deslogar();
+                          Navigator.pop(context);
+                        },
                         height: 30,
                         value: 'Sair',
                         child: Row(
@@ -168,7 +177,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Olá, {Empresa}',
+                Text('Olá, ${addEllipsis(auth.authDecoded!['login'].toString(),15)}',
                     style: TextStyleService(categoryShadow: <Shadow>[
                       Shadow(
                           offset: Offset(1.5, 1.5),

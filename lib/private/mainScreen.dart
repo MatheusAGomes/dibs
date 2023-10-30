@@ -20,6 +20,7 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
+import '../shared/functions/utils.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
@@ -106,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Olá,${auth.authDecoded!['login'].toString()}",
+                              "Olá,${addEllipsis(auth.authDecoded!['login'].toString(),10)}",
                               style:
                                   const TextStyle(fontWeight: FontWeight.w900),
                             ),
@@ -160,23 +161,21 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                       ),
                       PopupMenuItem(
+                        onTap: () async {
+                          auth.deslogar();
+                          Navigator.pop(context);
+                        },
                         height: 30,
                         value: 'Sair',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            InkWell(
-                              onTap: () async {
-                                auth.deslogar();
-                                Navigator.pop(context);
-                              },
-                              child: const Text(
-                                "Sair",
-                                style: TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 12),
-                              ),
+                            const Text(
+                              "Sair",
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 12),
                             ),
                           ],
                         ),

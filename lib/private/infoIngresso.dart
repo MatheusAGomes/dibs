@@ -215,6 +215,26 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                       }
                                     }
                                     if (c != -1) listaFinal.removeAt(c);
+
+                                    ResumoDaCompraString l  =  ResumoDaCompraString(
+                                        name: widget.lotes[index].name,
+                                        tipo: 'Inteira',
+                                        preco:
+                                        widget.lotes[index].announcedPrice);
+
+                                    int d = -1;
+                                    for (int i = 0;
+                                    i < listaDeIngressos.length;
+                                    i++) {
+                                      if (listaDeIngressos[i].name == l.name &&
+                                          listaDeIngressos[i].tipo  ==
+                                              l.tipo &&  listaDeIngressos[i].preco  ==
+                                          l.preco ) {
+                                        d = i;
+                                        break;
+                                      }
+                                    }
+                                    if (d != -1) listaDeIngressos.removeAt(d);
                                   },
                                   add: () {
                                     listaDeIngressos.add(ResumoDaCompraString(
@@ -255,6 +275,8 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                               halfPrice: true,
                                               isOwner: true)
                                         ]);
+
+
                                     int c = -1;
                                     for (int i = 0;
                                         i < listaFinal.length;
@@ -269,6 +291,28 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                                       }
                                     }
                                     if (c != -1) listaFinal.removeAt(c);
+                                    ResumoDaCompraString l  =  ResumoDaCompraString(
+                                        name: widget.lotes[index].name,
+                                        tipo: 'Meia entrada',
+                                        preco:
+                                        widget.lotes[index].announcedPrice /
+                                            2);
+
+                                    int d = -1;
+                                    for (int i = 0;
+                                    i < listaDeIngressos.length;
+                                    i++) {
+                                      if (listaDeIngressos[i].name == l.name &&
+                                          listaDeIngressos[i].tipo  ==
+                                              l.tipo &&  listaDeIngressos[i].preco  ==
+                                          l.preco ) {
+                                        d = i;
+                                        break;
+                                      }
+                                    }
+                                    if (d != -1) listaDeIngressos.removeAt(d);
+
+
                                   },
                                   add: () {
                                     listaDeIngressos.add(ResumoDaCompraString(
