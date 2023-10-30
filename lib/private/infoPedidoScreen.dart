@@ -9,8 +9,10 @@ import 'package:dibs/private/formaDePagamento.dart';
 import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/repositories/card-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../models/ticketClientInput.dart';
@@ -45,17 +47,18 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
         centerTitle: true,
-        title: const Text(
+        title: Text(
           'Pedido',
-          style: TextStyle(color: Colors.black),
+          style: TextStyleService.appBar,
         ),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(
-              Icons.arrow_back_ios,
+            icon: Icon(
+              FontAwesomeIcons.angleLeft,
               color: Colors.black,
             )),
       ),
@@ -63,7 +66,7 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,7 +76,8 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ]).corSublinhada),
+                    ], fontSize: 20).corSublinhada),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.005),
                 InkWell(
                     onTap: () async {
                       final cards = await CardRepository(dio).getCards();
@@ -87,91 +91,92 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                       setState(() {});
                     },
                     child: card == null
-                        ? Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(11),
-                            ),
-                            elevation: 4,
-                            child: const Padding(
-                              padding: EdgeInsets.zero,
-                              child: SizedBox(
-                                height: 60,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                    ? Container(
+                      // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: Color(0x40000000)),
+                          borderRadius: BorderRadius.circular(7),
+                          boxShadow: [
+                            BoxShadow(
+                                color: Color(0x40000000),
+                                offset: Offset(2,2),
+                                blurRadius: 0.2
+                            )
+                          ]
+                      ),
+                      child: Card(
+                        margin: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(7),
+                        ),
+                        color: Colors.white,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.09,
+                          padding: const EdgeInsets.symmetric(horizontal: 15),
+                          child: SizedBox(
+                            // height: 60,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Icon(
-                                          Icons.credit_card,
-                                          size: 30,
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Cartão de Crédito',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ],
+                                    Icon(
+                                      FontAwesomeIcons.solidCreditCard,
+                                      size: 22,
                                     ),
                                     SizedBox(
-                                      height: 30,
-                                      width: 30,
-                                      child: Icon(Icons.edit),
-                                    )
+                                      width: 20,
+                                    ),
+                                    Text(
+                                      'Cartão de Crédito',
+                                      style: TextStyleService(
+                                          fontSize: 16,
+                                          letterSpacing: -0.41).medium,
+                                    ),
                                   ],
                                 ),
-                              ),
+                                Icon(
+                                  FontAwesomeIcons.solidPenToSquare,
+                                  size: 20)
+                              ],
                             ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 5),
-                            child: MeuCartaoComponente(
-                                pedido: true,
-                                nome: card!.name,
-                                numero:
-                                    substituirTresPrimeirosGruposPorAsteriscos(
-                                        card!.number),
-                                tipo: "Crédito"),
-                          )),
+                          ),
+                        ),
+                      ),
+                    )
+                    : Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: MeuCartaoComponente(
+                          pedido: true,
+                          nome: card!.name,
+                          numero:
+                          substituirTresPrimeirosGruposPorAsteriscos(
+                              card!.number),
+                          tipo: "Crédito"),
+                    )),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                Center(
-                  child: InkWell(
-                    onTap: () {
+                ButtonPadrao(text: "Avançar",
+                    click: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => ResumoDaCompra(
-                                    compraComOrganizacao:
-                                        widget.compraComOrganizacao,
-                                    ticketOrganizer: widget.ticketOrganizer,
-                                    resumoDaCompra: widget.resumoDaCompra,
-                                    ticketInfo: widget.ticketInfo,
-                                  )));
+                                compraComOrganizacao:
+                                widget.compraComOrganizacao,
+                                ticketOrganizer: widget.ticketOrganizer,
+                                resumoDaCompra: widget.resumoDaCompra,
+                                ticketInfo: widget.ticketInfo,
+                              )));
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: const Color(0xFF198A68),
-                      ),
-                      width: 120,
-                      height: 40,
-                      child: const Center(
-                        child: Text(
-                          'Avançar',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                    width: 0.5,
+                    enable: true,
+                    delete: false),
               ],
             ),
           )),

@@ -201,7 +201,7 @@ class TextStyleService {
     return GoogleFonts.jost(
       textStyle: TextStyle(
         fontWeight: FontWeight.w700,
-        fontSize: 22,
+        fontSize: fontSize,
         letterSpacing: -1.41,
         shadows: categoryShadow!,
       ),

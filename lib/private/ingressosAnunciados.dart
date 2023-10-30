@@ -68,12 +68,12 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Marketing place',
+                Text('Marketplace',
                     style: TextStyleService(categoryShadow: <Shadow>[
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ]).corSublinhada),
+                    ], fontSize: 22).corSublinhada),
                 Divider(),
                 Column(
                     children: List.generate(widget.tickets.length, (index) {

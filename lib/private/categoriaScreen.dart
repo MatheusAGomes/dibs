@@ -64,7 +64,7 @@ class _CategoriaScreenState extends State<CategoriaScreen> {
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ]).corSublinhada),
+                    ], fontSize: 22).corSublinhada),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.015,
                 ),

@@ -61,7 +61,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ]).corSublinhada),
+                    ], fontSize: 18).corSublinhada),
                 const Text('Ingressos',
                     style: TextStyle(fontWeight: FontWeight.bold)),
                 Card(

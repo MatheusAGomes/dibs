@@ -168,12 +168,12 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Olá,{Empresa}',
+                Text('Olá, {Empresa}',
                     style: TextStyleService(categoryShadow: <Shadow>[
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ]).corSublinhada),
+                    ], fontSize: 22).corSublinhada),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
