@@ -13,7 +13,7 @@ class _LoginApi implements LoginApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= '${Environment.BASE_URL}/auth/login';
+    baseUrl ??= 'http://192.168.195.189:8080/auth/login';
   }
 
   final Dio _dio;

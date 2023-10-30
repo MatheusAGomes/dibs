@@ -73,7 +73,8 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ], fontSize: 22).corSublinhada),
+                    ], fontSize: 22)
+                        .corSublinhada),
                 Divider(),
                 Column(
                     children: List.generate(widget.tickets.length, (index) {
@@ -97,13 +98,34 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                             if (listaDeIngressos![i].clientId == a.clientId &&
                                 listaDeIngressos![i].eventId == a.eventId &&
                                 verificaIgualdade(
-                                    listaDeIngressos![index].ticketInfo[0],
+                                    listaDeIngressos![i].ticketInfo[0],
                                     a.ticketInfo[0])) {
                               c = i;
                               break;
                             }
                           }
                           if (c != -1) listaDeIngressos!.removeAt(c);
+
+                          ResumoDaCompraString l = ResumoDaCompraString(
+                            name: widget.tickets[index].event,
+                            tipo: widget.tickets[index].halfPrice
+                                ? 'Meia-entrada'
+                                : 'Inteira',
+                            preco: widget.tickets[index].halfPrice
+                                ? (widget.tickets[index].resalePrice)
+                                : widget.tickets[index].resalePrice,
+                          );
+
+                          int d = -1;
+                          for (int i = 0; i < listaDeResumo.length; i++) {
+                            if (listaDeResumo[i].name == l.name &&
+                                listaDeResumo[i].tipo == l.tipo &&
+                                listaDeResumo[i].preco == l.preco) {
+                              d = i;
+                              break;
+                            }
+                          }
+                          if (d != -1) listaDeResumo.removeAt(d);
                         },
                         add: () {
                           listaDeIngressos!.add(TicketClient(
@@ -124,7 +146,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                                 ? 'Meia-entrada'
                                 : 'Inteira',
                             preco: widget.tickets[index].halfPrice
-                                ? (widget.tickets[index].resalePrice) / 2
+                                ? (widget.tickets[index].resalePrice)
                                 : widget.tickets[index].resalePrice,
                           ));
                         },
@@ -135,7 +157,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                             ? 'Meia entrada'
                             : 'Inteira',
                         valor: widget.tickets[index].halfPrice
-                            ? 'R\$ ${(widget.tickets[index].resalePrice) / 2}'
+                            ? 'R\$ ${(widget.tickets[index].resalePrice)}'
                             : 'R\$ ${widget.tickets[index].resalePrice}'),
                   );
                 })),

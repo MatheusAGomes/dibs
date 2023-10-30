@@ -13,7 +13,7 @@ class _CardRepository implements CardRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= '${Environment.BASE_URL}/cards';
+    baseUrl ??= 'http://192.168.195.189:8080/cards';
   }
 
   final Dio _dio;
