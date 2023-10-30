@@ -143,7 +143,11 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           ],
                         ),
                       ),
-                      const PopupMenuItem(
+                       PopupMenuItem(
+                        onTap: () async {
+                          auth.deslogar();
+                          Navigator.pop(context);
+                        },
                         height: 30,
                         value: 'Sair',
                         child: Row(
