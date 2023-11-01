@@ -1,3 +1,5 @@
+import 'package:dibs/repositories/batch-repository.dart';
+import 'package:dibs/repositories/events-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/modalAjuda.dart';
@@ -5,7 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
+import '../main.dart';
 import '../models/auth.dart';
+import '../models/batchReportIndex.dart';
+import '../models/events.dart';
+import '../models/soldTickets.dart';
 import '../shared/functions/utils.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
@@ -368,113 +374,174 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   ),
                 ),
                 const Divider(),
-                const Text('Proximo Evento',
-                    style:
-                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-                Container(
-                  child: BannerPrincipal(
-                    empresa: true,
-                    id: '1',
-                    height: 200,
-                    width: 400,
-                    image: const AssetImage('assets/images/PericlesEx.png'),
-                    titulo: 'Churrasquinho Menos é Mais',
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
-                const Text(
-                  'Lotes ativos',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                Text(
-                  'Camarote - 4° Lote',
-                  style: TextStyle(color: Colors.grey[700], fontSize: 13),
-                ),
-                Stack(
-                  children: [
-                    LinearPercentIndicator(
-                      padding: EdgeInsets.zero,
-                      width: MediaQuery.of(context).size.width * 0.875,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      barRadius: const Radius.circular(5),
-                      percent: 0.8,
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      progressColor: const Color(0xFF198A68),
-                      backgroundColor: const Color(0xFFDADADA),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Inteira',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          Text('50/100',
-                              style: TextStyle(color: Color(0xFF8D8D8D))),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.005,
-                ),
-                Stack(
-                  children: [
-                    LinearPercentIndicator(
-                      padding: EdgeInsets.zero,
-                      width: MediaQuery.of(context).size.width * 0.875,
-                      animation: true,
-                      lineHeight: 20.0,
-                      animationDuration: 2500,
-                      barRadius: const Radius.circular(5),
-                      percent: 0.4,
-                      linearStrokeCap: LinearStrokeCap.roundAll,
-                      progressColor: const Color(0xFF10B981),
-                      backgroundColor: const Color(0xFFDADADA),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Meia', style: TextStyle(color: Colors.white)),
-                          Text('40/100',
-                              style: TextStyle(color: Color(0xFF8D8D8D))),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                ),
-                const Text(
-                  'Ingressos totais vendidos',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-                ),
-                LinearPercentIndicator(
-                  padding: EdgeInsets.zero,
-                  width: MediaQuery.of(context).size.width * 0.875,
-                  animation: true,
-                  lineHeight: 20.0,
-                  animationDuration: 2500,
-                  barRadius: const Radius.circular(5),
-                  percent: 0.849,
-                  center: const Text(
-                    '849/1000',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  linearStrokeCap: LinearStrokeCap.roundAll,
-                  progressColor: const Color(0xFF198A68),
-                  backgroundColor: const Color(0xFFDADADA),
-                ),
+                FutureBuilder(
+                  future: EventsRepository(dio).getNextEvents(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      Events evento = snapshot.data!;
+
+                      return FutureBuilder(
+                          future: Future.wait([
+                            BatchRepository(dio)
+                                .getLoteAtivo(snapshot.data!.id),
+                            BatchRepository(dio)
+                                .getIngressosTotais(snapshot.data!.id)
+                          ]),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              BatchReportIndex lotes =
+                                  snapshot.data![0] as BatchReportIndex;
+                              SoldTickets ingressosVendidos =
+                                  snapshot.data![1] as SoldTickets;
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Proximo Evento',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20)),
+                                  Container(
+                                    child: BannerPrincipal(
+                                      empresa: true,
+                                      id: evento.id!,
+                                      height: 200,
+                                      width: 400,
+                                      image: const AssetImage(
+                                          'assets/images/PericlesEx.png'),
+                                      titulo: evento.name!,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  Text(
+                                    'Lotes ativos',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  Text(
+                                    'Camarote - 4° Lote',
+                                    style: TextStyle(
+                                        color: Colors.grey[700], fontSize: 13),
+                                  ),
+                                  Stack(
+                                    children: [
+                                      LinearPercentIndicator(
+                                        padding: EdgeInsets.zero,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.875,
+                                        animation: true,
+                                        lineHeight: 20.0,
+                                        animationDuration: 2500,
+                                        barRadius: const Radius.circular(5),
+                                        percent: 0.8,
+                                        linearStrokeCap:
+                                            LinearStrokeCap.roundAll,
+                                        progressColor: const Color(0xFF198A68),
+                                        backgroundColor:
+                                            const Color(0xFFDADADA),
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 40),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Inteira',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            Text('50/100',
+                                                style: TextStyle(
+                                                    color: Color(0xFF8D8D8D))),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.005,
+                                  ),
+                                  Stack(
+                                    children: [
+                                      LinearPercentIndicator(
+                                        padding: EdgeInsets.zero,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.875,
+                                        animation: true,
+                                        lineHeight: 20.0,
+                                        animationDuration: 2500,
+                                        barRadius: const Radius.circular(5),
+                                        percent: 0.4,
+                                        linearStrokeCap:
+                                            LinearStrokeCap.roundAll,
+                                        progressColor: const Color(0xFF10B981),
+                                        backgroundColor:
+                                            const Color(0xFFDADADA),
+                                      ),
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 40),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('Meia',
+                                                style: TextStyle(
+                                                    color: Colors.white)),
+                                            Text('40/100',
+                                                style: TextStyle(
+                                                    color: Color(0xFF8D8D8D))),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.01,
+                                  ),
+                                  Text(
+                                    'Ingressos totais vendidos',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                  LinearPercentIndicator(
+                                    padding: EdgeInsets.zero,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.875,
+                                    animation: true,
+                                    lineHeight: 20.0,
+                                    animationDuration: 2500,
+                                    barRadius: const Radius.circular(5),
+                                    percent: 0.849,
+                                    center: Text(
+                                      '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    linearStrokeCap: LinearStrokeCap.roundAll,
+                                    progressColor: const Color(0xFF198A68),
+                                    backgroundColor: const Color(0xFFDADADA),
+                                  ),
+                                ],
+                              );
+                            } else {
+                              return SizedBox();
+                            }
+                          });
+                    } else {
+                      return SizedBox();
+                    }
+                  },
+                )
               ],
             )),
           ),

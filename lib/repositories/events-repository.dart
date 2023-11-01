@@ -1,3 +1,4 @@
+import 'package:dibs/models/batchReportIndex.dart';
 import 'package:dibs/models/events.dart';
 import 'package:dibs/models/statusFilter.dart';
 import 'package:dio/dio.dart';
@@ -15,4 +16,6 @@ abstract class EventsRepository {
   Future<List<Events>> getListEventsFilter(@Body() StatusFilter status);
   @GET("/my-events")
   Future<List<Events>> getMyEvents();
+  @GET("/next-event")
+  Future<Events> getNextEvents();
 }
