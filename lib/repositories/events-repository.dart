@@ -13,4 +13,6 @@ abstract class EventsRepository {
   Future<List<Events>> getListEvents();
   @GET("/list")
   Future<List<Events>> getListEventsFilter(@Body() StatusFilter status);
+  @GET("/my-events")
+  Future<List<Events>> getMyEvents();
 }
