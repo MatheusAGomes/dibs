@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextStyleService {
-  final Color? batchColor;
+  final Color? color;
   final double? fontSize;
   final double? letterSpacing;
   final List<Shadow>? categoryShadow;
 
   TextStyleService(
-      {this.batchColor,
+      {this.color,
       this.categoryShadow,
       this.fontSize,
       this.letterSpacing});
@@ -36,6 +36,14 @@ class TextStyleService {
     fontSize: 11,
     letterSpacing: -0.08,
   ));
+
+  static TextStyle eventLocalCategory = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w400,
+          fontSize: 13,
+          letterSpacing: -0.08,
+          height: 1.3,
+          color: Color(0x8A000000)));
 
   static TextStyle defaultTextField = GoogleFonts.jost(
       textStyle: const TextStyle(
@@ -110,12 +118,14 @@ class TextStyleService {
           letterSpacing: -1.5,
           height: 0.2));
 
-  static TextStyle eventDateTime = GoogleFonts.jost(
-      textStyle: const TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 15,
-          letterSpacing: -1.5,
-          height: 0.2));
+  TextStyle get eventDateTime {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: fontSize,
+            letterSpacing: -1.5,
+            height: 0.2));
+  }
 
   TextStyle get ticketBannerBatch {
     return GoogleFonts.jost(
@@ -124,7 +134,7 @@ class TextStyleService {
         fontSize: 15,
         letterSpacing: -1.0,
         height: 1.3,
-        color: batchColor!,
+        color: color!,
       ),
     );
   }
@@ -140,8 +150,19 @@ class TextStyleService {
       textStyle: const TextStyle(
     fontWeight: FontWeight.w600,
     letterSpacing: -0.41,
-    fontSize: 15,
+    fontSize: 14,
   ));
+
+TextStyle get creditCardComponent {
+  return GoogleFonts.jost(
+      textStyle: TextStyle(
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.41,
+        fontSize: fontSize,
+        color: color,
+        height: 1.1
+      ));
+}
 
   static TextStyle appBar = GoogleFonts.jost(
       textStyle: const TextStyle(

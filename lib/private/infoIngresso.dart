@@ -75,7 +75,7 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                             ),
                             SizedBox(width: 2),
                             Text(widget.data!,
-                                style: TextStyleService.eventDateTime)
+                                style: TextStyleService(fontSize: 15).eventDateTime)
                           ],
                         ),
                         SizedBox(
@@ -90,7 +90,7 @@ class _InfoIngressoScreenState extends State<InfoIngressoScreen> {
                               alignment: Alignment.bottomLeft,
                               child: Text(
                                 widget.hora!,
-                                style: TextStyleService.eventDateTime,
+                                style: TextStyleService(fontSize: 15).eventDateTime
                               ),
                             ),
                           ],

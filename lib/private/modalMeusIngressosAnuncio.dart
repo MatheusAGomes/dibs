@@ -70,6 +70,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                               corDois: Colors.green,
                               data: widget.meuIngressos[index].startDate,
                               hora: widget.meuIngressos[index].time!,
+                              local: widget.meuIngressos[index].address,
                               image: AssetImage('assets/images/PericlesEx.png'),
                             )),
                       );

@@ -77,20 +77,29 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                 ),
                 Column(
                     children: List.generate(widget.cards.length, (index) {
-                  return InkWell(
-                    onTap: () {
-                      Navigator.pop(context, widget.cards[index]);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: MeuCartaoComponente(
-                          pedido: true,
-                          nome: widget.cards[index].name,
-                          numero: substituirTresPrimeirosGruposPorAsteriscos(
-                              widget.cards[index].number),
-                          tipo: "Crédito"),
-                    ),
-                  );
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: MeuCartaoComponente(
+                            pedido: true,
+                            nome: widget.cards[index].name,
+                            numero: substituirTresPrimeirosGruposPorAsteriscos(
+                                widget.cards[index].number),
+                            tipo: "Cartão de Crédito"),
+                      );
+                  // return InkWell(
+                  //   onTap: () {
+                  //     Navigator.pop(context, widget.cards[index]);
+                  //   },
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.symmetric(vertical: 5),
+                  //     child: MeuCartaoComponente(
+                  //         pedido: true,
+                  //         nome: widget.cards[index].name,
+                  //         numero: substituirTresPrimeirosGruposPorAsteriscos(
+                  //             widget.cards[index].number),
+                  //         tipo: "Crédito"),
+                  //   ),
+                  // );
                 })),
                 const SizedBox(
                   height: 20,
