@@ -8,12 +8,13 @@ part of 'events.dart';
 
 Events _$EventsFromJson(Map<String, dynamic> json) => Events(
       id: json['id'] as String?,
-    )
-      ..name = json['name'] as String?
-      ..startDate = json['startDate'] as String?
-      ..time = json['time'] as String?
-      ..picture = json['picture'] as String?
-      ..status = $enumDecodeNullable(_$EventStatusEnumEnumMap, json['status']);
+      name: json['name'] as String?,
+      picture: json['picture'] as String?,
+      startDate: json['startDate'] as String?,
+      status: $enumDecodeNullable(_$EventStatusEnumEnumMap, json['status']),
+      address: json['address'] as String?,
+      time: json['time'] as String?,
+    );
 
 Map<String, dynamic> _$EventsToJson(Events instance) => <String, dynamic>{
       'id': instance.id,
@@ -21,6 +22,7 @@ Map<String, dynamic> _$EventsToJson(Events instance) => <String, dynamic>{
       'startDate': instance.startDate,
       'time': instance.time,
       'picture': instance.picture,
+      'address': instance.address,
       'status': _$EventStatusEnumEnumMap[instance.status],
     };
 

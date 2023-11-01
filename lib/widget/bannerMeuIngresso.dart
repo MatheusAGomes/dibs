@@ -84,6 +84,7 @@ class BannerMeuIngresso extends StatelessWidget {
         child: BannerNewMeuIngresso(
             image: image,
             titulo: titulo,
+            local: local,
             data: data,
             hora: hora,
             lote: lote,

@@ -1,6 +1,8 @@
 import 'package:dibs/models/eventsClient.dart';
 import 'package:dibs/models/lote.dart';
 import 'package:dibs/private/infoIngresso.dart';
+import 'package:dibs/private/meuEventoScreen.dart';
+import 'package:dibs/private/meusEventoEmpresaScreen.dart';
 import 'package:dibs/repositories/eventsClient-repository.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,8 +16,10 @@ class BannerPrincipal extends StatelessWidget {
   double height;
   double width;
   String id;
+  bool empresa;
   BannerPrincipal(
       {super.key,
+      required this.empresa,
       required this.id,
       required this.image,
       required this.titulo,
@@ -27,22 +31,27 @@ class BannerPrincipal extends StatelessWidget {
     return InkWell(
       onTap: () async {
         //
-        EventsClient a = await EventsClientRepository(dio).getListEvents(id);
-        List<Lote> b = await LoteRepository(dio).getLotes(id);
+        if (!empresa) {
+          EventsClient a = await EventsClientRepository(dio).getListEvents(id);
+          List<Lote> b = await LoteRepository(dio).getLotes(id);
 
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => InfoIngressoScreen(
-                  id: a.id,
-                  nomeDoEvento: a.name,
-                  data: a.startDate,
-                  descricao: a.description,
-                  fotoDoEvento: image,
-                  hora: a.time,
-                  local: a.address,
-                  lotes: b,
-                )));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => InfoIngressoScreen(
+                        id: a.id,
+                        nomeDoEvento: a.name,
+                        data: a.startDate,
+                        descricao: a.description,
+                        fotoDoEvento: image,
+                        hora: a.time,
+                        local: a.address,
+                        lotes: b,
+                      )));
+        } else {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => MeuEventoScreen()));
+        }
 
         // showModalBottomSheet<void>(
         //   isScrollControlled: true,

@@ -107,7 +107,7 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Olá,${addEllipsis(auth.authDecoded!['login'].toString(),10)}",
+                              "Olá,${addEllipsis(auth.authDecoded!['login'].toString(), 10)}",
                               style:
                                   const TextStyle(fontWeight: FontWeight.w900),
                             ),
@@ -163,14 +163,13 @@ class _MainScreenState extends State<MainScreen> {
                       PopupMenuItem(
                         onTap: () async {
                           auth.deslogar();
-                          Navigator.pop(context);
                         },
                         height: 30,
                         value: 'Sair',
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            const Text(
+                            Text(
                               "Sair",
                               style: TextStyle(
                                   color: Colors.red,
@@ -228,7 +227,8 @@ class _MainScreenState extends State<MainScreen> {
                             Shadow(
                                 offset: Offset(1.5, 1.5),
                                 color: Color.fromRGBO(126, 244, 209, 0.72))
-                          ], fontSize: 22).corSublinhada),
+                          ], fontSize: 22)
+                              .corSublinhada),
                     ],
                   ),
                   SizedBox(
@@ -242,6 +242,7 @@ class _MainScreenState extends State<MainScreen> {
                       clipBehavior: Clip.none,
                       itemBuilder: (context, index) {
                         return BannerPrincipal(
+                          empresa: false,
                           id: listaFiltrada[index].id!,
                           height: 230,
                           width: 200,
@@ -262,7 +263,8 @@ class _MainScreenState extends State<MainScreen> {
                             Shadow(
                                 offset: Offset(1.5, 1.5),
                                 color: Color.fromRGBO(126, 244, 209, 0.72))
-                          ], fontSize: 22).corSublinhada),
+                          ], fontSize: 22)
+                              .corSublinhada),
                     ],
                   ),
                   SizedBox(
@@ -293,7 +295,8 @@ class _MainScreenState extends State<MainScreen> {
                             Shadow(
                                 offset: Offset(1.5, 1.5),
                                 color: Color.fromRGBO(126, 244, 209, 0.72))
-                          ], fontSize: 22).corSublinhada),
+                          ], fontSize: 22)
+                              .corSublinhada),
                     ],
                   ),
                   SizedBox(
