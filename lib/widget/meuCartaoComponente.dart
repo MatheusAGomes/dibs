@@ -25,28 +25,28 @@ class MeuCartaoComponente extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            const Icon(Icons.credit_card),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+                const Icon(Icons.credit_card),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(numero!),
+                    Row(
+                      children: [
+                        Text(numero!),
+                      ],
+                    ),
+                    Text(
+                      nome!,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      tipo!,
+                      style: TextStyle(color: Colors.grey.shade500),
+                    )
                   ],
                 ),
-                Text(
-                  nome!,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  tipo!,
-                  style: TextStyle(color: Colors.grey.shade500),
-                )
-              ],
-            ),
-            pedido! ? Icon(Icons.edit) : Icon(Icons.delete_outline_outlined)
-          ]),
+                pedido! ? Icon(Icons.edit) : Icon(Icons.delete_outline_outlined)
+            ]),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/bannerSecundario.dart';
+import 'package:dibs/widget/buttonNewAction.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -129,48 +130,24 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                       value == 0
                           ? Column(
                               children: [
-                                InkWell(
-                                  onTap: () async {
-                                    List<MeuIngressoBanner> a =
-                                        await TicketRepository(dio)
-                                            .getTickets();
-                                    showModalBottomSheet<void>(
-                                      isScrollControlled: true,
-                                      enableDrag: true,
-                                      isDismissible: true,
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return ModalMeusIngressosAnuncio(
-                                          meuIngressos: meusingressosparavender,
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        InkWell(
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey[300],
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            height: 40,
-                                            width: 40,
-                                            child: Icon(FontAwesomeIcons.plus),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Novo Anúncio',
-                                          style:
-                                              TextStyleService.iconButtonText,
-                                        )
-                                      ]),
-                                ),
+                                ButtonNewAction(
+                                    text: 'Novo Anúncio',
+                                    click: () async {
+                                      List<MeuIngressoBanner> a =
+                                      await TicketRepository(dio)
+                                          .getTickets();
+                                      showModalBottomSheet<void>(
+                                        isScrollControlled: true,
+                                        enableDrag: true,
+                                        isDismissible: true,
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return ModalMeusIngressosAnuncio(
+                                            meuIngressos: meusingressosparavender,
+                                          );
+                                        },
+                                      );
+                                    }),
                                 SizedBox(
                                   height: 5,
                                 ),

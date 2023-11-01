@@ -82,12 +82,16 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                     onTap: () async {
                       final cards = await CardRepository(dio).getCards();
 
-                      card = await showModalBottomSheet<Cards>(
-                        useSafeArea: true,
-                        isScrollControlled: true,
-                        context: context,
-                        builder: (context) => FormaDePagamento(cards: cards),
-                      );
+                      card = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FormaDePagamento(cards: cards)));
+                      // showModalBottomSheet<Cards>(
+                      //   useSafeArea: true,
+                      //   isScrollControlled: true,
+                      //   context: context,
+                      //   builder: (context) => FormaDePagamento(cards: cards),
+                      // );
                       setState(() {});
                     },
                     child: card == null

@@ -1,7 +1,11 @@
 import 'package:dibs/models/cards.dart';
+import 'package:dibs/widget/buttonNewAction.dart';
+import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../shared/functions/utils.dart';
+import '../shared/service/textStyle.dart';
 import '../widget/meuCartaoComponente.dart';
 import 'modalNovoCartao.dart';
 
@@ -20,17 +24,18 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
         centerTitle: true,
-        title: const Text(
-          'Forma de pagamento',
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          'Formas de pagamento',
+          style: TextStyleService.appBar,
         ),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(
-              Icons.arrow_back_ios,
+            icon: Icon(
+              FontAwesomeIcons.angleLeft,
               color: Colors.black,
             )),
       ),
@@ -38,46 +43,38 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('Cartão',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                Text('Cartão',
+                    style: TextStyleService.eventBatch),
                 const SizedBox(
                   height: 10,
                 ),
-                InkWell(
-                  onTap: () {
+                ButtonNewAction(
+                  text: 'Novo Cartão',
+                  click: () {
                     showModalBottomSheet<void>(
                         isScrollControlled: true,
                         context: context,
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(10)),
+                        ),
                         builder: (BuildContext context) {
                           return const ModalNovoCartao();
                         });
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(3)),
-                        child: const Icon(Icons.add),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        'Novo Cartão',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
+                  }),
+                SizedBox(
+                  height: 5,
                 ),
-                const Divider(),
+                Divider(
+                  color: Color(0xFFD9D9D9),
+                  thickness: 1,
+                ),
                 Column(
                     children: List.generate(widget.cards.length, (index) {
                   return InkWell(
@@ -87,7 +84,7 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: MeuCartaoComponente(
-                          pedido: false,
+                          pedido: true,
                           nome: widget.cards[index].name,
                           numero: substituirTresPrimeirosGruposPorAsteriscos(
                               widget.cards[index].number),
@@ -96,27 +93,14 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                   );
                 })),
                 const SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                Center(
-                  child: InkWell(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: const Color(0xFF198A68),
-                      ),
-                      width: 120,
-                      height: 40,
-                      child: const Center(
-                        child: Text(
-                          'Continuar',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                ButtonPadrao(
+                    text: 'Continuar',
+                    click: (){},
+                    width: 0.5,
+                    enable: true,
+                    delete: false)
               ],
             ),
           )),
