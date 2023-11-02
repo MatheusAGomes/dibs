@@ -134,8 +134,8 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                     text: 'Novo Anúncio',
                                     click: () async {
                                       List<MeuIngressoBanner> a =
-                                      await TicketRepository(dio)
-                                          .getTickets();
+                                          await TicketRepository(dio)
+                                              .getTickets();
                                       showModalBottomSheet<void>(
                                         isScrollControlled: true,
                                         enableDrag: true,
@@ -143,7 +143,8 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                         context: context,
                                         builder: (BuildContext context) {
                                           return ModalMeusIngressosAnuncio(
-                                            meuIngressos: meusingressosparavender,
+                                            meuIngressos:
+                                                meusingressosparavender,
                                           );
                                         },
                                       );
@@ -172,8 +173,10 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                               meusingressosavenda[index].valid,
                                           empresa: false,
                                           anuncio: true,
-                                          image: AssetImage(
-                                              'assets/images/PericlesEx.png'),
+                                          image: NetworkImage(meusingressosavenda[
+                                                      index]
+                                                  .picture ??
+                                              'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                           titulo: meusingressosavenda[index]
                                               .eventName,
                                           data: meusingressosavenda[index]
@@ -210,8 +213,10 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                               .valid,
                                           empresa: false,
                                           anuncio: true,
-                                          image: AssetImage(
-                                              'assets/images/PericlesEx.png'),
+                                          image: NetworkImage(
+                                              meusIngressosVendidos[index]
+                                                      .picture ??
+                                                  'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                           titulo: meusIngressosVendidos[index]
                                               .eventName,
                                           data: meusIngressosVendidos[index]

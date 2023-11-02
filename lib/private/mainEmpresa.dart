@@ -228,10 +228,11 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                           if (imageFile != null) {
                             String? fotoDeCapaa =
                                 await uploadFile(File(imageFile.path));
-                            if (fotoDeCapa != null)
+                            if (fotoDeCapaa != null) {
                               setState(() {
                                 fotoDeCapa = fotoDeCapaa;
                               });
+                            }
                             print(fotoDeCapa);
                           }
                         }
@@ -556,8 +557,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                       id: evento.id!,
                                       height: 200,
                                       width: 400,
-                                      image: const AssetImage(
-                                          'assets/images/PericlesEx.png'),
+                                      image: NetworkImage(evento.picture!),
                                       titulo: evento.name!,
                                       data: evento.startDate!,
                                       hora: evento.time!,

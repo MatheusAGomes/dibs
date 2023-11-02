@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../shared/service/colorService.dart';
 
 class BannerNewMeuIngresso extends StatelessWidget {
-  ImageProvider image;
+  NetworkImage image;
   String titulo;
   String data;
   String hora;

@@ -10,18 +10,20 @@ import '../models/soldTickets.dart';
 import '../shared/functions/utils.dart';
 
 class MeuEventoScreen extends StatelessWidget {
-  String data;
-  String hora;
-  String nome;
-  String endereco;
-  String descricao;
-  String id;
+  String? data;
+  String? hora;
+  String? nome;
+  String? endereco;
+  String? descricao;
+  String? id;
+  NetworkImage image;
   MeuEventoScreen(
       {required this.data,
       required this.descricao,
       required this.endereco,
       required this.hora,
       required this.id,
+      required this.image,
       required this.nome});
 
   @override
@@ -44,20 +46,23 @@ class MeuEventoScreen extends StatelessWidget {
                         Row(
                           children: [
                             Icon(Icons.calendar_month),
-                            Text(data),
+                            Text(data ?? ''),
                             Icon(Icons.schedule),
-                            Text(hora)
+                            Text(hora ?? '')
                           ],
                         ),
                         Text(
-                          nome,
+                          nome ?? '',
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Row(
-                          children: [Icon(Icons.location_on), Text(endereco)],
+                          children: [
+                            Icon(Icons.location_on),
+                            Text(endereco ?? '')
+                          ],
                         ),
-                        Text(limitTo14Words(descricao)),
+                        Text((descricao ?? "")),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
@@ -567,18 +572,13 @@ class MeuEventoScreen extends StatelessWidget {
                           ],
                         ),
                         Divider(),
-                        Text(
-                          'Relatorio de venda',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        ),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Text(
-                          'Lotes ativos',
+                          'Relatorio de venda',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                              fontWeight: FontWeight.bold, fontSize: 17),
                         ),
                         FutureBuilder(
                           future: Future.wait([
@@ -591,175 +591,204 @@ class MeuEventoScreen extends StatelessWidget {
                                   snapshot.data![0] as List<BatchReportIndex>;
                               SoldTickets ingressosVendidos =
                                   snapshot.data![1] as SoldTickets;
-                              return Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    children: List.generate(
-                                        lotes.length,
-                                        (index) => Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  lotes[index].name,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[600]),
-                                                ),
-                                                Stack(
-                                                  children: [
-                                                    LinearPercentIndicator(
-                                                      padding: EdgeInsets.zero,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.875,
-                                                      animation: true,
-                                                      lineHeight: 20.0,
-                                                      animationDuration: 2500,
-                                                      barRadius:
-                                                          Radius.circular(5),
-                                                      // percent: lotes[index]
-                                                      //         .numberOfFullPriceTickets /
-                                                      //     lotes[index]
-                                                      //         .numberOfFullPriceTicketsTotal,
-                                                      percent: 1,
-                                                      linearStrokeCap:
-                                                          LinearStrokeCap
-                                                              .roundAll,
-                                                      progressColor:
-                                                          Color(0xFF198A68),
-                                                      backgroundColor:
-                                                          Color(0xFFDADADA),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 40),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            'Inteira',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                                          Text(
-                                                              '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xFF8D8D8D))),
-                                                        ],
+                              if (lotes.isNotEmpty &&
+                                  ingressosVendidos.totalTickets != 0)
+                                return Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    if (lotes.isNotEmpty)
+                                      Text(
+                                        'Lotes ativos',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18),
+                                      ),
+                                    Column(
+                                      children: List.generate(
+                                          lotes.length,
+                                          (index) => Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    lotes[index].name,
+                                                    style: TextStyle(
+                                                        color:
+                                                            Colors.grey[600]),
+                                                  ),
+                                                  Stack(
+                                                    children: [
+                                                      LinearPercentIndicator(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.875,
+                                                        animation: true,
+                                                        lineHeight: 20.0,
+                                                        animationDuration: 2500,
+                                                        barRadius:
+                                                            Radius.circular(5),
+                                                        // percent: lotes[index]
+                                                        //         .numberOfFullPriceTickets /
+                                                        //     lotes[index]
+                                                        //         .numberOfFullPriceTicketsTotal,
+                                                        percent: 1,
+                                                        linearStrokeCap:
+                                                            LinearStrokeCap
+                                                                .roundAll,
+                                                        progressColor:
+                                                            Color(0xFF198A68),
+                                                        backgroundColor:
+                                                            Color(0xFFDADADA),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.005,
-                                                ),
-                                                Stack(
-                                                  children: [
-                                                    LinearPercentIndicator(
-                                                      padding: EdgeInsets.zero,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.875,
-                                                      animation: true,
-                                                      lineHeight: 20.0,
-                                                      animationDuration: 2500,
-                                                      barRadius:
-                                                          Radius.circular(5),
-                                                      percent: lotes[index]
-                                                              .numberOfHalfPriceTickets /
-                                                          lotes[index]
-                                                              .numberOfHalfPriceTicketsTotal,
-                                                      linearStrokeCap:
-                                                          LinearStrokeCap
-                                                              .roundAll,
-                                                      progressColor:
-                                                          Color(0xFF10B981),
-                                                      backgroundColor:
-                                                          Color(0xFFDADADA),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 40),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text('Meia',
+                                                      Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 40),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              'Inteira',
                                                               style: TextStyle(
                                                                   color: Colors
-                                                                      .white)),
-                                                          Text(
-                                                              '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xFF8D8D8D))),
-                                                        ],
+                                                                      .white),
+                                                            ),
+                                                            Text(
+                                                                '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
+                                                                style: TextStyle(
+                                                                    color: Color(
+                                                                        0xFF8D8D8D))),
+                                                          ],
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            )),
-                                  ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.02,
-                                  ),
-                                  Text(
-                                    'Ingressos totais vendidos',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 17),
-                                  ),
-                                  LinearPercentIndicator(
-                                    padding: EdgeInsets.zero,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.875,
-                                    animation: true,
-                                    lineHeight: 20.0,
-                                    animationDuration: 2500,
-                                    barRadius: Radius.circular(5),
-                                    percent: ingressosVendidos.soldTickets /
-                                        ingressosVendidos.totalTickets,
-                                    center: Text(
-                                      '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
-                                      style: TextStyle(color: Colors.white),
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.005,
+                                                  ),
+                                                  Stack(
+                                                    children: [
+                                                      LinearPercentIndicator(
+                                                        padding:
+                                                            EdgeInsets.zero,
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.875,
+                                                        animation: true,
+                                                        lineHeight: 20.0,
+                                                        animationDuration: 2500,
+                                                        barRadius:
+                                                            Radius.circular(5),
+                                                        percent: lotes[index]
+                                                                .numberOfHalfPriceTickets /
+                                                            lotes[index]
+                                                                .numberOfHalfPriceTicketsTotal,
+                                                        linearStrokeCap:
+                                                            LinearStrokeCap
+                                                                .roundAll,
+                                                        progressColor:
+                                                            Color(0xFF10B981),
+                                                        backgroundColor:
+                                                            Color(0xFFDADADA),
+                                                      ),
+                                                      Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 40),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text('Meia',
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .white)),
+                                                            Text(
+                                                                '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
+                                                                style: TextStyle(
+                                                                    color: Color(
+                                                                        0xFF8D8D8D))),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ],
+                                              )),
                                     ),
-                                    linearStrokeCap: LinearStrokeCap.roundAll,
-                                    progressColor: Color(0xFF198A68),
-                                    backgroundColor: Color(0xFFDADADA),
-                                  ),
-                                ],
-                              );
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.02,
+                                    ),
+                                    if (ingressosVendidos.totalTickets != 0)
+                                      Column(
+                                        children: [
+                                          Text(
+                                            'Ingressos totais vendidos',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17),
+                                          ),
+                                          LinearPercentIndicator(
+                                            padding: EdgeInsets.zero,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.875,
+                                            animation: true,
+                                            lineHeight: 20.0,
+                                            animationDuration: 2500,
+                                            barRadius: Radius.circular(5),
+                                            percent: ingressosVendidos
+                                                    .soldTickets /
+                                                ingressosVendidos.totalTickets,
+                                            center: Text(
+                                              '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                            linearStrokeCap:
+                                                LinearStrokeCap.roundAll,
+                                            progressColor: Color(0xFF198A68),
+                                            backgroundColor: Color(0xFFDADADA),
+                                          ),
+                                        ],
+                                      )
+                                  ],
+                                );
+                              else
+                                return Center(
+                                  child: Text('Sem dados sobre o evento'),
+                                );
                             }
                             return SizedBox();
                           },
                         ),
                       ])),
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.transparent,
                   image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/PericlesEx.png')),
+                    fit: BoxFit.cover, image: image,
+                    //  image: AssetImage('assets/images/PericlesEx.png')
+                  ),
                 ),
                 height: MediaQuery.of(context).size.height * 0.25,
               ),

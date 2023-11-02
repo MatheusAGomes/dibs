@@ -38,7 +38,8 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                     ativo: item.valid,
                     empresa: false,
                     anuncio: false,
-                    image: const AssetImage('assets/images/PericlesEx.png'),
+                    image: NetworkImage(item.picture ??
+                        'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                     titulo: item.eventName,
                     data: item.startDate,
                     hora: item.time!,
@@ -57,7 +58,8 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                     ativo: item.valid,
                     empresa: false,
                     anuncio: false,
-                    image: const AssetImage('assets/images/PericlesEx.png'),
+                    image: NetworkImage(item.picture ??
+                        'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                     titulo: item.eventName,
                     data: item.startDate,
                     hora: item.time!,
@@ -152,8 +154,9 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                                       ativo: snapshot.data![index].valid,
                                       empresa: false,
                                       anuncio: false,
-                                      image: const AssetImage(
-                                          'assets/images/PericlesEx.png'),
+                                      image: NetworkImage(snapshot
+                                              .data![index].picture ??
+                                          'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                       titulo: snapshot.data![index].eventName,
                                       data: snapshot.data![index].startDate,
                                       hora: snapshot.data![index].time!,
@@ -182,8 +185,9 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                                       ativo: snapshot.data![index].valid,
                                       empresa: false,
                                       anuncio: false,
-                                      image: const AssetImage(
-                                          'assets/images/PericlesEx.png'),
+                                      image: NetworkImage(snapshot
+                                              .data![index].picture ??
+                                          'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                       titulo: snapshot.data![index].eventName,
                                       data: snapshot.data![index].startDate,
                                       hora: snapshot.data![index].time!,

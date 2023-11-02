@@ -279,7 +279,7 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                 ),
                 value == 0
                     ? SizedBox(
-                        height: MediaQuery.of(context).size.height,
+                        height: MediaQuery.of(context).size.height * 0.55,
                         child: FutureBuilder<List<Events>>(
                             future: EventsRepository(dio).getMyEvents(),
                             builder: (context, snapshot) {
@@ -299,11 +299,15 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                                       child: BannerMeuIngresso(
                                         id: meusEventos![index].id!,
                                         local: meusEventos![index].address!,
+                                        descricao:
+                                            meusEventos![index].description,
+                                        endereco: meusEventos![index].address,
                                         ativo: true,
                                         empresa: true,
                                         anuncio: false,
-                                        image: const AssetImage(
-                                            'assets/images/PericlesEx.png'),
+                                        image: NetworkImage(meusEventos[index]
+                                                .picture ??
+                                            'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                         titulo: meusEventos![index].name!,
                                         data: meusEventos![index].startDate!,
                                         hora: meusEventos![index].time!,
@@ -322,7 +326,7 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                       )
                     : value == 1
                         ? SizedBox(
-                            height: MediaQuery.of(context).size.height,
+                            height: MediaQuery.of(context).size.height * 0.55,
                             child: FutureBuilder<List<Events>>(
                                 future: EventsRepository(dio).getMyEvents(),
                                 builder: (context, snapshot) {
@@ -340,13 +344,19 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                                           padding: EdgeInsets.symmetric(
                                               vertical: 10),
                                           child: BannerMeuIngresso(
+                                            descricao:
+                                                meusEventos![index].description,
+                                            endereco:
+                                                meusEventos![index].address,
                                             id: meusEventos![index].id!,
                                             local: meusEventos![index].address!,
                                             ativo: true,
                                             empresa: true,
                                             anuncio: false,
-                                            image: const AssetImage(
-                                                'assets/images/PericlesEx.png'),
+                                            image: NetworkImage(meusEventos[
+                                                        index]
+                                                    .picture ??
+                                                'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                             titulo: meusEventos![index].name!,
                                             data:
                                                 meusEventos![index].startDate!,
@@ -365,7 +375,7 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                                 }),
                           )
                         : SizedBox(
-                            height: MediaQuery.of(context).size.height,
+                            height: MediaQuery.of(context).size.height * 0.55,
                             child: FutureBuilder<List<Events>>(
                                 future: EventsRepository(dio).getMyEvents(),
                                 builder: (context, snapshot) {
@@ -383,13 +393,19 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                                           padding: EdgeInsets.symmetric(
                                               vertical: 10),
                                           child: BannerMeuIngresso(
+                                            descricao:
+                                                meusEventos![index].description,
+                                            endereco:
+                                                meusEventos![index].address,
                                             id: meusEventos![index].id!,
                                             local: meusEventos![index].address!,
                                             ativo: true,
                                             empresa: true,
                                             anuncio: false,
-                                            image: const AssetImage(
-                                                'assets/images/PericlesEx.png'),
+                                            image: NetworkImage(meusEventos[
+                                                        index]
+                                                    .picture ??
+                                                'https://firebasestorage.googleapis.com/v0/b/dibs-67d1a.appspot.com/o/PericlesEx.png?alt=media&token=72406ea1-1582-4ad4-af59-5b2df066cb99&_gl=1*ly3jbo*_ga*MTczOTA4MjMwNi4xNjk4MTgwNTUy*_ga_CW55HF8NVT*MTY5ODk0MjAwNS40LjEuMTY5ODk0NjExNS41NS4wLjA'),
                                             titulo: meusEventos![index].name!,
                                             data:
                                                 meusEventos![index].startDate!,

@@ -11,7 +11,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../shared/service/colorService.dart';
 
 class BannerMeuIngresso extends StatelessWidget {
-  ImageProvider image;
+  NetworkImage image;
   String id;
   String titulo;
   String data;
@@ -24,8 +24,8 @@ class BannerMeuIngresso extends StatelessWidget {
   bool empresa;
   bool ativo;
   String local;
-  String descricao;
-  String endereco;
+  String? descricao;
+  String? endereco;
   BannerMeuIngresso(
       {super.key,
       required this.id,
@@ -40,8 +40,8 @@ class BannerMeuIngresso extends StatelessWidget {
       required this.corDoLote,
       required this.anuncio,
       required this.empresa,
-      this.descricao = '',
-      this.endereco = '',
+      this.descricao,
+      this.endereco,
       required this.ativo});
 
   @override
@@ -83,6 +83,7 @@ class BannerMeuIngresso extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => MeuEventoScreen(
+                          image: image,
                           id: id,
                           data: data,
                           nome: titulo,

@@ -246,8 +246,7 @@ class _MainScreenState extends State<MainScreen> {
                           id: listaFiltrada[index].id!,
                           height: 230,
                           width: 200,
-                          image:
-                              const AssetImage('assets/images/PericlesEx.png'),
+                          image: NetworkImage(listaFiltrada[index].picture!),
                           titulo: listaFiltrada[index].name!,
                         );
                       },

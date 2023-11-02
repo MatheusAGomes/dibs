@@ -11,7 +11,7 @@ import '../main.dart';
 import '../repositories/loteEvent-repository.dart';
 
 class BannerPrincipal extends StatelessWidget {
-  ImageProvider image;
+  NetworkImage image;
   String titulo;
   double height;
   double width;
@@ -61,6 +61,7 @@ class BannerPrincipal extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) => MeuEventoScreen(
+                        image: image,
                         id: id,
                         data: data,
                         nome: titulo,

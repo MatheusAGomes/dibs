@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:path/path.dart' as path;
+import 'package:path/path.dart';
 
 String formatarData(String dataUTC) {
   DateTime data =
@@ -164,19 +164,18 @@ DateTime sumDateTimeAndTimeOfDay(DateTime dateTime, TimeOfDay timeOfDay) {
 }
 
 Future<String?> uploadFile(File file) async {
-  String fileName = path.basename(file.path);
+  final Reference storageReference =
+      FirebaseStorage.instance.ref().child(file.path);
 
-  // Criar uma referência ao arquivo que será enviado
-  Reference ref = FirebaseStorage.instance.ref().child(fileName);
+  try {
+    final UploadTask uploadTask = storageReference.putFile(file);
+    await uploadTask.whenComplete(() {}); // Aguarde o upload ser concluído
 
-  // Enviar o arquivo para o Firebase Storage
-  UploadTask uploadTask = ref.putFile(file);
-
-  // Aguardar o fim do upload
-  await uploadTask;
-
-  // Obter a URL do arquivo enviado
-  String? fileUrl = await ref.getDownloadURL();
-
-  return fileUrl;
+    final String downloadURL = await storageReference.getDownloadURL();
+    print('URL de download da imagem: $downloadURL');
+    return downloadURL;
+  } catch (e) {
+    print('Erro ao enviar imagem: $e');
+    return null; // Retornar null em caso de erro
+  }
 }

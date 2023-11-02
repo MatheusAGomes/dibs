@@ -17,9 +17,7 @@ void main() async {
   dio.interceptors.add(logger);
   dio.interceptors.add(AppInterceptors());
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
 
   runApp(const MyApp());
 }
