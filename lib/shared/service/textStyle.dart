@@ -188,7 +188,7 @@ TextStyle get creditCardComponent {
   static TextStyle eventBatch = GoogleFonts.jost(
       textStyle: const TextStyle(
         fontWeight: FontWeight.w600,
-        fontSize: 20,
+        fontSize: 18,
         letterSpacing: -0.91,
         height: 2
       ));

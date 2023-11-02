@@ -10,6 +10,7 @@ import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/repositories/card-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/buttonPadrao.dart';
+import 'package:dibs/widget/shadowedCard.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -95,27 +96,7 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                       setState(() {});
                     },
                     child: card == null
-                    ? Container(
-                      // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(color: Color(0x40000000)),
-                          borderRadius: BorderRadius.circular(7),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Color(0x40000000),
-                                offset: Offset(2,2),
-                                blurRadius: 0.2
-                            )
-                          ]
-                      ),
-                      child: Card(
-                        margin: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(7),
-                        ),
-                        color: Colors.white,
+                    ? ShadowedCard(
                         child: Container(
                           height: MediaQuery.of(context).size.height * 0.09,
                           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -144,13 +125,12 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                                   ],
                                 ),
                                 Icon(
-                                  FontAwesomeIcons.solidPenToSquare,
-                                  size: 20)
+                                    FontAwesomeIcons.solidPenToSquare,
+                                    size: 20)
                               ],
                             ),
                           ),
-                        ),
-                      ),
+                        )
                     )
                     : Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
