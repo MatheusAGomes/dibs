@@ -11,12 +11,14 @@ class Events {
   String? startDate;
   String? time;
   String? picture;
+  String? description;
   String? address;
   EventStatusEnum? status;
 
   Events(
-      {this.id,
+      {required this.id,
       required this.name,
+      required this.description,
       required this.picture,
       required this.startDate,
       required this.status,
