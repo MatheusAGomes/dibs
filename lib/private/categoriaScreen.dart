@@ -56,27 +56,28 @@ class _CategoriaScreenState extends State<CategoriaScreen> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
             child: SingleChildScrollView(
                 child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(widget.titulo,
-                    style: TextStyleService(categoryShadow: <Shadow>[
-                      Shadow(
-                          offset: Offset(1.5, 1.5),
-                          color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ], fontSize: 22).corSublinhada),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-                BannerCategoriaEvento(
-                  titulo: 'Churrasquinho menos é mais',
-                  corUm: widget.cor,
-                  corDois: widget.cordois,
-                  data: '02/02/2020',
-                  hora: '20:00',
-                  image: const AssetImage('assets/images/PericlesEx.png'),
-                )
-              ],
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(widget.titulo,
+                        style: TextStyleService(categoryShadow: <Shadow>[
+                          Shadow(
+                              offset: Offset(1.5, 1.5),
+                              color: Color.fromRGBO(126, 244, 209, 0.72))
+                        ], fontSize: 22).corSublinhada),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.015,
+                    ),
+                    BannerCategoriaEvento(
+                      titulo: 'Churrasquinho Menos é Mais',
+                      corUm: widget.cor,
+                      corDois: widget.cordois,
+                      data: '02/02/2020',
+                      hora: '20:00',
+                      local: 'Campinas - SP',
+                      image: const AssetImage('assets/images/PericlesEx.png'),
+                    )
+                  ],
             )),
           ),
         ));

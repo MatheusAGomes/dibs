@@ -111,7 +111,7 @@ class BannerNewMeuIngresso extends StatelessWidget {
                         children: [
                           Text(
                             lote,
-                            style: TextStyleService(batchColor: corDoLote)
+                            style: TextStyleService(color: corDoLote)
                                 .ticketBannerBatch,
                           ),
                           SizedBox(
