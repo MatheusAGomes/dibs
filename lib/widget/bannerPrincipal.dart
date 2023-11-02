@@ -17,8 +17,16 @@ class BannerPrincipal extends StatelessWidget {
   double width;
   String id;
   bool empresa;
+  String data;
+  String endereco;
+  String descricao;
+  String hora;
   BannerPrincipal(
       {super.key,
+      this.endereco = '',
+      this.data = '',
+      this.descricao = '',
+      this.hora = '',
       required this.empresa,
       required this.id,
       required this.image,
@@ -49,8 +57,17 @@ class BannerPrincipal extends StatelessWidget {
                         lotes: b,
                       )));
         } else {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => MeuEventoScreen()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MeuEventoScreen(
+                        id: id,
+                        data: data,
+                        nome: titulo,
+                        endereco: endereco,
+                        descricao: descricao,
+                        hora: hora,
+                      )));
         }
 
         // showModalBottomSheet<void>(

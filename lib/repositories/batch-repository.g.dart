@@ -21,13 +21,13 @@ class _BatchRepository implements BatchRepository {
   String? baseUrl;
 
   @override
-  Future<BatchReportIndex> getLoteAtivo(eventId) async {
+  Future<List<BatchReportIndex>> getLoteAtivo(eventId) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<BatchReportIndex>(Options(
+        .fetch<List<dynamic>>(_setStreamType<List<BatchReportIndex>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -39,7 +39,10 @@ class _BatchRepository implements BatchRepository {
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = BatchReportIndex.fromJson(_result.data!);
+    var value = _result.data!
+        .map(
+            (dynamic i) => BatchReportIndex.fromJson(i as Map<String, dynamic>))
+        .toList();
     return value;
   }
 
@@ -57,7 +60,7 @@ class _BatchRepository implements BatchRepository {
     )
             .compose(
               _dio.options,
-              '/reports/${eventId}',
+              '/numberOfTickets/${eventId}',
               queryParameters: queryParameters,
               data: _data,
             )

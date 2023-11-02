@@ -24,6 +24,8 @@ class BannerMeuIngresso extends StatelessWidget {
   bool empresa;
   bool ativo;
   String local;
+  String descricao;
+  String endereco;
   BannerMeuIngresso(
       {super.key,
       required this.id,
@@ -38,6 +40,8 @@ class BannerMeuIngresso extends StatelessWidget {
       required this.corDoLote,
       required this.anuncio,
       required this.empresa,
+      this.descricao = '',
+      this.endereco = '',
       required this.ativo});
 
   @override
@@ -78,7 +82,14 @@ class BannerMeuIngresso extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const MeuEventoScreen()));
+                    builder: (context) => MeuEventoScreen(
+                          id: id,
+                          data: data,
+                          nome: titulo,
+                          endereco: endereco,
+                          descricao: descricao,
+                          hora: hora,
+                        )));
           }
         },
         child: BannerNewMeuIngresso(

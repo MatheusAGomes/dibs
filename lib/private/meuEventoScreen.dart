@@ -1,12 +1,28 @@
+import 'package:dibs/repositories/batch-repository.dart';
 import 'package:dibs/widget/componenteGerenciadoDeLotes.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
+import '../main.dart';
+import '../models/batchReportIndex.dart';
+import '../models/soldTickets.dart';
 import '../shared/functions/utils.dart';
 
 class MeuEventoScreen extends StatelessWidget {
-  const MeuEventoScreen({super.key});
+  String data;
+  String hora;
+  String nome;
+  String endereco;
+  String descricao;
+  String id;
+  MeuEventoScreen(
+      {required this.data,
+      required this.descricao,
+      required this.endereco,
+      required this.hora,
+      required this.id,
+      required this.nome});
 
   @override
   Widget build(BuildContext context) {
@@ -25,27 +41,23 @@ class MeuEventoScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Row(
+                        Row(
                           children: [
                             Icon(Icons.calendar_month),
-                            Text("10/10/2020"),
+                            Text(data),
                             Icon(Icons.schedule),
-                            Text('20:20')
+                            Text(hora)
                           ],
                         ),
-                        const Text(
-                          'Churrasquinho menos é mais',
+                        Text(
+                          nome,
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
-                        const Row(
-                          children: [
-                            Icon(Icons.location_on),
-                            Text('Campinas,São Paulo')
-                          ],
+                        Row(
+                          children: [Icon(Icons.location_on), Text(endereco)],
                         ),
-                        Text(limitTo14Words(
-                            'Menos é mais novamente em Campinas para mais um show maravilhoso open bar e open food vai corinthians')),
+                        Text(limitTo14Words(descricao)),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
@@ -80,8 +92,10 @@ class MeuEventoScreen extends StatelessWidget {
                                           ),
                                           body: SingleChildScrollView(
                                             child: Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 20, horizontal: 20),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 20,
+                                                      horizontal: 20),
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.start,
@@ -218,8 +232,8 @@ class MeuEventoScreen extends StatelessWidget {
                                                           borderRadius:
                                                               BorderRadius
                                                                   .circular(7),
-                                                          color:
-                                                              const Color(0xFF198A68),
+                                                          color: const Color(
+                                                              0xFF198A68),
                                                         ),
                                                         width: 140,
                                                         height: 40,
@@ -290,8 +304,10 @@ class MeuEventoScreen extends StatelessWidget {
                                           ),
                                           body: SingleChildScrollView(
                                             child: Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 20, horizontal: 20),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 20,
+                                                      horizontal: 20),
                                               child: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
@@ -306,8 +322,9 @@ class MeuEventoScreen extends StatelessWidget {
                                                           builder: (BuildContext
                                                               context) {
                                                             return Padding(
-                                                              padding: const EdgeInsets
-                                                                  .symmetric(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
                                                                       vertical:
                                                                           20,
                                                                       horizontal:
@@ -461,8 +478,8 @@ class MeuEventoScreen extends StatelessWidget {
                                                                     BorderRadius
                                                                         .circular(
                                                                             5)),
-                                                            child:
-                                                                const Icon(Icons.add),
+                                                            child: const Icon(
+                                                                Icons.add),
                                                           ),
                                                           const Padding(
                                                             padding: EdgeInsets
@@ -485,7 +502,8 @@ class MeuEventoScreen extends StatelessWidget {
                                                     const SizedBox(
                                                       height: 10,
                                                     ),
-                                                    const Text('Lotes Finalizados'),
+                                                    const Text(
+                                                        'Lotes Finalizados'),
                                                     const ComponenteGerenciadoDeLotes(),
                                                     const SizedBox(
                                                       height: 10,
@@ -548,8 +566,8 @@ class MeuEventoScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const Divider(),
-                        const Text(
+                        Divider(),
+                        Text(
                           'Relatorio de venda',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
@@ -557,175 +575,183 @@ class MeuEventoScreen extends StatelessWidget {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
-                        const Text(
+                        Text(
                           'Lotes ativos',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        Text(
-                          'Camarotes - 4° Lote',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                        Stack(
-                          children: [
-                            LinearPercentIndicator(
-                              padding: EdgeInsets.zero,
-                              width: MediaQuery.of(context).size.width * 0.875,
-                              animation: true,
-                              lineHeight: 20.0,
-                              animationDuration: 2500,
-                              barRadius: const Radius.circular(5),
-                              percent: 0.8,
-                              linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: const Color(0xFF198A68),
-                              backgroundColor: const Color(0xFFDADADA),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 40),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                        FutureBuilder(
+                          future: Future.wait([
+                            BatchRepository(dio).getLoteAtivo(id),
+                            BatchRepository(dio).getIngressosTotais(id)
+                          ]),
+                          builder: (context, snapshot) {
+                            if (snapshot.hasData) {
+                              List<BatchReportIndex> lotes =
+                                  snapshot.data![0] as List<BatchReportIndex>;
+                              SoldTickets ingressosVendidos =
+                                  snapshot.data![1] as SoldTickets;
+                              return Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    'Inteira',
-                                    style: TextStyle(color: Colors.white),
+                                  Column(
+                                    children: List.generate(
+                                        lotes.length,
+                                        (index) => Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  lotes[index].name,
+                                                  style: TextStyle(
+                                                      color: Colors.grey[600]),
+                                                ),
+                                                Stack(
+                                                  children: [
+                                                    LinearPercentIndicator(
+                                                      padding: EdgeInsets.zero,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.875,
+                                                      animation: true,
+                                                      lineHeight: 20.0,
+                                                      animationDuration: 2500,
+                                                      barRadius:
+                                                          Radius.circular(5),
+                                                      // percent: lotes[index]
+                                                      //         .numberOfFullPriceTickets /
+                                                      //     lotes[index]
+                                                      //         .numberOfFullPriceTicketsTotal,
+                                                      percent: 1,
+                                                      linearStrokeCap:
+                                                          LinearStrokeCap
+                                                              .roundAll,
+                                                      progressColor:
+                                                          Color(0xFF198A68),
+                                                      backgroundColor:
+                                                          Color(0xFFDADADA),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 40),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            'Inteira',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                          Text(
+                                                              '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
+                                                              style: TextStyle(
+                                                                  color: Color(
+                                                                      0xFF8D8D8D))),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.005,
+                                                ),
+                                                Stack(
+                                                  children: [
+                                                    LinearPercentIndicator(
+                                                      padding: EdgeInsets.zero,
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.875,
+                                                      animation: true,
+                                                      lineHeight: 20.0,
+                                                      animationDuration: 2500,
+                                                      barRadius:
+                                                          Radius.circular(5),
+                                                      percent: lotes[index]
+                                                              .numberOfHalfPriceTickets /
+                                                          lotes[index]
+                                                              .numberOfHalfPriceTicketsTotal,
+                                                      linearStrokeCap:
+                                                          LinearStrokeCap
+                                                              .roundAll,
+                                                      progressColor:
+                                                          Color(0xFF10B981),
+                                                      backgroundColor:
+                                                          Color(0xFFDADADA),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 40),
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text('Meia',
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white)),
+                                                          Text(
+                                                              '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
+                                                              style: TextStyle(
+                                                                  color: Color(
+                                                                      0xFF8D8D8D))),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            )),
                                   ),
-                                  Text('50/100',
-                                      style:
-                                          TextStyle(color: Color(0xFF8D8D8D))),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.005,
-                        ),
-                        Stack(
-                          children: [
-                            LinearPercentIndicator(
-                              padding: EdgeInsets.zero,
-                              width: MediaQuery.of(context).size.width * 0.875,
-                              animation: true,
-                              lineHeight: 20.0,
-                              animationDuration: 2500,
-                              barRadius: const Radius.circular(5),
-                              percent: 0.4,
-                              linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: const Color(0xFF10B981),
-                              backgroundColor: const Color(0xFFDADADA),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 40),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('Meia',
-                                      style: TextStyle(color: Colors.white)),
-                                  Text('40/100',
-                                      style:
-                                          TextStyle(color: Color(0xFF8D8D8D))),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        Text(
-                          'Pista - 4° lote',
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
-                        Stack(
-                          children: [
-                            LinearPercentIndicator(
-                              padding: EdgeInsets.zero,
-                              width: MediaQuery.of(context).size.width * 0.875,
-                              animation: true,
-                              lineHeight: 20.0,
-                              animationDuration: 2500,
-                              barRadius: const Radius.circular(5),
-                              percent: 0.8,
-                              linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: const Color(0xFF198A68),
-                              backgroundColor: const Color(0xFFDADADA),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 40),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Inteira',
-                                    style: TextStyle(color: Colors.white),
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.02,
                                   ),
-                                  Text('50/100',
-                                      style:
-                                          TextStyle(color: Color(0xFF8D8D8D))),
+                                  Text(
+                                    'Ingressos totais vendidos',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17),
+                                  ),
+                                  LinearPercentIndicator(
+                                    padding: EdgeInsets.zero,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.875,
+                                    animation: true,
+                                    lineHeight: 20.0,
+                                    animationDuration: 2500,
+                                    barRadius: Radius.circular(5),
+                                    percent: ingressosVendidos.soldTickets /
+                                        ingressosVendidos.totalTickets,
+                                    center: Text(
+                                      '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    linearStrokeCap: LinearStrokeCap.roundAll,
+                                    progressColor: Color(0xFF198A68),
+                                    backgroundColor: Color(0xFFDADADA),
+                                  ),
                                 ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.005,
-                        ),
-                        Stack(
-                          children: [
-                            LinearPercentIndicator(
-                              padding: EdgeInsets.zero,
-                              width: MediaQuery.of(context).size.width * 0.875,
-                              animation: true,
-                              lineHeight: 20.0,
-                              animationDuration: 2500,
-                              barRadius: const Radius.circular(5),
-                              percent: 0.4,
-                              linearStrokeCap: LinearStrokeCap.roundAll,
-                              progressColor: const Color(0xFF10B981),
-                              backgroundColor: const Color(0xFFDADADA),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 40),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text('Meia',
-                                      style: TextStyle(color: Colors.white)),
-                                  Text('40/100',
-                                      style:
-                                          TextStyle(color: Color(0xFF8D8D8D))),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        const Text(
-                          'Ingressos totais vendidos',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 17),
-                        ),
-                        LinearPercentIndicator(
-                          padding: EdgeInsets.zero,
-                          width: MediaQuery.of(context).size.width * 0.875,
-                          animation: true,
-                          lineHeight: 20.0,
-                          animationDuration: 2500,
-                          barRadius: const Radius.circular(5),
-                          percent: 0.849,
-                          center: const Text(
-                            '849/1000',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          linearStrokeCap: LinearStrokeCap.roundAll,
-                          progressColor: const Color(0xFF198A68),
-                          backgroundColor: const Color(0xFFDADADA),
+                              );
+                            }
+                            return SizedBox();
+                          },
                         ),
                       ])),
               Container(

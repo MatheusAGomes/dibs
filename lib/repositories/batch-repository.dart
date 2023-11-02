@@ -12,7 +12,7 @@ abstract class BatchRepository {
   factory BatchRepository(Dio dio, {String baseUrl}) = _BatchRepository;
 
   @GET("/reports/{eventId}")
-  Future<BatchReportIndex> getLoteAtivo(@Path('eventId') eventId);
-  @GET("/reports/{eventId}")
+  Future<List<BatchReportIndex>> getLoteAtivo(@Path('eventId') eventId);
+  @GET("/numberOfTickets/{eventId}")
   Future<SoldTickets> getIngressosTotais(@Path('eventId') eventId);
 }
