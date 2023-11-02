@@ -1,3 +1,4 @@
+import 'package:dibs/widget/shadowedCard.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,26 +19,7 @@ class MeuCartaoComponente extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(color: Color(0x40000000)),
-          borderRadius: BorderRadius.circular(7),
-          boxShadow: [
-            BoxShadow(
-                color: Color(0x40000000),
-                offset: Offset(2,2),
-                blurRadius: 0.2
-            )
-          ]
-      ),
-      child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7),
-        ),
-        color: Colors.white,
+    return ShadowedCard(
         child: Container(
           height: MediaQuery.of(context).size.height * 0.09,
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -57,7 +39,7 @@ class MeuCartaoComponente extends StatelessWidget {
                             width: 30,
                             child: Checkbox(value: false, onChanged: (bool? value) {})
                         ))
-                    : Padding(
+                        : Padding(
                         padding: EdgeInsetsDirectional.only(start: 5, end: 20),
                         child: Icon(
                           FontAwesomeIcons.solidCreditCard,
@@ -73,16 +55,16 @@ class MeuCartaoComponente extends StatelessWidget {
                             Row(
                               children: [
                                 Text(numero!,
-                                  style: TextStyleService(
-                                    fontSize: 14,
-                                    color: Colors.black).creditCardComponent),
+                                    style: TextStyleService(
+                                        fontSize: 14,
+                                        color: Colors.black).creditCardComponent),
                               ],
                             ),
                             Text(
                               nome!.toUpperCase(),
                               style: TextStyleService(
-                                fontSize: 11,
-                                color: Colors.black).creditCardComponent,
+                                  fontSize: 11,
+                                  color: Colors.black).creditCardComponent,
                             ),
                             Text(
                               tipo!,
@@ -96,7 +78,7 @@ class MeuCartaoComponente extends StatelessWidget {
                   ],
                 ),
                 pedido! ? SizedBox()
-                : InkWell(
+                    : InkWell(
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.grey[300],
@@ -115,43 +97,6 @@ class MeuCartaoComponente extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
-    );
-    return InkWell(
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: BorderRadius.circular(11)),
-        height: 60,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                const Icon(Icons.credit_card),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text(numero!),
-                      ],
-                    ),
-                    Text(
-                      nome!,
-                      style: const TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      tipo!,
-                      style: TextStyle(color: Colors.grey.shade500),
-                    )
-                  ],
-                ),
-                pedido! ? Icon(Icons.edit) : Icon(Icons.delete_outline_outlined)
-            ]),
-        ),
-      ),
-    );
+        ));
   }
 }
