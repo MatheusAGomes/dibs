@@ -1,3 +1,4 @@
+import 'package:dibs/models/endereco.dart';
 import 'package:dibs/shared/enum/EvetnCategory.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -9,7 +10,7 @@ class EventInput {
   String picture;
   DateTime startDate;
   String description;
-  String address;
+  Endereco address;
   EventCategory category;
   EventInput(
       {required this.address,

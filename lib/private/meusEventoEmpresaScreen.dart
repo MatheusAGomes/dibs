@@ -52,7 +52,7 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                 ),
                 AnimatedToggleSwitch<int>.size(
                   current: value,
-                  values: const [0, 1],
+                  values: const [0, 1, 2],
                   height: 30,
                   indicatorSize: const Size(130, 50),
                   indicatorColor: Colors.white,
@@ -62,7 +62,15 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                       return const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Ativos',
+                          Text('Publicados',
+                              style: TextStyle(fontWeight: FontWeight.w500)),
+                        ],
+                      );
+                    } else if (local.value == 1) {
+                      return const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Criados',
                               style: TextStyle(fontWeight: FontWeight.w500)),
                         ],
                       );
@@ -312,48 +320,93 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                               }
                             }),
                       )
-                    : SizedBox(
-                        height: MediaQuery.of(context).size.height,
-                        child: FutureBuilder<List<Events>>(
-                            future: EventsRepository(dio).getMyEvents(),
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                List<Events> meusEventos = snapshot.data!
-                                    .where((element) =>
-                                        element.status ==
-                                        EventStatusEnum.FINISHED)
-                                    .toList();
-                                return ListView.builder(
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: meusEventos!.length,
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 10),
-                                      child: BannerMeuIngresso(
-                                        id: meusEventos![index].id!,
-                                        local: meusEventos![index].address!,
-                                        ativo: true,
-                                        empresa: true,
-                                        anuncio: false,
-                                        image: const AssetImage(
-                                            'assets/images/PericlesEx.png'),
-                                        titulo: meusEventos![index].name!,
-                                        data: meusEventos![index].startDate!,
-                                        hora: meusEventos![index].time!,
-                                        lote: '1° Lote',
-                                        tipo: 'Meia-Entrada',
-                                        corBanner: Colors.green,
-                                        corDoLote: Colors.green.shade900,
-                                      ),
+                    : value == 1
+                        ? SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            child: FutureBuilder<List<Events>>(
+                                future: EventsRepository(dio).getMyEvents(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    List<Events> meusEventos = snapshot.data!
+                                        .where((element) =>
+                                            element.status ==
+                                            EventStatusEnum.CREATED)
+                                        .toList();
+                                    return ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: meusEventos!.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: BannerMeuIngresso(
+                                            id: meusEventos![index].id!,
+                                            local: meusEventos![index].address!,
+                                            ativo: true,
+                                            empresa: true,
+                                            anuncio: false,
+                                            image: const AssetImage(
+                                                'assets/images/PericlesEx.png'),
+                                            titulo: meusEventos![index].name!,
+                                            data:
+                                                meusEventos![index].startDate!,
+                                            hora: meusEventos![index].time!,
+                                            lote: '1° Lote',
+                                            tipo: 'Meia-Entrada',
+                                            corBanner: Colors.green,
+                                            corDoLote: Colors.green.shade900,
+                                          ),
+                                        );
+                                      },
                                     );
-                                  },
-                                );
-                              } else {
-                                return SizedBox();
-                              }
-                            }),
-                      )
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                }),
+                          )
+                        : SizedBox(
+                            height: MediaQuery.of(context).size.height,
+                            child: FutureBuilder<List<Events>>(
+                                future: EventsRepository(dio).getMyEvents(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    List<Events> meusEventos = snapshot.data!
+                                        .where((element) =>
+                                            element.status ==
+                                            EventStatusEnum.FINISHED)
+                                        .toList();
+                                    return ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: meusEventos!.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: BannerMeuIngresso(
+                                            id: meusEventos![index].id!,
+                                            local: meusEventos![index].address!,
+                                            ativo: true,
+                                            empresa: true,
+                                            anuncio: false,
+                                            image: const AssetImage(
+                                                'assets/images/PericlesEx.png'),
+                                            titulo: meusEventos![index].name!,
+                                            data:
+                                                meusEventos![index].startDate!,
+                                            hora: meusEventos![index].time!,
+                                            lote: '1° Lote',
+                                            tipo: 'Meia-Entrada',
+                                            corBanner: Colors.green,
+                                            corDoLote: Colors.green.shade900,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  } else {
+                                    return SizedBox();
+                                  }
+                                }),
+                          )
               ],
             ),
           ),

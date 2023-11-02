@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "154609337928",
+    "project_id": "dibs-67d1a",
+    "storage_bucket": "dibs-67d1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154609337928:android:37c9d6a5ad5bcbfe18ba7d",
+        "android_client_info": {
+          "package_name": "com.example.dibs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDT94j5K8efHjz18uDWwKWzU2YGIv3AWvg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

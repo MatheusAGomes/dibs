@@ -1,9 +1,15 @@
+import 'dart:io';
+
+import 'package:dibs/models/endereco.dart';
+import 'package:dibs/models/eventInput.dart';
 import 'package:dibs/repositories/batch-repository.dart';
 import 'package:dibs/repositories/events-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +18,7 @@ import '../models/auth.dart';
 import '../models/batchReportIndex.dart';
 import '../models/events.dart';
 import '../models/soldTickets.dart';
+import '../shared/enum/EvetnCategory.dart';
 import '../shared/functions/utils.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
@@ -31,12 +38,23 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
   }
 
   TextEditingController buscaController = TextEditingController();
-
+  String? fotoDeCapa;
+  TextEditingController titulo = TextEditingController();
+  TextEditingController data = TextEditingController();
+  TextEditingController hora = TextEditingController();
+  TextEditingController cidade = TextEditingController();
+  TextEditingController uf = TextEditingController();
+  TextEditingController categoria = TextEditingController();
+  TextEditingController descricao = TextEditingController();
+  DateTime? dataTime;
+  TimeOfDay? timeOfday;
+  EventCategory selectedCategory = EventCategory.SHOW;
   @override
   Widget build(BuildContext context) {
     Auth auth = Provider.of<Auth>(context, listen: false);
 
     buscaController.text;
+
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -200,15 +218,24 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                       isScrollControlled: true,
                       context: context,
                       builder: (BuildContext context) {
-                        String? fotoDeCapa;
-                        TextEditingController titulo = TextEditingController();
-                        TextEditingController data = TextEditingController();
-                        TextEditingController hora = TextEditingController();
-                        TextEditingController local = TextEditingController();
-                        TextEditingController categoria =
-                            TextEditingController();
-                        TextEditingController descricao =
-                            TextEditingController();
+                        _getImage() async {
+                          final ImagePicker _picker = ImagePicker();
+                          XFile? imageFile = await _picker.pickImage(
+                            source: ImageSource.gallery,
+                            maxWidth: MediaQuery.of(context).size.width,
+                            maxHeight: MediaQuery.of(context).size.height,
+                          );
+                          if (imageFile != null) {
+                            String? fotoDeCapaa =
+                                await uploadFile(File(imageFile.path));
+                            if (fotoDeCapa != null)
+                              setState(() {
+                                fotoDeCapa = fotoDeCapaa;
+                              });
+                            print(fotoDeCapa);
+                          }
+                        }
+
                         return Scaffold(
                           appBar: AppBar(
                             elevation: 0,
@@ -235,23 +262,33 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text('Foto de capa'),
-                                  Container(
-                                    height: 105,
-                                    width: 300,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.circular(7),
-                                        border: Border.all(
-                                            color: Colors.grey, width: 1)),
+                                  Text('Foto de capa'),
+                                  InkWell(
+                                    onTap: () {
+                                      _getImage();
+                                    },
+                                    child: Container(
+                                      height: 105,
+                                      width: 300,
+                                      child: fotoDeCapa != null
+                                          ? Image.network(fotoDeCapa!)
+                                          : SizedBox(),
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                              BorderRadius.circular(7),
+                                          border: Border.all(
+                                              color: Colors.grey, width: 1)),
+                                    ),
                                   ),
-                                  const Text('Titulo'),
+                                  Text('Titulo'),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.05,
                                     child: TextFieldPadrao(
+                                      controller: titulo,
                                       click: () {},
-                                      enable: false,
+                                      enable: true,
                                     ),
                                   ),
                                   Row(
@@ -262,7 +299,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const Text('Data'),
+                                          Text('Data'),
                                           SizedBox(
                                             height: MediaQuery.of(context)
                                                     .size
@@ -273,8 +310,20 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                     .width *
                                                 0.4,
                                             child: TextFieldPadrao(
-                                              click: () {},
-                                              enable: false,
+                                              controller: data,
+                                              click: () async {
+                                                dataTime = await showDatePicker(
+                                                    context: context,
+                                                    initialDate: DateTime.now(),
+                                                    firstDate: DateTime.now(),
+                                                    lastDate: DateTime.now()
+                                                        .add(Duration(
+                                                            days: 365)));
+                                                if (dataTime != null)
+                                                  data.text =
+                                                      formatDateTime(dataTime!);
+                                              },
+                                              enable: true,
                                             ),
                                           ),
                                         ],
@@ -294,48 +343,140 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                     .width *
                                                 0.4,
                                             child: TextFieldPadrao(
-                                              click: () {},
-                                              enable: false,
+                                              controller: hora,
+                                              click: () async {
+                                                timeOfday =
+                                                    await showTimePicker(
+                                                        context: context,
+                                                        initialTime:
+                                                            TimeOfDay.now());
+                                                if (timeOfday != null) {
+                                                  hora.text = formatTimeOfDay(
+                                                      timeOfday!);
+                                                }
+                                              },
+                                              enable: true,
                                             ),
                                           ),
                                         ],
                                       )
                                     ],
                                   ),
-                                  const Text('Local'),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    child: TextFieldPadrao(
-                                      click: () {},
-                                      enable: false,
-                                    ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text('Cidade'),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.05,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.4,
+                                            child: TextFieldPadrao(
+                                              click: () {},
+                                              controller: cidade,
+                                              enable: true,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('UF'),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.05,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.4,
+                                            child: TextFieldPadrao(
+                                              controller: uf,
+                                              click: () {},
+                                              enable: true,
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
-                                  const Text('Categoria'),
+                                  Text('Categoria'),
                                   SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    child: TextFieldPadrao(
-                                      click: () {},
-                                      enable: false,
-                                    ),
-                                  ),
-                                  const Text('Descrição'),
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.05,
+                                      child: DropdownButton<EventCategory>(
+                                        value: selectedCategory,
+                                        onChanged: (EventCategory? newValue) {
+                                          if (newValue != null) {
+                                            setState(() {
+                                              selectedCategory = newValue;
+                                            });
+                                          }
+                                        },
+                                        items: EventCategory.values
+                                            .map((category) {
+                                          return DropdownMenuItem<
+                                              EventCategory>(
+                                            value: category,
+                                            child:
+                                                Text(category.toEnumString()),
+                                          );
+                                        }).toList(),
+                                      )),
+                                  Text('Descrição'),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height *
                                         0.1,
                                     child: TextFieldPadrao(
+                                      controller: descricao,
                                       maxlength: 5,
                                       click: () {},
-                                      enable: false,
+                                      enable: true,
                                     ),
                                   ),
-                                  const SizedBox(
+                                  SizedBox(
                                     height: 20,
                                   ),
                                   Center(
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () async {
+                                        DateTime dateTimeResultante =
+                                            sumDateTimeAndTimeOfDay(
+                                                dataTime!, timeOfday!);
+                                        print(dateTimeResultante);
+                                        await EventsRepository(dio).criarEvento(
+                                            EventInput(
+                                                address: Endereco(
+                                                    cep: 'cep',
+                                                    logradouro: 'logradouro',
+                                                    complemento: 'complemento',
+                                                    numero: 'numero',
+                                                    bairro: 'bairro',
+                                                    cidade: cidade.text,
+                                                    uf: uf.text,
+                                                    ddd: 'ddd'),
+                                                description: descricao.text,
+                                                name: titulo.text,
+                                                picture: fotoDeCapa ?? '',
+                                                startDate: dateTimeResultante,
+                                                category: selectedCategory));
+                                        ToastService.showToastInfo(
+                                            'EVENTO CRIADO COM SUCESSO');
+                                        Navigator.pop(context);
+                                      },
                                       child: Container(
                                         decoration: BoxDecoration(
                                           borderRadius:
@@ -346,7 +487,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                         height: 40,
                                         child: const Center(
                                           child: Text(
-                                            'Salvar',
+                                            'Criar',
                                             style:
                                                 TextStyle(color: Colors.white),
                                           ),

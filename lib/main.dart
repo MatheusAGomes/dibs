@@ -1,19 +1,25 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:provider/provider.dart';
 
+import 'firebase_options.dart';
 import 'models/auth.dart';
 import 'public/auth/auth_screen.dart';
 import 'shared/dio/app.interceptor.dart';
 import 'shared/routes/routes.dart';
 import 'shared/service/colorService.dart';
 
-void main() {
+void main() async {
   dio.interceptors.add(logger);
   dio.interceptors.add(AppInterceptors());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   runApp(const MyApp());
 }

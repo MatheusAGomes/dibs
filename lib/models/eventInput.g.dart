@@ -7,7 +7,7 @@ part of 'eventInput.dart';
 // **************************************************************************
 
 EventInput _$EventInputFromJson(Map<String, dynamic> json) => EventInput(
-      address: json['address'] as String,
+      address: Endereco.fromJson(json['address'] as Map<String, dynamic>),
       description: json['description'] as String,
       name: json['name'] as String,
       picture: json['picture'] as String,

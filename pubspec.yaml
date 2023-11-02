@@ -57,6 +57,9 @@ dependencies:
   flutter_svg: ^2.0.5
   pretty_qr_code: ^3.0.0
   brasil_fields: ^1.14.0
+  firebase_storage: ^11.4.1
+  image_picker: ^1.0.4
+
 
 dev_dependencies:
   flutter_test:

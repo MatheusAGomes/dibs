@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:path/path.dart' as path;
 
 String formatarData(String dataUTC) {
   DateTime data =
@@ -138,4 +142,41 @@ String addEllipsis(String inputString, int maxLength) {
     return inputString; // A string já é curta o suficiente, não é necessário adicionar reticências.
   }
   return inputString.substring(0, maxLength) + "...";
+}
+
+String formatDateTime(DateTime dateTime) {
+  final formatter = DateFormat('dd/MM/yy');
+  return formatter.format(dateTime);
+}
+
+String formatTimeOfDay(TimeOfDay timeOfDay) {
+  final hours = timeOfDay.hour.toString().padLeft(2, '0');
+  final minutes = timeOfDay.minute.toString().padLeft(2, '0');
+  return '$hours:$minutes';
+}
+
+DateTime sumDateTimeAndTimeOfDay(DateTime dateTime, TimeOfDay timeOfDay) {
+  final hour = timeOfDay.hour;
+  final minute = timeOfDay.minute;
+  final newDateTime =
+      DateTime(dateTime.year, dateTime.month, dateTime.day, hour, minute);
+  return newDateTime;
+}
+
+Future<String?> uploadFile(File file) async {
+  String fileName = path.basename(file.path);
+
+  // Criar uma referência ao arquivo que será enviado
+  Reference ref = FirebaseStorage.instance.ref().child(fileName);
+
+  // Enviar o arquivo para o Firebase Storage
+  UploadTask uploadTask = ref.putFile(file);
+
+  // Aguardar o fim do upload
+  await uploadTask;
+
+  // Obter a URL do arquivo enviado
+  String? fileUrl = await ref.getDownloadURL();
+
+  return fileUrl;
 }
