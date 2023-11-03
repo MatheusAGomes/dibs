@@ -143,7 +143,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                               decoration: const PrettyQrDecoration(
                                   image: PrettyQrDecorationImage(
                                       image: AssetImage(
-                                          "assets/icons/DibsLogoQrCode.png"),
+                                          "assets/icons/dibsLogoQrCode.png"),
                                       scale: 0.2),
                                   shape: PrettyQrSmoothSymbol())),
                         ],

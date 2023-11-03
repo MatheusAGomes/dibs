@@ -80,6 +80,25 @@ class TextStyleService {
     ));
   }
 
+  static TextStyle companyBatch = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 13,
+          letterSpacing: -0.41,
+          height: 0.7,
+          color: Color(0xFF6A6A6A))
+  );
+
+  TextStyle get companyBatchType {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 13,
+            letterSpacing: -0.41,
+            color: color!)
+    );
+  }
+
   static TextStyle ticketInput = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w500,
@@ -193,6 +212,23 @@ TextStyle get creditCardComponent {
         height: 2
       ));
 
+  static TextStyle companyBatchStatus = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 19,
+          letterSpacing: -0.91,
+      ));
+
+  TextStyle get companyBatchAmount {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 12,
+            letterSpacing: -1.41,
+            color: color!)
+    );
+  }
+
   static TextStyle defaultButton = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w700,
@@ -232,8 +268,9 @@ TextStyle get creditCardComponent {
   TextStyle get bold {
     return GoogleFonts.jost(
         textStyle: TextStyle(
-      fontWeight: FontWeight.w700,
-      fontSize: fontSize!,
+          fontWeight: FontWeight.w700,
+          fontSize: fontSize!,
+          letterSpacing: -1.41
     ));
   }
 

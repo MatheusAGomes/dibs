@@ -7,8 +7,10 @@ import 'package:dibs/repositories/events-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
+import 'package:dibs/widget/buttonNewAction.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -49,19 +51,22 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           elevation: 0,
           backgroundColor: Colors.transparent,
-          title: Image.asset('assets/images/logoDibs.png'),
+          title:
+              SvgPicture.asset("assets/icons/dibsEmpresasLogo.svg", width: 85),
+          titleSpacing: 21,
           actions: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: EdgeInsets.symmetric(horizontal: 20),
               child: PopupMenuButton(
                   constraints: BoxConstraints.expand(width: 100, height: 120),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   icon: Icon(
-                    Icons.menu_rounded,
-                    size: 25,
+                    FontAwesomeIcons.bars,
+                    size: 22,
                     color: Colors.black,
                   ),
                   onSelected: (value) {
@@ -149,37 +154,29 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.02,
                 ),
-                InkWell(
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return ModalNovoEvento();
-                      },
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5)),
-                        height: 35,
-                        width: 35,
-                        child: const Icon(Icons.add),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Novo evento',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                ButtonNewAction(
+                    text: 'Novo Evento',
+                    click: () {
+                      showModalBottomSheet<void>(
+                        isScrollControlled: true,
+                        context: context,
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(10)),
                         ),
-                      )
-                    ],
-                  ),
+                        builder: (BuildContext context) {
+                          return ModalNovoEvento();
+                        },
+                      );
+                    }),
+                SizedBox(
+                  height: 5,
                 ),
-                const Divider(),
+                Divider(
+                  color: Color(0xFFD9D9D9),
+                  thickness: 1,
+                ),
                 FutureBuilder(
                   future: EventsRepository(dio).getNextEvents(),
                   builder: (context, snapshot) {
@@ -202,10 +199,13 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Proximo Evento',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 20)),
+                                  Text('Próximo Evento',
+                                      style:
+                                          TextStyleService(fontSize: 22).bold),
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01),
                                   Container(
                                     child: BannerPrincipal(
                                       empresa: true,
@@ -226,9 +226,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                   ),
                                   Text(
                                     'Lotes ativos',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
+                                    style: TextStyleService.companyBatchStatus,
                                   ),
                                   Column(
                                     children: List.generate(
@@ -241,60 +239,61 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                               children: [
                                                 Text(
                                                   lotes[index].name,
-                                                  style: TextStyle(
-                                                      color: Colors.grey[700],
-                                                      fontSize: 13),
+                                                  style: TextStyleService
+                                                      .companyBatch,
                                                 ),
-                                                Stack(
-                                                  children: [
-                                                    LinearPercentIndicator(
-                                                      padding: EdgeInsets.zero,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.875,
-                                                      animation: true,
-                                                      lineHeight: 20.0,
-                                                      animationDuration: 2500,
-                                                      barRadius:
-                                                          const Radius.circular(
-                                                              5),
-                                                      percent: 0.8,
-                                                      linearStrokeCap:
-                                                          LinearStrokeCap
-                                                              .roundAll,
-                                                      progressColor:
-                                                          const Color(
-                                                              0xFF198A68),
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xFFDADADA),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 40),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text(
-                                                            'Inteira',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                                          Text(
-                                                              '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
-                                                              style: TextStyle(
+                                                SizedBox(
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            0.01),
+                                                LinearPercentIndicator(
+                                                  padding: EdgeInsets.zero,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.875,
+                                                  animation: true,
+                                                  lineHeight: 23.0,
+                                                  animationDuration: 1500,
+                                                  barRadius:
+                                                      const Radius.circular(5),
+                                                  percent: 0.8,
+                                                  linearStrokeCap:
+                                                      LinearStrokeCap.roundAll,
+                                                  progressColor:
+                                                      const Color(0xFF198A68),
+                                                  backgroundColor:
+                                                      const Color(0x66DADADA),
+                                                  center: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Text(
+                                                          'Inteira',
+                                                          style: TextStyleService(
                                                                   color: Color(
-                                                                      0xFF8D8D8D))),
-                                                        ],
-                                                      ),
+                                                                      0xFFFFFFFF))
+                                                              .companyBatchType,
+                                                        ),
+                                                        Text(
+                                                            '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
+                                                            style: TextStyleService(
+                                                                    color: Color(
+                                                                        0xFF8D8D8D))
+                                                                .companyBatchAmount),
+                                                      ],
                                                     ),
-                                                  ],
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: MediaQuery.of(context)
@@ -302,57 +301,50 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                           .height *
                                                       0.005,
                                                 ),
-                                                Stack(
-                                                  children: [
-                                                    LinearPercentIndicator(
-                                                      padding: EdgeInsets.zero,
-                                                      width:
-                                                          MediaQuery.of(context)
-                                                                  .size
-                                                                  .width *
-                                                              0.875,
-                                                      animation: true,
-                                                      lineHeight: 20.0,
-                                                      animationDuration: 2500,
-                                                      barRadius:
-                                                          const Radius.circular(
-                                                              5),
-                                                      percent: lotes[index]
-                                                              .numberOfHalfPriceTickets /
-                                                          lotes[index]
-                                                              .numberOfHalfPriceTicketsTotal,
-                                                      linearStrokeCap:
-                                                          LinearStrokeCap
-                                                              .roundAll,
-                                                      progressColor:
-                                                          const Color(
-                                                              0xFF10B981),
-                                                      backgroundColor:
-                                                          const Color(
-                                                              0xFFDADADA),
+                                                LinearPercentIndicator(
+                                                  padding: EdgeInsets.zero,
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.875,
+                                                  animation: true,
+                                                  lineHeight: 23.0,
+                                                  animationDuration: 1500,
+                                                  barRadius:
+                                                      const Radius.circular(5),
+                                                  percent: lotes[index]
+                                                          .numberOfHalfPriceTickets /
+                                                      lotes[index]
+                                                          .numberOfHalfPriceTicketsTotal,
+                                                  linearStrokeCap:
+                                                      LinearStrokeCap.roundAll,
+                                                  progressColor:
+                                                      const Color(0xFF10B981),
+                                                  backgroundColor:
+                                                      const Color(0x66DADADA),
+                                                  center: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 10),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Text('Meia',
+                                                            style: TextStyleService(
+                                                                    color: Color(
+                                                                        0xFFFFFFFF))
+                                                                .companyBatchType),
+                                                        Text(
+                                                            '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
+                                                            style: TextStyleService(
+                                                                    color: Color(
+                                                                        0xFF8D8D8D))
+                                                                .companyBatchAmount),
+                                                      ],
                                                     ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              horizontal: 40),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: [
-                                                          Text('Meia',
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .white)),
-                                                          Text(
-                                                              '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
-                                                              style: TextStyle(
-                                                                  color: Color(
-                                                                      0xFF8D8D8D))),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
+                                                  ),
                                                 ),
                                                 SizedBox(
                                                   height: MediaQuery.of(context)
@@ -365,27 +357,27 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                   ),
                                   Text(
                                     'Ingressos totais vendidos',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
+                                    style: TextStyleService.companyBatchStatus,
                                   ),
                                   LinearPercentIndicator(
                                     padding: EdgeInsets.zero,
                                     width: MediaQuery.of(context).size.width *
                                         0.875,
                                     animation: true,
-                                    lineHeight: 20.0,
-                                    animationDuration: 2500,
+                                    lineHeight: 23.0,
+                                    animationDuration: 1500,
                                     barRadius: const Radius.circular(5),
                                     percent: ingressosVendidos.soldTickets /
                                         ingressosVendidos.totalTickets,
                                     center: Text(
                                       '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
+                                      style: TextStyleService(
+                                              color: Color(
+                                              0xFF8D8D8D))
+                                                  .companyBatchAmount),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     progressColor: const Color(0xFF198A68),
-                                    backgroundColor: const Color(0xFFDADADA),
+                                    backgroundColor: const Color(0x66DADADA),
                                   ),
                                 ],
                               );
