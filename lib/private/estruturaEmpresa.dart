@@ -1,10 +1,12 @@
 import 'package:dibs/private/mainEmpresa.dart';
 import 'package:dibs/private/meusEventoEmpresaScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 
 import '../shared/service/colorService.dart';
+import '../shared/service/textStyle.dart';
 
 class EstruturaEmpresa extends StatefulWidget {
   int pagina;
@@ -53,6 +55,10 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
               topRight: Radius.circular(20),
             ),
             child: BottomNavigationBar(
+              selectedFontSize: 13,
+              unselectedFontSize: 12,
+              selectedLabelStyle: TextStyleService.bottomNavigationBar,
+              unselectedLabelStyle: TextStyleService.bottomNavigationBar,
               unselectedItemColor: Colors.grey,
               backgroundColor: Colors.grey.shade300,
               selectedItemColor: ColorService.verde,
@@ -62,14 +68,16 @@ class _EstruturaEmpresaState extends State<EstruturaEmpresa> {
               items: const [
                 BottomNavigationBarItem(
                     icon: Icon(
-                      Icons.home,
+                      FontAwesomeIcons.house,
+                      size: 20,
                     ),
                     label: 'Tela inicial'),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.confirmation_num),
+                  icon: Icon(FontAwesomeIcons.ticketSimple,
+                    size: 20
+                  ),
                   label: 'Eventos',
                 ),
-
               ],
               onTap: (pagina) {
                 pc.animateToPage(
