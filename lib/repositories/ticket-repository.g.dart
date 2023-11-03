@@ -13,7 +13,7 @@ class _TicketRepository implements TicketRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.203:8080/tickets';
+    baseUrl ??= 'http://192.168.195.189:8080/tickets';
   }
 
   final Dio _dio;
@@ -267,6 +267,29 @@ class _TicketRepository implements TicketRepository {
         .map((dynamic i) =>
             MeuIngressoBanner.fromJson(i as Map<String, dynamic>))
         .toList();
+    return value;
+  }
+
+  @override
+  Future<TicketReport> getResumoVenda(id) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<TicketReport>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/report/${id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = TicketReport.fromJson(_result.data!);
     return value;
   }
 

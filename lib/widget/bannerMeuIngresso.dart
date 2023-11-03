@@ -2,12 +2,15 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:dibs/main.dart';
 import 'package:dibs/private/infoMeuIngresso.dart';
 import 'package:dibs/private/meuEventoScreen.dart';
+import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerNewMeuIngresso.dart';
+import 'package:dibs/widget/modalResumoDaVenda.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../models/ticketReport.dart';
 import '../shared/service/colorService.dart';
 
 class BannerMeuIngresso extends StatelessWidget {
@@ -26,8 +29,10 @@ class BannerMeuIngresso extends StatelessWidget {
   String local;
   String? descricao;
   String? endereco;
+  bool? vendidos;
   BannerMeuIngresso(
       {super.key,
+      this.vendidos = false,
       required this.id,
       required this.local,
       required this.image,
@@ -49,35 +54,53 @@ class BannerMeuIngresso extends StatelessWidget {
     return InkWell(
         onTap: () async {
           if (empresa == false) {
-            final a = await TicketRepository(dio).getTicket(id);
-            print(a);
-            showModalBottomSheet<void>(
-              isScrollControlled: true,
-              context: context,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-              ),
-              builder: (BuildContext context) {
-                return InfoMeuIngressoScreen(
-                    id: a.id,
-                    anuncio: anuncio,
-                    codigoDoIngresso: a.qrCode,
-                    cpf: a.cpf,
-                    fotoDoEvento: image,
-                    nomeDoTitular: a.name,
-                    status: a.valid,
-                    data: a.date,
-                    hora: a.time,
-                    local: a.address,
-                    nomeEvento: a.eventName,
-                    tipoIngresso: a.halfPrice ? 'Meia Entrada' : 'Inteira',
-                    lote: a.batchName,
-                    preco: a.halfPrice
-                        ? ' ${UtilBrasilFields.obterReal(a.purchasePrice / 2)}'
-                        : ' ${UtilBrasilFields.obterReal(a.purchasePrice)}');
-              },
-            );
+            if (vendidos!) {
+              TicketReport ticket =
+                  await TicketRepository(dio).getResumoVenda(id);
+
+              showModalBottomSheet<void>(
+                  context: context,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(10)),
+                  ),
+                  builder: (BuildContext context) {
+                    return ModalResumoDaVenda(
+                      info: ticket,
+                    );
+                  });
+            } else {
+              final a = await TicketRepository(dio).getTicket(id);
+              print(a);
+              showModalBottomSheet<void>(
+                isScrollControlled: true,
+                context: context,
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+                ),
+                builder: (BuildContext context) {
+                  return InfoMeuIngressoScreen(
+                      id: a.id,
+                      anuncio: anuncio,
+                      codigoDoIngresso: a.qrCode,
+                      cpf: a.cpf,
+                      fotoDoEvento: image,
+                      nomeDoTitular: a.name,
+                      status: a.valid,
+                      data: a.date,
+                      hora: a.time,
+                      local: a.address,
+                      nomeEvento: a.eventName,
+                      tipoIngresso: a.halfPrice ? 'Meia Entrada' : 'Inteira',
+                      lote: a.batchName,
+                      preco: a.halfPrice
+                          ? ' ${UtilBrasilFields.obterReal(a.purchasePrice / 2)}'
+                          : ' ${UtilBrasilFields.obterReal(a.purchasePrice)}');
+                },
+              );
+            }
           } else {
             Navigator.push(
                 context,

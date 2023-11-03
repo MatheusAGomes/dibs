@@ -206,6 +206,7 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 10),
                                         child: BannerMeuIngresso(
+                                          vendidos: true,
                                           id: meusIngressosVendidos[index].id,
                                           local: meusIngressosVendidos[index]
                                               .address,

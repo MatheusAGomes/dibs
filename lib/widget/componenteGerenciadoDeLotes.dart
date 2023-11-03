@@ -1,9 +1,10 @@
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 
-
 class ComponenteGerenciadoDeLotes extends StatelessWidget {
-  const ComponenteGerenciadoDeLotes({super.key});
+  String name;
+  String valor;
+  ComponenteGerenciadoDeLotes({required this.name, required this.valor});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,13 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Column(
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Camarote - 4° Lote'),
+                Text(name),
                 Text(
-                  'R\$ 80,00',
+                  'R\$ ${valor}',
                   style: TextStyle(color: Colors.grey),
                 ),
               ],

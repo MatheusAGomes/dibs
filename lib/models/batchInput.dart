@@ -8,7 +8,7 @@ part 'batchInput.g.dart';
 class BatchInput {
   String name;
   String eventId;
-  Events event;
+  Events? event;
 
   int numberOfTickets;
   double announcedPrice;
@@ -18,7 +18,7 @@ class BatchInput {
   BatchInput({
     required this.name,
     required this.eventId,
-    required this.event,
+    this.event,
     required this.announcedPrice,
     required this.nextBatch,
     required this.numberOfTickets,

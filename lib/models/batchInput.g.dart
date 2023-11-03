@@ -9,7 +9,9 @@ part of 'batchInput.dart';
 BatchInput _$BatchInputFromJson(Map<String, dynamic> json) => BatchInput(
       name: json['name'] as String,
       eventId: json['eventId'] as String,
-      event: Events.fromJson(json['event'] as Map<String, dynamic>),
+      event: json['event'] == null
+          ? null
+          : Events.fromJson(json['event'] as Map<String, dynamic>),
       announcedPrice: (json['announcedPrice'] as num).toDouble(),
       nextBatch: IdName.fromJson(json['nextBatch'] as Map<String, dynamic>),
       numberOfTickets: json['numberOfTickets'] as int,

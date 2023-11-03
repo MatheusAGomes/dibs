@@ -24,28 +24,29 @@ class TextFieldPadrao extends StatefulWidget {
   final int? maxlength;
   final bool? enable;
   List<TextInputFormatter>? inputFormatter;
+  int maxLines;
 
-  TextFieldPadrao({
-    this.textFormFildKey,
-    this.hintText,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.keyboardtype = TextInputType.text,
-    this.hideTextfild = false,
-    required this.click,
-    this.fontSize = 10,
-    this.validator,
-    this.controller,
-    this.onchange,
-    this.textInputAction,
-    this.onFieldSubmitted,
-    this.focusNode,
-    this.errorText,
-    this.padding,
-    this.maxlength,
-    this.enable,
-    this.inputFormatter,
-  });
+  TextFieldPadrao(
+      {this.textFormFildKey,
+      this.hintText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.keyboardtype = TextInputType.text,
+      this.hideTextfild = false,
+      required this.click,
+      this.fontSize = 10,
+      this.validator,
+      this.controller,
+      this.onchange,
+      this.textInputAction,
+      this.onFieldSubmitted,
+      this.focusNode,
+      this.errorText,
+      this.padding,
+      this.maxlength,
+      this.enable,
+      this.inputFormatter,
+      this.maxLines = 1});
 
   @override
   State<TextFieldPadrao> createState() => _TextFieldPadraoState();
@@ -57,6 +58,7 @@ class _TextFieldPadraoState extends State<TextFieldPadrao> {
     return TextFormField(
       inputFormatters: widget.inputFormatter,
       enabled: widget.enable,
+      maxLines: widget.maxLines,
       maxLength: widget.maxlength,
       focusNode: widget.focusNode,
       onFieldSubmitted: widget.onFieldSubmitted,

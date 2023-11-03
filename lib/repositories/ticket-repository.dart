@@ -1,6 +1,7 @@
 import 'package:dibs/models/meuIngressoBanner.dart';
 import 'package:dibs/models/ticketClientInput.dart';
 import 'package:dibs/models/ticketOrganizer.dart';
+import 'package:dibs/models/ticketReport.dart';
 import 'package:dibs/models/ticketsForSale.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -40,4 +41,6 @@ abstract class TicketRepository {
       @Path('ticketId') String idDoEvento);
   @GET("/sold-tickets")
   Future<List<MeuIngressoBanner>> getSoldTickets();
+  @GET("/report/{id}")
+  Future<TicketReport> getResumoVenda(@Path('id') String id);
 }
