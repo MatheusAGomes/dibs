@@ -9,6 +9,7 @@ import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
 import 'package:dibs/widget/modalAjuda.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:provider/provider.dart';
@@ -55,7 +56,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: PopupMenuButton(
-                  constraints: BoxConstraints.expand(width: 150, height: 170),
+                  constraints: BoxConstraints.expand(width: 100, height: 120),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(15.0))),
                   icon: Icon(
@@ -65,28 +66,6 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   ),
                   onSelected: (value) {
                     switch (value) {
-                      case 'MeuPerfil':
-                        showModalBottomSheet<void>(
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (BuildContext context) {
-                            return MeuPerfil();
-                          },
-                        );
-                        break;
-
-                      case 'MeusCartões':
-                        showModalBottomSheet<void>(
-                          isScrollControlled: true,
-                          enableDrag: true,
-                          isDismissible: true,
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const ModalMeusCartoes();
-                          },
-                        );
-                        break;
-
                       case 'Ajuda':
                         showModalBottomSheet<void>(
                           isScrollControlled: true,
@@ -101,47 +80,15 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   },
                   itemBuilder: (BuildContext bc) {
                     return [
-                      PopupMenuItem(
-                        height: 30,
+                      const PopupMenuItem(
+                        height: 40,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
-                              'Olá,${addEllipsis(auth.authDecoded!['login'].toString(), 4)}',
-                              style: TextStyle(fontWeight: FontWeight.w900),
-                            ),
                             Icon(
-                              Icons.person,
+                              FontAwesomeIcons.xmark,
                               color: Colors.black,
                             )
-                          ],
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        height: 30,
-                        value: 'MeuPerfil',
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              "Meu perfil",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900, fontSize: 12),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const PopupMenuItem(
-                        height: 30,
-                        value: 'MeusCartões',
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Text(
-                              "Meus cartões",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w900, fontSize: 12),
-                            ),
                           ],
                         ),
                       ),
@@ -165,7 +112,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                         },
                         height: 30,
                         value: 'Sair',
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
@@ -182,7 +129,6 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                   }),
             )
           ],
-          actionsIconTheme: const IconThemeData(),
         ),
         resizeToAvoidBottomInset: false,
         body: SafeArea(
