@@ -8,16 +8,22 @@ import '../private/modalMeusIngressosAnuncio.dart';
 import '../repositories/ticket-repository.dart';
 import '../shared/service/textStyle.dart';
 
-class ButtonNewAction extends StatelessWidget {
+class ButtonCustomAction extends StatelessWidget {
   String text;
   VoidCallback click;
-  IconData? icon;
+  Icon? icon;
+  double height;
+  double width;
+  double fontSize;
 
-  ButtonNewAction({
+  ButtonCustomAction({
     super.key,
     required this.text,
     required this.click,
-    this.icon = FontAwesomeIcons.plus
+    required this.icon,
+    this.height = 40,
+    this.width = 40,
+    this.fontSize = 18
   });
 
   @override
@@ -34,9 +40,9 @@ class ButtonNewAction extends StatelessWidget {
                     color: Colors.grey[300],
                     borderRadius:
                     BorderRadius.circular(5)),
-                height: 40,
-                width: 40,
-                child: Icon(icon),
+                height: height,
+                width: width,
+                child: icon,
               ),
             ),
             SizedBox(
@@ -45,7 +51,7 @@ class ButtonNewAction extends StatelessWidget {
             Text(
               text,
               style:
-              TextStyleService(fontSize: 18).iconButtonText,
+              TextStyleService(fontSize: fontSize).iconButtonText,
             )
           ]),
     );

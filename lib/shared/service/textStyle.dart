@@ -45,10 +45,12 @@ class TextStyleService {
           height: 1.3,
           color: Color(0x8A000000)));
 
-  static TextStyle defaultTextField = GoogleFonts.jost(
-      textStyle: const TextStyle(
-          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13,
-          color: Color(0xFF909090)));
+  TextStyle get defaultTextField {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+            fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13,
+            color: color));
+  }
 
   static TextStyle mediumSpacing041 = GoogleFonts.jost(
       textStyle: const TextStyle(
@@ -203,12 +205,14 @@ TextStyle get creditCardComponent {
     letterSpacing: -0.61,
   ));
 
-  static TextStyle iconButtonText = GoogleFonts.jost(
-      textStyle: const TextStyle(
-    fontWeight: FontWeight.w600,
-    fontSize: 18,
-    letterSpacing: -1.08,
-  ));
+  TextStyle get iconButtonText {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: fontSize,
+          letterSpacing: -1.08,
+        ));
+  }
 
   static TextStyle eventBatch = GoogleFonts.jost(
       textStyle: const TextStyle(

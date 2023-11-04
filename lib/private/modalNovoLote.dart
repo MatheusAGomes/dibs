@@ -13,12 +13,12 @@ import '../repositories/batch-repository.dart';
 import '../widget/componenteGerenciadoDeLotes.dart';
 import '../widget/textfieldpadrao.dart';
 
-class ModalNovoLote extends StatefulWidget {
+class ModalGerenciarLote extends StatefulWidget {
   String idDoEvento;
-  ModalNovoLote({required this.idDoEvento});
+  ModalGerenciarLote({required this.idDoEvento});
 
   @override
-  State<ModalNovoLote> createState() => _ModalNovoLoteState();
+  State<ModalGerenciarLote> createState() => _ModalGerenciarLoteState();
 }
 
 bool checkboxValue = false;
@@ -27,7 +27,7 @@ TextEditingController nomeController = TextEditingController();
 String? formadePagamento;
 TextEditingController valor = TextEditingController(text: '');
 
-class _ModalNovoLoteState extends State<ModalNovoLote> {
+class _ModalGerenciarLoteState extends State<ModalGerenciarLote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

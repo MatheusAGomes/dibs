@@ -13,7 +13,7 @@ class _EventsRepository implements EventsRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/events';
+    baseUrl ??= 'http://192.168.195.203:8080/events';
   }
 
   final Dio _dio;

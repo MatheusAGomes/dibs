@@ -72,7 +72,9 @@ class _TextFieldPadraoState extends State<TextFieldPadrao> {
       },
       obscureText: widget.hideTextfild,
       keyboardType: widget.keyboardtype,
-      style: TextStyleService.defaultTextField,
+      style: TextStyleService(
+          color: Color(0xFF000000)
+      ).defaultTextField,
       cursorColor: Colors.grey,
       decoration: InputDecorationService(
               prefixIcon: widget.prefixIcon, hint: widget.hintText)
