@@ -47,7 +47,13 @@ class TextStyleService {
 
   static TextStyle defaultTextField = GoogleFonts.jost(
       textStyle: const TextStyle(
-          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13));
+          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13,
+          color: Color(0xFF909090)));
+
+  static TextStyle mediumSpacing041 = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 11,
+          color: Color(0xFF909090)));
 
   static TextStyle defaultFieldLabel = GoogleFonts.jost(
       textStyle: const TextStyle(

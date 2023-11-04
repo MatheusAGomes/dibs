@@ -1,7 +1,9 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/main.dart';
 import 'package:dibs/shared/enum/EventStatus.dart';
+import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
+import 'package:dibs/widget/buttonNewAction.dart';
 import 'package:dibs/widget/modalNovoEvento.dart';
 import 'package:flutter/material.dart';
 
@@ -30,17 +32,16 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 22),
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'Meus Eventos',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 22),
+                      style: TextStyleService.boldSpacing141,
                     ),
                     Icon(
                       Icons.person,
@@ -49,38 +50,38 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
                 AnimatedToggleSwitch<int>.size(
                   current: value,
                   values: const [0, 1, 2],
                   height: 30,
-                  indicatorSize: const Size(130, 50),
+                  indicatorSize: const Size(150, 50),
                   indicatorColor: Colors.white,
                   innerColor: Colors.grey.shade300,
                   customIconBuilder: (context, local, global) {
                     if (local.value == 0) {
-                      return const Row(
+                      return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Publicados',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: TextStyleService.toggleSwitchActiveText),
                         ],
                       );
                     } else if (local.value == 1) {
-                      return const Row(
+                      return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Criados',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: TextStyleService.toggleSwitchActiveText),
                         ],
                       );
                     } else {
-                      return const Row(
+                      return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Expirados',
-                              style: TextStyle(fontWeight: FontWeight.w500)),
+                              style: TextStyleService.toggleSwitchActiveText),
                         ],
                       );
                     }
@@ -96,38 +97,27 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                InkWell(
-                  onTap: () {
-                    showModalBottomSheet<void>(
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (BuildContext context) {
-                        return ModalNovoEvento();
-                      },
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey[300],
-                            borderRadius: BorderRadius.circular(5)),
-                        height: 35,
-                        width: 35,
-                        child: const Icon(Icons.add),
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'Novo evento',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      )
-                    ],
-                  ),
+                ButtonNewAction(
+                    text: 'Novo evento',
+                    click: () {
+                      showModalBottomSheet<void>(
+                          isScrollControlled: true,
+                          context: context,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(10)),
+                          ),
+                          builder: (BuildContext context) {
+                            return ModalNovoEvento();
+                          });
+                    }),
+                SizedBox(
+                  height: 5,
                 ),
-                const SizedBox(
-                  height: 20,
+                Divider(
+                  color: Color(0xFFD9D9D9),
+                  thickness: 1,
                 ),
                 value == 0
                     ? SizedBox(

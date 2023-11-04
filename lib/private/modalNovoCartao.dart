@@ -55,8 +55,6 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                     color: Color(0x66000000),
                     thickness: 1,
                   ),
-
-
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -186,7 +184,8 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
 
-],),
+              ],
+              ),
               ButtonPadrao(
                   enable: true, delete: false,
                   width: 0.45, text: "Salvar", click: () {}),

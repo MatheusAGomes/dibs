@@ -5,6 +5,7 @@ import 'package:dibs/private/modalNovoCartao.dart';
 import 'package:dibs/repositories/card-repository.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../main.dart';
@@ -13,7 +14,11 @@ import '../models/eventInput.dart';
 import '../repositories/events-repository.dart';
 import '../shared/enum/EvetnCategory.dart';
 import '../shared/functions/utils.dart';
+import '../shared/routes/routes.dart';
+import '../shared/service/textStyle.dart';
 import '../shared/service/toastService.dart';
+import 'buttonPadrao.dart';
+import 'expandableTextField.dart';
 import 'meuCartaoComponente.dart';
 
 class ModalNovoEvento extends StatefulWidget {
@@ -66,179 +71,358 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
       }
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Novo evento',
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-            )),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+    return SafeArea(
+      child: Padding(
+        // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 18, bottom: 35),
+        child: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Foto de capa'),
-              InkWell(
-                onTap: () {
-                  _getImage();
-                },
-                child: Container(
-                  height: 105,
-                  width: 300,
-                  child: fotoDeCapa != null
-                      ? Image.network(fotoDeCapa!)
-                      : SizedBox(),
-                  decoration: BoxDecoration(
-                      color: Colors.grey,
-                      borderRadius: BorderRadius.circular(7),
-                      border: Border.all(color: Colors.grey, width: 1)),
-                ),
-              ),
-              Text('Titulo'),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-                child: TextFieldPadrao(
-                  controller: titulo,
-                  click: () {},
-                  enable: true,
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Text('Data'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: TextFieldPadrao(
-                          controller: data,
-                          click: () async {
-                            dataTime = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime.now(),
-                                lastDate:
-                                    DateTime.now().add(Duration(days: 365)));
-                            if (dataTime != null)
-                              data.text = formatDateTime(dataTime!);
-                          },
-                          enable: true,
-                        ),
+                      Text(
+                        'Novo Evento',
+                        style: TextStyleService.modalTitle,
+                      ),
+                      InkWell(
+                        child: Icon(
+                            FontAwesomeIcons.xmark,
+                            size: 18),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
                       ),
                     ],
                   ),
+                  Divider(
+                    color: Color(0x66000000),
+                    thickness: 1,
+                  ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Horário'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: TextFieldPadrao(
-                          controller: hora,
-                          click: () async {
-                            timeOfday = await showTimePicker(
-                                context: context, initialTime: TimeOfDay.now());
-                            if (timeOfday != null) {
-                              hora.text = formatTimeOfDay(timeOfday!);
-                            }
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Foto de capa',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            _getImage();
                           },
-                          enable: true,
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 100,
+                            width: 300,
+                            child: fotoDeCapa != null
+                                ? Image.network(fotoDeCapa!)
+                                : Padding(
+                                    padding: EdgeInsetsDirectional.only(top: 0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(FontAwesomeIcons.solidImages,
+                                            color: Color(0XFF909090),
+                                            size: 45),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Clique aqui para adicionar\n'
+                                                'uma foto ao seu evento',
+                                                style: TextStyleService.defaultTextField),
+                                            SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                                            Text('Resolução adequada:\n'
+                                                '1440x140',
+                                                style: TextStyleService.mediumSpacing041)
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                ),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7),
+                                // border: Border.all(
+                                //     color: Color(0x33000000)
+                                // ),
+                                color: Color(0xFFD9D9D9),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Color(0x40000000),
+                                      offset: Offset(2,2),
+                                      blurRadius: 0.3
+                                  )
+                                ]
+                            ),
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                      ]
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Cidade'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: TextFieldPadrao(
-                          click: () {},
-                          controller: cidade,
-                          enable: true,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Título',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
                         ),
+                        ExpandableTextField(
+                            controller: titulo,
+                            click: () {},
+                            height: 0.06,
+                            enable: true,
+                            hintText: "Churrasquinho Menos é Mais",
+                            prefixIcon: Icon(
+                              FontAwesomeIcons.masksTheater,
+                              size: 16,
+                            ))
+                      ]
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                'Data',
+                                textAlign: TextAlign.left,
+                                style: TextStyleService.defaultFieldLabel),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.005,
+                            ),
+                            ExpandableTextField(
+                                controller: data,
+                                click: () async {
+                                  dataTime = await showDatePicker(
+                                      context: context,
+                                      initialDate: DateTime.now(),
+                                      firstDate: DateTime.now(),
+                                      lastDate:
+                                      DateTime.now().add(Duration(days: 365)));
+                                  if (dataTime != null)
+                                    data.text = formatDateTime(dataTime!);
+                                },
+                                width: 0.42,
+                                height: 0.06,
+                                enable: true,
+                                hintText: "01/01/1970",
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.solidCalendar,
+                                  size: 16,
+                                ))
+                          ]
+                      ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                'Horário',
+                                textAlign: TextAlign.left,
+                                style: TextStyleService.defaultFieldLabel),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.005,
+                            ),
+                            ExpandableTextField(
+                                controller: hora,
+                                click: () async {
+                                  timeOfday = await showTimePicker(
+                                      context: context, initialTime: TimeOfDay.now());
+                                  if (timeOfday != null) {
+                                    hora.text = formatTimeOfDay(timeOfday!);
+                                  }
+                                },
+                                width: 0.42,
+                                height: 0.06,
+                                enable: true,
+                                hintText: "13:00",
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.solidClock,
+                                  size: 16,
+                                ))
+                          ]
                       ),
                     ],
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('UF'),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        child: TextFieldPadrao(
-                          controller: uf,
-                          click: () {},
-                          enable: true,
-                        ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                'Cidade',
+                                textAlign: TextAlign.left,
+                                style: TextStyleService.defaultFieldLabel),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.005,
+                            ),
+                            ExpandableTextField(
+                                controller: cidade,
+                                click: () {},
+                                width: 0.42,
+                                height: 0.06,
+                                enable: true,
+                                hintText: "Campinas",
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.locationDot,
+                                  size: 16,
+                                ))
+                          ]
                       ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                                'Estado (UF)',
+                                textAlign: TextAlign.left,
+                                style: TextStyleService.defaultFieldLabel),
+                            SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.005,
+                            ),
+                            ExpandableTextField(
+                                controller: uf,
+                                click: () {},
+                                width: 0.42,
+                                height: 0.06,
+                                enable: true,
+                                hintText: "SP",
+                                prefixIcon: Icon(
+                                  FontAwesomeIcons.locationDot,
+                                  size: 16,
+                                ))
+                          ]
+                      )
                     ],
-                  )
-                ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Categoria',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.055,
+                            child: Container(
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(7),
+                                    border: Border.all(
+                                        color: Color(0x33000000)
+                                    ),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Color(0x40000000),
+                                          offset: Offset(2,2),
+                                          blurRadius: 0.3
+                                      )
+                                    ]
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                    MediaQuery.of(Routes.navigatorKey.currentContext!).size.width *
+                                        0.03,
+                                    vertical: 0,
+                                  ),
+                                  child: DropdownButton<EventCategory>(
+                                    value: selectedCategory,
+                                    isExpanded: true,
+                                    isDense: true,
+                                    underline: SizedBox(height: 0),
+                                    icon: Icon(
+                                        FontAwesomeIcons.angleDown,
+                                        size: 18,
+                                        color: Colors.grey),
+                                    style: TextStyleService.defaultTextField,
+                                    onChanged: (EventCategory? newValue) {
+                                      if (newValue != null) {
+                                        setState(() {
+                                          selectedCategory = newValue;
+                                        });
+                                      }
+                                    },
+                                    items: EventCategory.values.map((category) {
+                                      return DropdownMenuItem<EventCategory>(
+                                        value: category,
+                                        child: Text(category.toEnumString(),
+                                          style: TextStyleService.defaultTextField),
+                                      );
+                                    }).toList(),
+                                  ),
+                                )
+                            )
+                        ),
+                      ]
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Descrição',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        ExpandableTextField(
+                            controller: descricao,
+                            click: () {},
+                            height: 0.08,
+                            maxLines: 3,
+                            enable: true,
+                            // hintText: "Churrasquinho Menos é Mais",
+                        )
+                      ]
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                ]
               ),
-              Text('Categoria'),
-              SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.05,
-                  child: DropdownButton<EventCategory>(
-                    value: selectedCategory,
-                    onChanged: (EventCategory? newValue) {
-                      if (newValue != null) {
-                        setState(() {
-                          selectedCategory = newValue;
-                        });
-                      }
-                    },
-                    items: EventCategory.values.map((category) {
-                      return DropdownMenuItem<EventCategory>(
-                        value: category,
-                        child: Text(category.toEnumString()),
-                      );
-                    }).toList(),
-                  )),
-              Text('Descrição'),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                child: TextFieldPadrao(
-                  maxLines: 3,
-                  controller: descricao,
-                  click: () {},
-                  enable: true,
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: InkWell(
-                  onTap: () async {
+              ButtonPadrao(
+                  enable: true, delete: false,
+                  width: 0.45, text: "Criar",
+                  click:() async {
                     DateTime dateTimeResultante =
-                        sumDateTimeAndTimeOfDay(dataTime!, timeOfday!);
+                    sumDateTimeAndTimeOfDay(dataTime!, timeOfday!);
                     print(dateTimeResultante);
                     await EventsRepository(dio).criarEvento(EventInput(
                         address: Endereco(
@@ -257,23 +441,8 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                         category: selectedCategory));
                     ToastService.showToastInfo('EVENTO CRIADO COM SUCESSO');
                     Navigator.pop(context);
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7),
-                      color: const Color(0xFF198A68),
-                    ),
-                    width: 140,
-                    height: 40,
-                    child: const Center(
-                      child: Text(
-                        'Criar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ),
-              )
+                  }
+              ),
             ],
           ),
         ),

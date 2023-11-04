@@ -25,6 +25,7 @@ class ExpandableTextField extends StatefulWidget{
   List<TextInputFormatter>? inputFormatter;
   final double height;
   final double width;
+  final int maxLines;
 
 
   ExpandableTextField({
@@ -48,7 +49,8 @@ class ExpandableTextField extends StatefulWidget{
     this.enable,
     this.inputFormatter,
     required this.height,
-    this.width = 1
+    this.width = 1,
+    this.maxLines = 1,
   });
 
 
@@ -96,6 +98,7 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
             maxlength: widget.maxlength,
             enable: widget.enable,
             inputFormatter: widget.inputFormatter,
+            maxLines: widget.maxLines,
           ),
         )
     );
