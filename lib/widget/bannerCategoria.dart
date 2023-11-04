@@ -1,8 +1,10 @@
 import 'package:dibs/private/categoriaScreen.dart';
+import 'package:dibs/shared/enum/EvetnCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BannerCategoria extends StatelessWidget {
+  EventCategory category;
   Icon icon;
   String titulo;
   Color corUm;
@@ -10,6 +12,7 @@ class BannerCategoria extends StatelessWidget {
 
   BannerCategoria(
       {super.key,
+      required this.category,
       required this.icon,
       required this.titulo,
       required this.corUm,
@@ -22,7 +25,8 @@ class BannerCategoria extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => CategoriaScreen(corUm, titulo, corDois)));
+                builder: (context) =>
+                    CategoriaScreen(corUm, titulo, corDois, category)));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 10),

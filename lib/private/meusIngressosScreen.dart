@@ -139,7 +139,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                     ),
                     value == 0
                         ? Container(
-                            height: MediaQuery.of(context).size.height,
+                            height: MediaQuery.of(context).size.height * 0.65,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: snapshot.data!.length,
@@ -170,7 +170,7 @@ class _MeusIngressosScreenState extends State<MeusIngressosScreen> {
                             ),
                           )
                         : Container(
-                            height: MediaQuery.of(context).size.height,
+                            height: MediaQuery.of(context).size.height * 0.55,
                             child: ListView.builder(
                               scrollDirection: Axis.vertical,
                               itemCount: snapshot.data!.length,

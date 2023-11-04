@@ -1,5 +1,9 @@
+import 'package:dibs/main.dart';
+import 'package:dibs/models/newPassword.dart';
 import 'package:dibs/private/categoriaScreen.dart';
+import 'package:dibs/repositories/user-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:dibs/widget/expandableTextField.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +15,12 @@ import 'textfieldpadrao.dart';
 
 class MeuPerfil extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => _MeuPerfilState();
+  State<MeuPerfil> createState() => _MeuPerfilState();
 }
 
 class _MeuPerfilState extends State<MeuPerfil> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  TextEditingController senhaController = TextEditingController();
+  TextEditingController novaSenhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                 color: Colors.black,
               )),
         ),
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(left: 20, top: 0, right: 20, bottom: 20),
@@ -203,6 +205,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       ExpandableTextField(
+                          controller: senhaController,
                           click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
@@ -223,6 +226,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       ExpandableTextField(
+                          controller: novaSenhaController,
                           click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
@@ -235,13 +239,22 @@ class _MeuPerfilState extends State<MeuPerfil> {
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
                   ButtonPadrao(
-                      enable: true, delete: false,
-                      width: 0.5, text: "Alterar senha", click: () {}),
+                      enable: true,
+                      delete: false,
+                      width: 0.5,
+                      text: "Alterar senha",
+                      click: () async {
+                        await UserRepository(dio).trocarSenha(NewPassword(
+                            currentPassword: senhaController.text,
+                            newPassword: novaSenhaController.text));
+                        ToastService.showToastInfo(
+                            'Senha alterada com sucesso');
+                        Navigator.pop(context);
+                      }),
                 ],
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }

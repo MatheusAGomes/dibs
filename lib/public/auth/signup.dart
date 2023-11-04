@@ -1,6 +1,7 @@
 import 'package:dibs/models/clienteRegister.dart';
 import 'package:dibs/repositories/autenticacao.dart';
 import 'package:dibs/repositories/authentication-repository.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -255,6 +256,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             cpf: cpfNomeController.text,
                             birthDate: dataTime!,
                             phone: telefoneController.text));
+                        ToastService.showToastInfo(
+                            'Usuario criado com sucesso');
                       }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,

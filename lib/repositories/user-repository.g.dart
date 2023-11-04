@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card-repository.dart';
+part of 'user-repository.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,12 +8,12 @@ part of 'card-repository.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _CardRepository implements CardRepository {
-  _CardRepository(
+class _UserRepository implements UserRepository {
+  _UserRepository(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/cards';
+    baseUrl ??= 'http://192.168.195.189:8080/users';
   }
 
   final Dio _dio;
@@ -21,28 +21,27 @@ class _CardRepository implements CardRepository {
   String? baseUrl;
 
   @override
-  Future<List<Cards>> getCards() async {
+  Future<HttpResponse<void>> trocarSenha(newPassword) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
+    _data.addAll(newPassword.toJson());
     final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Cards>>(Options(
-      method: 'GET',
+        await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(Options(
+      method: 'PUT',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/list',
+              '/change-password',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    var value = _result.data!
-        .map((dynamic i) => Cards.fromJson(i as Map<String, dynamic>))
-        .toList();
-    return value;
+    final httpResponse = HttpResponse(null, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

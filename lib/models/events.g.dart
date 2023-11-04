@@ -8,6 +8,7 @@ part of 'events.dart';
 
 Events _$EventsFromJson(Map<String, dynamic> json) => Events(
       id: json['id'] as String?,
+      category: $enumDecode(_$EventCategoryEnumMap, json['category']),
       name: json['name'] as String?,
       description: json['description'] as String?,
       picture: json['picture'] as String?,
@@ -26,7 +27,16 @@ Map<String, dynamic> _$EventsToJson(Events instance) => <String, dynamic>{
       'description': instance.description,
       'address': instance.address,
       'status': _$EventStatusEnumEnumMap[instance.status],
+      'category': _$EventCategoryEnumMap[instance.category]!,
     };
+
+const _$EventCategoryEnumMap = {
+  EventCategory.SHOW: 'SHOW',
+  EventCategory.TEATRO: 'TEATRO',
+  EventCategory.CORRIDA: 'CORRIDA',
+  EventCategory.FESTA: 'FESTA',
+  EventCategory.RELIGIOSO: 'RELIGIOSO',
+};
 
 const _$EventStatusEnumEnumMap = {
   EventStatusEnum.PUBLISHED: 'PUBLISHED',

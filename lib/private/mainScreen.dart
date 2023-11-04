@@ -1,6 +1,7 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/models/events.dart';
 import 'package:dibs/shared/enum/EventStatus.dart';
+import 'package:dibs/shared/enum/EvetnCategory.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerCategoria.dart';
 import 'package:dibs/widget/bannerPrincipal.dart';
@@ -107,7 +108,7 @@ class _MainScreenState extends State<MainScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text(
-                              "Olá,${addEllipsis(auth.authDecoded!['login'].toString(), 10)}",
+                              "Olá,${addEllipsis(auth.authDecoded!['login'].toString(), 7)}",
                               style:
                                   const TextStyle(fontWeight: FontWeight.w900),
                             ),
@@ -307,6 +308,7 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BannerCategoria(
+                              category: EventCategory.SHOW,
                               icon: const Icon(
                                 Icons.theater_comedy,
                                 size: 35,
@@ -315,6 +317,7 @@ class _MainScreenState extends State<MainScreen> {
                               corUm: Colors.green,
                               corDois: Colors.blue),
                           BannerCategoria(
+                              category: EventCategory.TEATRO,
                               icon: const Icon(Icons.music_note),
                               titulo: 'Teatro',
                               corUm: Colors.red,
@@ -328,12 +331,14 @@ class _MainScreenState extends State<MainScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           BannerCategoria(
+                              category: EventCategory.CORRIDA,
                               icon: const Icon(Icons.directions_walk),
                               titulo: 'Corridas',
                               corUm: Colors.pink.shade100,
                               corDois: Colors.pink.shade300),
                           BannerCategoria(
-                              icon: const Icon(Icons.church),
+                              category: EventCategory.RELIGIOSO,
+                              icon: Icon(Icons.church),
                               titulo: 'Religioso',
                               corUm: Colors.green.shade200,
                               corDois: Colors.yellow),

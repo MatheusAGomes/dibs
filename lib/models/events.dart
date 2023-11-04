@@ -1,3 +1,4 @@
+import 'package:dibs/shared/enum/EvetnCategory.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../shared/enum/EventStatus.dart';
@@ -14,9 +15,11 @@ class Events {
   String? description;
   String? address;
   EventStatusEnum? status;
+  EventCategory category;
 
   Events(
       {required this.id,
+      required this.category,
       required this.name,
       required this.description,
       required this.picture,

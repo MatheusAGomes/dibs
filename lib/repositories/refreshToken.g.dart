@@ -13,7 +13,7 @@ class _RefreshApi implements RefreshApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.203:8080users/refresh-token';
+    baseUrl ??= 'http://192.168.195.189:8080users/refresh-token';
   }
 
   final Dio _dio;

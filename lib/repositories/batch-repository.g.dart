@@ -13,7 +13,7 @@ class _BatchRepository implements BatchRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.203:8080/batches';
+    baseUrl ??= 'http://192.168.195.189:8080/batches';
   }
 
   final Dio _dio;

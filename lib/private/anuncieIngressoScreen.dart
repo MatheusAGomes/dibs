@@ -157,7 +157,8 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                   thickness: 1,
                                 ),
                                 Container(
-                                  height: MediaQuery.of(context).size.height,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.55,
                                   child: ListView.builder(
                                     scrollDirection: Axis.vertical,
                                     itemCount: meusingressosavenda.length,
@@ -197,7 +198,8 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                           : Column(
                               children: [
                                 Container(
-                                  height: MediaQuery.of(context).size.height,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.55,
                                   child: ListView.builder(
                                     scrollDirection: Axis.vertical,
                                     itemCount: meusIngressosVendidos!.length,

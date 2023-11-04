@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../main.dart';
+import '../models/eventsClient.dart';
+import '../models/lote.dart';
+import '../private/infoIngresso.dart';
+import '../repositories/eventsClient-repository.dart';
+import '../repositories/loteEvent-repository.dart';
 import '../shared/functions/utils.dart';
 import '../shared/service/colorService.dart';
 import '../shared/service/textStyle.dart';
 
 class BannerCategoriaEvento extends StatelessWidget {
+  String id;
   ImageProvider image;
   String titulo;
   String data;
@@ -16,6 +23,7 @@ class BannerCategoriaEvento extends StatelessWidget {
 
   BannerCategoriaEvento(
       {super.key,
+      required this.id,
       required this.image,
       required this.titulo,
       required this.data,
@@ -76,11 +84,10 @@ class BannerCategoriaEvento extends StatelessWidget {
                         Icon(FontAwesomeIcons.solidClock, size: 16),
                         SizedBox(width: 2),
                         Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Text(
-                            hora!,
-                            style: TextStyleService(fontSize: 11).eventDateTime)
-                          ),
+                            alignment: Alignment.bottomLeft,
+                            child: Text(hora!,
+                                style: TextStyleService(fontSize: 11)
+                                    .eventDateTime)),
                       ],
                     )
                   ],
@@ -91,11 +98,11 @@ class BannerCategoriaEvento extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Flexible(
-                      fit: FlexFit.loose,
+                        fit: FlexFit.loose,
                         child: Text(
-                      titulo,
-                      style: TextStyleService.labelSubtitle,
-                    ))
+                          titulo,
+                          style: TextStyleService.labelSubtitle,
+                        ))
                   ],
                 ),
                 Row(

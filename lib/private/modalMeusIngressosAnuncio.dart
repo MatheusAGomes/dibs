@@ -65,6 +65,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                               );
                             },
                             child: BannerCategoriaEvento(
+                              id: widget.meuIngressos[index].id,
                               titulo: widget.meuIngressos[index].eventName,
                               corUm: Colors.green,
                               corDois: Colors.green,

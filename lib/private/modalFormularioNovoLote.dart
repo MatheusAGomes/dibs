@@ -135,9 +135,11 @@ class _ModalFormularioNovoLoteState extends State<ModalFormularioNovoLote> {
                       eventId: widget.idDoEvento,
                       event: null,
                       announcedPrice: double.parse(preco.text),
-                      nextBatch: selectedIdName!,
+                      nextBatch: selectedIdName,
                       numberOfTickets: int.parse(qntIngressos.text),
                       status: selectedStatus));
+                  ToastService.showToastInfo('Lote criado com sucesso!');
+                  Navigator.canPop(context);
                 },
                 child: Container(
                   decoration: BoxDecoration(

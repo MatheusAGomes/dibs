@@ -20,8 +20,9 @@ class ToastService {
   }
 
   static showToastInfo(String msg) {
-    showToast(msg, Colors.white, ColorService.azul);
+    showToast(msg, Colors.white, Color(0xFF198A68));
   }
+
   static showToastWarning(String msg) {
     showToast(msg, Colors.white, ColorService.warning);
   }

@@ -144,7 +144,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                    'Olá, ${addEllipsis(auth.authDecoded!['login'].toString(), 15)}',
+                    'Olá, ${addEllipsis(auth.authDecoded!['login'].toString(), 10)}',
                     style: TextStyleService(categoryShadow: <Shadow>[
                       Shadow(
                           offset: Offset(1.5, 1.5),
@@ -370,11 +370,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                     percent: ingressosVendidos.soldTickets /
                                         ingressosVendidos.totalTickets,
                                     center: Text(
-                                      '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
-                                      style: TextStyleService(
-                                              color: Color(
-                                              0xFF8D8D8D))
-                                                  .companyBatchAmount),
+                                        '${ingressosVendidos.soldTickets}/${ingressosVendidos.totalTickets}',
+                                        style: TextStyleService(
+                                                color: Color(0xFF8D8D8D))
+                                            .companyBatchAmount),
                                     linearStrokeCap: LinearStrokeCap.roundAll,
                                     progressColor: const Color(0xFF198A68),
                                     backgroundColor: const Color(0x66DADADA),
