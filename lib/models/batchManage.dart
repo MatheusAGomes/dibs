@@ -13,6 +13,7 @@ class BatchManage {
   int numberOfHalfPriceTickets;
   bool hasFullPriceTickets;
   bool hasHalfPriceTickets;
+
   BatchStatus status;
 
   BatchManage({

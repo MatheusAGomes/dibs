@@ -1,10 +1,19 @@
+import 'package:dibs/main.dart';
+import 'package:dibs/models/batchInput.dart';
+import 'package:dibs/models/batchOutput.dart';
+import 'package:dibs/models/gambEditar.dart';
+import 'package:dibs/repositories/batch-repository.dart';
+import 'package:dibs/widget/modalEditarLote.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 
+import '../models/batchManage.dart';
+import '../models/idName.dart';
+
 class ComponenteGerenciadoDeLotes extends StatelessWidget {
-  String name;
-  String valor;
-  ComponenteGerenciadoDeLotes({required this.name, required this.valor});
+  String id;
+  BatchManage lote;
+  ComponenteGerenciadoDeLotes({required this.lote, required this.id});
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +32,9 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name),
+                Text(lote.name),
                 Text(
-                  'R\$ ${valor}',
+                  'R\$ ${lote.announcedPrice}',
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
@@ -33,137 +42,22 @@ class ComponenteGerenciadoDeLotes extends StatelessWidget {
             Row(
               children: [
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    List<IdName> lista =
+                        await BatchRepository(dio).getLotesPossiveis(id);
+                    BatchOutput a =
+                        await BatchRepository(dio).getLoteId(lote.id);
+
                     showModalBottomSheet<void>(
                       isScrollControlled: true,
+                      useSafeArea: true,
                       context: context,
                       builder: (BuildContext context) {
-                        return Scaffold(
-                          appBar: AppBar(
-                            elevation: 0,
-                            backgroundColor: Colors.transparent,
-                            title: const Text(
-                              'Editar lote',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            centerTitle: true,
-                            leading: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.black,
-                                )),
-                          ),
-                          body: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20, horizontal: 20),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text('Titulo'),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    child: TextFieldPadrao(
-                                      click: () {},
-                                      enable: false,
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text('Qntd. de ingressos'),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.05,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.4,
-                                            child: TextFieldPadrao(
-                                              click: () {},
-                                              enable: false,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text('Preço'),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.05,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.4,
-                                            child: TextFieldPadrao(
-                                              click: () {},
-                                              enable: false,
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                  const Text('Lote Programado'),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    child: TextFieldPadrao(
-                                      click: () {},
-                                      enable: false,
-                                    ),
-                                  ),
-                                  const Text('Status'),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    child: TextFieldPadrao(
-                                      click: () {},
-                                      enable: false,
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  Center(
-                                    child: InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(7),
-                                          color: const Color(0xFF198A68),
-                                        ),
-                                        width: 140,
-                                        height: 40,
-                                        child: const Center(
-                                          child: Text(
-                                            'Salvar',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ]),
-                          ),
+                        return ModalEditarLote(
+                          loteId: lote.id,
+                          idDoEvento: id,
+                          listaIdName: lista,
+                          lote: a,
                         );
                       },
                     );

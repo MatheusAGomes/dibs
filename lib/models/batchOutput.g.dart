@@ -1,18 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'batchInput.dart';
+part of 'batchOutput.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-BatchInput _$BatchInputFromJson(Map<String, dynamic> json) => BatchInput(
-      id: json['id'] as String?,
+BatchOutput _$BatchOutputFromJson(Map<String, dynamic> json) => BatchOutput(
       name: json['name'] as String,
-      eventId: json['eventId'] as String,
-      event: json['event'] == null
-          ? null
-          : Events.fromJson(json['event'] as Map<String, dynamic>),
       announcedPrice: (json['announcedPrice'] as num).toDouble(),
       nextBatch: json['nextBatch'] == null
           ? null
@@ -21,12 +16,9 @@ BatchInput _$BatchInputFromJson(Map<String, dynamic> json) => BatchInput(
       status: $enumDecode(_$BatchStatusEnumMap, json['status']),
     );
 
-Map<String, dynamic> _$BatchInputToJson(BatchInput instance) =>
+Map<String, dynamic> _$BatchOutputToJson(BatchOutput instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'eventId': instance.eventId,
-      'event': instance.event,
-      'id': instance.id,
       'numberOfTickets': instance.numberOfTickets,
       'announcedPrice': instance.announcedPrice,
       'nextBatch': instance.nextBatch,

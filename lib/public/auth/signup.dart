@@ -1,10 +1,14 @@
+import 'package:dibs/models/clienteRegister.dart';
+import 'package:dibs/repositories/autenticacao.dart';
+import 'package:dibs/repositories/authentication-repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:validatorless/validatorless.dart';
 
-
 import '../../../shared/service/colorService.dart';
+import '../../main.dart';
+import '../../shared/functions/utils.dart';
 import '../../shared/service/textStyle.dart';
 import '../../widget/buttonPadrao.dart';
 import '../../widget/expandableTextField.dart';
@@ -24,10 +28,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   int value = 0;
-  TextEditingController usuarioController = TextEditingController();
-
+  TextEditingController primeiroNomeController = TextEditingController();
+  TextEditingController sobrenomeNomeController = TextEditingController();
+  TextEditingController cpfNomeController = TextEditingController();
+  TextEditingController dataDeNascimentoNomeController =
+      TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController telefoneController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
-
+  DateTime? dataTime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +65,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             Navigator.pop(context);
                           }),
                           icon: const Icon(FontAwesomeIcons.angleLeft)),
-                      SvgPicture.asset("assets/images/logoDibs.svg")                    ],
+                      SvgPicture.asset("assets/images/logoDibs.svg")
+                    ],
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
@@ -91,7 +101,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
+                      controller: primeiroNomeController,
                       click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
@@ -111,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
+                      controller: sobrenomeNomeController,
                       click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
@@ -131,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
+                      controller: cpfNomeController,
                       click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
@@ -151,8 +161,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
-                      click: () {},
+                      controller: dataDeNascimentoNomeController,
+                      click: () async {
+                        dataTime = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.now().add(Duration(days: 365)));
+                        if (dataTime != null)
+                          dataDeNascimentoNomeController.text =
+                              formatDateTime(dataTime!);
+                      },
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
@@ -171,7 +190,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
+                      controller: emailController,
                       click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
@@ -191,7 +210,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
+                      controller: telefoneController,
                       click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
@@ -211,7 +230,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
+                      controller: senhaController,
                       click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
@@ -227,7 +246,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       delete: false,
                       width: 0.5,
                       text: "Cadastre-se",
-                      click: () {}),
+                      click: () async {
+                        await LoginApi(dio).criarUsuario(ClientRegister(
+                            login: emailController.text,
+                            password: senhaController.text,
+                            firstName: primeiroNomeController.text,
+                            lastName: sobrenomeNomeController.text,
+                            cpf: cpfNomeController.text,
+                            birthDate: dataTime!,
+                            phone: telefoneController.text));
+                      }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
@@ -236,16 +264,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          'Deseja cadastrar um evento?',
-                          style: TextStyleService.defaultSignIn
-                        ),
+                        Text('Deseja cadastrar um evento?',
+                            style: TextStyleService.defaultSignIn),
                         Text(
                           'Envie um email para o contato abaixo',
                           style: TextStyleService.defaultSignIn,
                         ),
                         InkWell(
-                          onTap: () {},
+                          onTap: () async {},
                           child: Text(
                             'contato@dibs.com.br',
                             style: TextStyleService.greenSignIn,

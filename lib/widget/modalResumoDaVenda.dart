@@ -19,7 +19,7 @@ class ModalResumoDaVenda extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: const Text(
-          'Novo evento',
+          'Resumo da venda',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,

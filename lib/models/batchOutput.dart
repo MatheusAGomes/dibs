@@ -2,32 +2,26 @@ import 'package:dibs/models/events.dart';
 import 'package:dibs/models/idName.dart';
 import 'package:dibs/shared/enum/BatchStatusEnum.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'batchInput.g.dart';
+part 'batchOutput.g.dart';
 
 @JsonSerializable()
-class BatchInput {
+class BatchOutput {
   String name;
-  String eventId;
-  Events? event;
-  String? id;
   int numberOfTickets;
   double announcedPrice;
   IdName? nextBatch;
   BatchStatus status;
 
-  BatchInput({
-    this.id,
+  BatchOutput({
     required this.name,
-    required this.eventId,
-    this.event,
     required this.announcedPrice,
     this.nextBatch,
     required this.numberOfTickets,
     required this.status,
   });
 
-  factory BatchInput.fromJson(Map<String, dynamic> json) =>
-      _$BatchInputFromJson(json);
+  factory BatchOutput.fromJson(Map<String, dynamic> json) =>
+      _$BatchOutputFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BatchInputToJson(this);
+  Map<String, dynamic> toJson() => _$BatchOutputToJson(this);
 }

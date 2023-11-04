@@ -1,4 +1,5 @@
 import 'package:dibs/models/batchManage.dart';
+import 'package:dibs/models/gambEditar.dart';
 import 'package:dibs/models/idName.dart';
 import 'package:dibs/private/modalFormularioNovoLote.dart';
 import 'package:dibs/repositories/ticket-repository.dart';
@@ -111,9 +112,8 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                             Column(
                               children: List.generate(ativos.length, (index) {
                                 return ComponenteGerenciadoDeLotes(
-                                  name: ativos[index].name,
-                                  valor:
-                                      ativos[index].announcedPrice.toString(),
+                                  id: widget.idDoEvento,
+                                  lote: ativos[index],
                                 );
                               }),
                             ),
@@ -131,9 +131,8 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                             Column(
                               children: List.generate(criados.length, (index) {
                                 return ComponenteGerenciadoDeLotes(
-                                  name: criados[index].name,
-                                  valor:
-                                      criados[index].announcedPrice.toString(),
+                                  id: widget.idDoEvento,
+                                  lote: criados[index],
                                 );
                               }),
                             ),
@@ -152,10 +151,8 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                               children:
                                   List.generate(finalizados.length, (index) {
                                 return ComponenteGerenciadoDeLotes(
-                                  name: finalizados[index].name,
-                                  valor: finalizados[index]
-                                      .announcedPrice
-                                      .toString(),
+                                  id: widget.idDoEvento,
+                                  lote: finalizados[index],
                                 );
                               }),
                             ),

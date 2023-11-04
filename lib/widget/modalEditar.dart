@@ -43,9 +43,7 @@ class _ModalEditarState extends State<ModalEditar> {
                     style: TextStyleService.modalTitle,
                   ),
                   InkWell(
-                    child: Icon(
-                        FontAwesomeIcons.xmark,
-                        size: 18),
+                    child: Icon(FontAwesomeIcons.xmark, size: 18),
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -63,8 +61,7 @@ class _ModalEditarState extends State<ModalEditar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                        'Nome',
+                    Text('Nome',
                         textAlign: TextAlign.left,
                         style: TextStyleService.defaultFieldLabel),
                     SizedBox(
@@ -79,8 +76,7 @@ class _ModalEditarState extends State<ModalEditar> {
                           FontAwesomeIcons.solidUser,
                           size: 16,
                         ))
-                  ]
-              ),
+                  ]),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.005,
               ),
@@ -88,8 +84,7 @@ class _ModalEditarState extends State<ModalEditar> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                        'CPF',
+                    Text('CPF',
                         textAlign: TextAlign.left,
                         style: TextStyleService.defaultFieldLabel),
                     SizedBox(
@@ -104,24 +99,28 @@ class _ModalEditarState extends State<ModalEditar> {
                           FontAwesomeIcons.solidIdCard,
                           size: 16,
                         ))
-                  ]
-              ),
+                  ]),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.04,
               ),
               ButtonPadrao(
-                  enable: true, delete: false,
-                  width: 0.45, text: "Editar", click: ()async { await TicketRepository(dio)
-                  .editTicket(
-                  widget.id,
-                  ModeloRespostaEditTicket(
-                      name: nome.text, cpf: cpf.text))
-                  .whenComplete(() {
-                ToastService.showToastInfo(
-                    'Sucesso alterado com sucesso');
-                Navigator.pop(context);
-                Navigator.pop(context);
-              });}),
+                  enable: true,
+                  delete: false,
+                  width: 0.45,
+                  text: "Editar",
+                  click: () async {
+                    await TicketRepository(dio)
+                        .editTicket(
+                            widget.id,
+                            ModeloRespostaEditTicket(
+                                name: nome.text, cpf: cpf.text))
+                        .whenComplete(() {
+                      ToastService.showToastInfo(
+                          'Sucesso alterado com sucesso');
+                      Navigator.pop(context);
+                      Navigator.pop(context);
+                    });
+                  }),
             ],
           ),
         ),

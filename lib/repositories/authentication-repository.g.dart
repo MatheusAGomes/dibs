@@ -13,7 +13,7 @@ class _LoginApi implements LoginApi {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/auth/login';
+    baseUrl ??= 'http://192.168.195.189:8080/auth';
   }
 
   final Dio _dio;
@@ -35,13 +35,37 @@ class _LoginApi implements LoginApi {
     )
             .compose(
               _dio.options,
-              '',
+              '/login',
               queryParameters: queryParameters,
               data: _data,
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AutenticationResponse.fromJson(_result.data!);
     return value;
+  }
+
+  @override
+  Future<HttpResponse<void>> criarUsuario(cliente) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(cliente.toJson());
+    final _result =
+        await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '/register/client',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final httpResponse = HttpResponse(null, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

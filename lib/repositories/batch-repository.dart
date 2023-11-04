@@ -1,4 +1,5 @@
 import 'package:dibs/models/batchInput.dart';
+import 'package:dibs/models/batchOutput.dart';
 import 'package:dibs/models/batchReportIndex.dart';
 import 'package:dibs/models/events.dart';
 import 'package:dibs/models/idName.dart';
@@ -7,6 +8,7 @@ import 'package:dibs/models/statusFilter.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart' hide Headers;
 import '../models/batchManage.dart';
+import '../models/gambEditar.dart';
 import '../shared/constance/environment.dart';
 part 'batch-repository.g.dart';
 
@@ -22,6 +24,11 @@ abstract class BatchRepository {
   Future<List<BatchManage>> getAllLotes(@Path('eventId') eventId);
   @POST("")
   Future<HttpResponse<void>> criarLote(@Body() BatchInput batchInput);
+  @PUT("/{id}")
+  Future<HttpResponse<void>> updateLote(
+      @Path('id') String id, @Body() BatchInput batchInput);
   @GET("/next-batches/{id}")
   Future<List<IdName>> getLotesPossiveis(@Path('id') eventId);
+  @GET("/{id}")
+  Future<BatchOutput> getLoteId(@Path('id') eventId);
 }
