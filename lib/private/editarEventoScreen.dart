@@ -13,9 +13,8 @@ import '../widget/bannerIngressoMarketPlace.dart';
 import '../widget/modalTransferencia.dart';
 
 class EditarEventoScreen extends StatefulWidget {
-  double total;
 
-  EditarEventoScreen({super.key, required this.total});
+  EditarEventoScreen({super.key});
 
   @override
   State<EditarEventoScreen> createState() => _EditarEventoScreenState();
@@ -28,17 +27,18 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: const Text(
-          'Editar evento',
-          style: TextStyle(color: Colors.black),
-        ),
+        foregroundColor: Colors.black,
         centerTitle: true,
+        title: Text(
+          'Editar evento',
+          style: TextStyleService.appBar,
+        ),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(
-              Icons.arrow_back_ios,
+            icon: Icon(
+              FontAwesomeIcons.angleLeft,
               color: Colors.black,
             )),
       ),
