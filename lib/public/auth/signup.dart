@@ -165,10 +165,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: dataDeNascimentoNomeController,
                       click: () async {
                         dataTime = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime.now(),
-                            lastDate: DateTime.now().add(Duration(days: 365)));
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1900, 1),
+                          lastDate: DateTime.now(),
+                        );
                         if (dataTime != null)
                           dataDeNascimentoNomeController.text =
                               formatDateTime(dataTime!);
