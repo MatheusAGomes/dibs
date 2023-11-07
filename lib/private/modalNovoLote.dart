@@ -251,7 +251,7 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                         numberOfTickets: int.parse(qntIngressos.text),
                         status: selectedStatus));
                     ToastService.showToastInfo('Lote criado com sucesso!');
-                    Navigator.canPop(context);
+                    Navigator.pop(context);
                   }
               ),
             ],
