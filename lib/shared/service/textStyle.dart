@@ -229,6 +229,13 @@ TextStyle get creditCardComponent {
           letterSpacing: -0.91,
       ));
 
+  static TextStyle saleReport = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w600,
+        fontSize: 21,
+        letterSpacing: -0.91,
+      ));
+
   TextStyle get companyBatchAmount {
     return GoogleFonts.jost(
         textStyle: TextStyle(
