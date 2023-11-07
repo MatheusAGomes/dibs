@@ -158,6 +158,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                     text: 'Novo Evento',
                     click: () {
                       showModalBottomSheet<void>(
+                        useSafeArea: true,
                         isScrollControlled: true,
                         context: context,
                         clipBehavior: Clip.antiAliasWithSaveLayer,

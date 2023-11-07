@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dibs/models/cards.dart';
 import 'package:dibs/private/modalNovoCartao.dart';
 import 'package:dibs/repositories/card-repository.dart';
+import 'package:dibs/widget/shadowedDropdown.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -340,64 +341,87 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.005,
                         ),
+                        ShadowedDropDown(
+                            child: DropdownButton<EventCategory>(
+                              value: selectedCategory,
+                              isExpanded: true,
+                              isDense: true,
+                              underline: SizedBox(height: 0),
+                              icon: Icon(
+                                  FontAwesomeIcons.angleDown,
+                                  size: 18,
+                                  color: Colors.grey),
+                              style: TextStyleService(
+                                  color: Color(0xFF909090)
+                              ).defaultTextField,
+                              onChanged: (EventCategory? newValue) {
+                                if (newValue != null) {
+                                  setState(() {
+                                    selectedCategory = newValue;
+                                  });
+                                }
+                              },
+                              items: EventCategory.values.map((category) {
+                                return DropdownMenuItem<EventCategory>(
+                                    value: category,
+                                    child: Text(category.toEnumString(),
+                                        style: TextStyleService(
+                                            color: Color(0xFF909090)
+                                        ).defaultTextField
+                                    )
+                                );
+                              }
+                              ).toList(),
+                            ),
+                        ),
+                      ]
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.005,
+                  ),
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                            'Status',
+                            textAlign: TextAlign.left,
+                            style: TextStyleService.defaultFieldLabel),
                         SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.055,
-                            child: Container(
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7),
-                                    border: Border.all(
-                                        color: Color(0x33000000)
-                                    ),
-                                    color: Colors.white,
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Color(0x40000000),
-                                          offset: Offset(2,2),
-                                          blurRadius: 0.3
-                                      )
-                                    ]
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal:
-                                    MediaQuery.of(Routes.navigatorKey.currentContext!).size.width *
-                                        0.03,
-                                    vertical: 0,
-                                  ),
-                                  child: DropdownButton<EventCategory>(
-                                    value: selectedCategory,
-                                    isExpanded: true,
-                                    isDense: true,
-                                    underline: SizedBox(height: 0),
-                                    icon: Icon(
-                                        FontAwesomeIcons.angleDown,
-                                        size: 18,
-                                        color: Colors.grey),
-                                    style: TextStyleService(
-                                        color: Color(0xFF909090)
-                                    ).defaultTextField,
-                                    onChanged: (EventCategory? newValue) {
-                                      if (newValue != null) {
-                                        setState(() {
-                                          selectedCategory = newValue;
-                                        });
-                                      }
-                                    },
-                                    items: EventCategory.values.map((category) {
-                                      return DropdownMenuItem<EventCategory>(
-                                        value: category,
-                                        child: Text(category.toEnumString(),
-                                          style: TextStyleService(
-                                              color: Color(0xFF909090)
-                                          ).defaultTextField
-                                        )
-                                      );
-                                    }
-                                    ).toList(),
-                                  ),
-                                )
-                            )
+                          height: MediaQuery.of(context).size.height * 0.005,
+                        ),
+                        ShadowedDropDown(
+                            child: DropdownButton<EventCategory>(
+                              value: selectedCategory,
+                              isExpanded: true,
+                              isDense: true,
+                              underline: SizedBox(height: 0),
+                              icon: Icon(
+                                  FontAwesomeIcons.angleDown,
+                                  size: 18,
+                                  color: Colors.grey),
+                              style: TextStyleService(
+                                  color: Color(0xFF909090)
+                              ).defaultTextField,
+                              onChanged: (EventCategory? newValue) {
+                                if (newValue != null) {
+                                  setState(() {
+                                    selectedCategory = newValue;
+                                  });
+                                }
+                              },
+                              items: EventCategory.values.map((category) {
+                                return DropdownMenuItem<EventCategory>(
+                                    value: category,
+                                    child: Text(category.toEnumString(),
+                                        style: TextStyleService(
+                                            color: Color(0xFF909090)
+                                        ).defaultTextField
+                                    )
+                                );
+                              }
+                              ).toList(),
+                            ),
                         ),
                       ]
                   ),

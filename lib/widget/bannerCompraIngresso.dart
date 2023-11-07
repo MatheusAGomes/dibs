@@ -1,4 +1,5 @@
 import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/widget/shadowedCard.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -25,27 +26,7 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Color(0x40000000)),
-        borderRadius: BorderRadius.circular(7),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x40000000),
-            offset: Offset(2,2),
-            blurRadius: 0.2
-          )
-        ]
-      ),
-      child: Card(
-        margin: EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(7),
-        ),
-        color: Colors.white,
+    return ShadowedCard(
         child: Container(
           height: MediaQuery.of(context).size.height * 0.075,
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -104,7 +85,7 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
                             child: Text(
                                 widget.quantidade.toInt().toString(),
                                 style: TextStyleService.ticketInput)
-                                ),
+                        ),
                       ),
                     ),
                     InkWell(
@@ -131,8 +112,7 @@ class _BannerCompraIngressoState extends State<BannerCompraIngresso> {
               )
             ],
           ),
-        ),
-      ),
+        )
     );
   }
 }

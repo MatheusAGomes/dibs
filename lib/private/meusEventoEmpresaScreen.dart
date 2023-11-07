@@ -101,6 +101,7 @@ class _MeusEventosEmpresasScreenState extends State<MeusEventosEmpresasScreen> {
                     text: 'Novo evento',
                     click: () {
                       showModalBottomSheet<void>(
+                          useSafeArea: true,
                           isScrollControlled: true,
                           context: context,
                           clipBehavior: Clip.antiAliasWithSaveLayer,

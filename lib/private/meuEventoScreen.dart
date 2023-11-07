@@ -1,5 +1,5 @@
 import 'package:dibs/private/editarEventoScreen.dart';
-import 'package:dibs/private/modalNovoLote.dart';
+import 'package:dibs/private/gerenciarLote.dart';
 import 'package:dibs/repositories/batch-repository.dart';
 import 'package:dibs/widget/buttonCustomAction.dart';
 import 'package:dibs/widget/componenteGerenciadoDeLotes.dart';
@@ -141,7 +141,7 @@ class MeuEventoScreen extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => ModalGerenciarLote(idDoEvento: id!)));
+                                          builder: (context) => GerenciarLoteScreen(idDoEvento: id!)));
                                 },
                                 icon: Icon(
                                     FontAwesomeIcons.layerGroup,
