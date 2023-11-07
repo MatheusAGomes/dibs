@@ -1,5 +1,6 @@
 import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:dibs/models/events.dart';
+import 'package:dibs/repositories/clients-repository.dart';
 import 'package:dibs/shared/enum/EventStatus.dart';
 import 'package:dibs/shared/enum/EvetnCategory.dart';
 import 'package:dibs/shared/service/textStyle.dart';
@@ -21,6 +22,8 @@ import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
 
+import '../main.dart';
+import '../models/clientInput.dart';
 import '../shared/functions/utils.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
@@ -67,13 +70,17 @@ class _MainScreenState extends State<MainScreen> {
                     size: 40,
                     color: Colors.black,
                   ),
-                  onSelected: (value) {
+                  onSelected: (value) async {
                     switch (value) {
                       case 'MeuPerfil':
+                        ClientInput a =
+                            await ClientsRepository(dio).getCliente();
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MeuPerfil()));
+                                builder: (context) => MeuPerfil(
+                                      cliente: a,
+                                    )));
                         break;
 
                       case 'MeusCartões':
@@ -278,8 +285,7 @@ class _MainScreenState extends State<MainScreen> {
                       itemBuilder: (context, index) {
                         return BannerSecundario(
                           id: listaFiltrada[index].id!,
-                          image:
-                              const AssetImage('assets/images/PericlesEx.png'),
+                          image: NetworkImage(listaFiltrada[index].picture!),
                           titulo: listaFiltrada[index].name!,
                         );
                       },

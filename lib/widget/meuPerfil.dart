@@ -1,6 +1,8 @@
 import 'package:dibs/main.dart';
+import 'package:dibs/models/clientInput.dart';
 import 'package:dibs/models/newPassword.dart';
 import 'package:dibs/private/categoriaScreen.dart';
+import 'package:dibs/repositories/clients-repository.dart';
 import 'package:dibs/repositories/user-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/shared/service/toastService.dart';
@@ -14,6 +16,9 @@ import '../shared/service/colorService.dart';
 import 'textfieldpadrao.dart';
 
 class MeuPerfil extends StatefulWidget {
+  ClientInput cliente;
+  MeuPerfil({required this.cliente});
+
   @override
   State<MeuPerfil> createState() => _MeuPerfilState();
 }
@@ -21,9 +26,30 @@ class MeuPerfil extends StatefulWidget {
 class _MeuPerfilState extends State<MeuPerfil> {
   TextEditingController senhaController = TextEditingController();
   TextEditingController novaSenhaController = TextEditingController();
+  TextEditingController nomeController = TextEditingController();
+  TextEditingController sobrenomeController = TextEditingController();
+  TextEditingController cpfController = TextEditingController();
+  TextEditingController dataController = TextEditingController();
+  TextEditingController telefoneController = TextEditingController();
+  DateTime? dataTime;
+  bool primeiravez = true;
+
+  populando() {
+    if (primeiravez) {
+      nomeController.text = widget.cliente.firstName ?? "";
+      sobrenomeController.text = widget.cliente.lastName ?? "";
+      cpfController.text = widget.cliente.cpf ?? "";
+      dataController.text = widget.cliente.birthDate != null
+          ? formatDateTime(widget.cliente.birthDate!)
+          : "";
+      telefoneController.text = widget.cliente.phone ?? "";
+      primeiravez = false;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    populando();
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
@@ -68,6 +94,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
+                          controller: nomeController,
                           click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
@@ -88,6 +115,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
+                          controller: sobrenomeController,
                           click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
@@ -108,6 +136,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
+                          controller: cpfController,
                           click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
@@ -128,30 +157,20 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
-                          click: () {},
+                          controller: dataController,
+                          click: () async {
+                            dataTime = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(1900, 1),
+                              lastDate: DateTime.now(),
+                            );
+                            if (dataTime != null)
+                              dataController.text = formatDateTime(dataTime!);
+                          },
                           height: 0.06,
                           prefixIcon: Icon(
-                            FontAwesomeIcons.solidCalendar,
-                            size: 16,
-                          )),
-                    ],
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.01,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Email',
-                        style: TextStyleService.defaultFieldLabel,
-                      ),
-                      ExpandableTextField(
-                          click: () {},
-                          height: 0.06,
-                          prefixIcon: Icon(
-                            FontAwesomeIcons.at,
+                            FontAwesomeIcons.calendar,
                             size: 16,
                           )),
                     ],
@@ -168,6 +187,7 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
+                          controller: telefoneController,
                           click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
@@ -184,7 +204,16 @@ class _MeuPerfilState extends State<MeuPerfil> {
                     delete: false,
                     width: 0.5,
                     text: "Salvar",
-                    click: () {},
+                    click: () async {
+                      await ClientsRepository(dio).putCLiente(ClientInput(
+                          phone: telefoneController.text,
+                          cpf: cpfController.text,
+                          firstName: nomeController.text,
+                          lastName: sobrenomeController.text,
+                          birthDate: dataTime));
+                      ToastService.showToastInfo('Usuario editado');
+                      Navigator.pop(context);
+                    },
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
