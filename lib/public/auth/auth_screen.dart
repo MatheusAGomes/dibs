@@ -32,20 +32,16 @@ class _AuthScreenState extends State<AuthScreen> {
           return SignInScreen();
         } else {
           if (auth.estaAutenticado) {
+            if (auth.authDecoded!['role'].toString() == 'CLIENT')
             return FutureBuilder<dynamic>(
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    if (auth.authDecoded!['role'].toString() == 'CLIENT')
                       return EstruturasScreen(
                         pagina: 1,
                         listaDeEventos: snapshot.data[0],
                         listaDeIngressos: snapshot.data[1],
                         meusIngressosVendidos: snapshot.data[2],
                       );
-
-                    return EstruturaEmpresa(
-                      pagina: 0,
-                    );
                   } else {
                     return SignInScreen();
                   }
@@ -55,6 +51,10 @@ class _AuthScreenState extends State<AuthScreen> {
                   TicketRepository(dio).getTickets(),
                   TicketRepository(dio).getSoldTickets()
                 ]));
+            else
+              return EstruturaEmpresa(
+                pagina: 0,
+              );
           } else {
             return SignInScreen();
           }

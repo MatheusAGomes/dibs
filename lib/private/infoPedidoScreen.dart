@@ -13,12 +13,15 @@ import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:dibs/widget/shadowedCard.dart';
 import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:validatorless/validatorless.dart';
 
 import '../models/ticketClientInput.dart';
 import '../shared/functions/utils.dart';
 import '../widget/meuCartaoComponente.dart';
+import '../widget/modalSecuresale.dart';
 
 class InfoPedidoScreen extends StatefulWidget {
   List<TicketLote>? ticketInfo;
@@ -145,9 +148,65 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                                     card!.number),
                                 tipo: "Crédito"),
                           )),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      widget.compraComOrganizacao ?
+                        const SizedBox(
+                          height: 20,
+                        )
+                        : Column(
+                        children: [
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text('Compra protegida por',
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 18,
+                                          letterSpacing: -0.41)
+                                  )
+                              ),
+                              SizedBox(width: MediaQuery.of(context).size.width * 0.01),
+                              SvgPicture.asset("assets/icons/SecureResale.svg", width: 95),
+                            ],
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showModalBottomSheet<void>(
+                                isScrollControlled: true,
+                                context: context,
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(10)),
+                                ),
+                                builder: (BuildContext context) {
+                                  return ModalSecuresale();
+                                },
+                              );
+                            },
+                            child: Row(
+                              children: [
+                                Text('Saiba mais...',
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                            letterSpacing: -0.41,
+                                            color: Color(0xFF198A68))
+                                    )
+                                ),
+                                SizedBox(width: MediaQuery.of(context).size.width * 0.015),
+                                Icon(
+                                    FontAwesomeIcons.circleInfo,
+                                    size: 16,
+                                    color: Color(0xFF198A68))
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

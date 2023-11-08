@@ -260,7 +260,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                   animationDuration: 1500,
                                                   barRadius:
                                                       const Radius.circular(5),
-                                                  percent: 0.8,
+                                                  percent:lotes[index]
+                                                      .numberOfFullPriceTickets /
+                                                      lotes[index]
+                                                          .numberOfFullPriceTicketsTotal,
                                                   linearStrokeCap:
                                                       LinearStrokeCap.roundAll,
                                                   progressColor:
