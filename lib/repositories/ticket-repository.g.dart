@@ -13,7 +13,7 @@ class _TicketRepository implements TicketRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.203:8080/tickets';
+    baseUrl ??= 'http://192.168.195.189:8080/tickets';
   }
 
   final Dio _dio;

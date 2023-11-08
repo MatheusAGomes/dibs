@@ -243,6 +243,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                           return;
                                         }
                                         showModalBottomSheet(
+                                            isScrollControlled: true,
                                             context: context,
                                             clipBehavior:
                                                 Clip.antiAliasWithSaveLayer,
@@ -252,7 +253,9 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                                       top: Radius.circular(10)),
                                             ),
                                             builder: ((context) =>
-                                                ModalTransferencia()));
+                                                ModalTransferencia(
+                                                  id: id,
+                                                )));
                                       })),
                               SizedBox(
                                   width:
@@ -267,6 +270,7 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                           return;
                                         }
                                         showModalBottomSheet(
+                                            isScrollControlled: true,
                                             context: context,
                                             clipBehavior:
                                                 Clip.antiAliasWithSaveLayer,

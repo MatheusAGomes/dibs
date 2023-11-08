@@ -8,13 +8,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../models/auth.dart';
+import '../models/ticketOutput.dart';
 import '../shared/service/textStyle.dart';
 
 class modalConfigAnuncio extends StatefulWidget {
-  String idDoEvento;
-  modalConfigAnuncio({required this.idDoEvento});
+  TicketOutput evento;
+  modalConfigAnuncio({required this.evento});
 
   @override
   State<modalConfigAnuncio> createState() => _modalConfigAnuncioState();
@@ -29,6 +32,8 @@ TextEditingController valor = TextEditingController(text: '');
 class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
     return SafeArea(
       child: Padding(
         // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
@@ -45,9 +50,7 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     style: TextStyleService.modalTitle,
                   ),
                   InkWell(
-                    child: Icon(
-                        FontAwesomeIcons.xmark,
-                        size: 18),
+                    child: Icon(FontAwesomeIcons.xmark, size: 18),
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -66,7 +69,9 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     'Valor pago',
                     style: TextStyleService.appBar,
                   ),
-                  Text("R\$ 123.00"),
+                  widget.evento.halfPrice
+                      ? Text("R\$ ${widget.evento.purchasePrice / 2}")
+                      : Text("R\$ ${widget.evento.purchasePrice}"),
                 ],
               ),
               // const Divider(),
@@ -86,6 +91,9 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                         width: 50,
                         child: ExpandableTextField(
                           click: () {},
+                          onchange: (a) {
+                            setState(() {});
+                          },
                           height: 0.04,
                           controller: nomeController,
                         ),
@@ -104,7 +112,8 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                   ),
                   Row(
                     children: [
-                      Text("R\$ 123.00"),
+                      Text(
+                          "R\$ ${nomeController.text.isEmpty ? 0.00 : int.parse(nomeController.text) - (int.parse(nomeController.text) * 0.3)}"),
                     ],
                   ),
                 ],
@@ -116,17 +125,16 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                       // padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
                       child: SizedBox(
                           width: 30,
-                          child: Checkbox(fillColor:
-                          MaterialStateProperty.all((const Color(0xff2CAA84))),
+                          child: Checkbox(
+                            fillColor: MaterialStateProperty.all(
+                                (const Color(0xff2CAA84))),
                             value: checkboxValue,
                             onChanged: (value) => setState(() {
                               checkboxValue = value!;
                             }),
-                          )
-                      )
-                  ),
+                          ))),
                   const Text('Concordo com os termos',
-                    style: TextStyle(fontSize: 16, letterSpacing: -0.41)),
+                      style: TextStyle(fontSize: 16, letterSpacing: -0.41)),
                 ],
               ),
               Row(
@@ -138,9 +146,7 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                           textStyle: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
-                              letterSpacing: -0.41)
-                      )
-                  ),
+                              letterSpacing: -0.41))),
                   SizedBox(width: MediaQuery.of(context).size.width * 0.01),
                   SvgPicture.asset("assets/icons/SecureResale.svg", width: 85),
                 ],
@@ -152,8 +158,8 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                     context: context,
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(10)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(10)),
                     ),
                     builder: (BuildContext context) {
                       return ModalSecuresale();
@@ -168,14 +174,10 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14,
                                 letterSpacing: -0.41,
-                                color: Color(0xFF198A68))
-                        )
-                    ),
+                                color: Color(0xFF198A68)))),
                     SizedBox(width: MediaQuery.of(context).size.width * 0.015),
-                    Icon(
-                        FontAwesomeIcons.circleInfo,
-                        size: 16,
-                        color: Color(0xFF198A68))
+                    Icon(FontAwesomeIcons.circleInfo,
+                        size: 16, color: Color(0xFF198A68))
                   ],
                 ),
               ),
@@ -190,36 +192,30 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
               ),
               ShadowedCard(
                   child: InkWell(
-                    onTap: () {},
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                onTap: () {},
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              Icon(Icons.pix),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text('PIX',
-                                style: GoogleFonts.jost(
-                                  textStyle: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    letterSpacing: -0.41
-                                  )
-                                )),
-                            ],
+                          Icon(Icons.pix),
+                          SizedBox(
+                            width: 10,
                           ),
-                          Icon(FontAwesomeIcons.solidPenToSquare,
-                              size: 18),
+                          Text('PIX',
+                              style: GoogleFonts.jost(
+                                  textStyle: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      letterSpacing: -0.41))),
                         ],
                       ),
-                    ),
-                  )
-              ),
+                      Icon(FontAwesomeIcons.solidPenToSquare, size: 18),
+                    ],
+                  ),
+                ),
+              )),
               SizedBox(height: MediaQuery.of(context).size.height * 0.04),
               ButtonPadrao(
                   text: 'Anunciar',
@@ -228,18 +224,18 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                       return;
                     }
                     await TicketRepository(dio)
-                        .announceTicket(widget.idDoEvento,
-                        double.parse(nomeController.text))
+                        .announceTicket(
+                            widget.evento.id, double.parse(nomeController.text))
                         .then((value) => ToastService.showToastInfo(
-                      'Ingresso anunciado',
-                    ));
+                              'Ingresso anunciado',
+                            ));
                     Navigator.pop(context);
                     Navigator.pop(context);
+                    auth.gambiarraMonstra();
                   },
                   width: 0.45,
                   enable: true,
-                  delete: false
-              ),
+                  delete: false),
             ],
           ),
         ),

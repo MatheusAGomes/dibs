@@ -1,8 +1,10 @@
 import 'package:dibs/private/modalConfigAnuncio.dart';
+import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/widget/bannerMeuIngresso.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../main.dart';
 import '../models/meuIngressoBanner.dart';
 import '../shared/service/textStyle.dart';
 import '../widget/bannerCategoriaEvento.dart';
@@ -38,9 +40,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                     style: TextStyleService.modalTitle,
                   ),
                   InkWell(
-                    child: Icon(
-                        FontAwesomeIcons.xmark,
-                        size: 18),
+                    child: Icon(FontAwesomeIcons.xmark, size: 18),
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -60,7 +60,9 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                     return Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: InkWell(
-                          onTap: () {
+                          onTap: () async {
+                            final a = await TicketRepository(dio)
+                                .getTicket(widget.meuIngressos[index].id);
                             showModalBottomSheet<void>(
                               isScrollControlled: true,
                               context: context,
@@ -71,7 +73,7 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                               ),
                               builder: (BuildContext context) {
                                 return modalConfigAnuncio(
-                                  idDoEvento: widget.meuIngressos[index].id,
+                                  evento: a,
                                 );
                               },
                             );

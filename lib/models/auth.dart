@@ -86,4 +86,10 @@ class Auth with ChangeNotifier {
     await Store.remove('auth');
     notifyListeners();
   }
+
+  void gambiarraMonstra() async {
+    _token = _token;
+
+    notifyListeners();
+  }
 }
