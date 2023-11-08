@@ -65,105 +65,117 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
       ),
       body: SafeArea(
         child: Container(
-          child: SingleChildScrollView(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Forma de pagamento',
-                    style: TextStyleService(categoryShadow: <Shadow>[
-                      Shadow(
-                          offset: Offset(1.5, 1.5),
-                          color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ], fontSize: 20).corSublinhada),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.005),
-                InkWell(
-                    onTap: () async {
-                      final cards = await CardRepository(dio).getCards();
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Forma de pagamento',
+                          style: TextStyleService(categoryShadow: <Shadow>[
+                            Shadow(
+                                offset: Offset(1.5, 1.5),
+                                color: Color.fromRGBO(126, 244, 209, 0.72))
+                          ], fontSize: 20).corSublinhada),
+                      SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                      InkWell(
+                          onTap: () async {
+                            final cards = await CardRepository(dio).getCards();
 
-                      card = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => FormaDePagamento(cards: cards)));
-                      // showModalBottomSheet<Cards>(
-                      //   useSafeArea: true,
-                      //   isScrollControlled: true,
-                      //   context: context,
-                      //   builder: (context) => FormaDePagamento(cards: cards),
-                      // );
-                      setState(() {});
-                    },
-                    child: card == null
-                    ? ShadowedCard(
-                        child: Container(
-                          height: MediaQuery.of(context).size.height * 0.09,
-                          padding: const EdgeInsets.symmetric(horizontal: 15),
-                          child: SizedBox(
-                            // height: 60,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Icon(
-                                      FontAwesomeIcons.solidCreditCard,
-                                      size: 22,
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Text(
-                                      'Cartão de Crédito',
-                                      style: TextStyleService(
-                                          fontSize: 16,
-                                          letterSpacing: -0.41).medium,
-                                    ),
-                                  ],
+                            card = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => FormaDePagamento(cards: cards)));
+                            // showModalBottomSheet<Cards>(
+                            //   useSafeArea: true,
+                            //   isScrollControlled: true,
+                            //   context: context,
+                            //   builder: (context) => FormaDePagamento(cards: cards),
+                            // );
+                            setState(() {});
+                          },
+                          child: card == null
+                              ? ShadowedCard(
+                              child: Container(
+                                height: MediaQuery.of(context).size.height * 0.09,
+                                padding: const EdgeInsets.symmetric(horizontal: 15),
+                                child: SizedBox(
+                                  // height: 60,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.solidCreditCard,
+                                            size: 22,
+                                          ),
+                                          SizedBox(
+                                            width: 20,
+                                          ),
+                                          Text(
+                                            'Cartão de Crédito',
+                                            style: TextStyleService(
+                                                fontSize: 16,
+                                                letterSpacing: -0.41).medium,
+                                          ),
+                                        ],
+                                      ),
+                                      Icon(
+                                          FontAwesomeIcons.solidPenToSquare,
+                                          size: 20)
+                                    ],
+                                  ),
                                 ),
-                                Icon(
-                                    FontAwesomeIcons.solidPenToSquare,
-                                    size: 20)
-                              ],
-                            ),
-                          ),
-                        )
-                    )
-                    : Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: MeuCartaoComponente(
-                          pedido: true,
-                          nome: card!.name,
-                          numero:
-                          substituirTresPrimeirosGruposPorAsteriscos(
-                              card!.number),
-                          tipo: "Crédito"),
-                    )),
-                const SizedBox(
-                  height: 20,
+                              )
+                          )
+                              : Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: MeuCartaoComponente(
+                                pedido: true,
+                                nome: card!.name,
+                                numero:
+                                substituirTresPrimeirosGruposPorAsteriscos(
+                                    card!.number),
+                                tipo: "Crédito"),
+                          )),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                    ],
+                  ),
                 ),
-                ButtonPadrao(text: "Avançar",
-                    click: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ResumoDaCompra(
-                                compraComOrganizacao:
-                                widget.compraComOrganizacao,
-                                ticketOrganizer: widget.ticketOrganizer,
-                                resumoDaCompra: widget.resumoDaCompra,
-                                ticketInfo: widget.ticketInfo,
-                              )));
-                    },
-                    width: 0.5,
-                    enable: true,
-                    delete: false),
-              ],
-            ),
-          )),
+              ),
+               Padding(
+                  padding: EdgeInsetsDirectional.symmetric(vertical: 40),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ButtonPadrao(text: "Avançar",
+                        click: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ResumoDaCompra(
+                                    compraComOrganizacao:
+                                    widget.compraComOrganizacao,
+                                    ticketOrganizer: widget.ticketOrganizer,
+                                    resumoDaCompra: widget.resumoDaCompra,
+                                    ticketInfo: widget.ticketInfo,
+                                  )));
+                        },
+                        width: 0.5,
+                        enable: true,
+                        delete: false),
+                  ),
+               ),
+            ],
+          )
         ),
       ),
     );

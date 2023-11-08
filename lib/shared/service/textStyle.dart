@@ -45,6 +45,14 @@ class TextStyleService {
           height: 1.3,
           color: Color(0x8A000000)));
 
+
+  TextStyle get mediumSize13 {
+    return GoogleFonts.jost(
+        textStyle: TextStyle(
+            fontWeight: FontWeight.w400, letterSpacing: letterSpacing,
+            fontSize: 13));
+  }
+
   TextStyle get defaultTextField {
     return GoogleFonts.jost(
         textStyle: TextStyle(
@@ -60,6 +68,10 @@ class TextStyleService {
   static TextStyle defaultFieldLabel = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w500, letterSpacing: -0.41, fontSize: 13));
+
+  static TextStyle saleRecordDateTime = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500, letterSpacing: -0.91, fontSize: 13));
 
   static TextStyle defaultSignIn = GoogleFonts.jost(
       textStyle: const TextStyle(

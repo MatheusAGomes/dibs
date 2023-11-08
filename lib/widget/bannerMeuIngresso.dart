@@ -6,7 +6,7 @@ import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/repositories/ticket-repository.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/bannerNewMeuIngresso.dart';
-import 'package:dibs/widget/modalResumoDaVenda.dart';
+import 'package:dibs/widget/modalRegistroDeVenda.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -66,7 +66,7 @@ class BannerMeuIngresso extends StatelessWidget {
                         BorderRadius.vertical(top: Radius.circular(10)),
                   ),
                   builder: (BuildContext context) {
-                    return ModalResumoDaVenda(
+                    return ModalRegistroDeVenda(
                       info: ticket,
                     );
                   });
