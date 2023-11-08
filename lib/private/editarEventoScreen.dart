@@ -62,16 +62,22 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
     if (primero) {
       fotoDeCapa = widget.evento?.picture ?? "";
       titulo.text = widget.evento?.name ?? "";
-      if (widget.evento?.startDate != null)
+      if (widget.evento?.startDate != null) {
         hora.text = formatarHoraString(widget.evento!.startDate);
-      if (widget.evento?.startDate != null)
+        dataTime = widget.evento!.startDate;
         data.text = formatarDataString(widget.evento!.startDate);
+        timeOfday = TimeOfDay(
+            hour: widget.evento!.startDate.hour,
+            minute: widget.evento!.startDate.minute);
+      }
+
       cidade.text = widget.evento?.address.cidade ?? "";
       uf.text = widget.evento?.address.uf ?? "";
       if (widget.evento?.category != null)
         selectedCategory = widget.evento!.category;
       if (widget.evento?.status != null) status = widget.evento!.status;
       descricao.text = widget.evento!.description;
+      primero = false;
     }
   }
 
@@ -449,17 +455,17 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
                                 style:
                                     TextStyleService(color: Color(0xFF909090))
                                         .defaultTextField,
-                                onChanged: (EventStatusEnum? status) {
-                                  if (status != null) {
+                                onChanged: (EventStatusEnum? statusNovo) {
+                                  if (statusNovo != null) {
                                     setState(() {
-                                      status = status;
+                                      status = statusNovo;
                                     });
                                   }
                                 },
-                                items: EventStatusEnum.values.map((status) {
+                                items: EventStatusEnum.values.map((statusNovo) {
                                   return DropdownMenuItem<EventStatusEnum>(
-                                      value: status,
-                                      child: Text(status.toEnumString(),
+                                      value: statusNovo,
+                                      child: Text(statusNovo.toEnumString(),
                                           style: TextStyleService(
                                                   color: Color(0xFF909090))
                                               .defaultTextField));

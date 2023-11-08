@@ -260,8 +260,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                   animationDuration: 1500,
                                                   barRadius:
                                                       const Radius.circular(5),
-                                                  percent:lotes[index]
-                                                      .numberOfFullPriceTickets /
+                                                  percent: (lotes[index]
+                                                              .numberOfFullPriceTicketsTotal -
+                                                          lotes[index]
+                                                              .numberOfFullPriceTickets) /
                                                       lotes[index]
                                                           .numberOfFullPriceTicketsTotal,
                                                   linearStrokeCap:
@@ -290,7 +292,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                               .companyBatchType,
                                                         ),
                                                         Text(
-                                                            '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
+                                                            '${lotes[index].numberOfFullPriceTicketsTotal - lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
                                                             style: TextStyleService(
                                                                     color: Color(
                                                                         0xFF8D8D8D))
@@ -316,8 +318,10 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                   animationDuration: 1500,
                                                   barRadius:
                                                       const Radius.circular(5),
-                                                  percent: lotes[index]
-                                                          .numberOfHalfPriceTickets /
+                                                  percent: (lotes[index]
+                                                              .numberOfHalfPriceTicketsTotal -
+                                                          lotes[index]
+                                                              .numberOfHalfPriceTickets) /
                                                       lotes[index]
                                                           .numberOfHalfPriceTicketsTotal,
                                                   linearStrokeCap:
@@ -341,7 +345,7 @@ class _MainEmpresaScreenState extends State<MainEmpresaScreen> {
                                                                         0xFFFFFFFF))
                                                                 .companyBatchType),
                                                         Text(
-                                                            '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
+                                                            '${lotes[index].numberOfHalfPriceTicketsTotal - lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
                                                             style: TextStyleService(
                                                                     color: Color(
                                                                         0xFF8D8D8D))

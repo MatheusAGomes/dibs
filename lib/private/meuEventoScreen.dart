@@ -225,7 +225,12 @@ class MeuEventoScreen extends StatelessWidget {
                                                     barRadius:
                                                         const Radius.circular(
                                                             5),
-                                                    percent: 0.8,
+                                                    percent: (lotes[index]
+                                                                .numberOfFullPriceTicketsTotal -
+                                                            lotes[index]
+                                                                .numberOfFullPriceTickets) /
+                                                        lotes[index]
+                                                            .numberOfFullPriceTicketsTotal,
                                                     linearStrokeCap:
                                                         LinearStrokeCap
                                                             .roundAll,
@@ -253,7 +258,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                 .companyBatchType,
                                                           ),
                                                           Text(
-                                                              '${lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
+                                                              '${lotes[index].numberOfFullPriceTicketsTotal - lotes[index].numberOfFullPriceTickets}/${lotes[index].numberOfFullPriceTicketsTotal}',
                                                               style: TextStyleService(
                                                                       color: Color(
                                                                           0xFF8D8D8D))
@@ -282,8 +287,10 @@ class MeuEventoScreen extends StatelessWidget {
                                                     barRadius:
                                                         const Radius.circular(
                                                             5),
-                                                    percent: lotes[index]
-                                                            .numberOfHalfPriceTickets /
+                                                    percent: (lotes[index]
+                                                                .numberOfHalfPriceTicketsTotal -
+                                                            lotes[index]
+                                                                .numberOfHalfPriceTickets) /
                                                         lotes[index]
                                                             .numberOfHalfPriceTicketsTotal,
                                                     linearStrokeCap:
@@ -308,7 +315,7 @@ class MeuEventoScreen extends StatelessWidget {
                                                                           0xFFFFFFFF))
                                                                   .companyBatchType),
                                                           Text(
-                                                              '${lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
+                                                              '${lotes[index].numberOfHalfPriceTicketsTotal - lotes[index].numberOfHalfPriceTickets}/${lotes[index].numberOfHalfPriceTicketsTotal}',
                                                               style: TextStyleService(
                                                                       color: Color(
                                                                           0xFF8D8D8D))
