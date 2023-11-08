@@ -19,7 +19,11 @@ abstract class EventsRepository {
   Future<List<Events>> getMyEvents();
   @GET("/next-event")
   Future<Events> getNextEvents();
-
+  @PUT("/{id}")
+  Future<HttpResponse<void>> editarEvento(
+      @Path('id') String id, @Body() EventInput evento);
+  @GET("/edit/{id}")
+  Future<EventInput> getEvento(@Path('id') String id);
   @POST("")
   Future<HttpResponse<void>> criarEvento(@Body() EventInput evento);
 }

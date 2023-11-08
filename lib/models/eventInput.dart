@@ -1,4 +1,5 @@
 import 'package:dibs/models/endereco.dart';
+import 'package:dibs/shared/enum/EventStatus.dart';
 import 'package:dibs/shared/enum/EvetnCategory.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -11,10 +12,12 @@ class EventInput {
   DateTime startDate;
   String description;
   Endereco address;
+  EventStatusEnum status;
   EventCategory category;
   EventInput(
       {required this.address,
       required this.description,
+      required this.status,
       required this.name,
       required this.picture,
       required this.startDate,

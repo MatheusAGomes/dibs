@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../models/auth.dart';
 import '../../private/estruturaScreen.dart';
 import '../../repositories/events-repository.dart';
+import '../../repositories/ticket-repository.dart';
 import '../../shared/service/colorService.dart';
 import 'signin.dart';
 
@@ -31,13 +32,15 @@ class _AuthScreenState extends State<AuthScreen> {
           return SignInScreen();
         } else {
           if (auth.estaAutenticado) {
-            return FutureBuilder(
+            return FutureBuilder<dynamic>(
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     if (auth.authDecoded!['role'].toString() == 'CLIENT')
                       return EstruturasScreen(
                         pagina: 1,
-                        listaDeEventos: snapshot.data![0],
+                        listaDeEventos: snapshot.data[0],
+                        listaDeIngressos: snapshot.data[1],
+                        meusIngressosVendidos: snapshot.data[2],
                       );
 
                     return EstruturaEmpresa(
@@ -47,7 +50,11 @@ class _AuthScreenState extends State<AuthScreen> {
                     return SignInScreen();
                   }
                 },
-                future: Future.wait([EventsRepository(dio).getListEvents()]));
+                future: Future.wait([
+                  EventsRepository(dio).getListEvents(),
+                  TicketRepository(dio).getTickets(),
+                  TicketRepository(dio).getSoldTickets()
+                ]));
           } else {
             return SignInScreen();
           }

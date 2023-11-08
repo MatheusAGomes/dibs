@@ -13,6 +13,18 @@ String formatarData(String dataUTC) {
   return dataFormatada;
 }
 
+String formatarDataString(DateTime data) {
+  DateFormat formato = DateFormat('dd/MM/yyyy');
+  String dataFormatada = formato.format(data);
+  return dataFormatada;
+}
+
+String formatarHoraString(DateTime data) {
+  DateFormat formato = DateFormat('HH:mm');
+  String dataFormatada = formato.format(data);
+  return dataFormatada;
+}
+
 bool compareToLowerCaseAndTrim(String a, String b) {
   return a.toLowerCase().trim() == b.toLowerCase().trim();
 }

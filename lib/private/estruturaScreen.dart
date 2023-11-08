@@ -6,13 +6,21 @@ import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../models/meuIngressoBanner.dart';
 import '../shared/service/colorService.dart';
 
 class EstruturasScreen extends StatefulWidget {
   int? pagina;
   List<Events>? listaDeEventos;
+  List<MeuIngressoBanner>? listaDeIngressos;
+  List<MeuIngressoBanner>? meusIngressosVendidos;
+
   EstruturasScreen(
-      {super.key, required this.pagina, required this.listaDeEventos});
+      {super.key,
+      required this.pagina,
+      required this.listaDeEventos,
+      required this.listaDeIngressos,
+      required this.meusIngressosVendidos});
   @override
   _EstruturasScreenState createState() => _EstruturasScreenState();
 }
@@ -46,8 +54,11 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
           onPageChanged: setPaginaAtual,
           children: [
             MainScreen(listaDeEventos: widget.listaDeEventos!),
-            MeusIngressosScreen(),
-            AnuncieIngressoScreen()
+            MeusIngressosScreen(listaDeIngressos: widget.listaDeIngressos!),
+            AnuncieIngressoScreen(
+              meusingressosavenda: widget.listaDeIngressos!,
+              meusIngressosVendidos: widget.meusIngressosVendidos!,
+            )
           ],
         ),
         bottomNavigationBar: SizedBox(
@@ -71,18 +82,19 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
               items: const [
                 BottomNavigationBarItem(
                     icon: Icon(
-                     FontAwesomeIcons.house,
+                      FontAwesomeIcons.house,
                       size: 20,
                     ),
                     label: 'Tela inicial'),
                 BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.ticketSimple,
-                    size: 20,),
+                  icon: Icon(
+                    FontAwesomeIcons.ticketSimple,
+                    size: 20,
+                  ),
                   label: 'Ingressos',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.dollarSign,
-                    size: 20),
+                  icon: Icon(FontAwesomeIcons.dollarSign, size: 20),
                   label: 'Vendas',
                 ),
               ],

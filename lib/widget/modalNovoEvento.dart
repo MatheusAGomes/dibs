@@ -446,6 +446,7 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                           sumDateTimeAndTimeOfDay(dataTime!, timeOfday!);
                       print(dateTimeResultante);
                       await EventsRepository(dio).criarEvento(EventInput(
+                          status: status,
                           address: Endereco(
                               cep: 'cep',
                               logradouro: 'logradouro',
@@ -460,7 +461,7 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                           picture: fotoDeCapa ?? '',
                           startDate: dateTimeResultante,
                           category: selectedCategory));
-                      ToastService.showToastInfo('EVENTO CRIADO COM SUCESSO');
+                      ToastService.showToastInfo('Evento criado com sucesso');
                       Navigator.pop(context);
                     }),
               ],
