@@ -138,9 +138,12 @@ class _AnuncieIngressoScreenState extends State<AnuncieIngressoScreen> {
                                               .getTickets();
                                       showModalBottomSheet<void>(
                                         isScrollControlled: true,
-                                        enableDrag: true,
-                                        isDismissible: true,
                                         context: context,
+                                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                                        shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.vertical(
+                                              top: Radius.circular(10)),
+                                        ),
                                         builder: (BuildContext context) {
                                           return ModalMeusIngressosAnuncio(
                                             meuIngressos:
