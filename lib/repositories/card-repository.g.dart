@@ -21,13 +21,13 @@ class _CardRepository implements CardRepository {
   String? baseUrl;
 
   @override
-  Future<List<Cards>> getCards() async {
+  Future<List<CardSelect>> getCards() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Cards>>(Options(
+    final _result = await _dio
+        .fetch<List<dynamic>>(_setStreamType<List<CardSelect>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -40,9 +40,33 @@ class _CardRepository implements CardRepository {
             )
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     var value = _result.data!
-        .map((dynamic i) => Cards.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => CardSelect.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
+  }
+
+  @override
+  Future<HttpResponse<void>> criarCartao(card) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(card.toJson());
+    final _result =
+        await _dio.fetch<void>(_setStreamType<HttpResponse<void>>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              '',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final httpResponse = HttpResponse(null, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

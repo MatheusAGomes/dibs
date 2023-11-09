@@ -1,3 +1,4 @@
+import 'package:dibs/models/cardSelect.dart';
 import 'package:dibs/models/cards.dart';
 import 'package:dibs/private/modalNovoCartao.dart';
 import 'package:dibs/repositories/card-repository.dart';
@@ -40,7 +41,7 @@ class ModalMeusCartoes extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  FutureBuilder<List<Cards>>(
+                  FutureBuilder<List<CardSelect>>(
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
                         return Column(
@@ -53,7 +54,7 @@ class ModalMeusCartoes extends StatelessWidget {
                                 nome: snapshot.data![index].name,
                                 numero:
                                     substituirTresPrimeirosGruposPorAsteriscos(
-                                        snapshot.data![index].number),
+                                        snapshot.data![index].number!),
                                 tipo: "Crédito"),
                           );
                         }));
@@ -76,8 +77,8 @@ class ModalMeusCartoes extends StatelessWidget {
                       context: context,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                            top: Radius.circular(10)),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(10)),
                       ),
                       builder: (BuildContext context) {
                         return const ModalNovoCartao();

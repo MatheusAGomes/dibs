@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../main.dart';
+import '../models/auth.dart';
 import '../shared/service/colorService.dart';
 import '../shared/service/textStyle.dart';
 import '../widget/bannerIngressoMarketPlace.dart';
@@ -14,6 +16,7 @@ import '../widget/buttonPadrao.dart';
 import '../widget/modalTransferencia.dart';
 
 class InfoMeuIngressoScreen extends StatelessWidget {
+  String id;
   String? data;
   String? hora;
   String? local;
@@ -27,7 +30,6 @@ class InfoMeuIngressoScreen extends StatelessWidget {
   ImageProvider? fotoDoEvento;
   bool status;
   bool anuncio;
-  String id;
 
   InfoMeuIngressoScreen(
       {required this.data,
@@ -47,6 +49,8 @@ class InfoMeuIngressoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of(context, listen: false);
+
     return SafeArea(
       child: Container(
         color: Colors.white,
@@ -224,6 +228,8 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                         }
                                         await TicketRepository(dio)
                                             .removeAnnounceTicket(id);
+                                        Navigator.pop(context);
+                                        auth.gambiarraMonstra();
                                       })),
                             ],
                           )

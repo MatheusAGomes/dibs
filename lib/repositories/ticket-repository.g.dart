@@ -235,7 +235,7 @@ class _TicketRepository implements TicketRepository {
     )
             .compose(
               _dio.options,
-              '/remove-announce/{ticketId',
+              '/remove-announce/${idDoEvento}',
               queryParameters: queryParameters,
               data: _data,
             )

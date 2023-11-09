@@ -1,4 +1,6 @@
+import 'package:dibs/models/cardSelect.dart';
 import 'package:dibs/models/cards.dart';
+import 'package:dibs/repositories/card-repository.dart';
 import 'package:dibs/widget/buttonNewAction.dart';
 import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +12,7 @@ import '../widget/meuCartaoComponente.dart';
 import 'modalNovoCartao.dart';
 
 class FormaDePagamento extends StatefulWidget {
-  List<Cards> cards;
+  List<CardSelect> cards;
   FormaDePagamento({super.key, required this.cards});
 
   @override
@@ -48,26 +50,25 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Cartão',
-                    style: TextStyleService.eventBatch),
+                Text('Cartão', style: TextStyleService.eventBatch),
                 const SizedBox(
                   height: 10,
                 ),
                 ButtonNewAction(
-                  text: 'Novo Cartão',
-                  click: () {
-                    showModalBottomSheet<void>(
-                        isScrollControlled: true,
-                        context: context,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(10)),
-                        ),
-                        builder: (BuildContext context) {
-                          return const ModalNovoCartao();
-                        });
-                  }),
+                    text: 'Novo Cartão',
+                    click: () {
+                      showModalBottomSheet<void>(
+                          isScrollControlled: true,
+                          context: context,
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.vertical(top: Radius.circular(10)),
+                          ),
+                          builder: (BuildContext context) {
+                            return const ModalNovoCartao();
+                          });
+                    }),
                 SizedBox(
                   height: 5,
                 ),
@@ -77,15 +78,15 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                 ),
                 Column(
                     children: List.generate(widget.cards.length, (index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
-                        child: MeuCartaoComponente(
-                            pedido: true,
-                            nome: widget.cards[index].name,
-                            numero: substituirTresPrimeirosGruposPorAsteriscos(
-                                widget.cards[index].number),
-                            tipo: "Cartão de Crédito"),
-                      );
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: MeuCartaoComponente(
+                        pedido: true,
+                        nome: widget.cards[index].name,
+                        numero: substituirTresPrimeirosGruposPorAsteriscos(
+                            widget.cards[index].number!),
+                        tipo: "Cartão de Crédito"),
+                  );
                   // return InkWell(
                   //   onTap: () {
                   //     Navigator.pop(context, widget.cards[index]);
@@ -106,7 +107,7 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                 ),
                 ButtonPadrao(
                     text: 'Continuar',
-                    click: (){},
+                    click: () {},
                     width: 0.5,
                     enable: true,
                     delete: false)

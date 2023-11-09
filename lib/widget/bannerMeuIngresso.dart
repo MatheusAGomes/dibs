@@ -72,6 +72,7 @@ class BannerMeuIngresso extends StatelessWidget {
                   });
             } else {
               final a = await TicketRepository(dio).getTicket(id);
+              print(a.id);
               showModalBottomSheet<void>(
                 isScrollControlled: true,
                 context: context,
@@ -81,7 +82,7 @@ class BannerMeuIngresso extends StatelessWidget {
                 ),
                 builder: (BuildContext context) {
                   return InfoMeuIngressoScreen(
-                      id: id,
+                      id: a.id,
                       anuncio: anuncio,
                       codigoDoIngresso: a.qrCode,
                       cpf: a.cpf,

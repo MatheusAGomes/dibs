@@ -1,6 +1,10 @@
+import 'package:dibs/models/cardInput.dart';
+import 'package:dibs/repositories/card-repository.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../main.dart';
 import '../shared/functions/utils.dart';
 import '../shared/service/colorService.dart';
 import '../shared/service/textStyle.dart';
@@ -20,6 +24,7 @@ TextEditingController cpfController = TextEditingController();
 TextEditingController numeroController = TextEditingController();
 TextEditingController cvcController = TextEditingController();
 TextEditingController validadeController = TextEditingController();
+DateTime? dataTime;
 
 class _ModalNovoCartaoState extends State<ModalNovoCartao> {
   @override
@@ -42,9 +47,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                         style: TextStyleService.modalTitle,
                       ),
                       InkWell(
-                        child: Icon(
-                            FontAwesomeIcons.xmark,
-                            size: 18),
+                        child: Icon(FontAwesomeIcons.xmark, size: 18),
                         onTap: () {
                           Navigator.pop(context);
                         },
@@ -59,15 +62,14 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                            'Nome (como descrito no cartão)',
+                        Text('Nome (como descrito no cartão)',
                             textAlign: TextAlign.left,
                             style: TextStyleService.defaultFieldLabel),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.005,
                         ),
                         ExpandableTextField(
-                          controller: nomeController,
+                            controller: nomeController,
                             click: () {},
                             height: 0.06,
                             hintText: "ALUÍSIO ALBUQUERQUE",
@@ -75,8 +77,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                               FontAwesomeIcons.solidUser,
                               size: 16,
                             ))
-                      ]
-                  ),
+                      ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
@@ -84,15 +85,14 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                            'CPF',
+                        Text('CPF',
                             textAlign: TextAlign.left,
                             style: TextStyleService.defaultFieldLabel),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.005,
                         ),
                         ExpandableTextField(
-                          controller: cpfController,
+                            controller: cpfController,
                             click: () {},
                             height: 0.06,
                             hintText: "123.456.789-00",
@@ -100,25 +100,22 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                               FontAwesomeIcons.solidIdCard,
                               size: 16,
                             ))
-                      ]
-                  ),
+                      ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
-
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                            'Número do Cartão',
+                        Text('Número do Cartão',
                             textAlign: TextAlign.left,
                             style: TextStyleService.defaultFieldLabel),
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.005,
                         ),
                         ExpandableTextField(
-                          controller: numeroController,
+                            controller: numeroController,
                             click: () {},
                             height: 0.06,
                             hintText: "3454 9429 0482 4820",
@@ -126,8 +123,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                               FontAwesomeIcons.solidCreditCard,
                               size: 16,
                             ))
-                      ]
-                  ),
+                      ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
@@ -138,14 +134,15 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                                'CVV',
+                            Text('CVV',
                                 textAlign: TextAlign.left,
                                 style: TextStyleService.defaultFieldLabel),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.005,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005,
                             ),
                             ExpandableTextField(
+                                controller: cvcController,
                                 click: () {},
                                 width: 0.42,
                                 height: 0.06,
@@ -154,20 +151,20 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                                   FontAwesomeIcons.lock,
                                   size: 16,
                                 ))
-                          ]
-                      ),
+                          ]),
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                                'Expira em',
+                            Text('Expira em',
                                 textAlign: TextAlign.left,
                                 style: TextStyleService.defaultFieldLabel),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.005,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005,
                             ),
                             ExpandableTextField(
+                                controller: validadeController,
                                 click: () {},
                                 width: 0.42,
                                 height: 0.06,
@@ -176,19 +173,28 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                                   FontAwesomeIcons.solidCreditCard,
                                   size: 16,
                                 ))
-                          ]
-                      ),
+                          ]),
                     ],
                   ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
-
-              ],
+                ],
               ),
               ButtonPadrao(
-                  enable: true, delete: false,
-                  width: 0.45, text: "Salvar", click: () {}),
+                  enable: true,
+                  delete: false,
+                  width: 0.45,
+                  text: "Salvar",
+                  click: () async {
+                    await CardRepository(dio).criarCartao(CardInput(
+                        number: numeroController.text,
+                        code: cvcController.text,
+                        cpf: cpfController.text,
+                        name: nomeController.text,
+                        validity: validadeController.text));
+                    ToastService.showToastInfo('Cartão criado');
+                  }),
             ],
           ),
         ),

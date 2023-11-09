@@ -4,10 +4,10 @@ part 'cards.g.dart';
 
 @JsonSerializable()
 class Cards {
-  String number;
-  String name;
-  String cpf;
-  String validity;
+  String? number;
+  String? name;
+  String? cpf;
+  String? validity;
 
   Cards(
       {required this.number,

@@ -36,7 +36,7 @@ abstract class TicketRepository {
   @PUT("/announce/{id}")
   Future<HttpResponse<void>> announceTicket(
       @Path('id') String idDoEvento, @Body() double price);
-  @PUT("/remove-announce/{ticketId")
+  @PUT("/remove-announce/{ticketId}")
   Future<HttpResponse<void>> removeAnnounceTicket(
       @Path('ticketId') String idDoEvento);
   @GET("/sold-tickets")
