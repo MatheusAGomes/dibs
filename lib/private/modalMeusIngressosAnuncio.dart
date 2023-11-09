@@ -86,7 +86,8 @@ class _ModalMeusIngressosAnuncioState extends State<ModalMeusIngressosAnuncio> {
                             data: widget.meuIngressos[index].startDate,
                             hora: widget.meuIngressos[index].time!,
                             local: widget.meuIngressos[index].address,
-                            image: AssetImage('assets/images/PericlesEx.png'),
+                            image: NetworkImage(
+                                widget.meuIngressos[index].picture!),
                           )),
                     );
                   },
