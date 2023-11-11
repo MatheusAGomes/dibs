@@ -5,8 +5,11 @@ import 'package:dibs/private/meusIngressosScreen.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../models/meuIngressoBanner.dart';
+import '../shared/routes/routes.dart';
+import '../shared/service/MyPageController.dart';
 import '../shared/service/colorService.dart';
 
 class EstruturasScreen extends StatefulWidget {
@@ -31,9 +34,14 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
 
   @override
   initState() {
-    paginaAtual = 0;
+    paginaAtual =
+        Provider.of<MyPageIndexProvider>(Routes.navigatorKey.currentContext!)
+            .pageIndex;
     super.initState();
-    pc = PageController(initialPage: paginaAtual);
+    pc = PageController(
+        initialPage: Provider.of<MyPageIndexProvider>(
+                Routes.navigatorKey.currentContext!)
+            .pageIndex);
   }
 
   setPaginaAtual(pagina) {
@@ -51,7 +59,7 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
         body: PageView(
           physics: const ClampingScrollPhysics(),
           controller: pc,
-          onPageChanged: setPaginaAtual,
+          onPageChanged: Provider.of<MyPageIndexProvider>(context).updateIndex,
           children: [
             MainScreen(listaDeEventos: widget.listaDeEventos!),
             MeusIngressosScreen(listaDeIngressos: widget.listaDeIngressos!),
@@ -78,7 +86,8 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
               selectedItemColor: ColorService.verde,
               type: BottomNavigationBarType.fixed,
 
-              currentIndex: paginaAtual,
+              currentIndex: Provider.of<MyPageIndexProvider>(context).pageIndex,
+
               items: const [
                 BottomNavigationBarItem(
                     icon: Icon(
@@ -99,11 +108,8 @@ class _EstruturasScreenState extends State<EstruturasScreen> {
                 ),
               ],
               onTap: (pagina) {
-                pc.animateToPage(
-                  pagina,
-                  duration: const Duration(milliseconds: 400),
-                  curve: Curves.ease,
-                );
+                Provider.of<MyPageIndexProvider>(context, listen: false)
+                    .updatePc(pagina, pc);
               },
               // backgroundColor: Colors.grey[100],
             ),

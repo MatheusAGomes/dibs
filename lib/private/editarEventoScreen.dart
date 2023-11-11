@@ -29,7 +29,7 @@ import '../widget/modalTransferencia.dart';
 class EditarEventoScreen extends StatefulWidget {
   String id;
   EventInput? evento;
-  EditarEventoScreen({required this.id, required this.evento});
+  EditarEventoScreen({super.key, required this.id, required this.evento});
 
   @override
   State<EditarEventoScreen> createState() => _EditarEventoScreenState();
@@ -81,25 +81,27 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
     }
   }
 
+  _getImage() async {
+    final ImagePicker _picker = ImagePicker();
+    XFile? imageFile = await _picker.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: MediaQuery.of(context).size.width,
+      maxHeight: MediaQuery.of(context).size.height,
+    );
+    if (imageFile != null) {
+      String? fotoDeCapaa = await uploadFile(File(imageFile.path));
+      if (fotoDeCapaa != null) {
+        setState(() {
+          fotoDeCapa = fotoDeCapaa;
+        });
+      }
+      print(fotoDeCapa);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    _getImage() async {
-      final ImagePicker _picker = ImagePicker();
-      XFile? imageFile = await _picker.pickImage(
-        source: ImageSource.gallery,
-        maxWidth: MediaQuery.of(context).size.width,
-        maxHeight: MediaQuery.of(context).size.height,
-      );
-      if (imageFile != null) {
-        String? fotoDeCapaa = await uploadFile(File(imageFile.path));
-        if (fotoDeCapaa != null) {
-          setState(() {
-            fotoDeCapa = fotoDeCapaa;
-          });
-        }
-        print(fotoDeCapa);
-      }
-    }
+    Auth auth = Provider.of(context, listen: false);
 
     populando();
     return Scaffold(
@@ -216,7 +218,6 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
                     ),
                     ExpandableTextField(
                         controller: titulo,
-                        click: () {},
                         height: 0.06,
                         enable: true,
                         hintText: "Churrasquinho Menos é Mais",
@@ -311,7 +312,6 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
                         ),
                         ExpandableTextField(
                             controller: cidade,
-                            click: () {},
                             width: 0.42,
                             height: 0.06,
                             enable: true,
@@ -333,7 +333,6 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
                         ),
                         ExpandableTextField(
                             controller: uf,
-                            click: () {},
                             width: 0.42,
                             height: 0.06,
                             enable: true,
@@ -488,7 +487,6 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
                     ),
                     ExpandableTextField(
                       controller: descricao,
-                      click: () {},
                       height: 0.08,
                       maxLines: 3,
                       enable: true,
@@ -527,6 +525,7 @@ class _EditarEventoScreenState extends State<EditarEventoScreen> {
                             category: selectedCategory));
                     ToastService.showToastInfo('Evento editado com sucesso');
                     Navigator.pop(context);
+                    auth.gambiarraMonstra();
                   }),
             ],
           ),

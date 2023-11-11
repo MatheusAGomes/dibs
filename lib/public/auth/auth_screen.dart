@@ -7,6 +7,7 @@ import '../../models/auth.dart';
 import '../../private/estruturaScreen.dart';
 import '../../repositories/events-repository.dart';
 import '../../repositories/ticket-repository.dart';
+import '../../shared/service/MyPageController.dart';
 import '../../shared/service/colorService.dart';
 import 'signin.dart';
 
@@ -37,7 +38,8 @@ class _AuthScreenState extends State<AuthScreen> {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return EstruturasScreen(
-                        pagina: 1,
+                        pagina:
+                            Provider.of<MyPageIndexProvider>(context).pageIndex,
                         listaDeEventos: snapshot.data[0],
                         listaDeIngressos: snapshot.data[1],
                         meusIngressosVendidos: snapshot.data[2],

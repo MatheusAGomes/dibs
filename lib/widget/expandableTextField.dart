@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class ExpandableTextField extends StatefulWidget{
+class ExpandableTextField extends StatefulWidget {
   final GlobalKey<FormFieldState>? textFormFildKey;
   final TextEditingController? controller;
   final String? hintText;
@@ -11,7 +11,7 @@ class ExpandableTextField extends StatefulWidget{
   final Widget? suffixIcon;
   final TextInputType keyboardtype;
   final bool hideTextfild;
-  final VoidCallback click;
+  final VoidCallback? click;
   final double fontSize;
   final TextInputAction? textInputAction;
   final Function(String?)? onFieldSubmitted;
@@ -27,7 +27,6 @@ class ExpandableTextField extends StatefulWidget{
   final double width;
   final int maxLines;
 
-
   ExpandableTextField({
     this.textFormFildKey,
     this.hintText,
@@ -35,7 +34,7 @@ class ExpandableTextField extends StatefulWidget{
     this.suffixIcon,
     this.keyboardtype = TextInputType.text,
     this.hideTextfild = false,
-    required this.click,
+    this.click,
     this.fontSize = 10,
     this.validator,
     this.controller,
@@ -52,7 +51,6 @@ class ExpandableTextField extends StatefulWidget{
     this.width = 1,
     this.maxLines = 1,
   });
-
 
   @override
   State<ExpandableTextField> createState() => _ExpandableTextFieldState();
@@ -71,11 +69,9 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
               boxShadow: [
                 BoxShadow(
                     color: Color(0x40000000),
-                    offset: Offset(2,2),
-                    blurRadius: 0.3
-                )
-              ]
-          ),
+                    offset: Offset(2, 2),
+                    blurRadius: 0.3)
+              ]),
           child: TextFieldPadrao(
             textFormFildKey: widget.textFormFildKey,
             hintText: widget.hintText,
@@ -84,7 +80,9 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
             keyboardtype: widget.keyboardtype,
             hideTextfild: widget.hideTextfild,
             click: () {
-              widget.click();
+              if (widget.click != null) {
+                widget.click!();
+              }
             },
             fontSize: widget.fontSize,
             validator: widget.validator,
@@ -100,7 +98,6 @@ class _ExpandableTextFieldState extends State<ExpandableTextField> {
             inputFormatter: widget.inputFormatter,
             maxLines: widget.maxLines,
           ),
-        )
-    );
+        ));
   }
 }

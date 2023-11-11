@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:dibs/main.dart';
 import 'package:dibs/models/clientInput.dart';
 import 'package:dibs/models/newPassword.dart';
@@ -9,6 +10,7 @@ import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:dibs/widget/expandableTextField.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../shared/functions/utils.dart';
@@ -38,11 +40,18 @@ class _MeuPerfilState extends State<MeuPerfil> {
     if (primeiravez) {
       nomeController.text = widget.cliente.firstName ?? "";
       sobrenomeController.text = widget.cliente.lastName ?? "";
-      cpfController.text = widget.cliente.cpf ?? "";
+      cpfController.text = widget.cliente.cpf != null
+          ? UtilBrasilFields.obterCpf(widget.cliente.cpf!)
+          : "";
       dataController.text = widget.cliente.birthDate != null
           ? formatDateTime(widget.cliente.birthDate!)
           : "";
-      telefoneController.text = widget.cliente.phone ?? "";
+      if (widget.cliente.birthDate != null) {
+        dataTime = widget.cliente.birthDate;
+      }
+      telefoneController.text = widget.cliente.phone != null
+          ? UtilBrasilFields.obterTelefone(widget.cliente.phone!)
+          : "";
       primeiravez = false;
     }
   }
@@ -95,7 +104,6 @@ class _MeuPerfilState extends State<MeuPerfil> {
                       ),
                       ExpandableTextField(
                           controller: nomeController,
-                          click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
                             FontAwesomeIcons.solidUser,
@@ -116,7 +124,6 @@ class _MeuPerfilState extends State<MeuPerfil> {
                       ),
                       ExpandableTextField(
                           controller: sobrenomeController,
-                          click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
                             FontAwesomeIcons.solidUser,
@@ -136,8 +143,12 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
+                          keyboardtype: TextInputType.number,
+                          inputFormatter: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CpfInputFormatter(),
+                          ],
                           controller: cpfController,
-                          click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
                             FontAwesomeIcons.solidIdCard,
@@ -187,8 +198,12 @@ class _MeuPerfilState extends State<MeuPerfil> {
                         style: TextStyleService.defaultFieldLabel,
                       ),
                       ExpandableTextField(
+                          keyboardtype: TextInputType.phone,
+                          inputFormatter: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            TelefoneInputFormatter()
+                          ],
                           controller: telefoneController,
-                          click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
                             FontAwesomeIcons.phone,
@@ -206,7 +221,9 @@ class _MeuPerfilState extends State<MeuPerfil> {
                     text: "Salvar",
                     click: () async {
                       await ClientsRepository(dio).putCLiente(ClientInput(
-                          phone: telefoneController.text,
+                          phone: UtilBrasilFields.obterTelefone(
+                              telefoneController.text,
+                              mascara: false),
                           cpf: cpfController.text,
                           firstName: nomeController.text,
                           lastName: sobrenomeController.text,
@@ -235,7 +252,6 @@ class _MeuPerfilState extends State<MeuPerfil> {
                       ),
                       ExpandableTextField(
                           controller: senhaController,
-                          click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
                             FontAwesomeIcons.lockOpen,
@@ -256,7 +272,6 @@ class _MeuPerfilState extends State<MeuPerfil> {
                       ),
                       ExpandableTextField(
                           controller: novaSenhaController,
-                          click: () {},
                           height: 0.06,
                           prefixIcon: Icon(
                             FontAwesomeIcons.lock,

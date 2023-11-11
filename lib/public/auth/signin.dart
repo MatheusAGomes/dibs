@@ -15,6 +15,7 @@ import '../../../shared/routes/routes.dart';
 import '../../../shared/service/colorService.dart';
 import '../../../shared/store.dart';
 import '../../models/auth.dart';
+import '../../shared/service/MyPageController.dart';
 import '../../shared/service/toastService.dart';
 import '../../widget/textfieldpadrao.dart';
 
@@ -34,6 +35,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Future<void> _submit() async {
     Auth auth = Provider.of<Auth>(context, listen: false);
     try {
+      Provider.of<MyPageIndexProvider>(context, listen: false).updateIndex(0);
       auth.deslogar();
     } catch (e) {
       print(e);
@@ -111,9 +113,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     ],
                   ),
                   ExpandableTextField(
-                      controller: usuarioController,
-                      click: () {},
-                      height: 0.05),
+                      controller: usuarioController, height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.05,
                   ),
@@ -127,7 +127,8 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   ExpandableTextField(
                       hideTextfild: true,
-                      controller: senhaController, click: () {}, height: 0.05),
+                      controller: senhaController,
+                      height: 0.05),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.05,
                   ),

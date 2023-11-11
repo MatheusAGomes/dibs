@@ -1,4 +1,5 @@
 import 'package:dibs/repositories/ticket-repository.dart';
+import 'package:dibs/shared/service/toastService.dart';
 import 'package:dibs/widget/modalEditar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -228,6 +229,8 @@ class InfoMeuIngressoScreen extends StatelessWidget {
                                         }
                                         await TicketRepository(dio)
                                             .removeAnnounceTicket(id);
+                                        ToastService.showToastInfo(
+                                            'Anuncio cancelado com sucesso');
                                         Navigator.pop(context);
                                         auth.gambiarraMonstra();
                                       })),

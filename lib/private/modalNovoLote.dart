@@ -80,7 +80,6 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                           ),
                           ExpandableTextField(
                               controller: titulo,
-                              click: () {},
                               height: 0.06,
                               hintText: "Pista - 1° Lote",
                               prefixIcon: Icon(
@@ -107,7 +106,6 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                               ),
                               ExpandableTextField(
                                   controller: qntIngressos,
-                                  click: () {},
                                   width: 0.42,
                                   height: 0.06,
                                   hintText: "100",
@@ -129,7 +127,6 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                               ),
                               ExpandableTextField(
                                   controller: preco,
-                                  click: () {},
                                   width: 0.42,
                                   height: 0.06,
                                   hintText: "R\$ 50,00",

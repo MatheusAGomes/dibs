@@ -25,6 +25,7 @@ import '../../models/auth.dart';
 import '../main.dart';
 import '../models/clientInput.dart';
 import '../shared/functions/utils.dart';
+import '../shared/service/MyPageController.dart';
 import '../widget/meuPerfil.dart';
 import '../widget/modalMeusCartoes.dart';
 
@@ -170,6 +171,9 @@ class _MainScreenState extends State<MainScreen> {
                       ),
                       PopupMenuItem(
                         onTap: () async {
+                          Provider.of<MyPageIndexProvider>(context,
+                                  listen: false)
+                              .updateIndex(0);
                           auth.deslogar();
                         },
                         height: 30,

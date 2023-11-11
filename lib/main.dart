@@ -1,3 +1,4 @@
+import 'package:dibs/shared/service/MyPageController.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -43,12 +44,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => Auth(dio)),
+        ChangeNotifierProvider(create: (_) => MyPageIndexProvider()),
       ],
       child: GlobalLoaderOverlay(
         useDefaultLoading: false,
         overlayWidget: Center(
             child: CircularProgressIndicator(
-          color: ColorService.azul,
+          color: ColorService.verde,
         )),
         child: MaterialApp(
           navigatorKey: Routes.navigatorKey,

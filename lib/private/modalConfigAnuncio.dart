@@ -229,6 +229,7 @@ class _modalConfigAnuncioState extends State<modalConfigAnuncio> {
                         .then((value) => ToastService.showToastInfo(
                               'Ingresso anunciado',
                             ));
+                    nomeController.text = "";
                     Navigator.pop(context);
                     Navigator.pop(context);
                     auth.gambiarraMonstra();

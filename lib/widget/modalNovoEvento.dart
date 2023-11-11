@@ -77,7 +77,6 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
           padding: EdgeInsets.only(left: 20, right: 20, top: 18, bottom: 35),
           child: SingleChildScrollView(
             child: Column(
@@ -195,7 +194,6 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                         ),
                         ExpandableTextField(
                             controller: titulo,
-                            click: () {},
                             height: 0.06,
                             enable: true,
                             hintText: "Churrasquinho Menos é Mais",
@@ -293,7 +291,6 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                             ),
                             ExpandableTextField(
                                 controller: cidade,
-                                click: () {},
                                 width: 0.42,
                                 height: 0.06,
                                 enable: true,
@@ -316,7 +313,6 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                             ),
                             ExpandableTextField(
                                 controller: uf,
-                                click: () {},
                                 width: 0.42,
                                 height: 0.06,
                                 enable: true,
@@ -425,7 +421,6 @@ class _ModalNovoEventoState extends State<ModalNovoEvento> {
                         ),
                         ExpandableTextField(
                           controller: descricao,
-                          click: () {},
                           height: 0.08,
                           maxLines: 3,
                           enable: true,

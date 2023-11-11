@@ -67,7 +67,6 @@ class ModalTransferencia extends StatelessWidget {
                       ),
                       ExpandableTextField(
                           controller: emailController,
-                          click: () {},
                           height: 0.06,
                           hintText: "exemplo@email.com",
                           prefixIcon: Icon(

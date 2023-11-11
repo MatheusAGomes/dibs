@@ -34,6 +34,10 @@ TextEditingController valor = TextEditingController(text: '');
 class _GerenciarLoteScreenState extends State<GerenciarLoteScreen> {
   @override
   Widget build(BuildContext context) {
+    void teste() {
+      setState(() {});
+    }
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -79,7 +83,7 @@ class _GerenciarLoteScreenState extends State<GerenciarLoteScreen> {
                           click: () async {
                             List<IdName> lista = await BatchRepository(dio)
                                 .getLotesPossiveis(widget.idDoEvento);
-                            showModalBottomSheet<void>(
+                            await showModalBottomSheet<void>(
                               useSafeArea: true,
                               isScrollControlled: true,
                               context: context,
@@ -95,8 +99,8 @@ class _GerenciarLoteScreenState extends State<GerenciarLoteScreen> {
                                 );
                               },
                             );
-                          }
-                      ),
+                            teste();
+                          }),
                       SizedBox(
                         height: 5,
                       ),
@@ -109,19 +113,32 @@ class _GerenciarLoteScreenState extends State<GerenciarLoteScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                                'Lotes Ativos',
+                            Text('Lotes Ativos',
                                 style: TextStyleService.companyBatchStatus),
-                            SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.005),
                             Column(
                               children: List.generate(ativos.length, (index) {
-                                return ComponenteGerenciadoDeLotes(
-                                  id: widget.idDoEvento,
-                                  lote: ativos[index],
+                                return Column(
+                                  children: [
+                                    ComponenteGerenciadoDeLotes(
+                                      id: widget.idDoEvento,
+                                      lote: ativos[index],
+                                      test: teste,
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    )
+                                  ],
                                 );
                               }),
                             ),
-                            SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.015),
                           ],
                         ),
                       if (criados.isNotEmpty)
@@ -129,15 +146,26 @@ class _GerenciarLoteScreenState extends State<GerenciarLoteScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                                'Lotes Criados',
+                            Text('Lotes Criados',
                                 style: TextStyleService.companyBatchStatus),
-                            SizedBox(height: MediaQuery.of(context).size.height * 0.005),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.005),
                             Column(
                               children: List.generate(criados.length, (index) {
-                                return ComponenteGerenciadoDeLotes(
-                                  id: widget.idDoEvento,
-                                  lote: criados[index],
+                                return Column(
+                                  children: [
+                                    ComponenteGerenciadoDeLotes(
+                                      id: widget.idDoEvento,
+                                      lote: criados[index],
+                                      test: teste,
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    )
+                                  ],
                                 );
                               }),
                             ),
@@ -151,17 +179,32 @@ class _GerenciarLoteScreenState extends State<GerenciarLoteScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Lotes finalizados'),
+                            Text(
+                              'Lotes finalizados',
+                              style: TextStyleService.companyBatchStatus,
+                            ),
                             Column(
                               children:
                                   List.generate(finalizados.length, (index) {
-                                return ComponenteGerenciadoDeLotes(
-                                  id: widget.idDoEvento,
-                                  lote: finalizados[index],
+                                return Column(
+                                  children: [
+                                    ComponenteGerenciadoDeLotes(
+                                      test: teste,
+                                      id: widget.idDoEvento,
+                                      lote: finalizados[index],
+                                    ),
+                                    SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.01,
+                                    )
+                                  ],
                                 );
                               }),
                             ),
-                            SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.02),
                           ],
                         ),
                     ]),

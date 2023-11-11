@@ -7,7 +7,6 @@ import '../models/ticketReport.dart';
 import '../repositories/batch-repository.dart';
 import '../shared/service/colorService.dart';
 import 'buttonPadrao.dart';
-import 'expandableTextField.dart';
 
 class ModalRegistroDeVenda extends StatelessWidget {
   TicketReport info;
@@ -31,9 +30,7 @@ class ModalRegistroDeVenda extends StatelessWidget {
                     style: TextStyleService.modalTitle,
                   ),
                   InkWell(
-                    child: Icon(
-                        FontAwesomeIcons.xmark,
-                        size: 18),
+                    child: Icon(FontAwesomeIcons.xmark, size: 18),
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -45,123 +42,124 @@ class ModalRegistroDeVenda extends StatelessWidget {
                 thickness: 1,
               ),
               Padding(
-                  padding: EdgeInsetsDirectional.only(top: 4),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Informações do Ingresso',
-                        style: TextStyleService.labelSubtitle,
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.005),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                              info.eventName,
-                              style: TextStyleService.defaultFieldLabel),
-                          Row(
-                            children: [
-                              Text('${info.startDate}  ${info.time}',
-                                  style: TextStyleService.saleRecordDateTime)
-                            ],
-                          )
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(info.halfPrice ? 'Meia-entrada' : 'Inteira',
-                              style: TextStyleService(
-                                  letterSpacing: -0.41).mediumSize13),
-                          Text(info.address,
-                              style: TextStyleService.defaultFieldLabel)
-                        ],
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Lote',
-                              style: TextStyleService.defaultFieldLabel),
-                          Text('Preço',
-                              style: TextStyleService.defaultFieldLabel)
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(info.batchName,
-                              style: TextStyleService(
-                                  letterSpacing: -0.41).mediumSize13),
-                          Text(info.halfPrice
-                              ? 'R\$ ${(info.batchPrice / 2).toString()}'
-                              : 'R\$ ${(info.batchPrice).toString()}',
-                              style: TextStyleService(
-                                  letterSpacing: -0.91).mediumSize13),
-                        ],
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-                      Text(
-                        'Informações da Transferência',
-                        style: TextStyleService.labelSubtitle,
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.005),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Transferido em',
-                              style: TextStyleService.defaultFieldLabel),
-                          Text('Valor',
-                              style: TextStyleService.defaultFieldLabel),
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('${info.transferDate} ${info.transferTime}',
-                              style: TextStyleService(
-                                  letterSpacing: -0.91).mediumSize13),
-                          Text('R\$ ${info.transferPrice}',
-                              style: TextStyleService(
-                                  letterSpacing: -0.91).mediumSize13)
-                        ],
-                      ),
-                      SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Anunciante',
-                              style: TextStyleService.defaultFieldLabel),
-                          Text('Comprador',
-                              style: TextStyleService.defaultFieldLabel)
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(info.advertiser,
-                              style: TextStyleService(
-                                  letterSpacing: -0.41).mediumSize13),
-                          Text(info.buyer,
-                              style: TextStyleService(
-                                  letterSpacing: -0.41).mediumSize13)
-                        ],
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(info.advertiserEmail,
-                              style: TextStyleService(
-                                  letterSpacing: -0.41).mediumSize13),
-                          Text(info.buyerEmail,
-                              style: TextStyleService(
-                                  letterSpacing: -0.41).mediumSize13)
-                        ],
-                      ),
-                    ],
-                  ),
+                padding: EdgeInsetsDirectional.only(top: 4),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Informações do Ingresso',
+                      style: TextStyleService.labelSubtitle,
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.005),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(info.eventName,
+                            style: TextStyleService.defaultFieldLabel),
+                        Row(
+                          children: [
+                            Text('${info.startDate}  ${info.time}',
+                                style: TextStyleService.saleRecordDateTime)
+                          ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(info.halfPrice ? 'Meia-entrada' : 'Inteira',
+                            style: TextStyleService(letterSpacing: -0.41)
+                                .mediumSize13),
+                        Text(info.address,
+                            style: TextStyleService.defaultFieldLabel)
+                      ],
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Lote', style: TextStyleService.defaultFieldLabel),
+                        Text('Preço', style: TextStyleService.defaultFieldLabel)
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(info.batchName,
+                            style: TextStyleService(letterSpacing: -0.41)
+                                .mediumSize13),
+                        Text(
+                            info.halfPrice
+                                ? 'R\$ ${(info.batchPrice / 2).toString()}'
+                                : 'R\$ ${(info.batchPrice).toString()}',
+                            style: TextStyleService(letterSpacing: -0.91)
+                                .mediumSize13),
+                      ],
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.025),
+                    Text(
+                      'Informações da Transferência',
+                      style: TextStyleService.labelSubtitle,
+                    ),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.005),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Transferido em',
+                            style: TextStyleService.defaultFieldLabel),
+                        Text('Valor',
+                            style: TextStyleService.defaultFieldLabel),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('${info.transferDate} ${info.transferTime}',
+                            style: TextStyleService(letterSpacing: -0.91)
+                                .mediumSize13),
+                        Text('R\$ ${info.transferPrice}',
+                            style: TextStyleService(letterSpacing: -0.91)
+                                .mediumSize13)
+                      ],
+                    ),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Anunciante',
+                            style: TextStyleService.defaultFieldLabel),
+                        Text('Comprador',
+                            style: TextStyleService.defaultFieldLabel)
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(info.advertiser,
+                            style: TextStyleService(letterSpacing: -0.41)
+                                .mediumSize13),
+                        Text(info.buyer,
+                            style: TextStyleService(letterSpacing: -0.41)
+                                .mediumSize13)
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(info.advertiserEmail,
+                            style: TextStyleService(letterSpacing: -0.41)
+                                .mediumSize13),
+                        Text(info.buyerEmail,
+                            style: TextStyleService(letterSpacing: -0.41)
+                                .mediumSize13)
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

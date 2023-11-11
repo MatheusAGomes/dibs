@@ -93,8 +93,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                            'Titulo',
+                        Text('Titulo',
                             textAlign: TextAlign.left,
                             style: TextStyleService.defaultFieldLabel),
                         SizedBox(
@@ -102,15 +101,13 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                         ),
                         ExpandableTextField(
                             controller: titulo,
-                            click: () {},
                             height: 0.06,
                             hintText: "Pista - 1° Lote",
                             prefixIcon: Icon(
                               FontAwesomeIcons.masksTheater,
                               size: 16,
                             ))
-                      ]
-                  ),
+                      ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
@@ -121,16 +118,15 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                                'Qntd. de ingressos',
+                            Text('Qntd. de ingressos',
                                 textAlign: TextAlign.left,
                                 style: TextStyleService.defaultFieldLabel),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.005,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005,
                             ),
                             ExpandableTextField(
                                 controller: qntIngressos,
-                                click: () {},
                                 width: 0.42,
                                 height: 0.06,
                                 hintText: "100",
@@ -138,22 +134,20 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                                   FontAwesomeIcons.ticketSimple,
                                   size: 16,
                                 ))
-                          ]
-                      ),
+                          ]),
                       Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                                'Preço',
+                            Text('Preço',
                                 textAlign: TextAlign.left,
                                 style: TextStyleService.defaultFieldLabel),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.005,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.005,
                             ),
                             ExpandableTextField(
                                 controller: preco,
-                                click: () {},
                                 width: 0.42,
                                 height: 0.06,
                                 hintText: "R\$ 50,00",
@@ -161,8 +155,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                                   FontAwesomeIcons.dollarSign,
                                   size: 16,
                                 ))
-                          ]
-                      ),
+                          ]),
                     ],
                   ),
                   SizedBox(
@@ -172,8 +165,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                            'Lote Programado',
+                        Text('Lote Programado',
                             textAlign: TextAlign.left,
                             style: TextStyleService.defaultFieldLabel),
                         SizedBox(
@@ -185,13 +177,10 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                             isExpanded: true,
                             isDense: true,
                             underline: SizedBox(height: 0),
-                            icon: Icon(
-                                FontAwesomeIcons.angleDown,
-                                size: 18,
-                                color: Colors.grey),
-                            style: TextStyleService(
-                                color: Color(0xFF909090)
-                            ).defaultTextField,
+                            icon: Icon(FontAwesomeIcons.angleDown,
+                                size: 18, color: Colors.grey),
+                            style: TextStyleService(color: Color(0xFF909090))
+                                .defaultTextField,
                             onChanged: (IdName? newValue) {
                               setState(() {
                                 selectedIdName = newValue;
@@ -201,13 +190,13 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                               return DropdownMenuItem<IdName>(
                                 value: idName,
                                 child: Text(idName.name),
-                                key: Key(idName.id), // Use o campo "id" como chave única
+                                key: Key(idName
+                                    .id), // Use o campo "id" como chave única
                               );
                             }).toList(),
                           ),
                         ),
-                      ]
-                  ),
+                      ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.005,
                   ),
@@ -215,8 +204,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text(
-                            'Status',
+                        Text('Status',
                             textAlign: TextAlign.left,
                             style: TextStyleService.defaultFieldLabel),
                         SizedBox(
@@ -228,13 +216,10 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                             isExpanded: true,
                             isDense: true,
                             underline: SizedBox(height: 0),
-                            icon: Icon(
-                                FontAwesomeIcons.angleDown,
-                                size: 18,
-                                color: Colors.grey),
-                            style: TextStyleService(
-                                color: Color(0xFF909090)
-                            ).defaultTextField,
+                            icon: Icon(FontAwesomeIcons.angleDown,
+                                size: 18, color: Colors.grey),
+                            style: TextStyleService(color: Color(0xFF909090))
+                                .defaultTextField,
                             onChanged: (BatchStatus? newValue) {
                               if (newValue != null) {
                                 setState(() {
@@ -252,8 +237,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                             }).toList(),
                           ),
                         )
-                      ]
-                  ),
+                      ]),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,
                   ),
@@ -273,11 +257,12 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                             nextBatch: selectedIdName,
                             numberOfTickets: int.parse(qntIngressos.text),
                             status: selectedStatus));
+                    Navigator.pop(context);
+                    ToastService.showToastInfo('Lote editado com sucesso');
                   },
                   width: 0.45,
                   enable: true,
-                  delete: false
-              ),
+                  delete: false),
             ],
           ),
         ),

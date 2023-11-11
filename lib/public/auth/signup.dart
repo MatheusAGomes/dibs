@@ -1,8 +1,10 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:dibs/models/clienteRegister.dart';
 import 'package:dibs/repositories/autenticacao.dart';
 import 'package:dibs/repositories/authentication-repository.dart';
 import 'package:dibs/shared/service/toastService.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:validatorless/validatorless.dart';
@@ -103,7 +105,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ExpandableTextField(
                       controller: primeiroNomeController,
-                      click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
@@ -123,7 +124,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ExpandableTextField(
                       controller: sobrenomeNomeController,
-                      click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
@@ -143,8 +143,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ExpandableTextField(
                       controller: cpfNomeController,
-                      click: () {},
                       height: 0.05,
+                      keyboardtype: TextInputType.number,
+                      inputFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter(),
+                      ],
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
                         Validatorless.max(
@@ -193,7 +197,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ExpandableTextField(
                       controller: emailController,
-                      click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
@@ -212,8 +215,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ],
                   ),
                   ExpandableTextField(
+                      keyboardtype: TextInputType.phone,
+                      inputFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        TelefoneInputFormatter()
+                      ],
                       controller: telefoneController,
-                      click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
@@ -233,7 +240,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ExpandableTextField(
                       controller: senhaController,
-                      click: () {},
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
@@ -256,9 +262,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             lastName: sobrenomeNomeController.text,
                             cpf: cpfNomeController.text,
                             birthDate: dataTime!,
-                            phone: telefoneController.text));
+                            phone: UtilBrasilFields.obterTelefone(
+                                telefoneController.text,
+                                mascara: false)));
                         ToastService.showToastInfo(
                             'Usuario criado com sucesso');
+                        Navigator.pop(context);
                       }),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04,

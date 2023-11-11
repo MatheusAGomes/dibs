@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:dibs/models/auth.dart';
 import 'package:dibs/models/modeloRespostaEditTicket.dart';
 import 'package:dibs/private/modalNovoCartao.dart';
@@ -76,7 +77,6 @@ class _ModalEditarState extends State<ModalEditar> {
                       ),
                       ExpandableTextField(
                           controller: nome,
-                          click: () {},
                           height: 0.06,
                           hintText: "Aluísio de Albuquerque",
                           prefixIcon: Icon(
@@ -98,8 +98,12 @@ class _ModalEditarState extends State<ModalEditar> {
                         height: MediaQuery.of(context).size.height * 0.005,
                       ),
                       ExpandableTextField(
+                          keyboardtype: TextInputType.number,
+                          inputFormatter: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            CpfInputFormatter(),
+                          ],
                           controller: cpf,
-                          click: () {},
                           height: 0.06,
                           hintText: "123.456.789-00",
                           prefixIcon: Icon(
@@ -123,7 +127,7 @@ class _ModalEditarState extends State<ModalEditar> {
                                   name: nome.text, cpf: cpf.text))
                           .whenComplete(() {
                         ToastService.showToastInfo(
-                            'Sucesso alterado com sucesso');
+                            'Ingresso alterado com sucesso');
                         Navigator.pop(context);
                         Navigator.pop(context);
                         auth.gambiarraMonstra();
