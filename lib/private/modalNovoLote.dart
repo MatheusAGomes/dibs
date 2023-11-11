@@ -9,8 +9,10 @@ import 'package:dibs/widget/expandableTextField.dart';
 import 'package:dibs/widget/shadowedDropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../models/auth.dart';
 import '../models/idName.dart';
 import '../repositories/batch-repository.dart';
 import '../shared/routes/routes.dart';
@@ -36,6 +38,8 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
   IdName? selectedIdName;
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
     return SafeArea(
       child: Padding(
         // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
@@ -238,6 +242,7 @@ class _ModalNovoLoteState extends State<ModalNovoLote> {
                           status: selectedStatus));
                       ToastService.showToastInfo('Lote criado com sucesso!');
                       Navigator.pop(context);
+                      auth.gambiarraMonstra();
                     }),
               ],
             ),

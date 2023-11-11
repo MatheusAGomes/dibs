@@ -8,8 +8,10 @@ import 'package:dibs/widget/textfieldpadrao.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../models/auth.dart';
 import '../models/batchInput.dart';
 import '../models/idName.dart';
 import '../repositories/batch-repository.dart';
@@ -61,6 +63,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
     populandoTela();
 
     return Scaffold(
@@ -258,6 +261,7 @@ class _EditarLoteScreenState extends State<EditarLoteScreen> {
                             numberOfTickets: int.parse(qntIngressos.text),
                             status: selectedStatus));
                     Navigator.pop(context);
+                    auth.gambiarraMonstra();
                     ToastService.showToastInfo('Lote editado com sucesso');
                   },
                   width: 0.45,

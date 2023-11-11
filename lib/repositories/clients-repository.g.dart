@@ -13,7 +13,7 @@ class _ClientsRepository implements ClientsRepository {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://192.168.195.189:8080/clients';
+    baseUrl ??= 'http://192.168.195.203:8080/clients';
   }
 
   final Dio _dio;

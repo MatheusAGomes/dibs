@@ -87,7 +87,7 @@ class ModalTransferencia extends StatelessWidget {
                           .transferTicket(id, emailController.text);
                       ToastService.showToastInfo('Ingresso transferido');
                       Navigator.pop(context);
-                      Navigator.pop(context);
+                      // Navigator.pop(context);
                       auth.gambiarraMonstra();
                     }),
               ],
