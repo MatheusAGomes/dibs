@@ -91,6 +91,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 2),
                     child: BannerCompraIngressoTerceiro(
+                        lote: widget.tickets[index].name,
                         less: () {
                           TicketClient a = TicketClient(
                               clientId: widget.tickets[index].sellerId,
@@ -175,23 +176,22 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                   height: 20,
                 ),
                 ButtonPadrao(
-                    text: 'Comprar',
-                    click: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => InfoPedidoScreen(
-                                compraComOrganizacao: false,
-                                ticketInfo: null,
-                                resumoDaCompra: listaDeResumo,
-                                ticketOrganizer: TicketClientInput(
-                                    ticketClients: listaDeIngressos!),
-                              )));
-                    },
-                    width: 0.45,
-                    enable: true,
-                    delete: false,
-
+                  text: 'Comprar',
+                  click: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => InfoPedidoScreen(
+                                  compraComOrganizacao: false,
+                                  ticketInfo: null,
+                                  resumoDaCompra: listaDeResumo,
+                                  ticketOrganizer: TicketClientInput(
+                                      ticketClients: listaDeIngressos!),
+                                )));
+                  },
+                  width: 0.45,
+                  enable: true,
+                  delete: false,
                 ),
               ],
             ),

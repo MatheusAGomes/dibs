@@ -66,173 +66,156 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                       Shadow(
                           offset: Offset(1.5, 1.5),
                           color: Color.fromRGBO(126, 244, 209, 0.72))
-                    ], fontSize: 20).corSublinhada),
-                Text('Ingressos',
-                    style: TextStyleService.eventBatch),
+                    ], fontSize: 20)
+                        .corSublinhada),
+                Text('Ingressos', style: TextStyleService.eventBatch),
                 ShadowedCard(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                      child: SizedBox(
-                        child: Column(
-                          children: [
-                            Column(
-                                children: List.generate(
-                                    widget.resumoDaCompra.length, (index) {
-                                  return Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                              '1x ${widget.resumoDaCompra[index].name} - 4° Lote',
-                                              style: GoogleFonts.jost(
-                                                  textStyle: TextStyle(
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: 16,
-                                                    letterSpacing: -0.41,
-                                                  ))),
-                                          Text(
-                                            '${widget.resumoDaCompra[index].tipo} - R\$ ${widget.resumoDaCompra[index].preco}',
-                                            style: GoogleFonts.jost(
-                                                textStyle: TextStyle(
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 14,
-                                                    letterSpacing: -0.41,
-                                                    color: Color(0xFF6A6A6A),
-                                                    height: 1.2
-                                                )),
-                                          ),
-                                        ],
-                                      ),
-                                      Text(
-                                          'R\$ ${widget.resumoDaCompra[index].preco}',
-                                          style: GoogleFonts.jost(
-                                              textStyle: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 16,
-                                                letterSpacing: -0.91,
-                                              )))
-                                    ],
-                                  );
-                                })),
-                            Column(
-                              children: [
-                                Divider(
-                                  color: Color(0xFFD9D9D9),
-                                  thickness: 1,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Total',
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                  child: SizedBox(
+                    child: Column(
+                      children: [
+                        Column(
+                            children: List.generate(
+                                widget.resumoDaCompra.length, (index) {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                      '1x ${widget.resumoDaCompra[index].name}',
                                       style: GoogleFonts.jost(
                                           textStyle: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 16,
+                                        letterSpacing: -0.41,
+                                      ))),
+                                  Text(
+                                    '${widget.resumoDaCompra[index].tipo} - R\$ ${widget.resumoDaCompra[index].preco}',
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
                                             letterSpacing: -0.41,
-                                          )),
-                                    ),
-                                    Text(
-                                      "R\$ ${widget.resumoDaCompra.map((e) => e.preco.toDouble()).reduce((value, element) => value + element)}",
-                                      style: GoogleFonts.jost(
-                                          textStyle: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                            letterSpacing: -0.91,
-                                          )),
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    )
-                ),
-                Text('Forma de pagamento',
-                    style: TextStyleService.eventBatch),
-                ShadowedCard(
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 15),
-                      child: SizedBox(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                                            color: Color(0xFF6A6A6A),
+                                            height: 1.2)),
+                                  ),
+                                ],
+                              ),
+                              Text('R\$ ${widget.resumoDaCompra[index].preco}',
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 16,
+                                    letterSpacing: -0.91,
+                                  )))
+                            ],
+                          );
+                        })),
+                        Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(
-                                    FontAwesomeIcons.solidCreditCard,
-                                    size: 16),
-                                SizedBox(width: 15),
-                                Text(
-                                  'Cartão de Crédito',
-                                  style: TextStyleService.ticketInput)
-                              ],
-                            ),
-                            SizedBox(height: MediaQuery.of(context).size.height * 0.018),
-                            Text(
-                              '**** **** **** 8583',
-                              style: TextStyleService(
-                                  fontSize: 16,
-                                  color: Colors.black).creditCardComponent,
-                            ),
-                            Text(
-                              'JOÃO CLEBER MACHADO',
-                              style: GoogleFonts.jost(
-                                textStyle: TextStyle(
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 12,
-                                  letterSpacing: -0.41,
-                                  color: Color(0xFF6A6A6A)
-                                )
-                              )
-                            ),
                             Divider(
                               color: Color(0xFFD9D9D9),
                               thickness: 1,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text(
-                                  'Parcelamento',
+                                  'Total',
                                   style: GoogleFonts.jost(
-                                    textStyle: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                      letterSpacing: -0.41,
-                                      )
-                                  )
+                                      textStyle: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    letterSpacing: -0.41,
+                                  )),
                                 ),
-                                Flexible(
-                                    child: Text(
-                                      '1x de R\$ '
-                                      '${widget.resumoDaCompra.map((e) => e.preco.toDouble()).reduce((value, element) => value + element)}\n'
-                                      '(sem juros)',
-                                      textAlign: TextAlign.end,
-                                      style: GoogleFonts.jost(
-                                          textStyle: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 16,
-                                            letterSpacing: -0.41,
-                                            height: 1
-                                          )
-                                      )
-                                    )
+                                Text(
+                                  "R\$ ${widget.resumoDaCompra.map((e) => e.preco.toDouble()).reduce((value, element) => value + element)}",
+                                  style: GoogleFonts.jost(
+                                      textStyle: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                    letterSpacing: -0.91,
+                                  )),
                                 )
                               ],
                             )
                           ],
                         ),
-                      ),
-                    )),
+                      ],
+                    ),
+                  ),
+                )),
+                Text('Forma de pagamento', style: TextStyleService.eventBatch),
+                ShadowedCard(
+                    child: Padding(
+                  padding: EdgeInsetsDirectional.symmetric(
+                      horizontal: 20, vertical: 15),
+                  child: SizedBox(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(FontAwesomeIcons.solidCreditCard, size: 16),
+                            SizedBox(width: 15),
+                            Text('Cartão de Crédito',
+                                style: TextStyleService.ticketInput)
+                          ],
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.018),
+                        Text(
+                          '**** **** **** 8583',
+                          style: TextStyleService(
+                                  fontSize: 16, color: Colors.black)
+                              .creditCardComponent,
+                        ),
+                        Text('JOÃO CLEBER MACHADO',
+                            style: GoogleFonts.jost(
+                                textStyle: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12,
+                                    letterSpacing: -0.41,
+                                    color: Color(0xFF6A6A6A)))),
+                        Divider(
+                          color: Color(0xFFD9D9D9),
+                          thickness: 1,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Parcelamento',
+                                style: GoogleFonts.jost(
+                                    textStyle: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                  letterSpacing: -0.41,
+                                ))),
+                            Flexible(
+                                child: Text(
+                                    '1x de R\$ '
+                                    '${widget.resumoDaCompra.map((e) => e.preco.toDouble()).reduce((value, element) => value + element)}\n'
+                                    '(sem juros)',
+                                    textAlign: TextAlign.end,
+                                    style: GoogleFonts.jost(
+                                        textStyle: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                            letterSpacing: -0.41,
+                                            height: 1))))
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                )),
                 const SizedBox(
                   height: 20,
                 ),
@@ -251,16 +234,15 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => CompraFinalizada(
-                                total: widget.resumoDaCompra
-                                    .map((e) => e.preco.toDouble())
-                                    .reduce((value, element) =>
-                                value + element),
-                              )));
+                                    total: widget.resumoDaCompra
+                                        .map((e) => e.preco.toDouble())
+                                        .reduce((value, element) =>
+                                            value + element),
+                                  )));
                     },
                     width: 0.5,
                     enable: true,
-                    delete: false
-                ),
+                    delete: false),
               ],
             ),
           )),

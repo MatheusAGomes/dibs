@@ -11,9 +11,11 @@ class BannerCompraIngressoTerceiro extends StatefulWidget {
   int? quantidadeDisponivel;
   VoidCallback add;
   VoidCallback less;
+  String lote;
   BannerCompraIngressoTerceiro(
       {super.key,
       required this.add,
+      required this.lote,
       required this.less,
       required this.tipoDoIngresso,
       required this.valor,
@@ -33,10 +35,9 @@ class _BannerCompraIngressoTerceiroState
   Widget build(BuildContext context) {
     return ShadowedCard(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         child: SizedBox(
-          height: 90,
+          height: 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -47,36 +48,27 @@ class _BannerCompraIngressoTerceiroState
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                          widget.nome!,
-                          style: TextStyleService.ticketSellerName
-                      ),
+                      Text(widget.nome!,
+                          style: TextStyleService.ticketSellerName),
                       SizedBox(width: MediaQuery.of(context).size.width * 0.02),
-                      SvgPicture.asset(
-                          'assets/icons/SecureResaleIcon.svg',
+                      SvgPicture.asset('assets/icons/SecureResaleIcon.svg',
                           width: 17),
                     ],
                   ),
-                  Text(
-                      widget.tipoDoIngresso!,
-                      style: TextStyleService.ticketMarketplace
-                  ),
-                  Text(
-                      widget.valor!,
-                      style: TextStyleService.ticketMarketplace
-                  ),
-                  Text(
-                      'Qnt. disponivel: ${widget.quantidadeDisponivel}',
-                      style: TextStyleService.ticketMarketplaceSemibold
-                  )
+                  Text(widget.lote, style: TextStyleService.ticketMarketplace),
+                  Text(widget.tipoDoIngresso!,
+                      style: TextStyleService.ticketMarketplace),
+                  Text(widget.valor!,
+                      style: TextStyleService.ticketMarketplace),
+                  Text('Qnt. disponivel: ${widget.quantidadeDisponivel}',
+                      style: TextStyleService.ticketMarketplaceSemibold)
                 ],
               ),
               Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                        color: const Color(0xFF198A68),
-                        width: 2)),
+                    border:
+                        Border.all(color: const Color(0xFF198A68), width: 2)),
                 child: Row(
                   children: [
                     InkWell(
@@ -90,10 +82,8 @@ class _BannerCompraIngressoTerceiroState
                         color: const Color(0xFF198A68),
                         height: 30,
                         width: 30,
-                        child: const Icon(
-                            FontAwesomeIcons.minus,
-                            size: 18,
-                            color: Colors.white),
+                        child: const Icon(FontAwesomeIcons.minus,
+                            size: 18, color: Colors.white),
                       ),
                     ),
                     InkWell(
@@ -102,10 +92,8 @@ class _BannerCompraIngressoTerceiroState
                         width: 30,
                         color: const Color(0xFF198A68).withOpacity(0.5),
                         child: Center(
-                            child: Text(
-                              quantidade.toInt().toString(),
-                              style: TextStyleService.ticketInputWhite
-                            )),
+                            child: Text(quantidade.toInt().toString(),
+                                style: TextStyleService.ticketInputWhite)),
                       ),
                     ),
                     InkWell(
@@ -119,10 +107,8 @@ class _BannerCompraIngressoTerceiroState
                         height: 30,
                         width: 30,
                         color: const Color(0xFF198A68),
-                        child: const Icon(
-                            FontAwesomeIcons.plus,
-                            size: 18,
-                            color: Colors.white),
+                        child: const Icon(FontAwesomeIcons.plus,
+                            size: 18, color: Colors.white),
                       ),
                     ),
                   ],
