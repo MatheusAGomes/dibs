@@ -5,8 +5,10 @@ import 'package:dibs/shared/service/toastService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
+import '../models/auth.dart';
 import '../shared/functions/utils.dart';
 import '../shared/service/colorService.dart';
 import '../shared/service/textStyle.dart';
@@ -29,8 +31,11 @@ TextEditingController validadeController = TextEditingController();
 DateTime? dataTime;
 
 class _ModalNovoCartaoState extends State<ModalNovoCartao> {
+
   @override
   Widget build(BuildContext context) {
+    Auth auth = Provider.of<Auth>(context, listen: false);
+
     return SafeArea(
       child: Padding(
         // padding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
@@ -210,6 +215,7 @@ class _ModalNovoCartaoState extends State<ModalNovoCartao> {
                           validity: validadeController.text));
                       ToastService.showToastInfo('Cartão criado');
                       Navigator.pop(context);
+                      auth.gambiarraMonstra();
                     }),
               ],
             ),
