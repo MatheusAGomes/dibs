@@ -2,6 +2,7 @@ import 'package:dibs/models/ticketInfoInput.dart';
 import 'package:dibs/models/ticketLote.dart';
 import 'package:dibs/models/ticketOrganizer.dart';
 import 'package:dibs/private/compraFinalizada.dart';
+import 'package:dibs/shared/functions/utils.dart';
 import 'package:dibs/shared/service/textStyle.dart';
 import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:dibs/widget/shadowedCard.dart';
@@ -73,6 +74,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                     child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                   child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.9,
                     child: Column(
                       children: [
                         Column(
@@ -85,7 +87,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                      '1x ${widget.resumoDaCompra[index].name}',
+                                      '${addEllipsis('1x ${widget.resumoDaCompra[index].name}', 22)}',
                                       style: GoogleFonts.jost(
                                           textStyle: TextStyle(
                                         fontWeight: FontWeight.w500,
@@ -93,7 +95,7 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                                         letterSpacing: -0.41,
                                       ))),
                                   Text(
-                                    '${widget.resumoDaCompra[index].tipo} - R\$ ${widget.resumoDaCompra[index].preco}',
+                                    '${addEllipsis('${widget.resumoDaCompra[index].tipo} - R\$ ${widget.resumoDaCompra[index].preco}', 28)}',
                                     style: GoogleFonts.jost(
                                         textStyle: TextStyle(
                                             fontWeight: FontWeight.w400,

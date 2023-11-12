@@ -96,45 +96,47 @@ class BannerNewMeuIngresso extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 2),
-                Row(
-                  children: [
-                    Text(
-                      titulo,
-                      style: TextStyleService.ticketBannerTitle,
-                    ),
-                  ],
-                ),
-                ticket
-                    ? Row(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            lote,
-                            style: TextStyleService(color: corDoLote)
-                                .ticketBannerBatch,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            tipo,
-                            style: TextStyleService.ticketBannerType,
-                          )
-                        ],
-                      )
-                    : Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Icon(
-                            FontAwesomeIcons.locationDot,
-                            size: 16,
-                            color: ColorService.cinzaBannerIngresso,
-                          ),
-                          SizedBox(width: 4),
-                          Text(local, style: TextStyleService.ticketBannerType)
-                        ],
+                  SizedBox(height: 2),
+                  Row(
+                    children: [
+                      Text(
+                        titulo,
+                        style: TextStyleService.ticketBannerTitle,
                       ),
+                    ],
+                  ),
+                // ticket
+                //     ?
+                  // Row(
+                  //           crossAxisAlignment: CrossAxisAlignment.end,
+                  //           children: [
+                  //             Text(
+                  //               lote,
+                  //               style: TextStyleService(color: corDoLote)
+                  //                   .ticketBannerBatch,
+                  //             ),
+                  //             SizedBox(
+                  //               width: 10,
+                  //             ),
+                  //             Text(
+                  //               tipo,
+                  //               style: TextStyleService.ticketBannerType,
+                  //             )
+                  //           ],
+                  //         )
+                        // :
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.locationDot,
+                        size: 16,
+                        color: ColorService.cinzaBannerIngresso,
+                      ),
+                      SizedBox(width: 4),
+                      Text(local, style: TextStyleService.ticketBannerType)
+                    ],
+                  ),
               ],
             )),
           ),

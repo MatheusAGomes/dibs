@@ -19,7 +19,69 @@ class MeuCartaoComponente extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShadowedCard(
+    return pedido! ? InkWell(
+      child: ShadowedCard(
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.09,
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SizedBox(
+              // height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
+                          child: Icon(
+                            FontAwesomeIcons.solidCreditCard,
+                            size: 22),
+                      ),
+                      Padding(
+                          padding: EdgeInsetsDirectional.symmetric(
+                              vertical: 7, horizontal: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(numero!,
+                                      style: TextStyleService(
+                                          fontSize: 14,
+                                          color: Colors.black).creditCardComponent),
+                                ],
+                              ),
+                              Text(
+                                nome!.toUpperCase(),
+                                style: TextStyleService(
+                                    fontSize: 11,
+                                    color: Colors.black).creditCardComponent,
+                              ),
+                              Text(
+                                tipo!,
+                                style: TextStyleService(
+                                    fontSize: 11,
+                                    color: Color(0xFFB3B0B0)).creditCardComponent,
+                              )
+                            ],
+                          )
+                      )
+                    ],
+                  ),
+                  SizedBox()
+                  // Icon(
+                  //     FontAwesomeIcons.solidPenToSquare,
+                  //     size: 20)
+                ],
+              ),
+            ),
+          ),
+      ),
+    )
+    : ShadowedCard(
         child: Container(
           height: MediaQuery.of(context).size.height * 0.09,
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -32,19 +94,13 @@ class MeuCartaoComponente extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    pedido! ? Padding(
-                        padding: EdgeInsetsDirectional.only(end: 15),
-                        // padding: EdgeInsetsDirectional.symmetric(horizontal: 10),
-                        child: SizedBox(
-                            width: 30,
-                            child: Checkbox(value: false, onChanged: (bool? value) {})
-                        ))
-                        : Padding(
+                    Padding(
                         padding: EdgeInsetsDirectional.only(start: 5, end: 20),
                         child: Icon(
                           FontAwesomeIcons.solidCreditCard,
                           size: 22,
-                        )),
+                        )
+                    ),
                     Padding(
                         padding: EdgeInsetsDirectional.symmetric(
                             vertical: 7),
@@ -77,8 +133,7 @@ class MeuCartaoComponente extends StatelessWidget {
                     )
                   ],
                 ),
-                pedido! ? SizedBox()
-                    : InkWell(
+                InkWell(
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.grey[300],
