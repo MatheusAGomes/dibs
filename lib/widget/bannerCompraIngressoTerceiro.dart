@@ -1,4 +1,8 @@
+import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/widget/shadowedCard.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BannerCompraIngressoTerceiro extends StatefulWidget {
   String? tipoDoIngresso;
@@ -27,13 +31,10 @@ class _BannerCompraIngressoTerceiroState
   double quantidade = 0;
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(11),
-      ),
-      elevation: 4,
+    return ShadowedCard(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(
+            horizontal: 10, vertical: 5),
         child: SizedBox(
           height: 90,
           child: Row(
@@ -44,17 +45,38 @@ class _BannerCompraIngressoTerceiroState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    children: [Text(widget.nome!), const Icon(Icons.lock)],
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          widget.nome!,
+                          style: TextStyleService.ticketSellerName
+                      ),
+                      SizedBox(width: MediaQuery.of(context).size.width * 0.02),
+                      SvgPicture.asset(
+                          'assets/icons/SecureResaleIcon.svg',
+                          width: 17),
+                    ],
                   ),
-                  Text(widget.tipoDoIngresso!),
-                  Text(widget.valor!),
-                  Text('Qnt. diponivel: ${widget.quantidadeDisponivel}')
+                  Text(
+                      widget.tipoDoIngresso!,
+                      style: TextStyleService.ticketMarketplace
+                  ),
+                  Text(
+                      widget.valor!,
+                      style: TextStyleService.ticketMarketplace
+                  ),
+                  Text(
+                      'Qnt. disponivel: ${widget.quantidadeDisponivel}',
+                      style: TextStyleService.ticketMarketplaceSemibold
+                  )
                 ],
               ),
               Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4),
-                    border: Border.all(color: const Color(0xFF198A68))),
+                    borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                        color: const Color(0xFF198A68),
+                        width: 2)),
                 child: Row(
                   children: [
                     InkWell(
@@ -69,9 +91,9 @@ class _BannerCompraIngressoTerceiroState
                         height: 30,
                         width: 30,
                         child: const Icon(
-                          Icons.remove,
-                          color: Colors.white,
-                        ),
+                            FontAwesomeIcons.minus,
+                            size: 18,
+                            color: Colors.white),
                       ),
                     ),
                     InkWell(
@@ -81,11 +103,9 @@ class _BannerCompraIngressoTerceiroState
                         color: const Color(0xFF198A68).withOpacity(0.5),
                         child: Center(
                             child: Text(
-                          quantidade.toInt().toString(),
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
-                        )),
+                              quantidade.toInt().toString(),
+                              style: TextStyleService.ticketInputWhite
+                            )),
                       ),
                     ),
                     InkWell(
@@ -100,9 +120,9 @@ class _BannerCompraIngressoTerceiroState
                         width: 30,
                         color: const Color(0xFF198A68),
                         child: const Icon(
-                          Icons.add,
-                          color: Colors.white,
-                        ),
+                            FontAwesomeIcons.plus,
+                            size: 18,
+                            color: Colors.white),
                       ),
                     ),
                   ],

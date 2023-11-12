@@ -126,6 +126,25 @@ class TextStyleService {
           letterSpacing: -0.41)
   );
 
+  static TextStyle ticketInputWhite = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+          letterSpacing: -0.41,
+          color: Colors.white)
+  );
+
+  static TextStyle ticketMarketplace = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 15,
+          letterSpacing: -0.41,
+          height: 1.3,
+          color: Color(0xFF909090))
+  );
+
+
+
   static TextStyle announcedTickets = GoogleFonts.jost(
       textStyle: const TextStyle(
           fontWeight: FontWeight.w500,
@@ -191,6 +210,22 @@ class TextStyleService {
     letterSpacing: -0.41,
     fontSize: 14,
   ));
+
+  static TextStyle ticketSellerName = GoogleFonts.jost(
+      textStyle: const TextStyle(
+        fontWeight: FontWeight.w600,
+        letterSpacing: -0.41,
+        fontSize: 16,
+      ));
+
+  static TextStyle ticketMarketplaceSemibold = GoogleFonts.jost(
+      textStyle: const TextStyle(
+          fontWeight: FontWeight.w600,
+          fontSize: 15,
+          letterSpacing: -0.41,
+          height: 1.3,
+          color: Color(0xFF909090))
+  );
 
 TextStyle get creditCardComponent {
   return GoogleFonts.jost(

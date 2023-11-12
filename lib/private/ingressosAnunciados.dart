@@ -2,7 +2,10 @@ import 'package:dibs/models/ticketClient.dart';
 import 'package:dibs/models/ticketsForSale.dart';
 import 'package:dibs/private/resumoDaCompra.dart';
 import 'package:dibs/shared/service/textStyle.dart';
+import 'package:dibs/widget/buttonNewAction.dart';
+import 'package:dibs/widget/buttonPadrao.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../models/resumoDaCompraString.dart';
 import '../models/ticketClientInfoInput.dart';
@@ -45,17 +48,18 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
+        foregroundColor: Colors.black,
         centerTitle: true,
         title: Text(
           'Ingressos Anunciados',
-          style: TextStyle(color: Colors.black),
+          style: TextStyleService.appBar,
         ),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
             icon: Icon(
-              Icons.arrow_back_ios,
+              FontAwesomeIcons.angleLeft,
               color: Colors.black,
             )),
       ),
@@ -63,7 +67,7 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
         child: Container(
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +79,13 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                           color: Color.fromRGBO(126, 244, 209, 0.72))
                     ], fontSize: 22)
                         .corSublinhada),
-                Divider(),
+                Divider(
+                  color: Color(0x66000000),
+                  thickness: 1,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
                 Column(
                     children: List.generate(widget.tickets.length, (index) {
                   return Padding(
@@ -162,37 +172,26 @@ class _IngressosAnunciadosScreenState extends State<IngressosAnunciadosScreen> {
                   );
                 })),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
-                Center(
-                  child: InkWell(
-                    onTap: () {
+                ButtonPadrao(
+                    text: 'Comprar',
+                    click: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => InfoPedidoScreen(
-                                    compraComOrganizacao: false,
-                                    ticketInfo: null,
-                                    resumoDaCompra: listaDeResumo,
-                                    ticketOrganizer: TicketClientInput(
-                                        ticketClients: listaDeIngressos!),
-                                  )));
+                                compraComOrganizacao: false,
+                                ticketInfo: null,
+                                resumoDaCompra: listaDeResumo,
+                                ticketOrganizer: TicketClientInput(
+                                    ticketClients: listaDeIngressos!),
+                              )));
                     },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(7),
-                        color: const Color(0xFF198A68),
-                      ),
-                      width: 120,
-                      height: 40,
-                      child: const Center(
-                        child: Text(
-                          'Comprar',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
+                    width: 0.45,
+                    enable: true,
+                    delete: false,
+
                 ),
               ],
             ),
