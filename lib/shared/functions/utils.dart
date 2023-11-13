@@ -191,3 +191,19 @@ Future<String?> uploadFile(File file) async {
     return null; // Retornar null em caso de erro
   }
 }
+
+String insertSpaces(String input) {
+  if (input.length != 16) {
+    throw ArgumentError("A string de entrada deve ter 16 dígitos.");
+  }
+
+  String result = '';
+  for (int i = 0; i < input.length; i += 4) {
+    result += input.substring(i, i + 4);
+    if (i + 4 < input.length) {
+      result += ' ';
+    }
+  }
+
+  return result;
+}

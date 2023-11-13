@@ -44,7 +44,7 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
   TextEditingController nomeController = TextEditingController();
   bool checkboxValue = false;
 
-  Cards? card;
+  CardSelect? card;
 
   @override
   Widget build(BuildContext context) {
@@ -90,14 +90,10 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                         height: MediaQuery.of(context).size.height * 0.005),
                     InkWell(
                         onTap: () async {
-                          List<CardSelect> cards =
-                              await CardRepository(dio).getCards();
-
                           card = await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) =>
-                                      FormaDePagamento(cards: cards)));
+                                  builder: (context) => FormaDePagamento()));
                           // showModalBottomSheet<Cards>(
                           //   useSafeArea: true,
                           //   isScrollControlled: true,
@@ -236,6 +232,7 @@ class _InfoPedidoScreenState extends State<InfoPedidoScreen> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => ResumoDaCompra(
+                                    cardSelect: card,
                                     compraComOrganizacao:
                                         widget.compraComOrganizacao,
                                     ticketOrganizer: widget.ticketOrganizer,

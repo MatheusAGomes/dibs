@@ -1,3 +1,4 @@
+import 'package:dibs/models/cardSelect.dart';
 import 'package:dibs/models/ticketInfoInput.dart';
 import 'package:dibs/models/ticketLote.dart';
 import 'package:dibs/models/ticketOrganizer.dart';
@@ -20,11 +21,13 @@ class ResumoDaCompra extends StatefulWidget {
   TicketClientInput? ticketOrganizer;
   List<ResumoDaCompraString> resumoDaCompra;
   bool compraComOrganizacao;
+  CardSelect? cardSelect;
   ResumoDaCompra(
       {required this.ticketInfo,
       required this.resumoDaCompra,
       required this.compraComOrganizacao,
-      required this.ticketOrganizer});
+      required this.ticketOrganizer,
+      required this.cardSelect});
 
   @override
   State<ResumoDaCompra> createState() => _ResumoDaCompraState();
@@ -173,12 +176,12 @@ class _ResumoDaCompraState extends State<ResumoDaCompra> {
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.018),
                         Text(
-                          '**** **** **** 8583',
+                          '${insertSpaces(widget.cardSelect!.number)}',
                           style: TextStyleService(
                                   fontSize: 16, color: Colors.black)
                               .creditCardComponent,
                         ),
-                        Text('JOÃO CLEBER MACHADO',
+                        Text('${widget.cardSelect!.name}',
                             style: GoogleFonts.jost(
                                 textStyle: TextStyle(
                                     fontWeight: FontWeight.w500,

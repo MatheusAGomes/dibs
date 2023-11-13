@@ -1,3 +1,4 @@
+import 'package:dibs/main.dart';
 import 'package:dibs/models/cardSelect.dart';
 import 'package:dibs/models/cards.dart';
 import 'package:dibs/repositories/card-repository.dart';
@@ -12,8 +13,7 @@ import '../widget/meuCartaoComponente.dart';
 import 'modalNovoCartao.dart';
 
 class FormaDePagamento extends StatefulWidget {
-  List<CardSelect> cards;
-  FormaDePagamento({super.key, required this.cards});
+  FormaDePagamento({super.key});
 
   @override
   State<FormaDePagamento> createState() => _FormaDePagamentoState();
@@ -56,8 +56,8 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                 ),
                 ButtonNewAction(
                     text: 'Novo Cartão',
-                    click: () {
-                      showModalBottomSheet<void>(
+                    click: () async {
+                      await showModalBottomSheet<void>(
                           isScrollControlled: true,
                           context: context,
                           clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -68,6 +68,7 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                           builder: (BuildContext context) {
                             return const ModalNovoCartao();
                           });
+                      setState(() {});
                     }),
                 SizedBox(
                   height: 5,
@@ -76,32 +77,42 @@ class _FormaDePagamentoState extends State<FormaDePagamento> {
                   color: Color(0xFFD9D9D9),
                   thickness: 1,
                 ),
-                Column(
-                    children: List.generate(widget.cards.length, (index) {
-                  // return Padding(
-                  //   padding: const EdgeInsets.symmetric(vertical: 5),
-                  //   child: MeuCartaoComponente(
-                  //       pedido: true,
-                  //       nome: widget.cards[index].name,
-                  //       numero: substituirTresPrimeirosGruposPorAsteriscos(
-                  //           widget.cards[index].number!),
-                  //       tipo: "Cartão de Crédito"),
-                  // );
-                  return InkWell(
-                    onTap: () {
-                      Navigator.pop(context, widget.cards[index]);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: MeuCartaoComponente(
-                          pedido: true,
-                          nome: widget.cards[index].name,
-                          numero: substituirTresPrimeirosGruposPorAsteriscos(
-                              widget.cards[index].number),
-                          tipo: "Crédito"),
-                    ),
-                  );
-                })),
+                FutureBuilder(
+                  future: CardRepository(dio).getCards(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                          children:
+                              List.generate(snapshot.data!.length, (index) {
+                        // return Padding(
+                        //   padding: const EdgeInsets.symmetric(vertical: 5),
+                        //   child: MeuCartaoComponente(
+                        //       pedido: true,
+                        //       nome: snapshot.data![index].name,
+                        //       numero: substituirTresPrimeirosGruposPorAsteriscos(
+                        //           snapshot.data![index].number!),
+                        //       tipo: "Cartão de Crédito"),
+                        // );
+                        return InkWell(
+                          onTap: () {
+                            Navigator.pop(context, snapshot.data![index]);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5),
+                            child: MeuCartaoComponente(
+                                pedido: true,
+                                nome: snapshot.data![index].name,
+                                numero:
+                                    substituirTresPrimeirosGruposPorAsteriscos(
+                                        snapshot.data![index].number),
+                                tipo: "Crédito"),
+                          ),
+                        );
+                      }));
+                    }
+                    return SizedBox();
+                  },
+                ),
                 const SizedBox(
                   height: 20,
                 ),

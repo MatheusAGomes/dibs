@@ -240,6 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   ExpandableTextField(
                       controller: senhaController,
+                      hideTextfild: true,
                       height: 0.05,
                       validator: Validatorless.multiple([
                         Validatorless.required("Campo obrigatório"),
